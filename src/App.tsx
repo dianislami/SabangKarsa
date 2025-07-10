@@ -1,10 +1,26 @@
-import { Button } from "@/components/ui/button"
+import { ThemeProvider } from "./components/theme-provider"
+import { LoginPage } from "./pages/auth/LoginPage"
+import { RegisterPage } from "./pages/auth/RegisterPage"
 
 function App() {
+  // Simple routing based on URL pathname
+  const currentPath = window.location.pathname
+
+  const renderPage = () => {
+    switch (currentPath) {
+      case '/register':
+        return <RegisterPage />
+      case '/login':
+        return <LoginPage />
+      default:
+        return <LoginPage />
+    }
+  }
+
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center">
-      <Button>Click me</Button>
-    </div>
+    <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
+      {renderPage()}
+    </ThemeProvider>
   )
 }
 
