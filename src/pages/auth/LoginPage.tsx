@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { Eye, EyeOff, Mail, Lock, MapPin, Home, Car } from "lucide-react"
+import { Eye, EyeOff, Mail, Lock, MapPin, Home, Car, MessageCircle } from "lucide-react"
 
 export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -11,6 +12,10 @@ export function LoginPage() {
     email: "",
     password: ""
   })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate()
+  const API_URL = import.meta.env.VITE_API_URL
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -36,10 +41,33 @@ export function LoginPage() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle login logic here
-    console.log("Login submitted:", formData)
+    setLoading(true)
+    setError(null)
+    
+    try {
+      const response = await fetch(`${API_URL}/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      })
+      const result = await response.json()
+
+      if (response.ok && result.token) {
+        localStorage.setItem("token", result.token)
+        localStorage.setItem("user", JSON.stringify(result.user))
+        navigate("/dashboard")
+      } else {
+        setError(result.error || "Login gagal.")
+      }
+    } catch (err) {
+      setError("Terjadi kesalahan saat login.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -88,6 +116,9 @@ export function LoginPage() {
           </div>
           <div className="absolute bottom-32 left-32 text-accent/20 animate-float">
             <Car size={28} />
+          </div>
+          <div className="absolute bottom-20 right-20 text-button/20 animate-float-delayed">
+            <MessageCircle size={26} />
           </div>
         </div>
       </div>
@@ -145,6 +176,16 @@ export function LoginPage() {
                 <div>
                   <h3 className="font-semibold text-foreground">Driver & Transport</h3>
                   <p className="text-sm text-muted-foreground">Cari driver dan transportasi lokal</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
+                <div className="p-2 bg-button/10 rounded-full">
+                  <MessageCircle className="w-5 h-5 text-button" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">ChatBot</h3>
+                  <p className="text-sm text-muted-foreground">Bantuan cepat dengan AI assistant</p>
                 </div>
               </div>
             </div>
@@ -223,12 +264,20 @@ export function LoginPage() {
                   </div>
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <div className="text-destructive text-sm bg-destructive/10 border border-destructive/20 rounded-md p-3">
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full py-3 bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold"
+                  disabled={loading}
+                  className="w-full py-3 bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Masuk
+                  {loading ? "Loading..." : "Masuk"}
                 </Button>
               </form>
 
@@ -238,7 +287,7 @@ export function LoginPage() {
                   Belum punya akun?
                   <button
                     type="button"
-                    onClick={() => window.location.href = '/register'}
+                    onClick={() => navigate('/register')}
                     className="ml-1 text-secondary hover:text-secondary/80 transition-colors font-medium"
                   >
                     Daftar di sini

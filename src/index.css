@@ -20,12 +20,9 @@
   /* Muted menggunakan Sky-100 */
   --muted: oklch(0.967 0.013 236.62);
   --muted-foreground: oklch(0.552 0.016 285.938);
-  /* Accent menggunakan Sky-800 untuk kontras yang lebih baik */
-  --accent: oklch(0.443 0.11 240.79);
-  --accent-foreground: oklch(0.977 0.013 236.62);
-  /* Button color - Sky-600 untuk kontras yang lebih baik */
-  --button: oklch(0.35 0.08 240.79);
-  --button-foreground: oklch(0.985 0 0);
+  /* Accent menggunakan Sky-100 */
+  --accent: oklch(0.967 0.013 236.62);
+  --accent-foreground: oklch(0.141 0.005 285.823);
   /* Destructive tetap merah */
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.977 0.013 236.62);
@@ -34,6 +31,9 @@
   --input: oklch(0.92 0.013 236.62);
   /* Ring menggunakan Sky-800 */
   --ring: oklch(0.443 0.11 240.79);
+  /* Button menggunakan Sky-700 untuk kontras yang baik */
+  --button: oklch(0.369 0.08 240.79);
+  --button-foreground: oklch(0.985 0 0);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -72,9 +72,6 @@
   /* Accent menggunakan Sky-700 */
   --accent: oklch(0.369 0.08 240.79);
   --accent-foreground: oklch(0.985 0 0);
-  /* Button color - Sky-500 untuk dark mode */
-  --button: oklch(0.55 0.12 240.79);
-  --button-foreground: oklch(0.985 0 0);
   /* Destructive tetap merah */
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.985 0 0);
@@ -83,6 +80,9 @@
   --input: oklch(0.369 0.08 240.79);
   /* Ring menggunakan Sky-800 */
   --ring: oklch(0.443 0.11 240.79);
+  /* Button menggunakan Sky-500 untuk dark mode */
+  --button: oklch(0.55 0.12 240.79);
+  --button-foreground: oklch(0.985 0 0);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -97,6 +97,41 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.369 0.08 240.79);
   --sidebar-ring: oklch(0.443 0.11 240.79);
+}
+
+/* Custom gradient classes */
+.gradient-text {
+  background: linear-gradient(135deg, oklch(0.443 0.11 240.79), oklch(0.369 0.08 240.79));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(135deg, oklch(0.443 0.11 240.79), oklch(0.369 0.08 240.79), oklch(0.269 0.045 240.79));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes float-delayed {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 3s ease-in-out infinite;
+  animation-delay: 1s;
 }
 
 @layer base {
@@ -115,95 +150,15 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-}
-
-/* Custom Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-@keyframes float-delayed {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-@keyframes gradient-shift {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes pulse-soft {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
-
-@layer utilities {
-  .animate-float {
-    animation: float 3s ease-in-out infinite;
+  
+  /* Ensure proper select styling */
+  select {
+    color: var(--foreground);
+    background-color: var(--input);
   }
   
-  .animate-float-delayed {
-    animation: float-delayed 4s ease-in-out infinite;
-    animation-delay: 1s;
-  }
-  
-  .animate-gradient {
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
-  }
-  
-  .animate-pulse-soft {
-    animation: pulse-soft 2s ease-in-out infinite;
-  }
-  
-  .gradient-text {
-    background: linear-gradient(45deg, 
-      oklch(0.443 0.11 240.79), 
-      oklch(0.443 0.11 240.79)
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-  }
-  
-  .gradient-text-alt {
-    background: linear-gradient(135deg, 
-      oklch(0.35 0.08 240.79) 0%, 
-      oklch(0.25 0.06 240.79) 50%,
-      oklch(0.15 0.04 240.79) 100%
-    );
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    font-weight: 700;
-  }
-  
-  .btn-primary {
-    background: oklch(0.35 0.08 240.79);
-    color: oklch(0.985 0 0);
-    border: 1px solid oklch(0.35 0.08 240.79);
-  }
-  
-  .btn-primary:hover {
-    background: oklch(0.25 0.06 240.79);
-    border-color: oklch(0.25 0.06 240.79);
+  select option {
+    color: var(--foreground);
+    background-color: var(--card);
   }
 }

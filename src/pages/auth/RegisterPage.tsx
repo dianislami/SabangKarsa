@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { Eye, EyeOff, Mail, Lock, User, MapPin, Home, Car, Phone, MapIcon } from "lucide-react"
+import { Eye, EyeOff, Mail, Lock, User, MapPin, Home, Car, Phone, MapIcon, MessageCircle } from "lucide-react"
 
 export function RegisterPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -9,14 +10,18 @@ export function RegisterPage() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [isLoaded, setIsLoaded] = useState(false)
   const [formData, setFormData] = useState({
-    nama: "",
+    name: "",
     email: "",
     password: "",
     confirmPassword: "",
     role: "",
-    noHp: "",
+    no_hp: "",
     alamat: ""
   })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+  const navigate = useNavigate()
+  const API_URL = import.meta.env.VITE_API_URL
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -42,23 +47,48 @@ export function RegisterPage() {
     })
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      alert("Password dan konfirmasi password tidak sama!")
+      setError("Password dan konfirmasi password tidak sama!")
       return
     }
     
     if (formData.password.length < 6) {
-      alert("Password minimal 6 karakter!")
+      setError("Password minimal 6 karakter!")
       return
     }
     
-    // Handle register logic here
-    console.log("Register submitted:", formData)
-    alert("Registrasi berhasil!")
+    setLoading(true)
+    setError(null)
+    
+    try {
+      // Remove confirmPassword from data sent to API
+      const { confirmPassword, ...dataToSend } = formData
+      
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(dataToSend),
+      })
+      const result = await response.json()
+
+      if (response.ok && result.token) {
+        localStorage.setItem('token', result.token)
+        localStorage.setItem('user', JSON.stringify(result.user))
+        navigate('/dashboard')
+      } else {
+        setError(result.error || "Registrasi gagal.")
+      }
+    } catch (err) {
+      setError("Terjadi kesalahan saat mendaftar.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -108,6 +138,9 @@ export function RegisterPage() {
           <div className="absolute bottom-32 left-32 text-accent/20 animate-float">
             <Car size={28} />
           </div>
+          <div className="absolute bottom-20 right-20 text-button/20 animate-float-delayed">
+            <MessageCircle size={26} />
+          </div>
         </div>
       </div>
 
@@ -142,8 +175,8 @@ export function RegisterPage() {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Akses Mudah</h3>
-                  <p className="text-sm text-muted-foreground">Daftar sekali, akses semua layanan</p>
+                  <h3 className="font-semibold text-foreground">Destinasi Wisata</h3>
+                  <p className="text-sm text-muted-foreground">Temukan tempat wisata terbaik di Sabang</p>
                 </div>
               </div>
               
@@ -152,8 +185,8 @@ export function RegisterPage() {
                   <Home className="w-5 h-5 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Booking Mudah</h3>
-                  <p className="text-sm text-muted-foreground">Reservasi hotel dengan cepat</p>
+                  <h3 className="font-semibold text-foreground">Penginapan</h3>
+                  <p className="text-sm text-muted-foreground">Booking hotel dan penginapan terpercaya</p>
                 </div>
               </div>
               
@@ -162,8 +195,18 @@ export function RegisterPage() {
                   <Car className="w-5 h-5 text-accent-foreground" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-foreground">Driver Terpercaya</h3>
-                  <p className="text-sm text-muted-foreground">Hubungi driver lokal terverifikasi</p>
+                  <h3 className="font-semibold text-foreground">Driver & Transport</h3>
+                  <p className="text-sm text-muted-foreground">Cari driver dan transportasi lokal</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
+                <div className="p-2 bg-button/10 rounded-full">
+                  <MessageCircle className="w-5 h-5 text-button" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-foreground">ChatBot</h3>
+                  <p className="text-sm text-muted-foreground">Bantuan cepat dengan AI assistant</p>
                 </div>
               </div>
             </div>
@@ -174,196 +217,211 @@ export function RegisterPage() {
         <div className="flex-1 flex items-center justify-center px-4 py-8 lg:px-12">
           <div className="w-full max-w-lg">
             <div 
-              className={`bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl p-8 transform transition-all duration-1000 ${
+              className={`bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl p-6 transform transition-all duration-1000 ${
                 isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
               }`}
             >
               {/* Header */}
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-button rounded-full mb-4 shadow-lg">
-                  <User className="w-8 h-8 text-button-foreground" />
+              <div className="text-center mb-4">
+                <div className="inline-flex items-center justify-center w-12 h-12 bg-button rounded-full mb-3 shadow-lg">
+                  <User className="w-6 h-6 text-button-foreground" />
                 </div>
-                <h2 className="text-3xl font-bold text-foreground mb-2">
+                <h2 className="text-2xl font-bold text-foreground mb-1">
                   Daftar Akun Baru
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-sm text-muted-foreground">
                   Lengkapi form untuk membuat akun JakSabang
                 </p>
               </div>
 
               {/* Form */}
-              <form onSubmit={handleSubmit} className="space-y-4">
-                {/* Nama Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    Nama Lengkap
-                  </label>
-                  <div className="relative">
-                    <User className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <input
-                      type="text"
-                      name="nama"
-                      value={formData.nama}
-                      onChange={handleInputChange}
-                      placeholder="Masukkan nama lengkap"
-                      className="w-full pl-10 pr-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
-                      required
-                    />
+              <form onSubmit={handleSubmit} className="space-y-3">
+                {/* Grid Layout untuk form yang lebih kompakt */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {/* Nama Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      Nama Lengkap
+                    </label>
+                    <div className="relative">
+                      <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Nama lengkap"
+                        className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                        required
+                      />
+                    </div>
+                  </div>
+
+                  {/* Email Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      Email
+                    </label>
+                    <div className="relative">
+                      <Mail className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="Email"
+                        className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
 
-                {/* Email Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    Email
-                  </label>
-                  <div className="relative">
-                    <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <input
-                      type="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="Masukkan email"
-                      className="w-full pl-10 pr-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
-                      required
-                    />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {/* Password Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      Kata Sandi
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                      <input
+                        type={showPassword ? "text" : "password"}
+                        name="password"
+                        value={formData.password}
+                        onChange={handleInputChange}
+                        placeholder="Min 6 karakter"
+                        className="w-full pl-8 pr-8 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                        required
+                        minLength={6}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {showPassword ? (
+                          <EyeOff className="h-3 w-3" />
+                        ) : (
+                          <Eye className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Confirm Password Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      Konfirmasi Kata Sandi
+                    </label>
+                    <div className="relative">
+                      <Lock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                      <input
+                        type={showConfirmPassword ? "text" : "password"}
+                        name="confirmPassword"
+                        value={formData.confirmPassword}
+                        onChange={handleInputChange}
+                        placeholder="Ulangi kata sandi"
+                        className="w-full pl-8 pr-8 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                        required
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {showConfirmPassword ? (
+                          <EyeOff className="h-3 w-3" />
+                        ) : (
+                          <Eye className="h-3 w-3" />
+                        )}
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                {/* Password Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    Kata Sandi
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <input
-                      type={showPassword ? "text" : "password"}
-                      name="password"
-                      value={formData.password}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {/* Role Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      Role
+                    </label>
+                    <select
+                      name="role"
+                      value={formData.role}
                       onChange={handleInputChange}
-                      placeholder="Minimal 6 karakter"
-                      className="w-full pl-10 pr-10 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                      className="w-full px-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                       required
-                      minLength={6}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                     >
-                      {showPassword ? (
-                        <EyeOff className="h-4 w-4" />
-                      ) : (
-                        <Eye className="h-4 w-4" />
-                      )}
-                    </button>
+                      <option value="">Pilih Role</option>
+                      <option value="buyer">Buyer (Wisatawan)</option>
+                      <option value="seller">Seller (Penyedia Layanan)</option>
+                    </select>
                   </div>
-                </div>
 
-                {/* Confirm Password Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    Konfirmasi Kata Sandi
-                  </label>
-                  <div className="relative">
-                    <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <input
-                      type={showConfirmPassword ? "text" : "password"}
-                      name="confirmPassword"
-                      value={formData.confirmPassword}
-                      onChange={handleInputChange}
-                      placeholder="Ulangi kata sandi"
-                      className="w-full pl-10 pr-10 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
-                      required
-                    />
-                    <button
-                      type="button"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                      className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
-                    >
-                      {showConfirmPassword ? (
-                        <EyeOff className="h-4 w-4" />
-                      ) : (
-                        <Eye className="h-4 w-4" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-
-                {/* Role Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    Role
-                  </label>
-                  <select
-                    name="role"
-                    value={formData.role}
-                    onChange={handleInputChange}
-                    className="w-full px-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
-                    required
-                  >
-                    <option value="">Pilih Role</option>
-                    <option value="buyer">Buyer (Wisatawan)</option>
-                    <option value="seller">Seller (Penyedia Layanan)</option>
-                  </select>
-                </div>
-
-                {/* No HP Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
-                    No. Handphone
-                  </label>
-                  <div className="relative">
-                    <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <input
-                      type="tel"
-                      name="noHp"
-                      value={formData.noHp}
-                      onChange={handleInputChange}
-                      placeholder="08xxxxxxxxxx"
-                      className="w-full pl-10 pr-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
-                      required
-                    />
+                  {/* No HP Field */}
+                  <div className="space-y-1">
+                    <label className="block text-xs font-medium text-foreground">
+                      No. Handphone
+                    </label>
+                    <div className="relative">
+                      <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
+                      <input
+                        type="tel"
+                        name="no_hp"
+                        value={formData.no_hp}
+                        onChange={handleInputChange}
+                        placeholder="08xxxxxxxxxx"
+                        className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
+                        required
+                      />
+                    </div>
                   </div>
                 </div>
 
                 {/* Alamat Field */}
-                <div className="space-y-2">
-                  <label className="block text-sm font-medium text-foreground">
+                <div className="space-y-1">
+                  <label className="block text-xs font-medium text-foreground">
                     Alamat
                   </label>
                   <div className="relative">
-                    <MapIcon className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+                    <MapIcon className="absolute left-2 top-2 h-3 w-3 text-muted-foreground" />
                     <textarea
                       name="alamat"
                       value={formData.alamat}
                       onChange={handleInputChange}
                       placeholder="Masukkan alamat lengkap"
-                      rows={3}
-                      className="w-full pl-10 pr-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200 resize-none"
+                      rows={2}
+                      className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200 resize-none"
                       required
                     />
                   </div>
                 </div>
 
+                {/* Error Message */}
+                {error && (
+                  <div className="text-destructive text-xs bg-destructive/10 border border-destructive/20 rounded-md p-2">
+                    {error}
+                  </div>
+                )}
+
                 {/* Submit Button */}
                 <Button
                   type="submit"
-                  className="w-full py-3 bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold"
+                  disabled={loading}
+                  className="w-full py-2 text-sm bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  Daftar Sekarang
+                  {loading ? "Loading..." : "Daftar Sekarang"}
                 </Button>
               </form>
 
               {/* Login Link */}
-              <div className="mt-6 text-center">
-                <p className="text-muted-foreground">
+              <div className="mt-4 text-center">
+                <p className="text-xs text-muted-foreground">
                   Sudah punya akun?
                   <button
                     type="button"
-                    onClick={() => window.location.href = '/login'}
+                    onClick={() => navigate('/login')}
                     className="ml-1 text-secondary hover:text-secondary/80 transition-colors font-medium"
                   >
                     Masuk di sini
