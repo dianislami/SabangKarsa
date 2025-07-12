@@ -2,38 +2,60 @@
 
 :root {
   --radius: 0.65rem;
-  /* Background menggunakan Sky-50 */
-  --background: oklch(0.977 0.013 236.62);
-  --foreground: oklch(0.141 0.005 285.823);
-  /* Card menggunakan Sky-50 */
-  --card: oklch(0.977 0.013 236.62);
-  --card-foreground: oklch(0.141 0.005 285.823);
-  /* Popover menggunakan Sky-50 */
-  --popover: oklch(0.977 0.013 236.62);
-  --popover-foreground: oklch(0.141 0.005 285.823);
-  /* Primary menggunakan Sky-50 */
-  --primary: oklch(0.977 0.013 236.62);
-  --primary-foreground: oklch(0.141 0.005 285.823);
-  /* Secondary menggunakan Sky-800 */
-  --secondary: oklch(0.443 0.11 240.79);
-  --secondary-foreground: oklch(0.977 0.013 236.62);
-  /* Muted menggunakan Sky-100 */
-  --muted: oklch(0.967 0.013 236.62);
-  --muted-foreground: oklch(0.552 0.016 285.938);
-  /* Accent menggunakan Sky-100 */
-  --accent: oklch(0.967 0.013 236.62);
-  --accent-foreground: oklch(0.141 0.005 285.823);
+  /* LIGHT THEME: Dominan putih dengan aksen emerald */
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.15 0.02 150);
+  
+  /* Card putih dengan border subtle */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.02 150);
+  
+  /* Popover putih */
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.02 150);
+  
+  /* Primary emerald untuk aksen */
+  --primary: oklch(0.59 0.15 158);
+  --primary-foreground: oklch(1 0 0);
+  
+  /* Secondary putih dengan border emerald */
+  --secondary: oklch(0.98 0.005 150);
+  --secondary-foreground: oklch(0.15 0.02 150);
+  
+  /* Muted abu-abu terang */
+  --muted: oklch(0.96 0.002 150);
+  --muted-foreground: oklch(0.45 0.02 150);
+  
+  /* Accent putih dengan border emerald */
+  --accent: oklch(0.98 0.005 150);
+  --accent-foreground: oklch(0.15 0.02 150);
+  
   /* Destructive tetap merah */
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.977 0.013 236.62);
-  /* Border dan input menggunakan Sky-200 */
-  --border: oklch(0.92 0.013 236.62);
-  --input: oklch(0.92 0.013 236.62);
-  /* Ring menggunakan Sky-800 */
-  --ring: oklch(0.443 0.11 240.79);
-  /* Button menggunakan Sky-700 untuk kontras yang baik */
-  --button: oklch(0.369 0.08 240.79);
-  --button-foreground: oklch(0.985 0 0);
+  --destructive-foreground: oklch(1 0 0);
+  
+  /* Border abu-abu terang */
+  --border: oklch(0.90 0.002 150);
+  --input: oklch(1 0 0);
+  
+  /* Ring emerald untuk focus */
+  --ring: oklch(0.59 0.15 158);
+  
+  /* Button emerald untuk aksi */
+  --button: oklch(0.59 0.15 158);
+  --button-foreground: oklch(1 0 0);
+  
+  /* Navbar putih transparan */
+  --navbar: oklch(1 0 0 / 0.95);
+  --navbar-foreground: oklch(0.15 0.02 150);
+  
+  /* Custom colors untuk light theme */
+  --text-emerald: oklch(0.59 0.15 158);
+  --text-emerald-dark: oklch(0.45 0.12 158);
+  --section-bg: oklch(1 0 0);
+  --section-bg-alt: oklch(0.98 0.005 150);
+  --section-emerald: oklch(0.59 0.15 158);
+  --section-emerald-light: oklch(0.95 0.02 158);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -51,38 +73,60 @@
 }
 
 .dark {
-  /* Background menggunakan Sky-900 */
-  --background: oklch(0.145 0.045 240.79);
-  --foreground: oklch(0.985 0 0);
-  /* Card menggunakan Sky-800 */
-  --card: oklch(0.205 0.045 240.79);
-  --card-foreground: oklch(0.985 0 0);
-  /* Popover menggunakan Sky-800 */
-  --popover: oklch(0.205 0.045 240.79);
-  --popover-foreground: oklch(0.985 0 0);
-  /* Primary menggunakan Sky-50 (tetap terang untuk kontras) */
-  --primary: oklch(0.977 0.013 236.62);
-  --primary-foreground: oklch(0.141 0.005 285.823);
-  /* Secondary menggunakan Sky-800 */
-  --secondary: oklch(0.443 0.11 240.79);
-  --secondary-foreground: oklch(0.977 0.013 236.62);
-  /* Muted menggunakan Sky-800 */
-  --muted: oklch(0.269 0.045 240.79);
-  --muted-foreground: oklch(0.708 0 0);
-  /* Accent menggunakan Sky-700 */
-  --accent: oklch(0.369 0.08 240.79);
-  --accent-foreground: oklch(0.985 0 0);
+  /* DARK THEME: Dominan emerald gelap dengan aksen putih */
+  --background: oklch(0.08 0.02 158);
+  --foreground: oklch(0.98 0.005 150);
+  
+  /* Card emerald gelap */
+  --card: oklch(0.12 0.025 158);
+  --card-foreground: oklch(0.98 0.005 150);
+  
+  /* Popover emerald gelap */
+  --popover: oklch(0.12 0.025 158);
+  --popover-foreground: oklch(0.98 0.005 150);
+  
+  /* Primary putih untuk kontras */
+  --primary: oklch(0.98 0.005 150);
+  --primary-foreground: oklch(0.08 0.02 158);
+  
+  /* Secondary emerald medium */
+  --secondary: oklch(0.25 0.08 158);
+  --secondary-foreground: oklch(0.98 0.005 150);
+  
+  /* Muted emerald gelap */
+  --muted: oklch(0.16 0.02 158);
+  --muted-foreground: oklch(0.70 0.005 150);
+  
+  /* Accent emerald medium */
+  --accent: oklch(0.20 0.05 158);
+  --accent-foreground: oklch(0.98 0.005 150);
+  
   /* Destructive tetap merah */
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0 0);
-  /* Border dan input menggunakan Sky-700 */
-  --border: oklch(0.369 0.08 240.79);
-  --input: oklch(0.369 0.08 240.79);
-  /* Ring menggunakan Sky-800 */
-  --ring: oklch(0.443 0.11 240.79);
-  /* Button menggunakan Sky-500 untuk dark mode */
-  --button: oklch(0.55 0.12 240.79);
-  --button-foreground: oklch(0.985 0 0);
+  --destructive-foreground: oklch(0.98 0.005 150);
+  
+  /* Border emerald gelap */
+  --border: oklch(0.20 0.02 158);
+  --input: oklch(0.12 0.025 158);
+  
+  /* Ring putih untuk focus */
+  --ring: oklch(0.98 0.005 150);
+  
+  /* Button putih untuk aksi */
+  --button: oklch(0.98 0.005 150);
+  --button-foreground: oklch(0.08 0.02 158);
+  
+  /* Navbar emerald gelap transparan */
+  --navbar: oklch(0.08 0.02 158 / 0.95);
+  --navbar-foreground: oklch(0.98 0.005 150);
+  
+  /* Custom colors untuk dark theme */
+  --text-emerald: oklch(0.98 0.005 150);
+  --text-emerald-dark: oklch(0.85 0.005 150);
+  --section-bg: oklch(0.08 0.02 158);
+  --section-bg-alt: oklch(0.12 0.025 158);
+  --section-emerald: oklch(0.98 0.005 150);
+  --section-emerald-light: oklch(0.25 0.08 158);
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -99,19 +143,176 @@
   --sidebar-ring: oklch(0.443 0.11 240.79);
 }
 
-/* Custom gradient classes */
+/* Custom gradient classes untuk tema hijau */
 .gradient-text {
-  background: linear-gradient(135deg, oklch(0.443 0.11 240.79), oklch(0.369 0.08 240.79));
+  background: linear-gradient(135deg, oklch(0.59 0.15 158), oklch(0.45 0.12 158));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .gradient-text-alt {
-  background: linear-gradient(135deg, oklch(0.443 0.11 240.79), oklch(0.369 0.08 240.79), oklch(0.269 0.045 240.79));
+  background: linear-gradient(135deg, oklch(0.59 0.15 158), oklch(0.45 0.12 158), oklch(0.35 0.12 158));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Navbar custom styles */
+.navbar-glass {
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(229, 231, 235, 0.3);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.dark .navbar-glass {
+  background: rgba(20, 83, 82, 0.98);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
+}
+
+/* Theme-adaptive utility classes */
+.theme-bg {
+  background-color: var(--section-bg);
+}
+
+.theme-bg-alt {
+  background-color: var(--section-bg-alt);
+}
+
+.theme-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.dark .theme-card {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* Section backgrounds */
+.section-white {
+  background-color: oklch(1 0 0);
+}
+
+.section-gray {
+  background-color: oklch(0.98 0.005 150);
+}
+
+.section-emerald {
+  background-color: oklch(0.59 0.15 158);
+}
+
+.dark .section-white {
+  background-color: oklch(0.08 0.02 158);
+}
+
+.dark .section-gray {
+  background-color: oklch(0.12 0.025 158);
+}
+
+.dark .section-emerald {
+  background-color: oklch(0.25 0.08 158);
+}
+
+/* Button variants */
+.btn-primary {
+  background-color: var(--button);
+  color: var(--button-foreground);
+  border: 1px solid var(--button);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--button);
+  border: 2px solid var(--button);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background-color: var(--button);
+  color: var(--button-foreground);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  .mobile-center {
+    text-align: center;
+  }
+  
+  .mobile-stack {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .mobile-full {
+    width: 100%;
+  }
+  
+  .mobile-hidden {
+    display: none;
+  }
+  
+  .mobile-text-sm {
+    font-size: 0.875rem;
+  }
+  
+  .mobile-text-base {
+    font-size: 1rem;
+  }
+  
+  .mobile-text-lg {
+    font-size: 1.125rem;
+  }
+  
+  .mobile-px-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .mobile-py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+  
+  .mobile-py-12 {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+  
+  /* Mobile navbar adjustments */
+  .navbar-glass {
+    padding: 0.75rem 1rem;
+  }
+  
+  /* Mobile hero section adjustments */
+  .hero-mobile {
+    min-height: 80vh;
+    padding: 2rem 1rem;
+  }
+  
+  /* Mobile card adjustments */
+  .mobile-card {
+    margin-bottom: 1.5rem;
+  }
+  
+  /* Mobile typography adjustments */
+  .mobile-heading {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+  
+  .mobile-subheading {
+    font-size: 1.5rem;
+    line-height: 1.3;
+  }
 }
 
 /* Custom animations */

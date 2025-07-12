@@ -1,14 +1,15 @@
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { MapPin, LogOut, User, Home, Car, MessageCircle } from "lucide-react"
+import { MapPin, Home, Car, MessageCircle, User, LogOut } from "lucide-react"
 
 export function DashboardPage() {
   const [user, setUser] = useState<any>(null)
   const navigate = useNavigate()
 
   useEffect(() => {
+    // Check if user is logged in
     const token = localStorage.getItem('token')
     const userData = localStorage.getItem('user')
     
@@ -33,10 +34,10 @@ export function DashboardPage() {
 
   if (!user) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <div className="w-16 h-16 border-4 border-button border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-muted-foreground">Memuat...</p>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-button mx-auto mb-4"></div>
+          <p className="text-muted-foreground">Loading...</p>
         </div>
       </div>
     )
@@ -53,19 +54,18 @@ export function DashboardPage() {
               <span className="text-2xl font-bold gradient-text-alt">JakSabang</span>
             </div>
             <div className="flex items-center gap-4">
-              <ThemeToggle />
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <User className="w-4 h-4" />
-                <span>{user.name}</span>
+              <div className="flex items-center gap-2">
+                <User className="w-5 h-5 text-muted-foreground" />
+                <span className="text-foreground">{user.name}</span>
               </div>
-              <Button 
+              <ThemeToggle />
+              <Button
                 onClick={handleLogout}
                 variant="outline"
-                size="sm"
                 className="border-destructive text-destructive hover:bg-destructive hover:text-destructive-foreground"
               >
                 <LogOut className="w-4 h-4 mr-2" />
-                Keluar
+                Logout
               </Button>
             </div>
           </div>
@@ -74,97 +74,74 @@ export function DashboardPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Welcome Section */}
-        <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 mb-8 border border-border/50">
-          <h1 className="text-3xl font-bold text-foreground mb-2">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-foreground mb-2">
             Selamat Datang, {user.name}!
           </h1>
-          <p className="text-muted-foreground mb-4">
-            Selamat datang di JakSabang. Mulai jelajahi keindahan Sabang dengan layanan terpadu kami.
+          <p className="text-xl text-muted-foreground">
+            Siap untuk menjelajahi keindahan Sabang?
           </p>
-          <div className="flex flex-wrap gap-2 text-sm">
-            <span className="px-3 py-1 bg-button/10 text-button rounded-full">
-              Role: {user.role}
-            </span>
-            <span className="px-3 py-1 bg-secondary/10 text-secondary rounded-full">
-              Email: {user.email}
-            </span>
-            {user.no_hp && (
-              <span className="px-3 py-1 bg-accent/10 text-accent-foreground rounded-full">
-                HP: {user.no_hp}
-              </span>
-            )}
-          </div>
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg">
-            <div className="p-3 bg-primary/10 rounded-full w-fit mb-4">
-              <MapPin className="w-6 h-6 text-primary" />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Destinasi Wisata */}
+          <div className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105 cursor-pointer">
+            <div className="p-3 bg-primary/10 rounded-full w-fit mb-4 group-hover:bg-button/10 transition-colors">
+              <MapPin className="w-6 h-6 text-primary group-hover:text-button" />
             </div>
             <h3 className="text-xl font-semibold text-foreground mb-2">Destinasi Wisata</h3>
-            <p className="text-muted-foreground mb-4">Jelajahi tempat-tempat indah di Sabang</p>
-            <Button className="w-full bg-button text-button-foreground hover:bg-button/90">
-              Jelajahi Sekarang
-            </Button>
+            <p className="text-muted-foreground">Jelajahi tempat-tempat indah di Sabang</p>
           </div>
 
-          <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg">
-            <div className="p-3 bg-secondary/10 rounded-full w-fit mb-4">
-              <Home className="w-6 h-6 text-secondary" />
+          {/* Penginapan */}
+          <div className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105 cursor-pointer">
+            <div className="p-3 bg-secondary/10 rounded-full w-fit mb-4 group-hover:bg-button/10 transition-colors">
+              <Home className="w-6 h-6 text-secondary group-hover:text-button" />
             </div>
             <h3 className="text-xl font-semibold text-foreground mb-2">Penginapan</h3>
-            <p className="text-muted-foreground mb-4">Temukan penginapan terbaik untuk Anda</p>
-            <Button className="w-full bg-button text-button-foreground hover:bg-button/90">
-              Cari Penginapan
-            </Button>
+            <p className="text-muted-foreground">Booking hotel dan penginapan</p>
           </div>
 
-          <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg">
-            <div className="p-3 bg-accent/10 rounded-full w-fit mb-4">
-              <Car className="w-6 h-6 text-accent-foreground" />
+          {/* Driver & Transport */}
+          <div className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105 cursor-pointer">
+            <div className="p-3 bg-accent/10 rounded-full w-fit mb-4 group-hover:bg-button/10 transition-colors">
+              <Car className="w-6 h-6 text-accent-foreground group-hover:text-button" />
             </div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">Transportasi</h3>
-            <p className="text-muted-foreground mb-4">Sewa kendaraan atau cari driver</p>
-            <Button className="w-full bg-button text-button-foreground hover:bg-button/90">
-              Cari Transport
-            </Button>
+            <h3 className="text-xl font-semibold text-foreground mb-2">Driver & Transport</h3>
+            <p className="text-muted-foreground">Cari driver dan transportasi</p>
           </div>
 
-          <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg md:col-span-2 lg:col-span-3">
-            <div className="p-3 bg-button/10 rounded-full w-fit mb-4">
+          {/* ChatBot AI */}
+          <div className="group bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50 hover:border-button/50 transition-all duration-300 hover:shadow-lg hover:transform hover:scale-105 cursor-pointer">
+            <div className="p-3 bg-button/10 rounded-full w-fit mb-4 group-hover:bg-button/20 transition-colors">
               <MessageCircle className="w-6 h-6 text-button" />
             </div>
-            <h3 className="text-xl font-semibold text-foreground mb-2">ChatBot AI Assistant</h3>
-            <p className="text-muted-foreground mb-4">Dapatkan bantuan dan informasi wisata 24/7 dari AI assistant kami</p>
-            <div className="flex gap-4">
-              <Button className="bg-button text-button-foreground hover:bg-button/90">
-                Mulai Chat
-              </Button>
-              <Button variant="outline" className="border-button text-button hover:bg-button hover:text-button-foreground">
-                Pelajari Lebih Lanjut
-              </Button>
-            </div>
+            <h3 className="text-xl font-semibold text-foreground mb-2">ChatBot AI</h3>
+            <p className="text-muted-foreground">Bantuan AI 24/7</p>
           </div>
         </div>
 
-        {/* Quick Actions */}
-        <div className="bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50">
-          <h2 className="text-2xl font-bold text-foreground mb-4">Aksi Cepat</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Button variant="outline" className="border-button text-button hover:bg-button hover:text-button-foreground">
-              Profil Saya
-            </Button>
-            <Button variant="outline" className="border-button text-button hover:bg-button hover:text-button-foreground">
-              Riwayat Booking
-            </Button>
-            <Button variant="outline" className="border-button text-button hover:bg-button hover:text-button-foreground">
-              Favorit
-            </Button>
-            <Button variant="outline" className="border-button text-button hover:bg-button hover:text-button-foreground">
-              Bantuan
-            </Button>
+        {/* User Info Card */}
+        <div className="mt-8 bg-card/50 backdrop-blur-sm rounded-xl p-6 border border-border/50">
+          <h2 className="text-2xl font-semibold text-foreground mb-4">Informasi Akun</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <p className="text-sm text-muted-foreground">Nama</p>
+              <p className="text-foreground font-medium">{user.name}</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Email</p>
+              <p className="text-foreground font-medium">{user.email}</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">Role</p>
+              <p className="text-foreground font-medium capitalize">{user.role}</p>
+            </div>
+            <div>
+              <p className="text-sm text-muted-foreground">No. HP</p>
+              <p className="text-foreground font-medium">{user.no_hp}</p>
+            </div>
           </div>
         </div>
       </main>

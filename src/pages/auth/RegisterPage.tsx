@@ -80,7 +80,7 @@ export function RegisterPage() {
       if (response.ok && result.token) {
         localStorage.setItem('token', result.token)
         localStorage.setItem('user', JSON.stringify(result.user))
-        navigate('/dashboard')
+        navigate('/')
       } else {
         setError(result.error || "Registrasi gagal.")
       }
