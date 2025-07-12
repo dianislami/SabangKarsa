@@ -131,9 +131,9 @@ export function LoginPage() {
       {/* Main Content */}
       <div className="relative z-10 min-h-screen flex">
         {/* Left Side - Hero Section */}
-        <div className="hidden lg:flex lg:flex-1 flex-col justify-center px-12 py-16">
+        <div className="hidden lg:flex lg:flex-1 flex-col justify-center items-center px-12 py-16">
           <div 
-            className={`transform transition-all duration-1000 ${
+            className={`transform transition-all duration-1000 text-center ${
               isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
             }`}
           >
@@ -146,49 +146,6 @@ export function LoginPage() {
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
               Jelajahi keindahan Sabang dengan layanan terpadu untuk destinasi wisata, penginapan, dan transportasi.
             </p>
-            
-            {/* Feature Cards */}
-            <div className="space-y-4">
-              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
-                <div className="p-2 bg-primary/10 rounded-full">
-                  <MapPin className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Destinasi Wisata</h3>
-                  <p className="text-sm text-muted-foreground">Temukan tempat wisata terbaik di Sabang</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
-                <div className="p-2 bg-secondary/10 rounded-full">
-                  <Home className="w-5 h-5 text-secondary" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Penginapan</h3>
-                  <p className="text-sm text-muted-foreground">Booking hotel dan penginapan terpercaya</p>
-                </div>
-              </div>
-              
-              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
-                <div className="p-2 bg-accent/10 rounded-full">
-                  <Car className="w-5 h-5 text-accent-foreground" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">Driver & Transport</h3>
-                  <p className="text-sm text-muted-foreground">Cari driver dan transportasi lokal</p>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-4 p-4 bg-card/50 backdrop-blur-sm rounded-lg border border-border/50">
-                <div className="p-2 bg-button/10 rounded-full">
-                  <MessageCircle className="w-5 h-5 text-button" />
-                </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">ChatBot</h3>
-                  <p className="text-sm text-muted-foreground">Bantuan cepat dengan AI assistant</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
 

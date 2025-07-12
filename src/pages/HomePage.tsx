@@ -31,6 +31,7 @@ export function HomePage() {
   
   // Parallax transforms
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+  const parallaxY = useTransform(scrollYProgress, [0.8, 1], [-600, 0])
 
   // Data destinasi dengan foto yang sesuai
   const destinations = [
@@ -47,7 +48,7 @@ export function HomePage() {
       id: 2,
       name: "Gua Sarang",
       description: "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi.",
-      image: "/src/assets/destinasi/guasarang.jpg",
+      image: "/src/assets/destinasi/wisataguasarang.jpeg",
       rating: 4.7,
       price: "Rp 10.000",
       category: "Gua"
@@ -65,7 +66,7 @@ export function HomePage() {
       id: 4,
       name: "Danau Aneuk Laot",
       description: "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau.",
-      image: "/src/assets/destinasi/danauaneuklaot.jpg",
+      image: "/src/assets/destinasi/wisataguasarang.jpeg",
       rating: 4.6,
       price: "Gratis",
       category: "Danau"
@@ -74,7 +75,7 @@ export function HomePage() {
       id: 5,
       name: "Benteng Anoi Itam",
       description: "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi.",
-      image: "/src/assets/destinasi/bentenganoiitam.jpg",
+      image: "/src/assets/destinasi/pantaianoiitam.jpeg",
       rating: 4.5,
       price: "Rp 5.000",
       category: "Sejarah"
@@ -83,7 +84,7 @@ export function HomePage() {
       id: 6,
       name: "Tugu Kilometer 0",
       description: "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang.",
-      image: "/src/assets/destinasi/tugukm0.jpg",
+      image: "/src/assets/destinasi/tugu0km.jpg",
       rating: 4.8,
       price: "Gratis",
       category: "Monumen"
@@ -125,7 +126,7 @@ export function HomePage() {
       role: "Wisatawan Jakarta",
       comment: "Sabang sangat indah! Pantai Iboih benar-benar memukau dengan air yang jernih.",
       rating: 5,
-      image: "/images/testimonials/user1.jpg"
+      image: "/images/sabanglogin.jpg"
     },
     {
       name: "Sarah Putri",
@@ -367,7 +368,7 @@ export function HomePage() {
                   <Button 
                     variant="outline"
                     onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-background px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
+                    className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
                   >
                     Lihat Layanan
                   </Button>
@@ -376,7 +377,7 @@ export function HomePage() {
                 <>
                   <Button 
                     onClick={() => navigate('/register')}
-                    className="btn-primary px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
+                    className="bg-white text-emerald-600 hover:bg-emerald-50 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
                   >
                     Mulai Perjalanan
                     <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
@@ -385,7 +386,7 @@ export function HomePage() {
                   <Button 
                     variant="outline"
                     onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary dark:border-primary dark:text-primary dark:hover:bg-primary dark:hover:text-background px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
+                    className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
                   >
                     Lihat Destinasi
                   </Button>
@@ -549,46 +550,7 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section className="py-20 px-4 section-white">
-        <div className="container mx-auto">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Layanan Unggulan Kami
-            </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Nikmati kemudahan berlibur dengan berbagai layanan terpadu yang kami sediakan
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                className="theme-card rounded-2xl p-8 text-center hover:shadow-2xl transition-all duration-300"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05, y: -10 }}
-              >
-                <div className={`w-16 h-16 ${service.color} rounded-2xl flex items-center justify-center mx-auto mb-6`}>
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-4 text-foreground">{service.title}</h3>
-                <p className="text-muted-foreground">{service.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-      
+    
       {/* Destinations Section */}
       <section id="destinations" className="py-20 px-4 section-gray">
         <div className="container mx-auto">
@@ -633,21 +595,21 @@ export function HomePage() {
                     <Camera className="w-16 h-16 text-muted-foreground" />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-                  <div className="absolute top-4 right-4 bg-card/95 rounded-full px-3 py-1 flex items-center">
-                    <Star className="w-4 h-4 text-yellow-500 mr-1" />
-                    <span className="text-sm font-medium text-foreground">{destination.rating}</span>
+                  <div className="absolute top-4 right-4 bg-black/20 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center">
+                    <Star className="w-4 h-4 text-yellow-400 mr-1" />
+                    <span className="text-sm font-medium text-white">{destination.rating}</span>
                   </div>
-                  <div className="absolute bottom-4 left-4 bg-primary text-primary-foreground px-3 py-1 rounded-full text-sm font-medium">
-                    {destination.category}
+                  <div className="absolute bottom-4 left-4 bg-black/20 backdrop-blur-sm rounded-lg px-3 py-1">
+                    <span className="text-sm font-medium text-white">{destination.category}</span>
                   </div>
                 </div>
                 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-gray-800 dark:text-emerald-100">{destination.name}</h3>
-                  <p className="text-gray-600 dark:text-emerald-200 mb-4 text-sm">{destination.description}</p>
+                  <h3 className="text-xl font-bold mb-2 text-foreground dark:text-white">{destination.name}</h3>
+                  <p className="text-muted-foreground dark:text-white/80 mb-4 text-sm">{destination.description}</p>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-lg font-semibold text-primary">{destination.price}</span>
+                    <span className="text-lg font-semibold text-primary dark:text-white">{destination.price}</span>
                     <Button 
                       size="sm" 
                       className="btn-primary"
@@ -851,7 +813,7 @@ export function HomePage() {
                 <>
                   <Button 
                     onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-white text-primary hover:bg-white/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
+                    className="bg-white text-primary hover:bg-white/90 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
                   >
                     Mulai Petualangan
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -860,7 +822,7 @@ export function HomePage() {
                   <Button 
                     onClick={() => alert('Fitur partner segera hadir!')}
                     variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary dark:hover:bg-primary dark:hover:text-white px-8 py-4 text-lg font-semibold rounded-full mobile-full"
+                    className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-full mobile-full"
                   >
                     Jadi Partner
                   </Button>
@@ -869,7 +831,7 @@ export function HomePage() {
                 <>
                   <Button 
                     onClick={() => navigate('/register')}
-                    className="bg-white text-primary hover:bg-white/90 dark:bg-primary dark:text-white dark:hover:bg-primary/90 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
+                    className="bg-white text-primary hover:bg-white/90 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
                   >
                     Daftar Sekarang
                     <ArrowRight className="ml-2 w-5 h-5" />
@@ -878,7 +840,7 @@ export function HomePage() {
                   <Button 
                     onClick={() => navigate('/login')}
                     variant="outline"
-                    className="border-2 border-white text-white hover:bg-white hover:text-primary dark:hover:bg-primary dark:hover:text-white px-8 py-4 text-lg font-semibold rounded-full mobile-full"
+                    className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-8 py-4 text-lg font-semibold rounded-full mobile-full"
                   >
                     Sudah Punya Akun? Masuk
                   </Button>
@@ -962,37 +924,27 @@ export function HomePage() {
                   <span>Sabang, Aceh, Indonesia</span>
                 </li>
               </ul>
-              
-              <div className="mt-6">
-                <h4 className="font-semibold mb-3 text-foreground dark:text-foreground">Download App</h4>
-                <div className="flex flex-col gap-2">
-                  <motion.div 
-                    className="bg-primary px-4 py-2 rounded-lg flex items-center gap-2 cursor-pointer hover:bg-primary/80 transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="text-lg">📱</div>
-                    <div className="text-primary-foreground">
-                      <div className="text-xs">Download on</div>
-                      <div className="text-sm font-semibold">App Store</div>
-                    </div>
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="bg-primary px-4 py-2 rounded-lg flex items-center gap-2 cursor-pointer hover:bg-primary/80 transition-colors"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <div className="text-lg">📱</div>
-                    <div className="text-primary-foreground">
-                      <div className="text-xs">Get it on</div>
-                      <div className="text-sm font-semibold">Google Play</div>
-                    </div>
-                  </motion.div>
-                </div>
-              </div>
             </div>
           </div>
           
-          <div className="border-t border-border pt-8 text-center mt-8">
+          {/* Parallax JAKSABANG - Behind Footer Effect */}
+          <div className="relative overflow-hidden py-16 border-t border-border">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <motion.div
+                className="text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
+                style={{
+                  y: parallaxY,
+                }}
+              >
+                JAKSABANG
+              </motion.div>
+            </div>
+            {/* Gradient overlay to create behind effect */}
+            <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/60 to-background/90 pointer-events-none"></div>
+            <div className="relative z-10 h-32"></div>
+          </div>
+          
+          <div className="border-t border-border pt-8 text-center">
             <p className="text-muted-foreground dark:text-muted-foreground">
               ©2025 JakSabang. All rights reserved.
             </p>
