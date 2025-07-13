@@ -10,7 +10,7 @@ type errorRes = {
 
 export function UserBubble({ message }: { message: string }) {
     return (
-        <div className="flex flex-col gap-2 bg-gray-200 ml-25 p-4 rounded-lg">
+        <div className="flex flex-col gap-2 bg-emerald-600 text-white ml-25 p-4 rounded-xl">
             {message}
         </div>
     );
