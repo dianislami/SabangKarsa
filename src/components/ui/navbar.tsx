@@ -6,7 +6,8 @@ import { MapPin, User, LogOut, ChevronDown, Home, MapPinIcon, Car, UserCheck, Ca
 
 export function Navbar() {
   const [user, setUser] = useState<any>(null)
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
+  const [isDestinationsDropdownOpen, setIsDestinationsDropdownOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
@@ -51,8 +52,11 @@ export function Navbar() {
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isDropdownOpen && !(event.target as Element).closest('.dropdown-container')) {
-        setIsDropdownOpen(false)
+      if (isServicesDropdownOpen && !(event.target as Element).closest('.services-dropdown-container')) {
+        setIsServicesDropdownOpen(false)
+      }
+      if (isDestinationsDropdownOpen && !(event.target as Element).closest('.destinations-dropdown-container')) {
+        setIsDestinationsDropdownOpen(false)
       }
       if (isProfileDropdownOpen && !(event.target as Element).closest('.profile-dropdown-container')) {
         setIsProfileDropdownOpen(false)
@@ -64,7 +68,7 @@ export function Navbar() {
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [isDropdownOpen, isProfileDropdownOpen, isLanguageDropdownOpen])
+  }, [isServicesDropdownOpen, isDestinationsDropdownOpen, isProfileDropdownOpen, isLanguageDropdownOpen])
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -81,9 +85,39 @@ export function Navbar() {
     }
   }
 
+  const getDropdownState = (itemId: string) => {
+    if (itemId === 'services') return isServicesDropdownOpen
+    if (itemId === 'destinations') return isDestinationsDropdownOpen
+    return false
+  }
+
+  const toggleDropdown = (itemId: string) => {
+    if (itemId === 'services') {
+      setIsServicesDropdownOpen(!isServicesDropdownOpen)
+      setIsDestinationsDropdownOpen(false) // Close other dropdown
+    } else if (itemId === 'destinations') {
+      setIsDestinationsDropdownOpen(!isDestinationsDropdownOpen)
+      setIsServicesDropdownOpen(false) // Close other dropdown
+    }
+  }
+
+  const closeDropdown = (itemId: string) => {
+    if (itemId === 'services') setIsServicesDropdownOpen(false)
+    if (itemId === 'destinations') setIsDestinationsDropdownOpen(false)
+  }
+
   const navItems = [
     { id: 'home', label: 'Home', icon: Home },
-    { id: 'destinations', label: 'Destinasi', icon: MapPinIcon },
+    { 
+      id: 'destinations', 
+      label: 'Destinasi', 
+      icon: MapPinIcon,
+      hasDropdown: true,
+      dropdownItems: [
+        { id: 'info-wisata', label: 'Info Wisata', icon: Info },
+        { id: 'tujuan-destinasi', label: 'Tujuan Destinasi', icon: MapPinIcon }
+      ]
+    },
     { 
       id: 'services', 
       label: 'Layanan', 
@@ -103,7 +137,7 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto max-w-8xl px-4 py-4">
-        <div className="flex items-center justify-between bg-white dark:bg-gray-900/95 backdrop-blur-lg rounded-full px-8 py-5 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[70px]">
+        <div className="navbar-glass flex items-center justify-between rounded-full px-8 py-5 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[70px]">
           <div className="flex items-center gap-3 group cursor-pointer">
             <div className="p-2 bg-emerald-600 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
               <MapPin className="w-6 h-6 text-white" />
@@ -118,10 +152,9 @@ export function Navbar() {
             {navItems.map((item) => (
               <div key={item.id} className="relative">
                 {item.hasDropdown ? (
-                  <div className="relative dropdown-container">
+                  <div className={`relative ${item.id}-dropdown-container`}>
                     <button
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      onMouseEnter={() => setIsDropdownOpen(true)}
+                      onClick={() => toggleDropdown(item.id)}
                       className={`nav-item flex items-center gap-2 ${
                         activeSection === item.id ? 'active' : ''
                       }`}
@@ -129,23 +162,22 @@ export function Navbar() {
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
-                        isDropdownOpen ? 'rotate-180' : ''
+                        getDropdownState(item.id) ? 'rotate-180' : ''
                       }`} />
                     </button>
                     
                     {/* Modern Dropdown Menu */}
                     <div 
                       className={`dropdown-menu absolute top-full left-0 mt-2 w-64 transition-all duration-300 z-50 ${
-                        isDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                        getDropdownState(item.id) ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                       }`}
-                      onMouseLeave={() => setIsDropdownOpen(false)}
                     >
                       {item.dropdownItems?.map((dropdownItem, index) => (
                         <button
                           key={dropdownItem.id}
                           onClick={() => {
                             scrollToSection(dropdownItem.id)
-                            setIsDropdownOpen(false)
+                            closeDropdown(item.id)
                           }}
                           className="dropdown-item flex items-center gap-3 w-full text-left"
                           style={{
@@ -199,7 +231,7 @@ export function Navbar() {
                       setIsLanguageDropdownOpen(false)
                     }}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
-                      language === 'ID' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      language === 'ID' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span>🇮🇩</span>
@@ -211,7 +243,7 @@ export function Navbar() {
                       setIsLanguageDropdownOpen(false)
                     }}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
-                      language === 'EN' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                      language === 'EN' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700'
                     }`}
                   >
                     <span>🇺🇸</span>
@@ -309,14 +341,14 @@ export function Navbar() {
         isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden`}>
         <div className="mx-auto max-w-7xl px-6">
-          <div className="bg-white dark:bg-gray-900/95 backdrop-blur-lg rounded-b-3xl px-6 py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
+          <div className="navbar-glass rounded-b-3xl px-6 py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
             <nav className="space-y-2">
             {navItems.map((item, index) => (
               <div key={item.id} style={{ transitionDelay: `${index * 50}ms` }}>
                 {item.hasDropdown ? (
                   <div>
                     <button
-                      onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                      onClick={() => toggleDropdown(item.id)}
                       className="flex items-center justify-between w-full px-4 py-3 text-left text-emerald-600 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
                     >
                       <div className="flex items-center gap-3">
@@ -324,11 +356,11 @@ export function Navbar() {
                         <span className="font-medium">{item.label}</span>
                       </div>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
-                        isDropdownOpen ? 'rotate-180' : ''
+                        getDropdownState(item.id) ? 'rotate-180' : ''
                       }`} />
                     </button>
                     <div className={`ml-4 mt-2 space-y-1 transition-all duration-300 ${
-                      isDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+                      getDropdownState(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                       {item.dropdownItems?.map((dropdownItem, subIndex) => (
                         <button
@@ -336,7 +368,7 @@ export function Navbar() {
                           onClick={() => {
                             scrollToSection(dropdownItem.id)
                             setIsMobileMenuOpen(false)
-                            setIsDropdownOpen(false)
+                            closeDropdown(item.id)
                           }}
                           className="flex items-center gap-3 w-full px-4 py-3 text-left text-emerald-600/70 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200"
                           style={{
