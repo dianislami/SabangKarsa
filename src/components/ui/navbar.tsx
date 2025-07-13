@@ -2,14 +2,16 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { MapPin, User, LogOut, ChevronDown, Home, MapPinIcon, Car, UserCheck, Calendar, Utensils, Info, Menu, X } from "lucide-react"
+import { MapPin, User, LogOut, ChevronDown, Home, MapPinIcon, Car, UserCheck, Calendar, Utensils, Info, Menu, X, ShoppingBag, Globe } from "lucide-react"
 
 export function Navbar() {
   const [user, setUser] = useState<any>(null)
   const [isDropdownOpen, setIsDropdownOpen] = useState(false)
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false)
   const [activeSection, setActiveSection] = useState('home')
+  const [language, setLanguage] = useState('ID')
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -55,11 +57,14 @@ export function Navbar() {
       if (isProfileDropdownOpen && !(event.target as Element).closest('.profile-dropdown-container')) {
         setIsProfileDropdownOpen(false)
       }
+      if (isLanguageDropdownOpen && !(event.target as Element).closest('.language-dropdown-container')) {
+        setIsLanguageDropdownOpen(false)
+      }
     }
 
     document.addEventListener('mousedown', handleClickOutside)
     return () => document.removeEventListener('mousedown', handleClickOutside)
-  }, [isDropdownOpen, isProfileDropdownOpen])
+  }, [isDropdownOpen, isProfileDropdownOpen, isLanguageDropdownOpen])
 
   const handleLogout = () => {
     localStorage.removeItem('token')
@@ -97,19 +102,19 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto max-w-7xl px-6 py-4">
-        <div className="flex items-center justify-between bg-emerald-600 dark:bg-gray-900/95 backdrop-blur-lg rounded-full px-6 py-3 shadow-lg border border-emerald-700/50 dark:border-gray-700/50">
+      <div className="mx-auto max-w-8xl px-4 py-4">
+        <div className="flex items-center justify-between bg-white dark:bg-gray-900/95 backdrop-blur-lg rounded-full px-8 py-5 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[70px]">
           <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="p-2 bg-white rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              <MapPin className="w-6 h-6 text-emerald-600" />
+            <div className="p-2 bg-emerald-600 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <MapPin className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-bold text-white dark:text-white group-hover:text-emerald-100 transition-colors duration-300">
+            <span className="text-2xl font-bold text-emerald-600 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-100 transition-colors duration-300">
               JakSabang
             </span>
           </div>
           
           {/* Navigation Menu - Hidden on mobile */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center gap-3 xl:gap-4">
             {navItems.map((item) => (
               <div key={item.id} className="relative">
                 {item.hasDropdown ? (
@@ -168,11 +173,58 @@ export function Navbar() {
             ))}
           </nav>
           
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-4 md:gap-6 xl:gap-8">
+            {/* Language Toggle */}
+            <div className="relative language-dropdown-container">
+              <button
+                onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                className="flex items-center gap-2 px-3 py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+              >
+                <Globe className="w-4 h-4" />
+                <span className="text-sm font-medium hidden sm:inline">{language}</span>
+                <span className="text-sm font-medium sm:hidden">{language}</span>
+                <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${
+                  isLanguageDropdownOpen ? 'rotate-180' : ''
+                }`} />
+              </button>
+              
+              {/* Language Dropdown */}
+              <div className={`dropdown-menu absolute top-full right-0 mt-2 w-32 transition-all duration-300 z-50 ${
+                isLanguageDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+              }`}>
+                <div className="py-1">
+                  <button
+                    onClick={() => {
+                      setLanguage('ID')
+                      setIsLanguageDropdownOpen(false)
+                    }}
+                    className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
+                      language === 'ID' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    <span>🇮🇩</span>
+                    <span>Indonesia</span>
+                  </button>
+                  <button
+                    onClick={() => {
+                      setLanguage('EN')
+                      setIsLanguageDropdownOpen(false)
+                    }}
+                    className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
+                      language === 'EN' ? 'bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                    }`}
+                  >
+                    <span>🇺🇸</span>
+                    <span>English</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden p-2 text-white dark:text-gray-400 hover:text-emerald-100 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+              className="lg:hidden px-2 py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
             >
               {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -183,12 +235,12 @@ export function Navbar() {
                 <div className="relative profile-dropdown-container">
                   <button
                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                    className="flex items-center gap-2 p-2 rounded-full transition-all duration-300"
+                    className="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
                   >
-                    <div className="w-8 h-8 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
                       <User className="w-4 h-4 text-white" />
                     </div>
-                    <ChevronDown className={`w-4 h-4 text-white dark:text-gray-400 transition-transform duration-300 ${
+                    <ChevronDown className={`w-4 h-4 text-emerald-600 dark:text-gray-400 transition-transform duration-300 ${
                       isProfileDropdownOpen ? 'rotate-180' : ''
                     }`} />
                   </button>
@@ -198,20 +250,27 @@ export function Navbar() {
                     isProfileDropdownOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                   }`}>
                     <div className="py-2">
-                      <div className="px-4 py-3 border-b border-white/20 dark:border-gray-700">
+                      <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                          <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
                             <User className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <p className="text-sm font-medium text-white dark:text-white">{user.name}</p>
-                            <p className="text-xs text-white/70 dark:text-gray-400">{user.email}</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-white">{user.name}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{user.email}</p>
                           </div>
                         </div>
                       </div>
                       <button
+                        onClick={() => navigate('/pesanan')}
+                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
+                      >
+                        <ShoppingBag className="w-4 h-4" />
+                        <span className="font-medium">Pesanan Saya</span>
+                      </button>
+                      <button
                         onClick={handleLogout}
-                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-red-200 dark:text-red-400 hover:bg-red-500/20 dark:hover:bg-red-900/20 transition-colors duration-200"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
                       >
                         <LogOut className="w-4 h-4" />
                         <span className="font-medium">Logout</span>
@@ -227,14 +286,14 @@ export function Navbar() {
                   onClick={() => navigate('/login')}
                   variant="outline"
                   size="sm"
-                  className="border-white text-white hover:bg-white/10 hover:border-white dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden sm:flex"
+                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden sm:flex"
                 >
                   Masuk
                 </Button>
                 <Button
                   onClick={() => navigate('/register')}
                   size="sm"
-                  className="bg-white text-emerald-600 hover:bg-white/90 transition-all duration-300 transform hover:scale-105"
+                  className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
                 >
                   <span className="hidden sm:inline">Daftar</span>
                   <span className="sm:hidden">Daftar</span>
@@ -250,7 +309,7 @@ export function Navbar() {
         isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden`}>
         <div className="mx-auto max-w-7xl px-6">
-          <div className="bg-emerald-600 dark:bg-gray-900/95 backdrop-blur-lg rounded-b-3xl px-6 py-4 shadow-lg border-t border-emerald-700/50 dark:border-gray-700/50">
+          <div className="bg-white dark:bg-gray-900/95 backdrop-blur-lg rounded-b-3xl px-6 py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
             <nav className="space-y-2">
             {navItems.map((item, index) => (
               <div key={item.id} style={{ transitionDelay: `${index * 50}ms` }}>
@@ -258,7 +317,7 @@ export function Navbar() {
                   <div>
                     <button
                       onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                      className="flex items-center justify-between w-full px-4 py-3 text-left text-white dark:text-gray-300 hover:text-emerald-100 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+                      className="flex items-center justify-between w-full px-4 py-3 text-left text-emerald-600 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
                     >
                       <div className="flex items-center gap-3">
                         <item.icon className="w-4 h-4" />
@@ -279,7 +338,7 @@ export function Navbar() {
                             setIsMobileMenuOpen(false)
                             setIsDropdownOpen(false)
                           }}
-                          className="flex items-center gap-3 w-full px-4 py-3 text-left text-white/70 dark:text-gray-400 hover:text-white dark:hover:text-blue-400 rounded-lg transition-all duration-200"
+                          className="flex items-center gap-3 w-full px-4 py-3 text-left text-emerald-600/70 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200"
                           style={{
                             transitionDelay: `${subIndex * 30}ms`
                           }}
@@ -296,8 +355,8 @@ export function Navbar() {
                       scrollToSection(item.id)
                       setIsMobileMenuOpen(false)
                     }}
-                    className={`flex items-center gap-3 w-full px-4 py-3 text-left hover:text-emerald-100 dark:hover:text-blue-400 rounded-lg transition-all duration-300 ${
-                      activeSection === item.id ? 'text-white dark:text-blue-400' : 'text-white/80 dark:text-gray-300'
+                    className={`flex items-center gap-3 w-full px-4 py-3 text-left hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300 ${
+                      activeSection === item.id ? 'text-emerald-600 dark:text-blue-400' : 'text-emerald-600/80 dark:text-gray-300'
                     }`}
                   >
                     <item.icon className="w-4 h-4" />
