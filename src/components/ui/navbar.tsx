@@ -136,40 +136,40 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
   ]
 
   return (
-    <header id={id} ref={ref} className="fixed top-0 left-0 right-0 z-50">
-      <div className="mx-auto max-w-8xl px-4 py-4">
-        <div className="navbar-glass flex items-center justify-between rounded-full px-8 py-5 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[70px]">
-          <div className="flex items-center gap-3 group cursor-pointer">
-            <div className="p-2 bg-emerald-600 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              <MapPin className="w-6 h-6 text-white" />
+    <header id={id} ref={ref} className="fixed top-0 left-0 lg:left-20 right-0 lg:right-20 z-50">
+      <div className="mx-auto max-w-8xl px-2 sm:px-4 py-2 sm:py-3">
+        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[55px] sm:min-h-[65px]">
+          <div className="flex items-center gap-2 sm:gap-3 group cursor-pointer">
+            <div className="p-1.5 sm:p-2 bg-emerald-600 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
             </div>
-            <span className="text-2xl font-bold text-emerald-600 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-100 transition-colors duration-300">
+            <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-100 transition-colors duration-300">
               JakSabang
             </span>
           </div>
           
           {/* Navigation Menu - Hidden on mobile */}
-          <nav className="hidden lg:flex items-center gap-3 xl:gap-4">
+          <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
             {navItems.map((item) => (
               <div key={item.id} className="relative">
                 {item.hasDropdown ? (
                   <div className={`relative ${item.id}-dropdown-container`}>
                     <button
                       onClick={() => toggleDropdown(item.id)}
-                      className={`nav-item flex items-center gap-2 ${
+                      className={`nav-item flex items-center gap-1.5 text-sm ${
                         activeSection === item.id ? 'active' : ''
                       }`}
                     >
                       <item.icon className="w-4 h-4" />
                       <span>{item.label}</span>
-                      <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
+                      <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${
                         getDropdownState(item.id) ? 'rotate-180' : ''
                       }`} />
                     </button>
                     
                     {/* Modern Dropdown Menu */}
                     <div 
-                      className={`dropdown-menu absolute top-full left-0 mt-2 w-64 transition-all duration-300 z-50 ${
+                      className={`dropdown-menu absolute top-full left-0 mt-2 w-56 transition-all duration-300 z-50 ${
                         getDropdownState(item.id) ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                       }`}
                     >
@@ -180,7 +180,7 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
                             scrollToSection(dropdownItem.id)
                             closeDropdown(item.id)
                           }}
-                          className="dropdown-item flex items-center gap-3 w-full text-left"
+                          className="dropdown-item flex items-center gap-2 w-full text-left text-sm"
                           style={{
                             transitionDelay: `${index * 50}ms`
                           }}
@@ -194,7 +194,7 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
                 ) : (
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`nav-item flex items-center gap-2 ${
+                    className={`nav-item flex items-center gap-1.5 text-sm ${
                       activeSection === item.id ? 'active' : ''
                     }`}
                   >
@@ -206,16 +206,15 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
             ))}
           </nav>
           
-          <div className="flex items-center gap-4 md:gap-6 xl:gap-8">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
             {/* Language Toggle */}
             <div className="relative language-dropdown-container">
               <button
                 onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
-                className="flex items-center gap-2 px-3 py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
               >
-                <Globe className="w-4 h-4" />
-                <span className="text-sm font-medium hidden sm:inline">{language}</span>
-                <span className="text-sm font-medium sm:hidden">{language}</span>
+                <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
+                <span className="text-xs sm:text-sm font-medium">{language}</span>
                 <ChevronDown className={`w-3 h-3 transition-transform duration-300 ${
                   isLanguageDropdownOpen ? 'rotate-180' : ''
                 }`} />
@@ -257,23 +256,25 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden px-2 py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+              className="lg:hidden px-1.5 py-1.5 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
             >
-              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
             </button>
 
             {user ? (
               <>
-                <ThemeToggle />
+                <div className="hidden sm:block">
+                  <ThemeToggle />
+                </div>
                 <div className="relative profile-dropdown-container">
                   <button
                     onClick={() => setIsProfileDropdownOpen(!isProfileDropdownOpen)}
-                    className="flex items-center gap-2 px-3 py-2 rounded-full transition-all duration-300"
+                    className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-all duration-300"
                   >
-                    <div className="w-8 h-8 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
-                      <User className="w-4 h-4 text-white" />
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                      <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                     </div>
-                    <ChevronDown className={`w-4 h-4 text-emerald-600 dark:text-gray-400 transition-transform duration-300 ${
+                    <ChevronDown className={`w-3 h-3 sm:w-4 sm:h-4 text-emerald-600 dark:text-gray-400 transition-transform duration-300 ${
                       isProfileDropdownOpen ? 'rotate-180' : ''
                     }`} />
                   </button>
@@ -314,22 +315,23 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
               </>
             ) : (
               <>
-                <ThemeToggle />
+                <div className="hidden sm:block">
+                  <ThemeToggle />
+                </div>
                 <Button
                   onClick={() => navigate('/login')}
                   variant="outline"
                   size="sm"
-                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden sm:flex"
+                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
                 >
                   Masuk
                 </Button>
                 <Button
                   onClick={() => navigate('/register')}
                   size="sm"
-                  className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+                  className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
                 >
-                  <span className="hidden sm:inline">Daftar</span>
-                  <span className="sm:hidden">Daftar</span>
+                  Daftar
                 </Button>
               </>
             )}
@@ -341,26 +343,58 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
       <div className={`lg:hidden transition-all duration-300 ${
         isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
       } overflow-hidden`}>
-        <div className="mx-auto max-w-7xl px-6">
-          <div className="navbar-glass rounded-b-3xl px-6 py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
-            <nav className="space-y-2">
+        <div className="mx-auto max-w-7xl px-2 sm:px-4">
+          <div className="navbar-glass rounded-b-3xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
+            {/* Mobile Auth Buttons & Theme Toggle */}
+            <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-200 dark:border-gray-700">
+              <div className="flex items-center gap-2">
+                <ThemeToggle />
+                <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Theme</span>
+              </div>
+              {!user && (
+                <div className="flex items-center gap-2">
+                  <Button
+                    onClick={() => {
+                      navigate('/login')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    variant="outline"
+                    size="sm"
+                    className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 px-3 py-1.5 text-xs"
+                  >
+                    Masuk
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      navigate('/register')
+                      setIsMobileMenuOpen(false)
+                    }}
+                    size="sm"
+                    className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 px-3 py-1.5 text-xs"
+                  >
+                    Daftar
+                  </Button>
+                </div>
+              )}
+            </div>
+            <nav className="space-y-1">
             {navItems.map((item, index) => (
               <div key={item.id} style={{ transitionDelay: `${index * 50}ms` }}>
                 {item.hasDropdown ? (
                   <div>
                     <button
                       onClick={() => toggleDropdown(item.id)}
-                      className="flex items-center justify-between w-full px-4 py-3 text-left text-emerald-600 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+                      className="flex items-center justify-between w-full px-3 py-2.5 text-left text-emerald-600 dark:text-gray-300 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
                     >
                       <div className="flex items-center gap-3">
                         <item.icon className="w-4 h-4" />
-                        <span className="font-medium">{item.label}</span>
+                        <span className="font-medium text-sm">{item.label}</span>
                       </div>
                       <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${
                         getDropdownState(item.id) ? 'rotate-180' : ''
                       }`} />
                     </button>
-                    <div className={`ml-4 mt-2 space-y-1 transition-all duration-300 ${
+                    <div className={`ml-4 mt-1 space-y-1 transition-all duration-300 ${
                       getDropdownState(item.id) ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
                     } overflow-hidden`}>
                       {item.dropdownItems?.map((dropdownItem, subIndex) => (
@@ -371,13 +405,13 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
                             setIsMobileMenuOpen(false)
                             closeDropdown(item.id)
                           }}
-                          className="flex items-center gap-3 w-full px-4 py-3 text-left text-emerald-600/70 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200"
+                          className="flex items-center gap-3 w-full px-3 py-2 text-left text-emerald-600/70 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200"
                           style={{
                             transitionDelay: `${subIndex * 30}ms`
                           }}
                         >
                           <dropdownItem.icon className="w-4 h-4" />
-                          <span className="font-medium">{dropdownItem.label}</span>
+                          <span className="font-medium text-sm">{dropdownItem.label}</span>
                         </button>
                       ))}
                     </div>
@@ -388,12 +422,12 @@ export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
                       scrollToSection(item.id)
                       setIsMobileMenuOpen(false)
                     }}
-                    className={`flex items-center gap-3 w-full px-4 py-3 text-left hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300 ${
+                    className={`flex items-center gap-3 w-full px-3 py-2.5 text-left hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300 ${
                       activeSection === item.id ? 'text-emerald-600 dark:text-blue-400' : 'text-emerald-600/80 dark:text-gray-300'
                     }`}
                   >
                     <item.icon className="w-4 h-4" />
-                    <span className="font-medium">{item.label}</span>
+                    <span className="font-medium text-sm">{item.label}</span>
                   </button>
                 )}
               </div>
