@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion"
 
 export function ParallaxImageSection() {
   const { scrollYProgress } = useScroll()
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "100%"])
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"])
 
   return (
     <section className="relative h-96 overflow-hidden">
@@ -11,7 +11,7 @@ export function ParallaxImageSection() {
         style={{
           backgroundImage: `url('/src/assets/destinasi/pantaiiboih.jpg')`,
           y: backgroundY,
-          scale: 1.2
+          scale: 1.4
         }}
       />
       <div className="absolute inset-0 bg-black/20"></div>
