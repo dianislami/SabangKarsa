@@ -1,8 +1,8 @@
 import { MessageCircle } from "lucide-react"
 import { ChatbotOverlay } from "./chatbot-overlay"
-import { useState, useRef, useEffect } from "react"
+import { useState, useRef, useEffect, type RefObject } from "react"
 
-export function ChatbotButton() {
+export function ChatbotButton({ navbar }: { navbar: RefObject<HTMLElement | null> }) {
     const [visibility, setVisibility] = useState(false);
     const overlayRef = useRef<HTMLDivElement | null>(null);
     const buttonRef = useRef<HTMLButtonElement | null>(null);
@@ -21,7 +21,7 @@ export function ChatbotButton() {
 
     return (
         <>
-            <ChatbotOverlay showOverlay={visibility} ref={overlayRef} />
+            <ChatbotOverlay showOverlay={visibility} ref={overlayRef} navbar={navbar} button={buttonRef} />
             
             <button ref={buttonRef} onClick={visibilityToggle} className="bg-(--background) z-10 shadow-sm hover:-translate-y-2 transition-transform duration-300 ease-out cursor-pointer fixed right-8 bottom-8 p-[12px] rounded-full">
                 <MessageCircle className="stroke-emerald-600" />
