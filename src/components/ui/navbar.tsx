@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, forwardRef } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
 import { MapPin, User, LogOut, ChevronDown, Home, MapPinIcon, Car, UserCheck, Calendar, Utensils, Info, Menu, X, ShoppingBag, Globe } from "lucide-react"
 
-export function Navbar() {
+export const Navbar = forwardRef<HTMLElement, {id: string}>((props, ref) => {
+  const { id } = props;
   const [user, setUser] = useState<any>(null)
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false)
   const [isDestinationsDropdownOpen, setIsDestinationsDropdownOpen] = useState(false)
@@ -135,7 +136,7 @@ export function Navbar() {
   ]
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header id={id} ref={ref} className="fixed top-0 left-0 right-0 z-50">
       <div className="mx-auto max-w-8xl px-4 py-4">
         <div className="navbar-glass flex items-center justify-between rounded-full px-8 py-5 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[70px]">
           <div className="flex items-center gap-3 group cursor-pointer">
@@ -402,4 +403,4 @@ export function Navbar() {
       </div>
     </header>
   )
-}
+})

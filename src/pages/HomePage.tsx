@@ -1,3 +1,4 @@
+import { useRef } from "react"
 import { Navbar } from "@/components/ui/navbar"
 import { Footer } from "@/components/ui/footer"
 import { HeroSection } from "@/components/ui/hero-section"
@@ -12,9 +13,11 @@ import { CtaSection } from "@/components/ui/cta-section"
 import { ChatbotButton } from "@/components/ui/chatbot-button"
 
 export function HomePage() {
+  const navbarRef = useRef<HTMLElement>(null);
+
   return (
     <div className="min-h-screen bg-background overflow-hidden">
-      <Navbar />
+      <Navbar id="navbar" ref={navbarRef} />
       <HeroSection />
       <FeaturesMarquee />
       <ServicesSection />
@@ -25,7 +28,7 @@ export function HomePage() {
       <BusinessSolutionsSection />
       <CtaSection />
       <Footer />
-      <ChatbotButton />
+      <ChatbotButton navbar={navbarRef} />
     </div>
   )
 }
