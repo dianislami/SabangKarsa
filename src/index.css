@@ -70,6 +70,9 @@
   --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
   --sidebar-border: oklch(0.92 0.013 236.62);
   --sidebar-ring: oklch(0.443 0.11 240.79);
+
+  /* Tema chatbot overlay */
+  --chatbot: oklch(97.9% 0.021 166.113)
 }
 
 .dark {
@@ -141,6 +144,9 @@
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(0.369 0.08 240.79);
   --sidebar-ring: oklch(0.443 0.11 240.79);
+
+  /* Tema chatbot overlay */
+  --chatbot: oklch(26.2% 0.051 172.552);
 }
 
 /* Custom gradient classes untuk tema hijau */

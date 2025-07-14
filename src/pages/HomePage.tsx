@@ -9,6 +9,7 @@ import { StatsSection } from "@/components/ui/stats-section"
 import { TestimonialsSection } from "@/components/ui/testimonials-section"
 import { BusinessSolutionsSection } from "@/components/ui/business-solutions-section"
 import { CtaSection } from "@/components/ui/cta-section"
+import { ChatbotButton } from "@/components/ui/chatbot-button"
 
 export function HomePage() {
   return (
@@ -24,6 +25,7 @@ export function HomePage() {
       <BusinessSolutionsSection />
       <CtaSection />
       <Footer />
+      <ChatbotButton />
     </div>
   )
 }
