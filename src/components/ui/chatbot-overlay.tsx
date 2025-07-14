@@ -1,4 +1,4 @@
-import { Send } from "lucide-react"
+import { Send, Bot } from "lucide-react"
 import React, { useRef, useState, forwardRef, useEffect, type RefObject } from "react"
 import { BotBubble, UserBubble } from "./chatbot-bubble";
 
@@ -15,8 +15,27 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         
         if (inputValue) {
             setElements(prev => [...prev, <UserBubble key={`user-${prev.length}`} message={inputValue} />]);
-            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={``} />]);  // FIXME: isi token disini
+            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={``} />]);
+            
+            // Clear input after sending
+            if (inputRef.current) {
+                inputRef.current.value = '';
+                inputRef.current.style.height = 'auto';
+            }
         }
+    }
+
+    const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+            e.preventDefault();
+            callbot();
+        }
+    }
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        const textarea = e.target;
+        textarea.style.height = 'auto';
+        textarea.style.height = Math.min(textarea.scrollHeight, 120) + 'px';
     }
 
     useEffect(() => {
@@ -79,22 +98,54 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     }, [ref, windowWidth])
 
     return (
-        <div ref={ref} className={`bg-(--background) overflow-hidden rounded-3xl shadow-md fixed right-6 bottom-26 z-10 transition-all duration-500 ease-in-out ${showOverlay ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`} style={{ height: `${overlayHeight}px`, width: `${overlayWidth}px` }}>
-            <div className="flex flex-col w-full h-full p-6 gap-4">
-                <h1 className="font-semibold text-xl py-1">CHATBOT AI</h1>
-                <div ref={outputRef} className="flex flex-col gap-4 w-full overflow-y-auto scroll-smooth grow">
+        <div ref={ref} className={`bg-white dark:bg-gray-800 overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 fixed right-6 bottom-26 z-10 transition-all duration-500 ease-in-out ${showOverlay ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`} style={{ height: `${overlayHeight}px`, width: `${overlayWidth}px` }}>
+            <div className="flex flex-col w-full h-full">
+                {/* Header */}
+                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 p-4 rounded-t-2xl">
+                    <h1 className="font-bold text-lg text-white flex items-center gap-2">
+                        <Bot className="w-6 h-6" />
+                        JakSabang AI Assistant
+                    </h1>
+                    <p className="text-emerald-100 text-sm mt-1">Siap membantu Anda!</p>
+                </div>
+                
+                {/* Chat Area */}
+                <div ref={outputRef} className="flex flex-col gap-3 w-full overflow-y-auto scroll-smooth grow p-4 bg-gray-50 dark:bg-gray-900">
                     {elements.length !== 0 ? elements.map((el, index) => ( 
                         <div key={index}>{el}</div> 
                     )) : ( 
-                        <div className="h-full flex items-center justify-center text-center text-lg text-gray-400">
-                            Halo, <br/> ada yang bisa saya bantu?
+                        <div className="h-full flex flex-col items-center justify-center text-center">
+                            <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
+                                <Bot className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                            </div>
+                            <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">Halo!</p>
+                            <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">Ada yang bisa saya bantu?</p>
                         </div> 
                     )}
                 </div>
-                <div className="flex flex-row items-center justify-center gap-4 w-full h-32">
-                    <textarea ref={inputRef} className="bg-(--chatbot) border-2 p-4 resize-none outline-none border-emerald-400 h-full w-full rounded-xl" placeholder="Tanyakan sesuatu" />
-                    <div onClick={callbot} className="group bg-gray-200 hover:bg-emerald-100 ease-out duration-200 cursor-pointer p-4 flex items-center justify-center rounded-full">
-                        <Send className="stroke-gray-600 group-hover:stroke-emerald-600 ease-out duration-200 translate-x-[-2px] translate-y-[1px]" />
+                
+                {/* Input Area */}
+                <div className="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="flex items-end gap-3">
+                        <div className="flex-1 relative">
+                            <textarea 
+                                ref={inputRef} 
+                                onKeyDown={handleKeyDown}
+                                onChange={handleInputChange}
+                                className="w-full bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 focus:border-emerald-400 dark:focus:border-emerald-500 focus:outline-none p-3 resize-none rounded-lg text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-200 min-h-[44px]" 
+                                placeholder="Ketik pesan Anda... (Enter untuk kirim)" 
+                                rows={1}
+                            />
+                            <div className="absolute bottom-5 right-8 text-xs text-gray-400">
+                                Enter ↵
+                            </div>
+                        </div>
+                        <button 
+                            onClick={callbot} 
+                            className="bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                        >
+                            <Send className="w-5 h-5" />
+                        </button>
                     </div>
                 </div>
             </div>

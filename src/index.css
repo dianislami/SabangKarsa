@@ -401,6 +401,143 @@
   color: var(--button-foreground);
 }
 
+/* Enhanced Chatbot Styles */
+.chatbot-overlay {
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+}
+
+.dark .chatbot-overlay {
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+}
+
+/* Smooth scrollbar for chat area */
+.chatbot-overlay ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chatbot-overlay ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chatbot-overlay ::-webkit-scrollbar-thumb {
+  background-color: rgba(16, 185, 129, 0.3);
+  border-radius: 3px;
+}
+
+.chatbot-overlay ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(16, 185, 129, 0.5);
+}
+
+/* Chat bubble animations */
+.chatbot-overlay .flex.justify-end {
+  animation: slideInRight 0.3s ease-out;
+}
+
+.chatbot-overlay .flex.justify-start {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Enhanced focus states */
+.chatbot-overlay textarea:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.dark .chatbot-overlay textarea:focus {
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+}
+
+/* Button hover effects */
+.chatbot-overlay button:hover {
+  transform: translateY(-1px);
+}
+
+.chatbot-overlay button:active {
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .chatbot-overlay {
+    right: 12px !important;
+    bottom: 80px !important;
+    border-radius: 16px;
+  }
+  
+  .chatbot-overlay .p-4 {
+    padding: 12px;
+  }
+  
+  .chatbot-overlay h1 {
+    font-size: 1rem;
+  }
+  
+  .chatbot-overlay textarea {
+    font-size: 14px;
+  }
+}
+
+/* Markdown styling in bot responses */
+.chatbot-overlay .text-gray-800 p {
+  margin: 0.5rem 0;
+  line-height: 1.5;
+}
+
+.chatbot-overlay .text-gray-800 ul,
+.chatbot-overlay .text-gray-800 ol {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+}
+
+.chatbot-overlay .text-gray-800 li {
+  margin: 0.25rem 0;
+}
+
+.chatbot-overlay .text-gray-800 code {
+  background-color: rgba(16, 185, 129, 0.1);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.chatbot-overlay .text-gray-800 pre {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin: 0.5rem 0;
+  overflow-x: auto;
+}
+
+.dark .chatbot-overlay .text-gray-200 code {
+  background-color: rgba(16, 185, 129, 0.2);
+}
+
+.dark .chatbot-overlay .text-gray-200 pre {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
 /* Responsive utilities */
 @media (max-width: 768px) {
   .mobile-center {

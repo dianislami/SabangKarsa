@@ -10,8 +10,10 @@ type errorRes = {
 
 export function UserBubble({ message }: { message: string }) {
     return (
-        <div className="flex flex-col gap-2 bg-emerald-600 text-white ml-25 p-4 rounded-xl">
-            {message}
+        <div className="flex justify-end mb-2">
+            <div className="max-w-[80%] bg-emerald-500 dark:bg-emerald-600 text-white px-4 py-3 rounded-2xl rounded-tr-md shadow-sm">
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">{message}</p>
+            </div>
         </div>
     );
 }
@@ -47,12 +49,19 @@ export function BotBubble({ message, token }: { message: string, token: string }
     }, [message, token]);
 
     return (
-        <div className="flex flex-col gap-2 mr-25 p-4 rounded-lg">
-            {response ? ( 
-                <ReactMarkdown>{response}</ReactMarkdown> 
-            ) : ( 
-                <DotLoader size={24} color="#00d492" /> 
-            )}
+        <div className="flex justify-start mb-2">
+            <div className="max-w-[80%] bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-4 py-3 rounded-2xl rounded-tl-md shadow-sm">
+                {response ? ( 
+                    <div className="text-sm leading-relaxed text-gray-800 dark:text-gray-200">
+                        <ReactMarkdown>{response}</ReactMarkdown>
+                    </div>
+                ) : ( 
+                    <div className="flex items-center gap-2">
+                        <DotLoader size={16} color="#10b981" />
+                        <span className="text-gray-500 dark:text-gray-400 text-sm">Mengetik...</span>
+                    </div>
+                )}
+            </div>
         </div>
     );
 }
