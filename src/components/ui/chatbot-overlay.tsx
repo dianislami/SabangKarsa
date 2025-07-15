@@ -9,13 +9,14 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const [overlayWidth, setOverlayWidth] = useState<number>(580);
     const [elements, setElements] = useState<React.ReactNode[]>([]);
     const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+    let token = localStorage.getItem("token")|| "";
 
     const callbot = () => {
         const inputValue = inputRef.current?.value.trim();
         
         if (inputValue) {
             setElements(prev => [...prev, <UserBubble key={`user-${prev.length}`} message={inputValue} />]);
-            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={``} />]);
+            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={token} />]);
             
             // Clear input after sending
             if (inputRef.current) {
