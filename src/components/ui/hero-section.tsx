@@ -38,52 +38,7 @@ export function HeroSection() {
 
       {/* Floating Elements - Hidden on mobile */}
       <div className="absolute inset-0 hidden lg:block">
-        <motion.div 
-          className="absolute top-20 left-20 text-white/20 dark:text-primary/30"
-          animate={{
-            y: [0, -20, 0],
-            rotate: [0, 10, 0]
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        >
-          <MapPin size={40} />
-        </motion.div>
         
-        <motion.div 
-          className="absolute top-32 right-32 text-white/20 dark:text-primary/30"
-          animate={{
-            y: [0, -30, 0],
-            rotate: [0, -10, 0]
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 2
-          }}
-        >
-          <Camera size={48} />
-        </motion.div>
-        
-        <motion.div 
-          className="absolute bottom-32 left-32 text-white/20 dark:text-primary/30"
-          animate={{
-            y: [0, -25, 0],
-            rotate: [0, 15, 0]
-          }}
-          transition={{
-            duration: 7,
-            repeat: Infinity,
-            ease: "easeInOut",
-            delay: 4
-          }}
-        >
-          <Waves size={44} />
-        </motion.div>
       </div>
 
       {/* Hero Content */}

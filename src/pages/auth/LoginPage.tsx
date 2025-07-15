@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { Eye, EyeOff, Mail, Lock, MapPin, Home, Car, MessageCircle } from "lucide-react"
+import { Eye, EyeOff, Mail, Lock, MapPin } from "lucide-react"
 
 export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false)
@@ -108,18 +108,7 @@ export function LoginPage() {
           />
           
           {/* Floating Icons */}
-          <div className="absolute top-20 left-20 text-primary/20 animate-float">
-            <MapPin size={24} />
-          </div>
-          <div className="absolute top-32 right-32 text-secondary/20 animate-float-delayed">
-            <Home size={32} />
-          </div>
-          <div className="absolute bottom-32 left-32 text-accent/20 animate-float">
-            <Car size={28} />
-          </div>
-          <div className="absolute bottom-20 right-20 text-button/20 animate-float-delayed">
-            <MessageCircle size={26} />
-          </div>
+     
         </div>
       </div>
 
