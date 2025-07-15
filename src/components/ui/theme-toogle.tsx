@@ -1,8 +1,8 @@
-import { Moon, Sun } from "lucide-react"
-import { useTheme } from "@/components/theme-provider"
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "@/components/theme-provider";
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme } = useTheme();
 
   return (
     <button
@@ -11,21 +11,23 @@ export function ThemeToggle() {
     >
       {/* Background track */}
       <div className="absolute inset-0 rounded-full bg-muted"></div>
-      
-      {/* Moving circle */}
-      <div className={`absolute h-6 w-6 rounded-full bg-background border border-border shadow-sm transition-transform duration-200 ease-in-out ${
-        theme === "light" ? "translate-x-[-12px]" : "translate-x-[12px]"
-      }`}>
+
+      {/* Moving circle - made more rounded */}
+      <div
+        className={`absolute h-7 w-7 rounded-full bg-background border border-border shadow-lg transition-transform duration-200 ease-in-out ${
+          theme === "light" ? "translate-x-[-10px]" : "translate-x-[10px]"
+        }`}
+      >
         <div className="flex h-full w-full items-center justify-center">
           {theme === "light" ? (
-            <Sun className="h-3 w-3 text-foreground" />
+            <Sun className="h-3.5 w-3.5 text-foreground" />
           ) : (
-            <Moon className="h-3 w-3 text-foreground" />
+            <Moon className="h-3.5 w-3.5 text-foreground" />
           )}
         </div>
       </div>
-      
+
       <span className="sr-only">Toggle theme</span>
     </button>
-  )
+  );
 }
