@@ -2,9 +2,9 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Navbar } from "@/components/ui/navbar";
-import { HeroSectionStatic } from "@/components/ui/hero-section-static";
-import { Footer } from "@/components/ui/footer";
+import { Navbar } from "@/components/layouts/navbar";
+import { HeroSectionStatic } from "@/components/layouts/hero-section-static";
+import { Footer } from "@/components/layouts/footer";
 import { Star, Camera, ChevronLeft, ChevronRight } from "lucide-react";
 
 const allDestinations = [

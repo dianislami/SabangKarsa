@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import { ThemeProvider } from "./components/theme-provider"
-import { HomePage } from "./pages/HomePage"
-import { LoginPage } from "./pages/auth/LoginPage"
-import { RegisterPage } from "./pages/auth/RegisterPage"
-import { DestinationsPage } from "./pages/DestinationsPage"
-import { DestinationDetailPage } from "./pages/DestinationDetailPage"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ThemeProvider } from "./components/theme/theme-provider";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/auth/LoginPage";
+import { RegisterPage } from "./pages/auth/RegisterPage";
+import { DestinationsPage } from "./pages/destinations/DestinationsPage";
+import { DestinationDetailPage } from "./pages/destinations/DestinationDetailPage";
 
 function App() {
   return (

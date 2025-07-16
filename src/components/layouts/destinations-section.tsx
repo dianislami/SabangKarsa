@@ -105,12 +105,13 @@ export function DestinationsSection() {
           {destinations.map((destination, index) => (
             <motion.div
               key={destination.id}
-              className="bg-white dark:bg-emerald-800 border-2 border-gray-200 dark:border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300"
+              className="bg-white dark:bg-emerald-800 border-2 border-gray-200 dark:border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03, y: -5 }}
+              onClick={() => navigate(`/destinations/${destination.id}`)}
             >
               <div className="relative h-48 overflow-hidden">
                 <img

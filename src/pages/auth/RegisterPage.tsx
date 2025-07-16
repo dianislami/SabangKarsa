@@ -1,14 +1,14 @@
-import { useState, useEffect } from "react"
-import { useNavigate } from "react-router-dom"
-import { Button } from "@/components/ui/button"
-import { ThemeToggle } from "@/components/ui/theme-toogle"
-import { Eye, EyeOff, Mail, Lock, User, Phone, MapIcon } from "lucide-react"
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme/theme-toogle";
+import { Eye, EyeOff, Mail, Lock, User, Phone, MapIcon } from "lucide-react";
 
 export function RegisterPage() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isLoaded, setIsLoaded] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -16,80 +16,84 @@ export function RegisterPage() {
     confirmPassword: "",
     role: "",
     no_hp: "",
-    alamat: ""
-  })
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const navigate = useNavigate()
-  const API_URL = import.meta.env.VITE_API_URL
+    alamat: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const navigate = useNavigate();
+  const API_URL = import.meta.env.VITE_API_URL;
 
   // Mouse tracking for parallax effect
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMousePosition({
         x: (e.clientX / window.innerWidth) * 100,
-        y: (e.clientY / window.innerHeight) * 100
-      })
-    }
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
 
-    window.addEventListener('mousemove', handleMouseMove)
-    setIsLoaded(true)
+    window.addEventListener("mousemove", handleMouseMove);
+    setIsLoaded(true);
 
     return () => {
-      window.removeEventListener('mousemove', handleMouseMove)
-    }
-  }, [])
+      window.removeEventListener("mousemove", handleMouseMove);
+    };
+  }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    
+    e.preventDefault();
+
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      setError("Password dan konfirmasi password tidak sama!")
-      return
+      setError("Password dan konfirmasi password tidak sama!");
+      return;
     }
-    
+
     if (formData.password.length < 6) {
-      setError("Password minimal 6 karakter!")
-      return
+      setError("Password minimal 6 karakter!");
+      return;
     }
-    
-    setLoading(true)
-    setError(null)
-    
+
+    setLoading(true);
+    setError(null);
+
     try {
       // Remove confirmPassword from data sent to API
-      const { confirmPassword, ...dataToSend } = formData
-      
+      const { confirmPassword, ...dataToSend } = formData;
+
       const response = await fetch(`${API_URL}/auth/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(dataToSend),
-      })
-      const result = await response.json()
+      });
+      const result = await response.json();
 
       if (response.ok && result.token) {
-        localStorage.setItem('token', result.token)
-        localStorage.setItem('user', JSON.stringify(result.user))
-        navigate('/')
+        localStorage.setItem("token", result.token);
+        localStorage.setItem("user", JSON.stringify(result.user));
+        navigate("/");
       } else {
-        setError(result.error || "Registrasi gagal.")
+        setError(result.error || "Registrasi gagal.");
       }
     } catch (err) {
-      setError("Terjadi kesalahan saat mendaftar.")
+      setError("Terjadi kesalahan saat mendaftar.");
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -98,38 +102,43 @@ export function RegisterPage() {
         {/* Floating Elements */}
         <div className="absolute inset-0">
           {/* Animated Circles */}
-          <div 
+          <div
             className="absolute w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse"
             style={{
-              top: '10%',
-              left: '10%',
-              transform: `translate(${mousePosition.x * 0.1}px, ${mousePosition.y * 0.1}px)`,
-              transition: 'transform 0.3s ease-out'
+              top: "10%",
+              left: "10%",
+              transform: `translate(${mousePosition.x * 0.1}px, ${
+                mousePosition.y * 0.1
+              }px)`,
+              transition: "transform 0.3s ease-out",
             }}
           />
-          <div 
+          <div
             className="absolute w-96 h-96 bg-secondary/10 rounded-full blur-3xl animate-pulse"
             style={{
-              top: '60%',
-              right: '10%',
-              transform: `translate(${mousePosition.x * -0.1}px, ${mousePosition.y * -0.1}px)`,
-              transition: 'transform 0.3s ease-out',
-              animationDelay: '1s'
+              top: "60%",
+              right: "10%",
+              transform: `translate(${mousePosition.x * -0.1}px, ${
+                mousePosition.y * -0.1
+              }px)`,
+              transition: "transform 0.3s ease-out",
+              animationDelay: "1s",
             }}
           />
-          <div 
+          <div
             className="absolute w-48 h-48 bg-accent/20 rounded-full blur-2xl animate-bounce"
             style={{
-              top: '30%',
-              left: '80%',
-              transform: `translate(${mousePosition.x * 0.05}px, ${mousePosition.y * 0.05}px)`,
-              transition: 'transform 0.3s ease-out',
-              animationDelay: '2s'
+              top: "30%",
+              left: "80%",
+              transform: `translate(${mousePosition.x * 0.05}px, ${
+                mousePosition.y * 0.05
+              }px)`,
+              transition: "transform 0.3s ease-out",
+              animationDelay: "2s",
             }}
           />
-          
+
           {/* Floating Icons */}
-      
         </div>
       </div>
 
@@ -142,19 +151,21 @@ export function RegisterPage() {
       <div className="relative z-10 min-h-screen flex">
         {/* Left Side - Hero Section */}
         <div className="hidden lg:flex lg:flex-1 flex-col justify-center items-center px-12 py-16">
-          <div 
+          <div
             className={`transform transition-all duration-1000 text-center ${
-              isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-12 opacity-0'
+              isLoaded
+                ? "translate-x-0 opacity-100"
+                : "-translate-x-12 opacity-0"
             }`}
           >
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
-              Bergabung dengan<br />
-              <span className="gradient-text-alt">
-                JakSabang
-              </span>
+              Bergabung dengan
+              <br />
+              <span className="gradient-text-alt">JakSabang</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-              Daftarkan diri Anda dan mulai menikmati layanan terpadu untuk menjelajahi keindahan Sabang.
+              Daftarkan diri Anda dan mulai menikmati layanan terpadu untuk
+              menjelajahi keindahan Sabang.
             </p>
           </div>
         </div>
@@ -162,9 +173,11 @@ export function RegisterPage() {
         {/* Right Side - Register Form */}
         <div className="flex-1 flex items-center justify-center px-4 py-8 lg:px-12">
           <div className="w-full max-w-lg">
-            <div 
+            <div
               className={`bg-card/80 backdrop-blur-xl border border-border/50 rounded-2xl shadow-2xl p-6 transform transition-all duration-1000 ${
-                isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-12 opacity-0'
+                isLoaded
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-12 opacity-0"
               }`}
             >
               {/* Header */}
@@ -273,7 +286,9 @@ export function RegisterPage() {
                       />
                       <button
                         type="button"
-                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                        onClick={() =>
+                          setShowConfirmPassword(!showConfirmPassword)
+                        }
                         className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
                       >
                         {showConfirmPassword ? (
@@ -367,7 +382,7 @@ export function RegisterPage() {
                   Sudah punya akun?
                   <button
                     type="button"
-                    onClick={() => navigate('/login')}
+                    onClick={() => navigate("/login")}
                     className="ml-1 text-secondary hover:text-secondary/80 transition-colors font-medium"
                   >
                     Masuk di sini
@@ -379,5 +394,5 @@ export function RegisterPage() {
         </div>
       </div>
     </div>
-  )
+  );
 }

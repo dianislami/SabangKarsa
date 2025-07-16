@@ -1,16 +1,16 @@
-import { useRef } from "react"
-import { Navbar } from "@/components/ui/navbar"
-import { Footer } from "@/components/ui/footer"
-import { HeroSection } from "@/components/ui/hero-section"
-import { FeaturesMarquee } from "@/components/ui/features-marquee"
-import { ServicesSection } from "@/components/ui/services-section"
-import { ParallaxImageSection } from "@/components/ui/parallax-image-section"
-import { DestinationsSection } from "@/components/ui/destinations-section"
-import { StatsSection } from "@/components/ui/stats-section"
-import { TestimonialsSection } from "@/components/ui/testimonials-section"
-import { BusinessSolutionsSection } from "@/components/ui/business-solutions-section"
-import { CtaSection } from "@/components/ui/cta-section"
-import { ChatbotButton } from "@/components/ui/chatbot-button"
+import { useRef } from "react";
+import { Navbar } from "@/components/layouts/navbar";
+import { Footer } from "@/components/layouts/footer";
+import { HeroSection } from "@/components/layouts/hero-section";
+import { FeaturesMarquee } from "@/components/layouts/features-marquee";
+import { ServicesSection } from "@/components/layouts/services-section";
+import { ParallaxImageSection } from "@/components/layouts/parallax-image-section";
+import { DestinationsSection } from "@/components/layouts/destinations-section";
+import { StatsSection } from "@/components/layouts/stats-section";
+import { TestimonialsSection } from "@/components/layouts/testimonials-section";
+import { BusinessSolutionsSection } from "@/components/layouts/business-solutions-section";
+import { CtaSection } from "@/components/layouts/cta-section";
+import { ChatbotButton } from "@/components/chatbot/chatbot-button";
 
 export function HomePage() {
   const navbarRef = useRef<HTMLElement>(null);
@@ -30,5 +30,5 @@ export function HomePage() {
       <Footer />
       <ChatbotButton navbar={navbarRef} />
     </div>
-  )
+  );
 }

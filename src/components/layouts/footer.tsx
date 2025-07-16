@@ -22,7 +22,11 @@ export function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
             <div>
               <div className="flex items-center gap-2 mb-6">
-                <MapPin className="w-10 h-10 text-primary" />
+                <img 
+                  src="/src/assets/JakSabangFIX.svg" 
+                  alt="JakSabang Logo" 
+                  className="w-18 h-18"
+                />
                 <span className="text-3xl font-bold">JakSabang</span>
               </div>
               <p className="text-muted-foreground dark:text-muted-foreground mb-6 leading-relaxed">

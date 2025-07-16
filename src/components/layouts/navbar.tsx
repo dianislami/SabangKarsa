@@ -1,7 +1,7 @@
 import { useState, useEffect, forwardRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/ui/theme-toogle";
+import { ThemeToggle } from "@/components/theme/theme-toogle";
 import {
   User,
   LogOut,
