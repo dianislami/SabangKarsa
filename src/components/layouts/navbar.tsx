@@ -37,8 +37,13 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
   useEffect(() => {
     if (location.pathname === "/") {
       setActiveSection("home");
-    } else if (location.pathname === "/destinations") {
+    } else if (
+      location.pathname === "/destinations" ||
+      location.pathname.startsWith("/destinations/")
+    ) {
       setActiveSection("destinations");
+    } else if (location.pathname.startsWith("/layanan")) {
+      setActiveSection("services");
     } else if (
       location.pathname === "/login" ||
       location.pathname === "/register"
@@ -154,10 +159,11 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
   };
 
   const isItemActive = (itemId: string) => {
-    // Special case for destinations - active if on destinations page OR if active section matches
+    // Special case for destinations - active if on destinations page OR destination detail page OR if active section matches
     if (itemId === "destinations") {
       return (
         location.pathname === "/destinations" ||
+        location.pathname.startsWith("/destinations/") ||
         activeSection === "destinations"
       );
     }

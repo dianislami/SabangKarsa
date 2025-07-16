@@ -511,6 +511,20 @@
   box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
+/* Custom Detail Box Styles */
+.detail-box {
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
+  color: #111827;
+  transition: all 0.3s ease;
+}
+
+.dark .detail-box {
+  background-color: #1a1a1a;
+  border: 2px solid #374151;
+  color: #f9fafb;
+}
+
 /* Button hover effects */
 .chatbot-overlay button:hover {
   transform: translateY(-1px);

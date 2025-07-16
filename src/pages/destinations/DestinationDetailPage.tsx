@@ -154,57 +154,8 @@ export function DestinationDetailPage() {
         </div>
 
         {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
-
-        {/* Decorative Elements */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-20 pointer-events-none">
-          <motion.div
-            className="absolute top-20 left-20 w-32 h-32 border-2 border-white/40 rounded-full"
-            animate={{ rotate: 360, scale: [1, 1.1, 1] }}
-            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div
-            className="absolute bottom-32 right-32 w-24 h-24 border-2 border-emerald-300/30 rounded-full"
-            animate={{ rotate: -360, scale: [1, 1.2, 1] }}
-            transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-          />
-          <motion.div
-            className="absolute top-1/2 right-16 w-16 h-16 border-2 border-blue-300/40 rounded-full"
-            animate={{ rotate: 360, y: [-10, 10, -10] }}
-            transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-          />
-          <motion.div
-            className="absolute bottom-20 left-1/3 w-20 h-20 border border-yellow-300/30 rounded-full"
-            animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
-            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-
-        {/* Floating Particles Effect */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(6)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-2 h-2 bg-white/20 rounded-full"
-              style={{
-                left: `${20 + i * 15}%`,
-                top: `${30 + (i % 3) * 20}%`,
-              }}
-              animate={{
-                y: [-20, -60, -20],
-                opacity: [0, 1, 0],
-                scale: [0.5, 1, 0.5],
-              }}
-              transition={{
-                duration: 3 + i * 0.5,
-                repeat: Infinity,
-                delay: i * 0.3,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 dark:from-black/50 dark:to-black/50"></div>
 
         {/* Enhanced Title Overlay */}
         <motion.div
@@ -215,8 +166,8 @@ export function DestinationDetailPage() {
         >
           <div className="relative">
             {/* Glassmorphism Background */}
-            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 backdrop-blur-xl rounded-3xl border border-white/20 shadow-2xl"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent rounded-3xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent dark:from-black/50 dark:via-black/20 dark:to-transparent rounded-3xl"></div>
 
             <div className="relative p-8 text-white">
               {/* Category and Rating */}
@@ -227,12 +178,12 @@ export function DestinationDetailPage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     {destination.category}
                   </span>
-                  <div className="flex items-center gap-2 bg-black/30 backdrop-blur-sm px-3 py-2 rounded-full">
+                  <div className="flex items-center gap-2 bg-black/30 dark:bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
-                    <span className="text-sm font-semibold text-yellow-100">
+                    <span className="text-sm font-semibold text-yellow-100 dark:text-yellow-200">
                       {destination.rating}
                     </span>
                   </div>
@@ -241,7 +192,7 @@ export function DestinationDetailPage() {
 
               {/* Title */}
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent leading-tight"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
@@ -256,15 +207,15 @@ export function DestinationDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <MapPin className="w-4 h-4 text-emerald-300" />
-                  <span className="text-white/90 font-medium">
+                <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
+                  <MapPin className="w-4 h-4 text-emerald-300 dark:text-emerald-400" />
+                  <span className="text-white/90 dark:text-white/80 font-medium">
                     {destination.location}
                   </span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
-                  <Clock className="w-4 h-4 text-blue-300" />
-                  <span className="text-white/90 font-medium">
+                <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
+                  <Clock className="w-4 h-4 text-blue-300 dark:text-blue-400" />
+                  <span className="text-white/90 dark:text-white/80 font-medium">
                     {destination.openTime}
                   </span>
                 </div>
@@ -286,7 +237,7 @@ export function DestinationDetailPage() {
               transition={{ duration: 0.8, delay: 0.3 }}
             >
               {/* Photo Gallery */}
-              <div className="bg-white dark:bg-card rounded-2xl p-6 md:p-8 shadow-lg border border-border mb-8">
+              <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg mb-8">
                 {/* Main Preview Image */}
                 <div className="relative mb-6">
                   <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
@@ -360,7 +311,7 @@ export function DestinationDetailPage() {
               </div>
 
               {/* Description and Details */}
-              <div className="bg-white dark:bg-card rounded-2xl p-6 md:p-8 shadow-lg border border-border">
+              <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
                   {destination.name}
                 </h2>
@@ -388,7 +339,7 @@ export function DestinationDetailPage() {
 
             {/* Sticky Sidebar - Informasi Kunjungan */}
             <div className="sticky top-24">
-              <div className="bg-white dark:bg-card rounded-2xl p-6 shadow-lg border border-border">
+              <div className="detail-box rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-4">
                   Informasi Kunjungan
                 </h3>
