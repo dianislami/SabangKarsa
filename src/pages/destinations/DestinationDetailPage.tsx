@@ -337,8 +337,13 @@ export function DestinationDetailPage() {
               </div>
             </motion.div>
 
-            {/* Sticky Sidebar - Informasi Kunjungan */}
-            <div className="sticky top-24">
+            {/* Informasi Kunjungan */}
+            <motion.div
+              className="sticky top-24"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.5 }}
+            >
               <div className="detail-box rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-4">
                   Informasi Kunjungan
@@ -401,7 +406,7 @@ export function DestinationDetailPage() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
