@@ -76,60 +76,60 @@
 }
 
 .dark {
-  /* DARK THEME: Dominan emerald gelap dengan aksen putih */
-  --background: oklch(0.08 0.02 158);
+  /* DARK THEME: Dominan hitam #151515 dengan aksen putih */
+  --background: #151515;
   --foreground: oklch(0.98 0.005 150);
   
-  /* Card emerald gelap */
-  --card: oklch(0.12 0.025 158);
+  /* Card hitam gelap */
+  --card: #151515;
   --card-foreground: oklch(0.98 0.005 150);
   
-  /* Popover emerald gelap */
-  --popover: oklch(0.12 0.025 158);
+  /* Popover hitam gelap */
+  --popover: #151515;
   --popover-foreground: oklch(0.98 0.005 150);
   
   /* Primary putih untuk kontras */
   --primary: oklch(0.98 0.005 150);
-  --primary-foreground: oklch(0.08 0.02 158);
+  --primary-foreground: #151515;
   
-  /* Secondary emerald medium */
-  --secondary: oklch(0.25 0.08 158);
+  /* Secondary hitam medium */
+  --secondary: #2a2a2a;
   --secondary-foreground: oklch(0.98 0.005 150);
   
-  /* Muted emerald gelap */
-  --muted: oklch(0.16 0.02 158);
+  /* Muted hitam gelap */
+  --muted: #1a1a1a;
   --muted-foreground: oklch(0.70 0.005 150);
   
-  /* Accent emerald medium */
-  --accent: oklch(0.20 0.05 158);
+  /* Accent hitam medium */
+  --accent: #222222;
   --accent-foreground: oklch(0.98 0.005 150);
   
   /* Destructive tetap merah */
   --destructive: oklch(0.704 0.191 22.216);
   --destructive-foreground: oklch(0.98 0.005 150);
   
-  /* Border emerald gelap */
-  --border: oklch(0.20 0.02 158);
-  --input: oklch(0.12 0.025 158);
+  /* Border hitam gelap */
+  --border: #2a2a2a;
+  --input: #151515;
   
   /* Ring putih untuk focus */
   --ring: oklch(0.98 0.005 150);
   
   /* Button putih untuk aksi */
   --button: oklch(0.98 0.005 150);
-  --button-foreground: oklch(0.08 0.02 158);
+  --button-foreground: #151515;
   
-  /* Navbar emerald gelap transparan */
-  --navbar: oklch(0.08 0.02 158 / 0.95);
+  /* Navbar hitam gelap transparan */
+  --navbar: rgba(21, 21, 21, 0.95);
   --navbar-foreground: oklch(0.98 0.005 150);
   
   /* Custom colors untuk dark theme */
   --text-emerald: oklch(0.98 0.005 150);
   --text-emerald-dark: oklch(0.85 0.005 150);
-  --section-bg: oklch(0.08 0.02 158);
-  --section-bg-alt: oklch(0.12 0.025 158);
+  --section-bg: #151515;
+  --section-bg-alt: #1a1a1a;
   --section-emerald: oklch(0.98 0.005 150);
-  --section-emerald-light: oklch(0.25 0.08 158);
+  --section-emerald-light: #2a2a2a;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
@@ -146,7 +146,7 @@
   --sidebar-ring: oklch(0.443 0.11 240.79);
 
   /* Tema chatbot overlay */
-  --chatbot: oklch(26.2% 0.051 172.552);
+  --chatbot: #1a1a1a;
 }
 
 /* Custom gradient classes untuk tema hijau */
@@ -174,8 +174,8 @@
 }
 
 .dark .navbar-glass {
-  background: rgba(17, 24, 39, 0.95) !important;
-  border-bottom: 1px solid rgba(55, 65, 81, 0.5);
+  background: rgba(21, 21, 21, 0.95) !important;
+  border-bottom: 1px solid rgba(42, 42, 42, 0.5);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
@@ -245,8 +245,8 @@
 }
 
 .dark .dropdown-menu {
-  background: rgba(17, 24, 39, 0.98) !important;
-  border: 1px solid rgba(55, 65, 81, 0.5);
+  background: rgba(21, 21, 21, 0.98) !important;
+  border: 1px solid rgba(42, 42, 42, 0.5);
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
@@ -365,15 +365,15 @@
 }
 
 .dark .section-white {
-  background-color: oklch(0.08 0.02 158);
+  background-color: #151515;
 }
 
 .dark .section-gray {
-  background-color: oklch(0.12 0.025 158);
+  background-color: #1a1a1a;
 }
 
 .dark .section-emerald {
-  background-color: oklch(0.25 0.08 158);
+  background-color: #2a2a2a;
 }
 
 /* Button variants */

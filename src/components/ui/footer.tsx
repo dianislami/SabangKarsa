@@ -15,7 +15,7 @@ export function Footer() {
   return (
     <>
       {/* Separator Line */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+          <div className="border-t border-border text-center"></div>
 
       <footer className="bg-foreground dark:bg-background text-background dark:text-foreground py-16 px-4">
         <div className="container mx-auto">
