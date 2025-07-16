@@ -3,7 +3,6 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toogle";
 import {
-  MapPin,
   User,
   LogOut,
   ChevronDown,
@@ -220,20 +219,19 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
     <header
       id={id}
       ref={ref}
-      className="fixed top-0 left-0 lg:left-20 right-0 lg:right-20 z-50"
+      className="fixed top-0 left-0 lg:left-40 right-0 lg:right-40 z-50"
     >
-      <div className="mx-auto max-w-8xl px-2 sm:px-4 py-2 sm:py-3">
-        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 py-3 sm:py-4 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[55px] sm:min-h-[65px]">
+      <div className="mx-auto max-w-8xl px-2 sm:px-4 py-1 sm:py-2">
+        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[50px] sm:min-h-[55px]">
           <div
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             onClick={() => navigate("/")}
           >
-            <div className="p-1.5 sm:p-2 bg-emerald-600 rounded-full shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-              <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            </div>
-            <span className="text-lg sm:text-xl font-bold text-emerald-600 dark:text-white group-hover:text-emerald-700 dark:group-hover:text-emerald-100 transition-colors duration-300">
-              JakSabang
-            </span>
+            <img
+              src="/src/assets/JakSabangFIX.svg"
+              alt="JakSabang Logo"
+              className="w-12 h-12 sm:w-18 sm:h-18 transition-all duration-300 group-hover:scale-105"
+            />
           </div>
 
           {/* Navigation Menu - Hidden on mobile */}
@@ -309,7 +307,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                 onClick={() =>
                   setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
                 }
-                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+                className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-all duration-300"
               >
                 <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="text-xs sm:text-sm font-medium">
@@ -338,8 +336,8 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                     }}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
                       language === "ID"
-                        ? "bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700"
+                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
                     }`}
                   >
                     <span>🇮🇩</span>
@@ -352,8 +350,8 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                     }}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
                       language === "EN"
-                        ? "bg-emerald-100 dark:bg-gray-700 text-emerald-600 dark:text-blue-400"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-gray-700"
+                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700"
+                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
                     }`}
                   >
                     <span>🇺🇸</span>
@@ -366,7 +364,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden px-1.5 py-1.5 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300"
+              className="lg:hidden px-1.5 py-1.5 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-all duration-300"
             >
               {isMobileMenuOpen ? (
                 <X className="w-5 h-5" />
