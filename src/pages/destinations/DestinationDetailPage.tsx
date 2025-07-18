@@ -80,7 +80,7 @@ export function DestinationDetailPage() {
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+              target.src = "/assets/destinasi/pantaiiboih.jpg"; // Fallback image
             }}
           />
           <div
@@ -186,7 +186,7 @@ export function DestinationDetailPage() {
                       onClick={() => setIsFullscreen(true)}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                        target.src = "/assets/destinasi/pantaiiboih.jpg"; // Fallback image
                       }}
                     />
                     <div className="hidden w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 items-center justify-center">
@@ -223,7 +223,7 @@ export function DestinationDetailPage() {
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                          target.src = "/assets/destinasi/pantaiiboih.jpg"; // Fallback image
                         }}
                       />
                       <div className="hidden w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 items-center justify-center">
@@ -355,7 +355,7 @@ export function DestinationDetailPage() {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                target.src = "/assets/destinasi/pantaiiboih.jpg"; // Fallback image
               }}
             />
             {/* Navigation arrows for fullscreen */}
