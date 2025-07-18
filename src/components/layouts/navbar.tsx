@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   Globe,
 } from "lucide-react";
+import logoNav from "@/assets/JakSabangFIX.svg";
 
 export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
   const { id } = props;
@@ -219,7 +220,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
             onClick={() => navigate("/")}
           >
             <img
-              src="/src/assets/JakSabangFIX.svg"
+              src={logoNav}
               alt="JakSabang Logo"
               className="w-12 h-12 sm:w-18 sm:h-18 transition-all duration-300 group-hover:scale-105"
             />
