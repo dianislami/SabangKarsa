@@ -90,7 +90,7 @@ export function AgendaDetail() {
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "/src/assets/destinasi/pantaiiboih.jpg";
+              target.src = "/assets/destinasi/pantaiiboih.jpg";
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
@@ -175,7 +175,7 @@ export function AgendaDetail() {
                       onClick={() => setIsFullscreen(true)}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "/src/assets/destinasi/pantaiiboih.jpg";
+                        target.src = "/assets/destinasi/pantaiiboih.jpg";
                       }}
                     />
                     <button
@@ -206,7 +206,7 @@ export function AgendaDetail() {
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/src/assets/destinasi/pantaiiboih.jpg";
+                          target.src = "/assets/destinasi/pantaiiboih.jpg";
                         }}
                       />
                     </button>
@@ -316,7 +316,7 @@ export function AgendaDetail() {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/src/assets/destinasi/pantaiiboih.jpg";
+                target.src = "/assets/destinasi/pantaiiboih.jpg";
               }}
             />
             {event.gallery.length > 1 && (

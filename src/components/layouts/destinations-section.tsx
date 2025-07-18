@@ -10,7 +10,7 @@ const destinations = [
     name: "Pantai Iboih",
     description:
       "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang.",
-    image: "/src/assets/destinasi/pantaiiboih.jpg",
+    image: "/assets/destinasi/pantaiiboih.jpg",
     rating: 4.8,
     price: "Gratis",
     category: "Pantai",
@@ -20,7 +20,7 @@ const destinations = [
     name: "Gua Sarang",
     description:
       "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi.",
-    image: "/src/assets/destinasi/wisataguasarang.jpeg",
+    image: "/assets/destinasi/wisataguasarang.jpeg",
     rating: 4.7,
     price: "Rp 10.000",
     category: "Gua",
@@ -30,7 +30,7 @@ const destinations = [
     name: "Pantai Sumur Tiga",
     description:
       "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis.",
-    image: "/src/assets/destinasi/pantaisumurtiga.jpg",
+    image: "/assets/destinasi/pantaisumurtiga.jpg",
     rating: 4.9,
     price: "Gratis",
     category: "Pantai",
@@ -40,7 +40,7 @@ const destinations = [
     name: "Danau Aneuk Laot",
     description:
       "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau.",
-    image: "/src/assets/destinasi/wisataguasarang.jpeg",
+    image: "/assets/destinasi/wisataguasarang.jpeg",
     rating: 4.6,
     price: "Gratis",
     category: "Danau",
@@ -50,7 +50,7 @@ const destinations = [
     name: "Benteng Anoi Itam",
     description:
       "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi.",
-    image: "/src/assets/destinasi/pantaianoiitam.jpeg",
+    image: "/assets/destinasi/pantaianoiitam.jpeg",
     rating: 4.5,
     price: "Rp 5.000",
     category: "Sejarah",
@@ -60,7 +60,7 @@ const destinations = [
     name: "Tugu Kilometer 0",
     description:
       "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang.",
-    image: "/src/assets/destinasi/tugu0km.jpg",
+    image: "/assets/destinasi/tugu0km.jpg",
     rating: 4.8,
     price: "Gratis",
     category: "Monumen",

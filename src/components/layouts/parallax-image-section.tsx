@@ -9,7 +9,7 @@ export function ParallaxImageSection() {
       <motion.div 
         className="absolute inset-0 bg-center bg-cover"
         style={{
-          backgroundImage: `url('/src/assets/destinasi/pantaiiboih.jpg')`,
+          backgroundImage: `url('/assets/destinasi/pantaiiboih.jpg')`,
           y: backgroundY,
           scale: 1.4
         }}

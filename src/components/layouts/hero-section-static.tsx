@@ -3,11 +3,10 @@ import { motion } from "framer-motion";
 export function HeroSectionStatic() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-      {/* Background Image */}
       <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: "url('/src/assets/images/sectionhero.jpg')",
+          backgroundImage: "url('/assets/images/sectionhero.jpg')",
         }}
       />
 

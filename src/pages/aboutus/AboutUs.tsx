@@ -31,7 +31,7 @@ export function AboutUs() {
     <section className="relative bg-gradient-to-br from-emerald-900/90 to-emerald-700/90 text-white overflow-hidden">
         <div className="absolute inset-0 -z-10">
             <img 
-                src="/src/assets/destinasi/pantaiiboih.jpg" 
+                src="/assets/destinasi/pantaiiboih.jpg" 
                 alt="Sabang" 
                 className="w-full h-full object-cover opacity-40"
             />
@@ -135,7 +135,7 @@ export function AboutUs() {
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "/src/assets/destinasi/pantaiiboih.jpg";
+                      target.src = "/assets/destinasi/pantaiiboih.jpg";
                     }}
                   />
                 </div>

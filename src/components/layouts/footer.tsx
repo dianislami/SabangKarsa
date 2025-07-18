@@ -23,7 +23,7 @@ export function Footer() {
             <div>
               <div className="flex items-center gap-2 mb-6">
                 <img 
-                  src="/src/assets/JakSabangFIX.svg" 
+                  src="/assets/JakSabangFIX.svg" 
                   alt="JakSabang Logo" 
                   className="w-18 h-18"
                 />
