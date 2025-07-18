@@ -211,7 +211,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
     <header
       id={id}
       ref={ref}
-      className="fixed top-0 left-0 lg:left-40 right-0 lg:right-40 z-50"
+      className="fixed top-0 left-5 lg:left-40 right-5 lg:right-40 z-50"
     >
       <div className="mx-auto max-w-8xl px-2 sm:px-4 py-1 sm:py-2">
         <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[50px] sm:min-h-[55px]">
