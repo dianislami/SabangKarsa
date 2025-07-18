@@ -8,11 +8,10 @@ import {
   ArrowLeft,
   MapPin,
   Clock,
-  Users,
-  Camera,
+
   X,
   Expand,
-  Mail,
+
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";

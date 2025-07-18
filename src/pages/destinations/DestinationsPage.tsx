@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -22,20 +22,11 @@ const allDestinations: Destination[] = data;
 const ITEMS_PER_PAGE = 9;
 
 export function DestinationsPage() {
-  const [user, setUser] = useState<any>(null);
+
   const [currentPage, setCurrentPage] = useState(1);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-      }
-    }
-  }, []);
+
 
   const totalPages = Math.ceil(allDestinations.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;

@@ -11,8 +11,6 @@ import {
   Share2,
   Heart,
   BookOpen,
-  User,
-  MessageCircle,
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";

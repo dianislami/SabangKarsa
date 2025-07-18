@@ -6,7 +6,6 @@ import {
   Star,
   ArrowLeft,
   MapPin,
-  Utensils,
   X,
   Expand,
 } from "lucide-react";
@@ -32,21 +31,10 @@ const strollData: StrollItem[] = data;
 export function StrollDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState<any>(null);
+
   const [item, setItem] = useState<StrollItem | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
-
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error("Error parsing user data:", error);
-      }
-    }
-  }, []);
 
   useEffect(() => {
     if (id) {

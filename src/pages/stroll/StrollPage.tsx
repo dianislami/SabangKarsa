@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { MapPin, Utensils } from "lucide-react";
+import { MapPin} from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/stroll.json";

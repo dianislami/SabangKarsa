@@ -7,12 +7,6 @@ import {
   MapPin,
   Search,
   Filter,
-  Wifi,
-  Car,
-  Coffee,
-  Waves,
-  Users,
-  Bed,
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
