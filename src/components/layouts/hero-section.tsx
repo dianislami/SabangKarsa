@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom"
 import { motion} from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { ChevronDown, ArrowRight } from "lucide-react"
+import videoBg from "@/assets/video/videobg.mp4"
 
 export function HeroSection() {
   const [user, setUser] = useState<any>(null)
@@ -30,7 +31,7 @@ export function HeroSection() {
           playsInline
           className="w-full h-full object-cover"
         >
-          <source src="/src/assets/video/videobg.mp4" type="video/mp4" />
+          <source src={videoBg} type="video/mp4" />
         </video>
         {/* Theme-adaptive overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/70 to-primary/50 dark:from-background/80 dark:to-background/60"></div>
