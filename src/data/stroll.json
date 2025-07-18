@@ -1,0 +1,206 @@
+[
+  {
+    "id": 1,
+    "name": "Sate Gurita",
+    "description": "Sate gurita khas Sabang dengan daging kenyal, disajikan dengan bumbu kacang dan lontong.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "location": "Taman Wisata Kuliner Sabang & Sabang Fair",
+    "category": "Food",
+    "price": "Rp 35.000",
+    "rating": 4.8,
+    "detailDescription": "Sate Gurita adalah kuliner ikonik Sabang yang wajib dicoba. Daging gurita segar dipotong kecil, ditusuk, lalu dibakar hingga menghasilkan tekstur kenyal dan smoky. Disajikan dengan bumbu kacang kental yang kaya rasa, ditambah lontong dan acar timun untuk pelengkap. Nikmati di suasana meriah Taman Wisata Kuliner Sabang atau saat festival Sabang Fair."
+  },
+  {
+    "id": 2,
+    "name": "Mie Jalak",
+    "description": "Mie kuah khas Sabang dengan daging, tauge, dan telur rebus, rasanya gurih dan segar.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "location": "Mie Jalak Sabang, Jalan Perdagangan",
+    "category": "Food",
+    "price": "Rp 25.000",
+    "rating": 4.7,
+    "detailDescription": "Mie Jalak adalah hidangan mie kuah legendaris di Sabang. Mie kuning disajikan dengan kuah kaldu yang gurih, potongan daging sapi, tauge segar, dan telur rebus. Taburan bawang goreng dan seledri menambah aroma yang menggugah selera. Kedai Mie Jalak Sabang di Jalan Perdagangan menjadi destinasi favorit wisatawan lokal dan turis."
+  },
+  {
+    "id": 3,
+    "name": "Mie Pingsun",
+    "description": "Mie kuah dengan aneka seafood seperti cumi, udang, dan ikan, plus sayuran segar.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "location": "Kedai Lokal Sabang",
+    "category": "Food",
+    "price": "Rp 40.000",
+    "rating": 4.6,
+    "detailDescription": "Mie Pingsun adalah hidangan mie kuah yang kaya akan cita rasa laut. Menggunakan seafood segar seperti cumi, udang, dan ikan, hidangan ini dilengkapi dengan sayuran seperti kolplay dan sawi. Kuahnya yang kaya rempah memberikan rasa gurih dan sedikit pedas, cocok untuk pecinta seafood yang ingin menikmati kuliner khas Sabang."
+  },
+  {
+    "id": 4,
+    "name": "Rujak Buah Kilometer Nol",
+    "description": "Rujak buah segar dengan sambal gula aren, cabai, dan kacang tanah, nikmati di Tugu Kilometer Nol.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg"
+    ],
+    "location": "Tugu Kilometer Nol, Pulau Weh",
+    "category": "Food",
+    "price": "Rp 20.000",
+    "rating": 4.5,
+    "detailDescription": "Rujak Buah Kilometer Nol menawarkan kesegaran buah tropis seperti mangga, nanas, dan jambu air, disiram dengan sambal khas yang terbuat dari gula aren, cabai, kacang tanah, dan sambal buah sagu. Nikmati rujak ini sambil memandang pemandangan ikonik Tugu Kilometer Nol, titik paling barat Indonesia."
+  },
+  {
+    "id": 5,
+    "name": "Rujak Pulau Klah",
+    "description": "Rujak buah dengan sambal Aceh pedas-asam, dinikmati di Cot Batree dengan pemandangan Pulau Klah.",
+    "image": "/src/assets/destinasi/pulaurubiah.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg"
+    ],
+    "location": "Warung Cot Batree, Menuju Iboih",
+    "category": "Food",
+    "price": "Rp 22.000",
+    "rating": 4.6,
+    "detailDescription": "Rujak Pulau Klah adalah pengalaman kuliner yang unik di Sabang. Buah-buahan segar disajikan dengan sambal Aceh yang pedas dan asam, menciptakan perpaduan rasa yang menyegarkan. Nikmati di warung pinggir jalan di Cot Batree sambil memandang panorama Pulau Klah dari atas bukit, menambah kesan tak terlupakan."
+  },
+  {
+    "id": 6,
+    "name": "Mie Seudap",
+    "description": "Mie segar buatan sendiri dengan daging ayam, seledri, dan kuah kaldu, tanpa pengawet.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "location": "Jalan Perdagangan, Sabang",
+    "category": "Food",
+    "price": "Rp 30.000",
+    "rating": 4.7,
+    "detailDescription": "Mie Seudap bukanlah mie instan, melainkan mie segar yang dibuat dari tepung dan telur tanpa bahan pengawet. Disajikan dengan potongan daging ayam, seledri, dan kuah kaldu yang kaya rasa, hidangan ini menjadi favorit di Jalan Perdagangan. Tekstur mie yang kenyal dan kuah yang hangat cocok untuk makan malam di Sabang."
+  },
+  {
+    "id": 7,
+    "name": "Mie Aceh",
+    "description": "Mie kuning khas Aceh dengan daging sapi atau seafood, kaya rempah dan pedas.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "location": "Kedai Lokal Sabang",
+    "category": "Food",
+    "price": "Rp 35.000",
+    "rating": 4.8,
+    "detailDescription": "Mie Aceh adalah kuliner wajib di Sabang, menawarkan mie kuning yang dimasak dengan rempah-rempah khas Aceh. Pilih antara daging sapi atau seafood seperti cumi, kepiting, dan udang. Rasanya yang gurih dan pedas, ditambah taburan bawang goreng dan emping, membuat hidangan ini kaya cita rasa."
+  },
+  {
+    "id": 8,
+    "name": "Seafood Sabang",
+    "description": "Hidangan seafood segar seperti ikan kakap, kerapu, cumi, dan lobster, dibakar dengan sambal.",
+    "image": "/src/assets/destinasi/pulaurubiah.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "location": "Pantai Iboih & Pulau Rubiah",
+    "category": "Food",
+    "price": "Rp 80.000",
+    "rating": 4.9,
+    "detailDescription": "Seafood Sabang menawarkan pengalaman kuliner laut yang tak tertandingi. Ikan kakap, kerapu, cumi, udang, dan lobster segar dibakar dengan sambal khas atau kecap spesial, disajikan dengan nasi dan sayuran. Nikmati hidangan ini di restoran pinggir pantai di Pantai Iboih atau Pulau Rubiah sambil menikmati angin sepoi-sepoi."
+  },
+  {
+    "id": 9,
+    "name": "Bakpia Sabang",
+    "description": "Bakpia khas Sabang dengan isi kacang hijau atau keju, tekstur lembut dan manis.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "location": "Toko Oleh-Oleh Sabang",
+    "category": "Souvenir",
+    "price": "Rp 50.000",
+    "rating": 4.5,
+    "detailDescription": "Bakpia Sabang adalah oleh-oleh populer dengan tekstur lembut dan isian kacang hijau atau keju yang manis. Dibuat dengan resep tradisional, bakpia ini cocok sebagai camilan atau hadiah untuk keluarga. Tersedia di berbagai toko oleh-oleh di Sabang, terutama di sekitar Jalan Perdagangan."
+  },
+  {
+    "id": 10,
+    "name": "Kopi Gayo",
+    "description": "Kopi arabika premium Aceh Gayo dalam kemasan, aroma kuat dan rasa kaya.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "location": "Toko Oleh-Oleh Sabang",
+    "category": "Souvenir",
+    "price": "Rp 100.000",
+    "rating": 4.7,
+    "detailDescription": "Kopi Gayo adalah kopi arabika premium dari dataran tinggi Aceh, terkenal dengan aroma kuat dan cita rasa yang kaya. Dalam kemasan praktis, kopi ini menjadi oleh-oleh favorit untuk pecinta kopi. Beli di toko oleh-oleh Sabang untuk membawa pulang kenangan rasa Aceh."
+  },
+  {
+    "id": 11,
+    "name": "Sabang Fair",
+    "description": "Kawasan jalan-jalan santai dengan suasana meriah, kuliner, dan hiburan lokal.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "location": "Sabang Fair, Pulau Weh",
+    "category": "Strolling",
+    "price": "Gratis",
+    "rating": 4.8,
+    "detailDescription": "Sabang Fair adalah tempat ideal untuk jalan-jalan santai di malam hari. Kawasan ini dipenuhi dengan stan kuliner, pertunjukan musik lokal, dan suasana meriah. Cocok untuk keluarga atau wisatawan yang ingin merasakan kehidupan malam Sabang dengan berbagai hiburan dan makanan lokal."
+  },
+  {
+    "id": 12,
+    "name": "Pantai Iboih & Pulau Rubiah",
+    "description": "Destinasi strolling untuk snorkeling, sunset, dan menikmati keindahan pantai.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "location": "Pantai Iboih & Pulau Rubiah, Pulau Weh",
+    "category": "Strolling",
+    "price": "Gratis",
+    "rating": 4.9,
+    "detailDescription": "Pantai Iboih dan Pulau Rubiah adalah destinasi wajib untuk strolling di Sabang. Nikmati snorkeling di air jernih, menikmati sunset yang memukau, atau sekadar bersantai di tepi pantai. Kawasan ini juga dikelilingi warung yang menyajikan seafood segar, menambah pengalaman kuliner Anda."
+  }
+]

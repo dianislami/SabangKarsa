@@ -6,130 +6,19 @@ import { Navbar } from "@/components/layouts/navbar";
 import { HeroSectionStatic } from "@/components/layouts/hero-section-static";
 import { Footer } from "@/components/layouts/footer";
 import { Star, Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import data from "../../data/destinations.json";
 
-const allDestinations = [
-  {
-    id: 1,
-    name: "Pantai Iboih",
-    description:
-      "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang dengan keindahan bawah laut yang menakjubkan.",
-    image: "/src/assets/destinasi/pantaiiboih.jpg",
-    rating: 4.8,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 2,
-    name: "Gua Sarang",
-    description:
-      "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi yang menawarkan keajaiban formasi batuan alami.",
-    image: "/src/assets/destinasi/wisataguasarang.jpeg",
-    rating: 4.7,
-    price: "Rp 10.000",
-    category: "Gua",
-  },
-  {
-    id: 3,
-    name: "Pantai Sumur Tiga",
-    description:
-      "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis dengan panorama yang memukau.",
-    image: "/src/assets/destinasi/pantaisumurtiga.jpg",
-    rating: 4.9,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 4,
-    name: "Danau Aneuk Laot",
-    description:
-      "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau dan suasana yang tenang dan damai.",
-    image: "/src/assets/destinasi/wisataguasarang.jpeg",
-    rating: 4.6,
-    price: "Gratis",
-    category: "Danau",
-  },
-  {
-    id: 5,
-    name: "Benteng Anoi Itam",
-    description:
-      "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi dari era kolonial Belanda.",
-    image: "/src/assets/destinasi/pantaianoiitam.jpeg",
-    rating: 4.5,
-    price: "Rp 5.000",
-    category: "Sejarah",
-  },
-  {
-    id: 6,
-    name: "Tugu Kilometer 0",
-    description:
-      "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang yang wajib dikunjungi.",
-    image: "/src/assets/destinasi/tugu0km.jpg",
-    rating: 4.8,
-    price: "Gratis",
-    category: "Monumen",
-  },
-  {
-    id: 7,
-    name: "Pulau Rubiah",
-    description:
-      "Pulau kecil dengan kehidupan bawah laut yang luar biasa. Surga snorkeling dan diving dengan terumbu karang yang masih terjaga.",
-    image: "/src/assets/destinasi/pulaurubiah.jpg",
-    rating: 4.9,
-    price: "Rp 15.000",
-    category: "Pulau",
-  },
-  {
-    id: 8,
-    name: "Pantai Kasih",
-    description:
-      "Pantai romantis dengan pasir putih dan air laut yang tenang. Tempat ideal untuk menikmati sunset yang menawan.",
-    image: "/src/assets/destinasi/pantaiiboih.jpg",
-    rating: 4.6,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 9,
-    name: "Air Terjun Pria Laot",
-    description:
-      "Air terjun tersembunyi di tengah hutan tropis. Keindahan alam yang masih alami dengan suara gemericik air yang menenangkan.",
-    image: "/src/assets/destinasi/pantaisumurtiga.jpg",
-    rating: 4.7,
-    price: "Rp 5.000",
-    category: "Air Terjun",
-  },
-  {
-    id: 10,
-    name: "Pantai Tapak Gajah",
-    description:
-      "Pantai dengan bebatuan besar yang menyerupai tapak gajah. Formasi unik yang menjadi daya tarik tersendiri.",
-    image: "/src/assets/destinasi/pantaianoiitam.jpeg",
-    rating: 4.4,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 11,
-    name: "Bukit Kasih",
-    description:
-      "Bukit dengan pemandangan 360 derajat kota Sabang. Spot terbaik untuk menikmati sunrise dan sunset.",
-    image: "/src/assets/destinasi/tugu0km.jpg",
-    rating: 4.8,
-    price: "Gratis",
-    category: "Bukit",
-  },
-  {
-    id: 12,
-    name: "Pantai Anoi Itam",
-    description:
-      "Pantai dengan pasir hitam vulkanik yang unik. Keindahan yang berbeda dengan pemandangan laut yang eksotis.",
-    image: "/src/assets/destinasi/pantaianoiitam.jpeg",
-    rating: 4.5,
-    price: "Gratis",
-    category: "Pantai",
-  },
-];
+interface Destination {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  rating: number;
+  price: string;
+  category: string;
+}
 
+const allDestinations: Destination[] = data;
 const ITEMS_PER_PAGE = 9;
 
 export function DestinationsPage() {
@@ -245,19 +134,21 @@ export function DestinationsPage() {
                   </p>
 
                   <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-muted-foreground">
+                      Kisaran Harga Masuk
+                    </span>
                     <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
                       {destination.price}
                     </span>
                     <Button
                       size="sm"
                       className="bg-emerald-500 hover:bg-emerald-600 text-white"
-                      onClick={() =>
-                        user
-                          ? alert(`Booking ${destination.name} segera hadir!`)
-                          : navigate("/login")
-                      }
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        navigate(`/destinations/${destination.id}`);
+                      }}
                     >
-                      {user ? "Booking" : "Login untuk Booking"}
+                      Lihat Detail
                     </Button>
                   </div>
                 </div>

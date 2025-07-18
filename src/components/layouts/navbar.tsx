@@ -1,3 +1,4 @@
+
 import { useState, useEffect, forwardRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -44,6 +45,12 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
       setActiveSection("destinations");
     } else if (location.pathname.startsWith("/layanan")) {
       setActiveSection("services");
+    } else if (location.pathname === "/agenda") {
+      setActiveSection("agenda");
+    } else if (location.pathname === "/stroll") {
+      setActiveSection("stroll");
+    } else if (location.pathname === "/about") {
+      setActiveSection("about");
     } else if (
       location.pathname === "/login" ||
       location.pathname === "/register"
@@ -64,30 +71,6 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
       }
     }
   }, []);
-
-  // Commented out auto-scroll detection to keep navbar on "Home"
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const sections = ['home', 'destinations', 'services', 'agenda', 'stroll', 'about']
-  //     const scrollPosition = window.scrollY + 100
-
-  //     for (const section of sections) {
-  //       const element = document.getElementById(section)
-  //       if (element) {
-  //         const offsetTop = element.offsetTop
-  //         const offsetHeight = element.offsetHeight
-
-  //         if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-  //           setActiveSection(section)
-  //           break
-  //         }
-  //       }
-  //     }
-  //   }
-
-  //   window.addEventListener('scroll', handleScroll)
-  //   return () => window.removeEventListener('scroll', handleScroll)
-  // }, [])
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -133,22 +116,27 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
     window.location.reload();
   };
 
-  const scrollToSection = (sectionId: string) => {
-    if (sectionId === "home") {
+  const handleNavigation = (itemId: string) => {
+    // Direct navigation for specific routes
+    if (itemId === "agenda") {
+      navigate("/agenda");
+    } else if (itemId === "stroll") {
+      navigate("/stroll");
+    } else if (itemId === "about") {
+      navigate("/about");
+    } else if (itemId === "home") {
       navigate("/");
-      return;
-    }
-
-    // If we're on destinations page and trying to access other sections, go to home first
-    if (location.pathname === "/destinations" && sectionId !== "destinations") {
-      navigate("/#" + sectionId);
-      return;
-    }
-
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-      setActiveSection(sectionId);
+    } else {
+      // Scroll to section for other items (if on homepage)
+      if (location.pathname !== "/") {
+        navigate("/#" + itemId);
+      } else {
+        const element = document.getElementById(itemId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+          setActiveSection(itemId);
+        }
+      }
     }
   };
 
@@ -159,7 +147,6 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
   };
 
   const isItemActive = (itemId: string) => {
-    // Special case for destinations - active if on destinations page OR destination detail page OR if active section matches
     if (itemId === "destinations") {
       return (
         location.pathname === "/destinations" ||
@@ -167,24 +154,22 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
         activeSection === "destinations"
       );
     }
-    // For home, only active if on home page and no specific section
     if (itemId === "home") {
       return (
         location.pathname === "/" &&
         (activeSection === "home" || activeSection === "")
       );
     }
-    // For other items, check if active section matches
     return activeSection === itemId;
   };
 
   const toggleDropdown = (itemId: string) => {
     if (itemId === "services") {
       setIsServicesDropdownOpen(!isServicesDropdownOpen);
-      setIsDestinationsDropdownOpen(false); // Close other dropdown
+      setIsDestinationsDropdownOpen(false);
     } else if (itemId === "destinations") {
       setIsDestinationsDropdownOpen(!isDestinationsDropdownOpen);
-      setIsServicesDropdownOpen(false); // Close other dropdown
+      setIsServicesDropdownOpen(false);
     }
   };
 
@@ -275,8 +260,12 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                           onClick={() => {
                             if (dropdownItem.id === "tujuan-destinasi") {
                               navigate("/destinations");
+                            } else if (dropdownItem.id === "info-wisata") {
+                              navigate("/informations");
+                            } else if (dropdownItem.id === "penginapan") {
+                              navigate("/layanan/penginapan");
                             } else {
-                              scrollToSection(dropdownItem.id);
+                              handleNavigation(dropdownItem.id);
                             }
                             closeDropdown(item.id);
                           }}
@@ -293,7 +282,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                   </div>
                 ) : (
                   <button
-                    onClick={() => scrollToSection(item.id)}
+                    onClick={() => handleNavigation(item.id)}
                     className={`nav-item flex items-center gap-1.5 text-sm ${
                       isItemActive(item.id) ? "active" : ""
                     }`}
@@ -555,8 +544,12 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                             onClick={() => {
                               if (dropdownItem.id === "tujuan-destinasi") {
                                 navigate("/destinations");
+                              } else if (dropdownItem.id === "info-wisata") {
+                                navigate("/informations");
+                              } else if (dropdownItem.id === "penginapan") {
+                                navigate("/layanan/penginapan");
                               } else {
-                                scrollToSection(dropdownItem.id);
+                                handleNavigation(dropdownItem.id);
                               }
                               setIsMobileMenuOpen(false);
                               closeDropdown(item.id);
@@ -577,7 +570,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                   ) : (
                     <button
                       onClick={() => {
-                        scrollToSection(item.id);
+                        handleNavigation(item.id);
                         setIsMobileMenuOpen(false);
                       }}
                       className={`flex items-center gap-3 w-full px-3 py-2.5 text-left hover:text-emerald-700 dark:hover:text-blue-400 rounded-lg transition-all duration-300 ${
@@ -591,7 +584,7 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                     </button>
                   )}
                 </div>
-              ))}{" "}
+              ))}
             </nav>
           </div>
         </div>

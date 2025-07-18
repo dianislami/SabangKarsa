@@ -1,0 +1,255 @@
+
+[
+  {
+    "id": 1,
+    "name": "Festival Pantai Iboih",
+    "description": "Festival tahunan dengan tarian tradisional, kuliner lokal, dan lomba snorkeling di Pantai Iboih.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "date": "2025-08-15",
+    "time": "08:00 - 17:00",
+    "location": "Pantai Iboih, Pulau Weh, Sabang",
+    "category": "Festival",
+    "price": "Rp 50.000",
+    "organizer": "Dinas Pariwisata Sabang",
+    "contact": "info@pariwisatasabang.go.id",
+    "rating": 4.8,
+    "detailDescription": "Festival Pantai Iboih adalah perayaan budaya dan alam tahunan yang menampilkan tarian tradisional Aceh, seperti Tari Saman dan Tari Seudati, serta kuliner khas seperti mie Aceh dan seafood segar. Pengunjung dapat mengikuti lomba snorkeling untuk menjelajahi keindahan bawah laut Pantai Iboih yang terkenal. Acara ini juga menawarkan pasar seni lokal dan pertunjukan musik live, menjadikannya pengalaman yang tak terlupakan untuk keluarga dan wisatawan."
+  },
+  {
+    "id": 2,
+    "name": "Workshop Fotografi Gua Sarang",
+    "description": "Workshop fotografi alam di Gua Sarang dengan mentor profesional, fokus pada teknik fotografi gua.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "date": "2025-09-10",
+    "time": "09:00 - 15:00",
+    "location": "Gua Sarang, Sabang",
+    "category": "Workshop",
+    "price": "Rp 150.000",
+    "organizer": "Komunitas Fotografi Sabang",
+    "contact": "fotografisabang@gmail.com",
+    "rating": 4.7,
+    "detailDescription": "Workshop Fotografi Gua Sarang mengajak peserta untuk menangkap keindahan stalaktit dan stalagmit melalui lensa kamera. Dipandu oleh fotografer profesional, peserta akan belajar teknik pencahayaan rendah dan komposisi foto di dalam gua. Acara ini cocok untuk pemula hingga profesional yang ingin mengasah keterampilan fotografi di lingkungan alam yang unik."
+  },
+  {
+    "id": 3,
+    "name": "Konser Sunset Pantai Sumur Tiga",
+    "description": "Konser musik akustik saat matahari terbenam di Pantai Sumur Tiga dengan artis lokal.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "date": "2025-10-05",
+    "time": "16:00 - 20:00",
+    "location": "Pantai Sumur Tiga, Pulau Weh",
+    "category": "Konser",
+    "price": "Rp 75.000",
+    "organizer": "Sabang Music Community",
+    "contact": "sabangmusic@gmail.com",
+    "rating": 4.9,
+    "detailDescription": "Konser Sunset Pantai Sumur Tiga menghadirkan pengalaman musik akustik yang memukau dengan latar belakang matahari terbenam yang indah. Menampilkan artis lokal dan regional, konser ini menawarkan suasana santai dengan lagu-lagu folk dan pop. Pengunjung dapat menikmati makanan ringan dari vendor lokal sambil menikmati pemandangan pantai yang eksotis."
+  },
+  {
+    "id": 4,
+    "name": "Piknik Danau Aneuk Laot",
+    "description": "Acara piknik keluarga dengan permainan tradisional dan lomba memasak di tepi Danau Aneuk Laot.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "date": "2025-11-20",
+    "time": "10:00 - 16:00",
+    "location": "Danau Aneuk Laot, Pulau Weh",
+    "category": "Piknik",
+    "price": "Gratis",
+    "organizer": "Komunitas Keluarga Sabang",
+    "contact": "keluargasabang@gmail.com",
+    "rating": 4.6,
+    "detailDescription": "Piknik Danau Aneuk Laot adalah acara keluarga yang menyenangkan dengan berbagai aktivitas seperti lomba karung, tarik tambang, dan memasak tradisional Aceh. Dikelilingi oleh pemandangan danau yang tenang, acara ini cocok untuk keluarga yang ingin menikmati hari bersama di alam terbuka. Bawa tikar dan makanan favorit Anda!"
+  },
+  {
+    "id": 5,
+    "name": "Tur Sejarah Benteng Anoi Itam",
+    "description": "Tur berpemandu menjelajahi sejarah Benteng Anoi Itam dengan cerita kolonial Belanda.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg"
+    ],
+    "date": "2025-12-01",
+    "time": "09:00 - 12:00",
+    "location": "Benteng Anoi Itam, Sabang",
+    "category": "Tur Sejarah",
+    "price": "Rp 30.000",
+    "organizer": "Yayasan Warisan Sabang",
+    "contact": "warisansabang@gmail.com",
+    "rating": 4.5,
+    "detailDescription": "Tur Sejarah Benteng Anoi Itam membawa Anda kembali ke era kolonial Belanda melalui cerita pemandu lokal. Pelajari peran benteng ini dalam sejarah perdagangan dan pertahanan Sabang. Tur ini mencakup kunjungan ke struktur benteng dan pemandangan laut yang menakjubkan, cocok untuk pecinta sejarah."
+  },
+  {
+    "id": 6,
+    "name": "Lomba Foto Tugu Kilometer 0",
+    "description": "Lomba fotografi di Tugu Kilometer 0 untuk menangkap keindahan titik paling barat Indonesia.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg"
+    ],
+    "date": "2026-01-15",
+    "time": "06:00 - 18:00",
+    "location": "Tugu Kilometer 0, Pulau Weh",
+    "category": "Lomba",
+    "price": "Rp 25.000",
+    "organizer": "Komunitas Fotografi Sabang",
+    "contact": "fotografisabang@gmail.com",
+    "rating": 4.8,
+    "detailDescription": "Lomba Foto Tugu Kilometer 0 mengundang fotografer amatir dan profesional untuk menangkap keindahan landmark ikonik ini. Dengan latar belakang laut dan langit, peserta dapat berkreasi dengan tema 'Indonesia di Ujung Barat'. Hadiah menarik menanti pemenang, dan semua karya akan dipamerkan di galeri lokal."
+  },
+  {
+    "id": 7,
+    "name": "Festival Diving Pulau Rubiah",
+    "description": "Festival diving dengan kompetisi underwater photography di Pulau Rubiah.",
+    "image": "/src/assets/destinasi/pulaurubiah.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "date": "2026-02-10",
+    "time": "07:00 - 16:00",
+    "location": "Pulau Rubiah, Pulau Weh",
+    "category": "Festival",
+    "price": "Rp 200.000",
+    "organizer": "Sabang Dive Club",
+    "contact": "sabangdive@gmail.com",
+    "rating": 4.9,
+    "detailDescription": "Festival Diving Pulau Rubiah adalah acara tahunan untuk pecinta laut. Peserta dapat mengikuti kompetisi fotografi bawah air untuk menangkap keindahan terumbu karang dan biota laut. Acara ini juga menawarkan sesi pelatihan singkat untuk pemula dan penyewaan peralatan diving, menjadikannya pengalaman yang inklusif."
+  },
+  {
+    "id": 8,
+    "name": "Romantic Sunset Walk Pantai Kasih",
+    "description": "Jalan romantis saat matahari terbenam di Pantai Kasih dengan sesi fotografi pasangan.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "date": "2026-02-14",
+    "time": "16:30 - 19:00",
+    "location": "Pantai Kasih, Pulau Weh",
+    "category": "Romantis",
+    "price": "Rp 100.000",
+    "organizer": "Sabang Romantic Events",
+    "contact": "romanticevents@sabang.com",
+    "rating": 4.7,
+    "detailDescription": "Romantic Sunset Walk di Pantai Kasih adalah acara khusus untuk pasangan yang ingin menikmati keindahan matahari terbenam. Acara ini mencakup sesi fotografi profesional untuk mengabadikan momen romantis, dengan minuman ringan dan dekorasi pantai yang menawan. Cocok untuk Hari Valentine atau acara spesial."
+  },
+  {
+    "id": 9,
+    "name": "Trekking Air Terjun Pria Laot",
+    "description": "Trekking ke Air Terjun Pria Laot dengan pemandu lokal dan sesi meditasi alam.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "date": "2026-03-05",
+    "time": "08:00 - 13:00",
+    "location": "Air Terjun Pria Laot, Sabang",
+    "category": "Trekking",
+    "price": "Rp 50.000",
+    "organizer": "Sabang Adventure Club",
+    "contact": "adventureclub@sabang.com",
+    "rating": 4.6,
+    "detailDescription": "Trekking Air Terjun Pria Laot menawarkan petualangan alam melalui hutan tropis Sabang. Dipandu oleh pemandu lokal, peserta akan menikmati pemandangan air terjun yang menenangkan dan sesi meditasi singkat di tepi air. Acara ini cocok untuk pecinta alam yang ingin menyatu dengan lingkungan."
+  },
+  {
+    "id": 10,
+    "name": "Lomba Layang-Layang Pantai Tapak Gajah",
+    "description": "Lomba layang-layang tradisional dengan tema budaya Aceh di Pantai Tapak Gajah.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "date": "2026-04-10",
+    "time": "09:00 - 15:00",
+    "location": "Pantai Tapak Gajah, Pulau Weh",
+    "category": "Lomba",
+    "price": "Rp 20.000",
+    "organizer": "Komunitas Budaya Sabang",
+    "contact": "budayasabang@gmail.com",
+    "rating": 4.5,
+    "detailDescription": "Lomba Layang-Layang Pantai Tapak Gajah menghadirkan keceriaan dengan layang-layang bertema budaya Aceh. Peserta dari berbagai usia dapat berpartisipasi, dengan hadiah untuk desain dan ketinggian terbaik. Acara ini juga menampilkan pameran kerajinan lokal dan makanan tradisional."
+  },
+  {
+    "id": 11,
+    "name": "Sunrise Yoga Bukit Kasih",
+    "description": "Sesi yoga pagi di Bukit Kasih dengan pemandangan matahari terbit yang menakjubkan.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "date": "2026-05-01",
+    "time": "05:30 - 07:30",
+    "location": "Bukit Kasih, Sabang",
+    "category": "Yoga",
+    "price": "Rp 80.000",
+    "organizer": "Sabang Wellness Community",
+    "contact": "wellness@sabang.com",
+    "rating": 4.8,
+    "detailDescription": "Sunrise Yoga di Bukit Kasih menawarkan sesi yoga yang menyegarkan dengan pemandangan matahari terbit yang spektakuler. Dipandu oleh instruktur berpengalaman, acara ini cocok untuk semua level, dari pemula hingga praktisi yoga berpengalaman. Nikmati ketenangan alam sambil meningkatkan kesehatan fisik dan mental."
+  },
+  {
+    "id": 12,
+    "name": "Pasar Malam Pantai Anoi Itam",
+    "description": "Pasar malam dengan kuliner lokal, kerajinan, dan hiburan di Pantai Anoi Itam.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "date": "2026-06-20",
+    "time": "17:00 - 22:00",
+    "location": "Pantai Anoi Itam, Pulau Weh",
+    "category": "Pasar Malam",
+    "price": "Gratis",
+    "organizer": "Dinas Pariwisata Sabang",
+    "contact": "info@pariwisatasabang.go.id",
+    "rating": 4.7,
+    "detailDescription": "Pasar Malam Pantai Anoi Itam menawarkan pengalaman malam yang meriah dengan berbagai kuliner lokal seperti sate matang dan kopi Aceh. Pengunjung dapat menjelajahi stan kerajinan tangan dan menikmati hiburan live seperti musik tradisional dan tarian. Suasana pantai dengan pasir hitam vulkanik menambah pesona acara ini."
+  }
+]

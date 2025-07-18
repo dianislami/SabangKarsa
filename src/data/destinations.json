@@ -1,0 +1,254 @@
+[
+  {
+    "id": 1,
+    "name": "Pantai Iboih",
+    "description": "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang dengan keindahan bawah laut yang menakjubkan.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "rating": 4.8,
+    "price": "Gratis",
+    "category": "Pantai",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "500+ pengunjung/hari",
+    "facilities": ["Snorkeling", "Diving", "Restoran", "Toilet", "Parkir"],
+    "detailDescription": "Pantai Iboih adalah surga tersembunyi di ujung barat Indonesia. Dengan air laut yang kristal jernih dan terumbu karang yang masih terjaga, pantai ini menawarkan pengalaman snorkeling dan diving yang tak terlupakan. Kehidupan bawah laut yang beragam, mulai dari ikan-ikan tropis berwarna-warni hingga terumbu karang yang eksotis, menjadikan Pantai Iboih sebagai salah satu spot diving terbaik di Indonesia. Pantai ini juga dilengkapi dengan fasilitas yang memadai untuk wisatawan, termasuk penyewaan alat snorkeling, restoran seafood, dan area parkir yang luas.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 2,
+    "name": "Gua Sarang",
+    "description": "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi yang menawarkan keajaiban formasi batuan alami.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pulaurubiah.jpg"
+    ],
+    "rating": 4.7,
+    "price": "Rp 10.000",
+    "category": "Gua",
+    "location": "Sabang, Aceh",
+    "openTime": "08:00 - 17:00",
+    "visitors": "200+ pengunjung/hari",
+    "facilities": ["Pemandu", "Lampu", "Jalur Aman", "Toilet"],
+    "detailDescription": "Gua Sarang adalah keajaiban alam yang tersembunyi di Sabang. Dengan formasi stalaktit dan stalagmit yang terbentuk selama ribuan tahun, gua ini menawarkan pengalaman petualangan yang unik. Di dalam gua, Anda akan melihat berbagai formasi batuan yang menakjubkan dan mendengar cerita sejarah dari pemandu lokal. Gua ini memiliki suhu yang sejuk dan cocok dikunjungi saat cuaca panas.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 3,
+    "name": "Pantai Sumur Tiga",
+    "description": "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis dengan panorama yang memukau.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "rating": 4.9,
+    "price": "Gratis",
+    "category": "Pantai",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "300+ pengunjung/hari",
+    "facilities": ["Air Terjun", "Bebatuan Unik", "Fotografi", "Hiking"],
+    "detailDescription": "Pantai Sumur Tiga adalah destinasi unik yang menggabungkan keindahan pantai dengan air terjun alami. Formasi bebatuan vulkanik yang unik menciptakan pemandangan yang sangat instagramable. Air terjun yang mengalir langsung ke laut menciptakan fenomena alam yang jarang ditemukan di tempat lain. Pantai ini sangat populer untuk fotografi dan menjadi spot sunset yang menakjubkan.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 4,
+    "name": "Danau Aneuk Laot",
+    "description": "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau dan suasana yang tenang dan damai.",
+    "image": "/src/assets/destinasi/wisataguasarang.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "rating": 4.6,
+    "price": "Gratis",
+    "category": "Danau",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "150+ pengunjung/hari",
+    "facilities": ["Area Piknik", "Jalur Pejalan Kaki", "Fotografi", "Area Parkir"],
+    "detailDescription": "Danau Aneuk Laot adalah oase ketenangan di tengah Pulau Weh. Dikelilingi oleh vegetasi hijau dan pemandangan pegunungan, danau ini menawarkan suasana damai yang ideal untuk relaksasi dan piknik keluarga. Airnya yang jernih mencerminkan langit biru, menciptakan pemandangan yang indah untuk fotografi. Jalur pejalan kaki di sekitar danau memungkinkan pengunjung untuk menikmati keindahan alam sambil berjalan santai.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 5,
+    "name": "Benteng Anoi Itam",
+    "description": "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi dari era kolonial Belanda.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg"
+    ],
+    "rating": 4.5,
+    "price": "Rp 5.000",
+    "category": "Sejarah",
+    "location": "Sabang, Aceh",
+    "openTime": "08:00 - 18:00",
+    "visitors": "100+ pengunjung/hari",
+    "facilities": ["Pemandu Sejarah", "Area Foto", "Toilet", "Parkir"],
+    "detailDescription": "Benteng Anoi Itam adalah situs bersejarah yang dibangun pada masa kolonial Belanda. Terletak di tepi pantai, benteng ini menawarkan pemandangan laut yang menakjubkan serta wawasan tentang sejarah Sabang. Pengunjung dapat menjelajahi struktur batu kuno dan mendengar cerita tentang peran benteng ini dalam perdagangan dan pertahanan masa lalu. Tempat ini cocok untuk pecinta sejarah dan fotografi.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 6,
+    "name": "Tugu Kilometer 0",
+    "description": "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang yang wajib dikunjungi.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg"
+    ],
+    "rating": 4.8,
+    "price": "Gratis",
+    "category": "Monumen",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "400+ pengunjung/hari",
+    "facilities": ["Area Foto", "Papan Informasi", "Parkir", "Toilet"],
+    "detailDescription": "Tugu Kilometer 0 menandai titik paling barat Indonesia, menjadikannya landmark ikonik di Sabang. Monumen ini menarik ribuan pengunjung yang ingin berfoto di titik nol geografis Indonesia. Dikelilingi oleh pemandangan laut dan langit yang luas, tempat ini adalah spot wajib untuk merasakan kebanggaan nasional dan menikmati panorama alam yang indah.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 7,
+    "name": "Pulau Rubiah",
+    "description": "Pulau kecil dengan kehidupan bawah laut yang luar biasa. Surga snorkeling dan diving dengan terumbu karang yang masih terjaga.",
+    "image": "/src/assets/destinasi/pulaurubiah.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "rating": 4.9,
+    "price": "Rp 15.000",
+    "category": "Pulau",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "07:00 - 17:00",
+    "visitors": "350+ pengunjung/hari",
+    "facilities": ["Snorkeling", "Diving", "Penyewaan Perahu", "Warung Makan"],
+    "detailDescription": "Pulau Rubiah adalah destinasi utama untuk pecinta snorkeling dan diving. Pulau kecil ini dikelilingi oleh terumbu karang yang masih alami dan kehidupan laut yang beragam, termasuk ikan badut, pari, dan penyu. Pengunjung dapat menyewa perahu untuk mencapai pulau dan menikmati aktivitas air dengan panduan lokal. Pulau ini juga menawarkan suasana yang tenang dan jauh dari keramaian.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 8,
+    "name": "Pantai Kasih",
+    "description": "Pantai romantis dengan pasir putih dan air laut yang tenang. Tempat ideal untuk menikmati sunset yang menawan.",
+    "image": "/src/assets/destinasi/pantaiiboih.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "rating": 4.6,
+    "price": "Gratis",
+    "category": "Pantai",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "250+ pengunjung/hari",
+    "facilities": ["Area Piknik", "Fotografi", "Warung Makan", "Toilet"],
+    "detailDescription": "Pantai Kasih adalah destinasi romantis dengan pasir putih lembut dan air laut yang tenang. Tempat ini terkenal sebagai spot sunset terbaik di Sabang, dengan langit berwarna oranye dan merah yang memukau. Cocok untuk pasangan atau keluarga yang ingin bersantai, Pantai Kasih juga menawarkan warung makan lokal yang menyajikan hidangan laut segar.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 9,
+    "name": "Air Terjun Pria Laot",
+    "description": "Air terjun tersembunyi di tengah hutan tropis. Keindahan alam yang masih alami dengan suara gemericik air yang menenangkan.",
+    "image": "/src/assets/destinasi/pantaisumurtiga.jpg",
+    "gallery": [
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pantaianoiitam.jpeg"
+    ],
+    "rating": 4.7,
+    "price": "Rp 5.000",
+    "category": "Air Terjun",
+    "location": "Sabang, Aceh",
+    "openTime": "08:00 - 17:00",
+    "visitors": "120+ pengunjung/hari",
+    "facilities": ["Jalur Trekking", "Area Foto", "Papan Informasi", "Parkir"],
+    "detailDescription": "Air Terjun Pria Laot adalah permata tersembunyi di tengah hutan tropis Sabang. Air terjun ini menawarkan pemandangan alam yang masih alami, dengan suara air yang menenangkan dan udara segar. Jalur trekking menuju air terjun cukup mudah, menjadikannya destinasi yang cocok untuk petualang pemula. Tempat ini ideal untuk fotografi dan meditasi di tengah alam.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 10,
+    "name": "Pantai Tapak Gajah",
+    "description": "Pantai dengan bebatuan besar yang menyerupai tapak gajah. Formasi unik yang menjadi daya tarik tersendiri.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "rating": 4.4,
+    "price": "Gratis",
+    "category": "Pantai",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "200+ pengunjung/hari",
+    "facilities": ["Fotografi", "Area Piknik", "Toilet", "Parkir"],
+    "detailDescription": "Pantai Tapak Gajah dikenal karena formasi bebatuan besar yang menyerupai jejak gajah, menciptakan pemandangan yang unik dan menarik. Pantai ini menawarkan suasana tenang dengan ombak yang lembut, cocok untuk bersantai dan berfoto. Pengunjung dapat menikmati keindahan alam sambil menjelajahi bebatuan yang menjadi ciri khas pantai ini.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 11,
+    "name": "Bukit Kasih",
+    "description": "Bukit dengan pemandangan 360 derajat kota Sabang. Spot terbaik untuk menikmati sunrise dan sunset.",
+    "image": "/src/assets/destinasi/tugu0km.jpg",
+    "gallery": [
+      "/src/assets/destinasi/tugu0km.jpg",
+      "/src/assets/destinasi/pantaisumurtiga.jpg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/wisataguasarang.jpeg"
+    ],
+    "rating": 4.8,
+    "price": "Gratis",
+    "category": "Bukit",
+    "location": "Sabang, Aceh",
+    "openTime": "24 Jam",
+    "visitors": "180+ pengunjung/hari",
+    "facilities": ["Jalur Pendakian", "Area Foto", "Papan Informasi", "Parkir"],
+    "detailDescription": "Bukit Kasih menawarkan pemandangan 360 derajat yang menakjubkan dari kota Sabang dan laut sekitarnya. Bukit ini adalah spot ideal untuk menikmati sunrise dan sunset, dengan panorama yang memukau. Jalur pendakian yang mudah membuatnya dapat diakses oleh berbagai kalangan, dan area puncaknya cocok untuk fotografi dan relaksasi.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  },
+  {
+    "id": 12,
+    "name": "Pantai Anoi Itam",
+    "description": "Pantai dengan pasir hitam vulkanik yang unik. Keindahan yang berbeda dengan pemandangan laut yang eksotis.",
+    "image": "/src/assets/destinasi/pantaianoiitam.jpeg",
+    "gallery": [
+      "/src/assets/destinasi/pantaianoiitam.jpeg",
+      "/src/assets/destinasi/pantaiiboih.jpg",
+      "/src/assets/destinasi/pulaurubiah.jpg",
+      "/src/assets/destinasi/tugu0km.jpg"
+    ],
+    "rating": 4.5,
+    "price": "Gratis",
+    "category": "Pantai",
+    "location": "Pulau Weh, Sabang",
+    "openTime": "24 Jam",
+    "visitors": "220+ pengunjung/hari",
+    "facilities": ["Fotografi", "Area Piknik", "Toilet", "Parkir"],
+    "detailDescription": "Pantai Anoi Itam menonjol dengan pasir hitam vulkaniknya yang langka, menciptakan kontras indah dengan air laut biru. Pantai ini menawarkan pemandangan eksotis dan suasana tenang, ideal untuk bersantai dan berfoto. Dekat dengan Benteng Anoi Itam, tempat ini juga kaya akan nilai sejarah dan budaya.",
+    "map":"https://maps.app.goo.gl/PrEBMjipCTvCupS97"
+  }
+]

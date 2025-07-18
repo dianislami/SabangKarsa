@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
@@ -11,35 +12,36 @@ import {
   Camera,
   X,
   Expand,
+  Mail,
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-import data from "../../data/destinations.json";
+import data from "../../data/events.json";
 
-interface Destination {
+interface Event {
   id: number;
   name: string;
   description: string;
   image: string;
   gallery: string[];
-  rating: number;
-  price: string;
-  category: string;
+  date: string;
+  time: string;
   location: string;
-  openTime: string;
-  visitors: string;
-  facilities: string[];
+  category: string;
+  price: string;
+  organizer: string;
+  contact: string;
+  rating: number;
   detailDescription: string;
-  map: string;
 }
 
-const destinationsData: Destination[] = data;
+const eventsData: Event[] = data;
 
-export function DestinationDetailPage() {
+export function AgendaDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   const [user, setUser] = useState<any>(null);
-  const [destination, setDestination] = useState<Destination | null>(null);
+  const [event, setEvent] = useState<Event | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
 
@@ -56,22 +58,20 @@ export function DestinationDetailPage() {
 
   useEffect(() => {
     if (id) {
-      const foundDestination = destinationsData.find(
-        (dest) => dest.id === parseInt(id)
-      );
-      setDestination(foundDestination || null);
+      const foundEvent = eventsData.find((evt) => evt.id === parseInt(id));
+      setEvent(foundEvent || null);
     }
   }, [id]);
 
-  if (!destination) {
+  if (!event) {
     return (
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground mb-4">
-            Destinasi tidak ditemukan
+            Acara tidak ditemukan
           </h2>
-          <Button onClick={() => navigate("/destinations")}>
-            Kembali ke Destinasi
+          <Button onClick={() => navigate("/agenda")}>
+            Kembali ke Agenda
           </Button>
         </div>
       </div>
@@ -84,43 +84,27 @@ export function DestinationDetailPage() {
 
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[500px] overflow-hidden">
-        {/* Background Image with Parallax Effect */}
         <div className="absolute inset-0">
           <img
-            src={destination.image}
-            alt={destination.name}
+            src={event.image}
+            alt={event.name}
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+              target.src = "/src/assets/destinasi/pantaiiboih.jpg";
             }}
           />
-          <div
-            className="hidden w-full h-full bg-gradient-to-br from-emerald-500/20 to-blue-600/20 items-center justify-center"
-            style={{ display: "none" }}
-          >
-            <Camera className="w-24 h-24 text-white/60" />
-          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
         </div>
-
-        {/* Enhanced Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
-        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30 dark:from-black/50 dark:to-black/50"></div>
-
-        {/* Enhanced Title Overlay */}
         <motion.div
           className="absolute bottom-8 left-4 md:left-8 right-4 md:right-8 z-10"
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.8, delay: 0.3 }}
         >
           <div className="relative">
-            {/* Glassmorphism Background */}
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent dark:from-black/50 dark:via-black/20 dark:to-transparent rounded-3xl"></div>
-
             <div className="relative p-8 text-white">
-              {/* Category and Rating */}
               <motion.div
                 className="flex items-center justify-between mb-4"
                 initial={{ opacity: 0, x: -20 }}
@@ -129,28 +113,24 @@ export function DestinationDetailPage() {
               >
                 <div className="flex items-center gap-3">
                   <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
-                    {destination.category}
+                    {event.category}
                   </span>
                   <div className="flex items-center gap-2 bg-black/30 dark:bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full">
                     <Star className="w-5 h-5 text-yellow-400 fill-current" />
                     <span className="text-sm font-semibold text-yellow-100 dark:text-yellow-200">
-                      {destination.rating}
+                      {event.rating}
                     </span>
                   </div>
                 </div>
               </motion.div>
-
-              {/* Title */}
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent leading-tight"
+                className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                {destination.name}
+                {event.name}
               </motion.h1>
-
-              {/* Info Pills */}
               <motion.div
                 className="flex flex-wrap items-center gap-4 text-sm"
                 initial={{ opacity: 0, y: 20 }}
@@ -160,13 +140,13 @@ export function DestinationDetailPage() {
                 <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
                   <MapPin className="w-4 h-4 text-emerald-300 dark:text-emerald-400" />
                   <span className="text-white/90 dark:text-white/80 font-medium">
-                    {destination.location}
+                    {event.location}
                   </span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
                   <Clock className="w-4 h-4 text-blue-300 dark:text-blue-400" />
                   <span className="text-white/90 dark:text-white/80 font-medium">
-                    {destination.openTime}
+                    {event.date} | {event.time}
                   </span>
                 </div>
               </motion.div>
@@ -179,7 +159,6 @@ export function DestinationDetailPage() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Main Content - Gallery and Description */}
             <motion.div
               className="lg:col-span-3"
               initial={{ opacity: 0, y: 30 }}
@@ -188,23 +167,18 @@ export function DestinationDetailPage() {
             >
               {/* Photo Gallery */}
               <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg mb-8">
-                {/* Main Preview Image */}
                 <div className="relative mb-6">
                   <div className="relative aspect-video rounded-xl overflow-hidden bg-muted">
                     <img
-                      src={destination.gallery[currentImageIndex]}
-                      alt={`${destination.name} - Image ${currentImageIndex + 1}`}
+                      src={event.gallery[currentImageIndex]}
+                      alt={`${event.name} - Image ${currentImageIndex + 1}`}
                       className="w-full h-full object-cover cursor-pointer transition-transform duration-300 hover:scale-105"
                       onClick={() => setIsFullscreen(true)}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                        target.src = "/src/assets/destinasi/pantaiiboih.jpg";
                       }}
                     />
-                    <div className="hidden w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 items-center justify-center">
-                      <Camera className="w-24 h-24 text-muted-foreground" />
-                    </div>
-                    {/* Fullscreen Button */}
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
@@ -216,10 +190,8 @@ export function DestinationDetailPage() {
                     </button>
                   </div>
                 </div>
-
-                {/* Thumbnail Gallery */}
                 <div className="grid grid-cols-4 gap-3">
-                  {destination.gallery.map((image, index) => (
+                  {event.gallery.map((image, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentImageIndex(index)}
@@ -231,16 +203,13 @@ export function DestinationDetailPage() {
                     >
                       <img
                         src={image}
-                        alt={`${destination.name} - Thumbnail ${index + 1}`}
+                        alt={`${event.name} - Thumbnail ${index + 1}`}
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                          target.src = "/src/assets/destinasi/pantaiiboih.jpg";
                         }}
                       />
-                      <div className="hidden w-full h-full bg-gradient-to-br from-muted to-muted-foreground/20 items-center justify-center">
-                        <Camera className="w-8 h-8 text-muted-foreground" />
-                      </div>
                     </button>
                   ))}
                 </div>
@@ -249,29 +218,15 @@ export function DestinationDetailPage() {
               {/* Description and Details */}
               <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg">
                 <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-6">
-                  {destination.name}
+                  {event.name}
                 </h2>
                 <p className="text-muted-foreground leading-relaxed text-base md:text-lg mb-8">
-                  {destination.detailDescription}
+                  {event.detailDescription}
                 </p>
-
-                <h3 className="text-xl font-bold text-foreground mb-4">
-                  Fasilitas Tersedia
-                </h3>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-8">
-                  {destination.facilities.map((facility, index) => (
-                    <div
-                      key={index}
-                      className="bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-300 px-3 py-2 rounded-lg text-sm font-medium text-center"
-                    >
-                      {facility}
-                    </div>
-                  ))}
-                </div>
               </div>
             </motion.div>
 
-            {/* Informasi Kunjungan */}
+            {/* Event Information */}
             <motion.div
               className="sticky top-24"
               initial={{ opacity: 0, y: 30 }}
@@ -280,63 +235,58 @@ export function DestinationDetailPage() {
             >
               <div className="detail-box rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Informasi Kunjungan
+                  Informasi Acara
                 </h3>
-
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Harga Tiket:</span>
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400 text-lg">
-                      {destination.price}
+                      {event.price}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Rating:</span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="font-semibold">{destination.rating}/5</span>
+                      <span className="font-semibold">{event.rating}/5</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Jam Buka:</span>
-                    <span className="font-medium">{destination.openTime}</span>
+                    <span className="text-muted-foreground">Tanggal & Waktu:</span>
+                    <span className="font-medium">{event.date} | {event.time}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Lokasi:</span>
-                    <span className="font-medium text-right">{destination.location}</span>
+                    <span className="font-medium text-right">{event.location}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Maps:</span>
+                    <span className="text-muted-foreground">Penyelenggara:</span>
+                    <span className="font-medium text-right">{event.organizer}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-muted-foreground">Kontak:</span>
                     <a
-                      href={destination.map}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      href={`mailto:${event.contact}`}
                       className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
                     >
-                      Klik disini
+                      {event.contact}
                     </a>
                   </div>
                 </div>
-
                 <Button
                   className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
-        
-                  onClick={() => navigate("/destinations")}
+                  onClick={() =>
+                    user
+                      ? alert(`Booking ${event.name} segera hadir!`)
+                      : navigate("/login")
+                  }
                 >
-                  kembali ke daftar destinasi
+                  {user ? "Booking Sekarang" : "Login untuk Booking"}
                 </Button>
-
                 <div className="mt-4 pt-4 border-t border-border">
-                   <iframe 
-        src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7279.303944405486!2d95.37151319006357!3d5.845942307037927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sbenteng%20anoi%20itam!5e0!3m2!1sid!2sid!4v1752837935266!5m2!1sid!2sid" 
-        width="400" 
-        height="300" 
-        style={{ border: 0 }} 
-        allowFullScreen={true} 
-        loading="lazy" 
-        referrerPolicy="no-referrer-when-downgrade"
-      ></iframe>
-                 
+                  <p className="text-xs text-muted-foreground text-center">
+                    Dengan melakukan booking, Anda menyetujui syarat dan ketentuan yang berlaku
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -361,24 +311,23 @@ export function DestinationDetailPage() {
           </button>
           <div className="relative max-w-6xl max-h-[90vh] w-full">
             <img
-              src={destination.gallery[currentImageIndex]}
-              alt={`${destination.name} - Fullscreen`}
+              src={event.gallery[currentImageIndex]}
+              alt={`${event.name} - Fullscreen`}
               className="w-full h-full object-contain"
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/src/assets/destinasi/pantaiiboih.jpg"; // Fallback image
+                target.src = "/src/assets/destinasi/pantaiiboih.jpg";
               }}
             />
-            {/* Navigation arrows for fullscreen */}
-            {destination.gallery.length > 1 && (
+            {event.gallery.length > 1 && (
               <>
                 <button
                   className="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm transition-colors"
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex((prev) =>
-                      prev === 0 ? destination.gallery.length - 1 : prev - 1
+                      prev === 0 ? event.gallery.length - 1 : prev - 1
                     );
                   }}
                 >
@@ -389,7 +338,7 @@ export function DestinationDetailPage() {
                   onClick={(e) => {
                     e.stopPropagation();
                     setCurrentImageIndex((prev) =>
-                      prev === destination.gallery.length - 1 ? 0 : prev + 1
+                      prev === event.gallery.length - 1 ? 0 : prev + 1
                     );
                   }}
                 >

@@ -17,6 +17,7 @@ export function HomePage() {
 
   return (
     <div className="min-h-screen bg-background overflow-hidden">
+      
       <Navbar id="navbar" ref={navbarRef} />
       <HeroSection />
       <FeaturesMarquee />
