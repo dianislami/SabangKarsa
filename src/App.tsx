@@ -13,6 +13,8 @@ import { AgendaDetail } from "./pages/agenda/AgendaDetail";
 import { StrollPage } from "./pages/stroll/StrollPage";
 import { StrollDetailPage } from "./pages/stroll/StrollDetailPage";
 import { AboutUs } from "./pages/aboutus/AboutUs";
+import { RentalPage } from "./pages/layanan/rentaldansupir/RentalPage";
+import { TourGuidePage } from "./pages/layanan/tourguide/TourGuidePage";
 
 function App() {
   return (
@@ -31,7 +33,10 @@ function App() {
           <Route path="/agenda/:id" element={<AgendaDetail />} />
           <Route path="/stroll" element={<StrollPage />} />
           <Route path="/stroll/:id" element={<StrollDetailPage />} />
-          <Route path="/about" element={<AboutUs />} />  
+          <Route path="/about" element={<AboutUs />} />
+          <Route path="/layanan/rental" element={<RentalPage />} />
+          <Route path="/layanan/tourguide" element={<TourGuidePage />} />
+          
         </Routes>
       </Router>
     </ThemeProvider>

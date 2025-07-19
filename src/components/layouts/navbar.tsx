@@ -266,7 +266,12 @@ export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
                               navigate("/informations");
                             } else if (dropdownItem.id === "penginapan") {
                               navigate("/layanan/penginapan");
-                            } else {
+                            } else if (dropdownItem.id === "driver-rental") {
+                              navigate("/layanan/rental");
+                            } else if(dropdownItem.id === "tour-guide"){
+                              navigate("/layanan/tourguide");
+                            } 
+                            else {
                               handleNavigation(dropdownItem.id);
                             }
                             closeDropdown(item.id);

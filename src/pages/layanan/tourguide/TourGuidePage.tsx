@@ -3,164 +3,80 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import {
-  Car,
-  Bike,
+  User,
+  Map,
   Search,
   Filter,
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 
-const rentalData = [
+const tourGuideData = [
   {
     id: 1,
-    name: "Honda Scoopy",
-    description:
-      "Skuter matic yang nyaman dan stylish, cocok untuk menjelajahi jalanan kota Sabang dengan lincah.",
-    image: "/assets/images/motor3.png",
-    gallery: [
-      "/assets/rental/scoopy.jpg",
-      "/assets/rental/scoopy_side.jpg",
-      "/assets/rental/scoopy_front.jpg",
-    ],
-    rating: 4.7,
-    price: "Rp 100.000",
-    pricePerDay: 100000,
-    category: "Motor",
+    name: "Achmad Atha Zayyan",
+    role: "Tour Guide & Pendiri",
+    image: "/assets/images/fotoAtha.png",
+    bio: "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia. Dengan pengalaman lebih dari 10 tahun di industri pariwisata, ia ahli dalam wisata budaya dan sejarah Sabang.",
+    expertise: "Wisata Budaya",
+    rating: 4.9,
+    price: "Rp 500.000",
+    pricePerDay: 500000,
     location: "Pusat Kota Sabang",
-    features: ["Automatic", "Fuel Efficient", "Helmet Included", "Storage Compartment"],
-    type: "Scooter",
-    condition: "Baru",
-    detailDescription:
-      "Honda Scoopy adalah pilihan ideal untuk wisatawan yang ingin menjelajahi Sabang dengan praktis. Dengan desain stylish dan mesin hemat bahan bakar, skuter ini cocok untuk perjalanan singkat maupun panjang di sekitar kota.",
+    languages: ["Bahasa Indonesia", "English"],
+    activities: ["City Tour", "Historical Sites", "Cultural Experiences"],
+    detailBio:
+      "Achmad adalah pemandu wisata berpengalaman yang bersemangat berbagi keindahan dan sejarah Sabang. Sebagai pendiri JakSabang, ia memiliki pengetahuan mendalam tentang budaya lokal, tradisi, dan destinasi tersembunyi di Sabang.",
   },
   {
     id: 2,
-    name: "Yamaha NMAX",
-    description:
-      "Motor matic premium dengan performa tangguh, ideal untuk perjalanan jarak jauh di Sabang.",
-    image: "/assets/images/motor2.png",
-    gallery: [
-      "/assets/rental/nmax.jpg",
-      "/assets/rental/nmax_side.jpg",
-      "/assets/rental/nmax_back.jpg",
-    ],
-    rating: 4.8,
-    price: "Rp 150.000",
-    pricePerDay: 150000,
-    category: "Motor",
+    name: "Muhammad Aidil Fitrah",
+    role: "Pemandu Wisata Petualang",
+    image: "/assets/images/fotoAidil.png",
+    bio: "Aidil mengelola tur petualangan di Sabang, dengan keahlian dalam diving, hiking, dan eksplorasi alam.",
+    expertise: "Wisata Alam",
+    rating: 4.7,
+    price: "Rp 450.000",
+    pricePerDay: 450000,
     location: "Pantai Iboih",
-    features: ["Automatic", "ABS Brakes", "Helmet Included", "Large Storage"],
-    type: "Maxi Scooter",
-    condition: "Baru",
-    detailDescription:
-      "Yamaha NMAX menawarkan kenyamanan dan performa premium untuk menjelajahi Sabang. Dilengkapi dengan fitur modern seperti rem ABS dan bagasi luas, motor ini cocok untuk petualangan di berbagai medan.",
+    languages: ["Bahasa Indonesia", "English", "Acehnese"],
+    activities: ["Diving", "Hiking", "Beach Exploration"],
+    detailBio:
+      "Aidil adalah pemandu wisata yang berspesialisasi dalam petualangan alam. Dengan keahlian dalam diving dan hiking, ia akan membawa Anda menjelajahi keindahan alam Sabang, dari terumbu karang hingga hutan tropis.",
   },
   {
     id: 3,
-    name: "Toyota Avanza",
-    description:
-      "Mobil keluarga yang luas dan nyaman, cocok untuk perjalanan bersama di Sabang.",
-    image: "/assets/images/mobil1.png",
-    gallery: [
-      "/assets/rental/avanza.jpg",
-      "/assets/rental/avanza_interior.jpg",
-      "/assets/rental/avanza_side.jpg",
-    ],
-    rating: 4.5,
-    price: "Rp 400.000",
-    pricePerDay: 400000,
-    category: "Mobil",
-    location: "Pusat Kota Sabang",
-    features: ["AC", "7-Seater", "Audio System", "Manual"],
-    type: "MPV",
-    condition: "Baik",
-    detailDescription:
-      "Toyota Avanza adalah mobil keluarga yang ideal untuk perjalanan di Sabang. Dengan kapasitas 7 penumpang dan fitur AC yang nyaman, mobil ini cocok untuk wisata keluarga atau rombongan kecil.",
-  },
-  {
-    id: 4,
-    name: "Toyota Innova with Driver",
-    description:
-      "Mobil premium dengan supir berpengalaman, menawarkan perjalanan nyaman tanpa perlu mengemudi sendiri.",
-    image: "/assets/images/mobil2.png",
-    gallery: [
-      "/assets/rental/innova.jpg",
-      "/assets/rental/innova_interior.jpg",
-      "/assets/rental/innova_side.jpg",
-    ],
-    rating: 4.9,
-    price: "Rp 800.000",
-    pricePerDay: 800000,
-    category: "Mobil dengan Supir",
+    name: "Muhammad Naufal Hanif",
+    role: "Pemandu Wisata Teknologi",
+    image: "/assets/images/fotoHanif.png",
+    bio: "Hanif menggabungkan teknologi dengan wisata, menawarkan tur interaktif dengan panduan digital di Sabang.",
+    expertise: "Wisata Teknologi",
+    rating: 4.8,
+    price: "Rp 600.000",
+    pricePerDay: 600000,
     location: "Sabang Bay",
-    features: ["AC", "7-Seater", "Professional Driver", "Audio System"],
-    type: "MPV",
-    condition: "Baru",
-    detailDescription:
-      "Toyota Innova dengan supir profesional memberikan pengalaman perjalanan yang nyaman dan bebas repot. Supir berpengalaman akan memandu Anda ke destinasi wisata terbaik di Sabang dengan aman dan nyaman.",
-  },
-  {
-    id: 5,
-    name: "Honda Vario 125",
-    description:
-      "Motor matic hemat bahan bakar, cocok untuk backpacker yang ingin menjelajahi Sabang dengan budget terjangkau.",
-    image: "/assets/images/motor1.png",
-    gallery: [
-      "/assets/rental/vario.jpg",
-      "/assets/rental/vario_side.jpg",
-      "/assets/rental/vario_front.jpg",
-    ],
-    rating: 4.4,
-    price: "Rp 90.000",
-    pricePerDay: 90000,
-    category: "Motor",
-    location: "Gapang Beach",
-    features: ["Automatic", "Fuel Efficient", "Helmet Included"],
-    type: "Scooter",
-    condition: "Baik",
-    detailDescription:
-      "Honda Vario 125 adalah motor matic yang ekonomis dan handal, ideal untuk backpacker yang ingin menjelajahi Sabang dengan biaya rendah. Mesinnya yang hemat bahan bakar memastikan perjalanan yang efisien.",
-  },
-  {
-    id: 6,
-    name: "Daihatsu Xenia with Driver",
-    description:
-      "Mobil keluarga dengan supir berpengalaman, cocok untuk perjalanan wisata yang santai di Sabang.",
-    image: "/assets/images/mobil3.png",
-    gallery: [
-      "/assets/rental/xenia.jpg",
-      "/assets/rental/xenia_interior.jpg",
-      "/assets/rental/xenia_side.jpg",
-    ],
-    rating: 4.6,
-    price: "Rp 700.000",
-    pricePerDay: 700000,
-    category: "Mobil dengan Supir",
-    location: "Sumur Tiga Beach",
-    features: ["AC", "7-Seater", "Professional Driver", "Audio System"],
-    type: "MPV",
-    condition: "Baik",
-    detailDescription:
-      "Daihatsu Xenia dengan supir berpengalaman menawarkan kenyamanan untuk perjalanan wisata di Sabang. Mobil ini dilengkapi dengan AC dan sistem audio untuk menjamin perjalanan yang menyenangkan.",
+    languages: ["Bahasa Indonesia", "English"],
+    activities: ["Digital Tours", "Photography", "Eco Tours"],
+    detailBio:
+      "Hanif adalah pemandu wisata inovatif yang mengintegrasikan teknologi dalam pengalaman wisata. Dengan tur interaktif berbasis aplikasi dan fotografi, ia menawarkan pengalaman modern untuk menjelajahi Sabang.",
   },
 ];
 
-const categories = ["Semua", "Motor", "Mobil", "Mobil dengan Supir"];
+const expertiseCategories = ["Semua", "Wisata Budaya", "Wisata Alam", "Wisata Teknologi"];
 
-export function RentalPage() {
+export function TourGuidePage() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedExpertise, setSelectedExpertise] = useState("Semua");
   const [sortBy, setSortBy] = useState("name");
 
-  const filteredRental = rentalData
-    .filter((rental) => {
-      const matchesSearch = rental.name
+  const filteredTourGuides = tourGuideData
+    .filter((guide) => {
+      const matchesSearch = guide.name
         .toLowerCase()
         .includes(searchTerm.toLowerCase());
-      const matchesCategory =
-        selectedCategory === "Semua" || rental.category === selectedCategory;
-      return matchesSearch && matchesCategory;
+      const matchesExpertise =
+        selectedExpertise === "Semua" || guide.expertise === selectedExpertise;
+      return matchesSearch && matchesExpertise;
     })
     .sort((a, b) => {
       switch (sortBy) {
@@ -184,8 +100,8 @@ export function RentalPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/images/sectionhero.jpg"
-            alt="Rental Sabang"
+            src="/assets/destinasi/pantaiiboih.jpg"
+            alt="Tour Guide Sabang"
             className="w-full h-full object-cover scale-110"
           />
         </div>
@@ -208,7 +124,7 @@ export function RentalPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Rental Kendaraan di Sabang
+              Pemesanan Tour Guide di Sabang
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -216,7 +132,7 @@ export function RentalPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Temukan kendaraan terbaik untuk petualangan Anda di Sabang, dari motor lincah hingga mobil nyaman dengan supir.
+              Temukan pemandu wisata terbaik di Sabang untuk pengalaman wisata budaya, alam, atau teknologi yang tak terlupakan.
             </motion.p>
           </motion.div>
         </div>
@@ -236,26 +152,26 @@ export function RentalPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
-                placeholder="Cari kendaraan..."
+                placeholder="Cari pemandu wisata..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
               />
             </div>
 
-            {/* Category Filter */}
+            {/* Expertise Filter */}
             <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
+              {expertiseCategories.map((expertise) => (
                 <button
-                  key={category}
-                  onClick={() => setSelectedCategory(category)}
+                  key={expertise}
+                  onClick={() => setSelectedExpertise(expertise)}
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                    selectedCategory === category
+                    selectedExpertise === expertise
                       ? "bg-emerald-500 text-white shadow-lg scale-105"
                       : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20"
                   }`}
                 >
-                  {category}
+                  {expertise}
                 </button>
               ))}
             </div>
@@ -278,7 +194,7 @@ export function RentalPage() {
         </div>
       </section>
 
-      {/* Rental Grid */}
+      {/* Tour Guide Grid */}
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           <motion.div
@@ -287,9 +203,9 @@ export function RentalPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
           >
-            {filteredRental.map((rental, index) => (
+            {filteredTourGuides.map((guide, index) => (
               <motion.div
-                key={rental.id}
+                key={guide.id}
                 className="group bg-card rounded-2xl overflow-hidden shadow-lg border border-border hover:shadow-xl transition-all duration-300 hover:-translate-y-2"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -298,23 +214,23 @@ export function RentalPage() {
                 {/* Image */}
                 <div className="relative h-64 overflow-hidden">
                   <img
-                    src={rental.image}
-                    alt={rental.name}
+                    src={guide.image}
+                    alt={guide.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 
-                  {/* Category Badge */}
+                  {/* Expertise Badge */}
                   <div className="absolute top-4 left-4">
                     <span className="bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
-                      {rental.category}
+                      {guide.expertise}
                     </span>
                   </div>
 
                   {/* Rating Badge */}
                   <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full flex items-center gap-1">
-                    <Car className="w-4 h-4 text-yellow-400 fill-current" />
-                    <span className="text-sm font-semibold">{rental.rating}</span>
+                    <User className="w-4 h-4 text-yellow-400 fill-current" />
+                    <span className="text-sm font-semibold">{guide.rating}</span>
                   </div>
                 </div>
 
@@ -322,32 +238,32 @@ export function RentalPage() {
                 <div className="p-6">
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-600 transition-colors">
-                      {rental.name}
+                      {guide.name}
                     </h3>
                   </div>
 
                   <div className="flex items-center gap-2 text-muted-foreground mb-3">
-                    <Bike className="w-4 h-4" />
-                    <span className="text-sm">{rental.location}</span>
+                    <Map className="w-4 h-4" />
+                    <span className="text-sm">{guide.location}</span>
                   </div>
 
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-2">
-                    {rental.description}
+                    {guide.bio}
                   </p>
 
-                  {/* Features */}
+                  {/* Activities */}
                   <div className="flex flex-wrap gap-2 mb-4">
-                    {rental.features.slice(0, 3).map((feature, idx) => (
+                    {guide.activities.slice(0, 3).map((activity, idx) => (
                       <span
                         key={idx}
                         className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs"
                       >
-                        {feature}
+                        {activity}
                       </span>
                     ))}
-                    {rental.features.length > 3 && (
+                    {guide.activities.length > 3 && (
                       <span className="text-emerald-600 text-xs font-medium">
-                        +{rental.features.length - 3} lainnya
+                        +{guide.activities.length - 3} lainnya
                       </span>
                     )}
                   </div>
@@ -356,13 +272,13 @@ export function RentalPage() {
                   <div className="flex items-center justify-between">
                     <div className="flex flex-col">
                       <span className="text-2xl font-bold text-emerald-600">
-                        {rental.price}
+                        {guide.price}
                       </span>
                       <span className="text-xs text-muted-foreground">
                         per hari
                       </span>
                     </div>
-                    <Link to={`/layanan/rental/${rental.id}`}>
+                    <Link to={`/layanan/tour-guide/${guide.id}`}>
                       <Button
                         size="sm"
                         className="bg-emerald-500 hover:bg-emerald-600 text-white px-6"
@@ -376,19 +292,19 @@ export function RentalPage() {
             ))}
           </motion.div>
 
-          {filteredRental.length === 0 && (
+          {filteredTourGuides.length === 0 && (
             <motion.div
               className="text-center py-12"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="text-6xl mb-4">🚗</div>
+              <div className="text-6xl mb-4">🧑‍🦯</div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Kendaraan tidak ditemukan
+                Pemandu wisata tidak ditemukan
               </h3>
               <p className="text-muted-foreground">
-                Coba ubah kriteria pencarian atau filter kategori
+                Coba ubah kriteria pencarian atau filter keahlian
               </p>
             </motion.div>
           )}
