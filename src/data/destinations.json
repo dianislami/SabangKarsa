@@ -3,12 +3,12 @@
     "id": 1,
     "name": "Pantai Iboih",
     "description": "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang dengan keindahan bawah laut yang menakjubkan.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "rating": 4.8,
     "price": "Gratis",
@@ -24,12 +24,12 @@
     "id": 2,
     "name": "Gua Sarang",
     "description": "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi yang menawarkan keajaiban formasi batuan alami.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pulaurubiah.jpg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pulaurubiah.webp"
     ],
     "rating": 4.7,
     "price": "Rp 10.000",
@@ -45,12 +45,12 @@
     "id": 3,
     "name": "Pantai Sumur Tiga",
     "description": "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis dengan panorama yang memukau.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "rating": 4.9,
     "price": "Gratis",
@@ -66,12 +66,12 @@
     "id": 4,
     "name": "Danau Aneuk Laot",
     "description": "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau dan suasana yang tenang dan damai.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "rating": 4.6,
     "price": "Gratis",
@@ -87,12 +87,12 @@
     "id": 5,
     "name": "Benteng Anoi Itam",
     "description": "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi dari era kolonial Belanda.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp"
     ],
     "rating": 4.5,
     "price": "Rp 5.000",
@@ -108,12 +108,12 @@
     "id": 6,
     "name": "Tugu Kilometer 0",
     "description": "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang yang wajib dikunjungi.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp"
     ],
     "rating": 4.8,
     "price": "Gratis",
@@ -129,12 +129,12 @@
     "id": 7,
     "name": "Pulau Rubiah",
     "description": "Pulau kecil dengan kehidupan bawah laut yang luar biasa. Surga snorkeling dan diving dengan terumbu karang yang masih terjaga.",
-    "image": "/assets/destinasi/pulaurubiah.jpg",
+    "image": "/assets/destinasi/pulaurubiah.webp",
     "gallery": [
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "rating": 4.9,
     "price": "Rp 15.000",
@@ -150,12 +150,12 @@
     "id": 8,
     "name": "Pantai Kasih",
     "description": "Pantai romantis dengan pasir putih dan air laut yang tenang. Tempat ideal untuk menikmati sunset yang menawan.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "rating": 4.6,
     "price": "Gratis",
@@ -171,12 +171,12 @@
     "id": 9,
     "name": "Air Terjun Pria Laot",
     "description": "Air terjun tersembunyi di tengah hutan tropis. Keindahan alam yang masih alami dengan suara gemericik air yang menenangkan.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "rating": 4.7,
     "price": "Rp 5.000",
@@ -192,12 +192,12 @@
     "id": 10,
     "name": "Pantai Tapak Gajah",
     "description": "Pantai dengan bebatuan besar yang menyerupai tapak gajah. Formasi unik yang menjadi daya tarik tersendiri.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "rating": 4.4,
     "price": "Gratis",
@@ -213,12 +213,12 @@
     "id": 11,
     "name": "Bukit Kasih",
     "description": "Bukit dengan pemandangan 360 derajat kota Sabang. Spot terbaik untuk menikmati sunrise dan sunset.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "rating": 4.8,
     "price": "Gratis",
@@ -234,12 +234,12 @@
     "id": 12,
     "name": "Pantai Anoi Itam",
     "description": "Pantai dengan pasir hitam vulkanik yang unik. Keindahan yang berbeda dengan pemandangan laut yang eksotis.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "rating": 4.5,
     "price": "Gratis",

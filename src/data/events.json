@@ -4,12 +4,12 @@
     "id": 1,
     "name": "Festival Pantai Iboih",
     "description": "Festival tahunan dengan tarian tradisional, kuliner lokal, dan lomba snorkeling di Pantai Iboih.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "date": "2025-08-15",
     "time": "08:00 - 17:00",
@@ -25,12 +25,12 @@
     "id": 2,
     "name": "Workshop Fotografi Gua Sarang",
     "description": "Workshop fotografi alam di Gua Sarang dengan mentor profesional, fokus pada teknik fotografi gua.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "date": "2025-09-10",
     "time": "09:00 - 15:00",
@@ -46,12 +46,12 @@
     "id": 3,
     "name": "Konser Sunset Pantai Sumur Tiga",
     "description": "Konser musik akustik saat matahari terbenam di Pantai Sumur Tiga dengan artis lokal.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "date": "2025-10-05",
     "time": "16:00 - 20:00",
@@ -67,12 +67,12 @@
     "id": 4,
     "name": "Piknik Danau Aneuk Laot",
     "description": "Acara piknik keluarga dengan permainan tradisional dan lomba memasak di tepi Danau Aneuk Laot.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "date": "2025-11-20",
     "time": "10:00 - 16:00",
@@ -88,12 +88,12 @@
     "id": 5,
     "name": "Tur Sejarah Benteng Anoi Itam",
     "description": "Tur berpemandu menjelajahi sejarah Benteng Anoi Itam dengan cerita kolonial Belanda.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp"
     ],
     "date": "2025-12-01",
     "time": "09:00 - 12:00",
@@ -109,12 +109,12 @@
     "id": 6,
     "name": "Lomba Foto Tugu Kilometer 0",
     "description": "Lomba fotografi di Tugu Kilometer 0 untuk menangkap keindahan titik paling barat Indonesia.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp"
     ],
     "date": "2026-01-15",
     "time": "06:00 - 18:00",
@@ -130,12 +130,12 @@
     "id": 7,
     "name": "Festival Diving Pulau Rubiah",
     "description": "Festival diving dengan kompetisi underwater photography di Pulau Rubiah.",
-    "image": "/assets/destinasi/pulaurubiah.jpg",
+    "image": "/assets/destinasi/pulaurubiah.webp",
     "gallery": [
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "date": "2026-02-10",
     "time": "07:00 - 16:00",
@@ -151,12 +151,12 @@
     "id": 8,
     "name": "Romantic Sunset Walk Pantai Kasih",
     "description": "Jalan romantis saat matahari terbenam di Pantai Kasih dengan sesi fotografi pasangan.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "date": "2026-02-14",
     "time": "16:30 - 19:00",
@@ -172,12 +172,12 @@
     "id": 9,
     "name": "Trekking Air Terjun Pria Laot",
     "description": "Trekking ke Air Terjun Pria Laot dengan pemandu lokal dan sesi meditasi alam.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "date": "2026-03-05",
     "time": "08:00 - 13:00",
@@ -193,12 +193,12 @@
     "id": 10,
     "name": "Lomba Layang-Layang Pantai Tapak Gajah",
     "description": "Lomba layang-layang tradisional dengan tema budaya Aceh di Pantai Tapak Gajah.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "date": "2026-04-10",
     "time": "09:00 - 15:00",
@@ -214,12 +214,12 @@
     "id": 11,
     "name": "Sunrise Yoga Bukit Kasih",
     "description": "Sesi yoga pagi di Bukit Kasih dengan pemandangan matahari terbit yang menakjubkan.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "date": "2026-05-01",
     "time": "05:30 - 07:30",
@@ -235,12 +235,12 @@
     "id": 12,
     "name": "Pasar Malam Pantai Anoi Itam",
     "description": "Pasar malam dengan kuliner lokal, kerajinan, dan hiburan di Pantai Anoi Itam.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "date": "2026-06-20",
     "time": "17:00 - 22:00",

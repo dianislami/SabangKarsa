@@ -3,21 +3,21 @@
     "id": 1,
     "name": "Achmad Atha Zayyan",
     "role": "Founder & CEO",
-    "image": "/assets/images/fotoAtha.png",
+    "image": "/assets/images/fotoAtha.webp",
     "bio": "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia."
   },
   {
     "id": 2,
     "name": "Muhammad Aidil Fitrah",
     "role": "Manajer Operasional",
-    "image": "/assets/images/fotoAidil.png",
+    "image": "/assets/images/fotoAidil.webp",
     "bio": "Aidil mengelola operasional tur di Sabang, dengan keahlian logistik dan pelayanan pelanggan."
   },
   {
     "id": 3,
     "name": "Muhammad Naufal Hanif",
     "role": "CTO",
-    "image": "/assets/images/fotoHanif.png",
+    "image": "/assets/images/fotoHanif.webp",
     "bio": "Hanif mengelola infrastruktur teknologi dan pengembangan JakSabang, memastikan platform kami memberikan optimal."
   }
 ]

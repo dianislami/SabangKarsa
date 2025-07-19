@@ -3,12 +3,12 @@
     "id": 1,
     "name": "Sate Gurita",
     "description": "Sate gurita khas Sabang dengan daging kenyal, disajikan dengan bumbu kacang dan lontong.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "location": "Taman Wisata Kuliner Sabang & Sabang Fair",
     "category": "Food",
@@ -20,12 +20,12 @@
     "id": 2,
     "name": "Mie Jalak",
     "description": "Mie kuah khas Sabang dengan daging, tauge, dan telur rebus, rasanya gurih dan segar.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "location": "Mie Jalak Sabang, Jalan Perdagangan",
     "category": "Food",
@@ -37,12 +37,12 @@
     "id": 3,
     "name": "Mie Pingsun",
     "description": "Mie kuah dengan aneka seafood seperti cumi, udang, dan ikan, plus sayuran segar.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "location": "Kedai Lokal Sabang",
     "category": "Food",
@@ -54,12 +54,12 @@
     "id": 4,
     "name": "Rujak Buah Kilometer Nol",
     "description": "Rujak buah segar dengan sambal gula aren, cabai, dan kacang tanah, nikmati di Tugu Kilometer Nol.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp"
     ],
     "location": "Tugu Kilometer Nol, Pulau Weh",
     "category": "Food",
@@ -71,12 +71,12 @@
     "id": 5,
     "name": "Rujak Pulau Klah",
     "description": "Rujak buah dengan sambal Aceh pedas-asam, dinikmati di Cot Batree dengan pemandangan Pulau Klah.",
-    "image": "/assets/destinasi/pulaurubiah.jpg",
+    "image": "/assets/destinasi/pulaurubiah.webp",
     "gallery": [
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaiiboih.jpg"
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaiiboih.webp"
     ],
     "location": "Warung Cot Batree, Menuju Iboih",
     "category": "Food",
@@ -88,12 +88,12 @@
     "id": 6,
     "name": "Mie Seudap",
     "description": "Mie segar buatan sendiri dengan daging ayam, seledri, dan kuah kaldu, tanpa pengawet.",
-    "image": "/assets/destinasi/pantaianoiitam.jpeg",
+    "image": "/assets/destinasi/pantaianoiitam.webp",
     "gallery": [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "location": "Jalan Perdagangan, Sabang",
     "category": "Food",
@@ -105,12 +105,12 @@
     "id": 7,
     "name": "Mie Aceh",
     "description": "Mie kuning khas Aceh dengan daging sapi atau seafood, kaya rempah dan pedas.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "location": "Kedai Lokal Sabang",
     "category": "Food",
@@ -122,12 +122,12 @@
     "id": 8,
     "name": "Seafood Sabang",
     "description": "Hidangan seafood segar seperti ikan kakap, kerapu, cumi, dan lobster, dibakar dengan sambal.",
-    "image": "/assets/destinasi/pulaurubiah.jpg",
+    "image": "/assets/destinasi/pulaurubiah.webp",
     "gallery": [
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "location": "Pantai Iboih & Pulau Rubiah",
     "category": "Food",
@@ -139,12 +139,12 @@
     "id": 9,
     "name": "Bakpia Sabang",
     "description": "Bakpia khas Sabang dengan isi kacang hijau atau keju, tekstur lembut dan manis.",
-    "image": "/assets/destinasi/tugu0km.jpg",
+    "image": "/assets/destinasi/tugu0km.webp",
     "gallery": [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg"
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp"
     ],
     "location": "Toko Oleh-Oleh Sabang",
     "category": "Souvenir",
@@ -156,12 +156,12 @@
     "id": 10,
     "name": "Kopi Gayo",
     "description": "Kopi arabika premium Aceh Gayo dalam kemasan, aroma kuat dan rasa kaya.",
-    "image": "/assets/destinasi/wisataguasarang.jpeg",
+    "image": "/assets/destinasi/wisataguasarang.webp",
     "gallery": [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "location": "Toko Oleh-Oleh Sabang",
     "category": "Souvenir",
@@ -173,12 +173,12 @@
     "id": 11,
     "name": "Sabang Fair",
     "description": "Kawasan jalan-jalan santai dengan suasana meriah, kuliner, dan hiburan lokal.",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
+    "image": "/assets/destinasi/pantaisumurtiga.webp",
     "gallery": [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/tugu0km.jpg"
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/tugu0km.webp"
     ],
     "location": "Sabang Fair, Pulau Weh",
     "category": "Strolling",
@@ -190,12 +190,12 @@
     "id": 12,
     "name": "Pantai Iboih & Pulau Rubiah",
     "description": "Destinasi strolling untuk snorkeling, sunset, dan menikmati keindahan pantai.",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
+    "image": "/assets/destinasi/pantaiiboih.webp",
     "gallery": [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg"
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaianoiitam.webp"
     ],
     "location": "Pantai Iboih & Pulau Rubiah, Pulau Weh",
     "category": "Strolling",
