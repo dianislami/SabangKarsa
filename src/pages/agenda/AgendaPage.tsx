@@ -37,7 +37,7 @@ export function AgendaPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/destinasi/pantaiiboih.jpg"
+            src="/assets/destinasi/pantaiiboih.webp"
             alt="Informasi Sabang"
             className="w-full h-full object-cover scale-110"
           />
@@ -102,7 +102,7 @@ export function AgendaPage() {
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "/assets/destinasi/pantaiiboih.jpg";
+                      target.src = "/assets/destinasi/pantaiiboih.webp";
                     }}
                   />
                   <div className="absolute top-2 left-2 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">

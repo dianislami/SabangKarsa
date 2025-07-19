@@ -71,7 +71,7 @@ export function StrollDetailPage() {
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "/assets/destinasi/pantaiiboih.jpg";
+              target.src = "/assets/destinasi/pantaiiboih.webp";
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
@@ -150,7 +150,7 @@ export function StrollDetailPage() {
                       onClick={() => setIsFullscreen(true)}
                       onError={(e) => {
                         const target = e.target as HTMLImageElement;
-                        target.src = "/assets/destinasi/pantaiiboih.jpg";
+                        target.src = "/assets/destinasi/pantaiiboih.webp";
                       }}
                     />
                     <button
@@ -181,7 +181,7 @@ export function StrollDetailPage() {
                         className="w-full h-full object-cover"
                         onError={(e) => {
                           const target = e.target as HTMLImageElement;
-                          target.src = "/assets/destinasi/pantaiiboih.jpg";
+                          target.src = "/assets/destinasi/pantaiiboih.webp";
                         }}
                       />
                     </button>
@@ -264,7 +264,7 @@ export function StrollDetailPage() {
               onClick={(e) => e.stopPropagation()}
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
-                target.src = "/assets/destinasi/pantaiiboih.jpg";
+                target.src = "/assets/destinasi/pantaiiboih.webp";
               }}
             />
             {item.gallery.length > 1 && (

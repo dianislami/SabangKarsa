@@ -117,7 +117,7 @@ export function InformationsPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/destinasi/pantaiiboih.jpg"
+            src="/assets/destinasi/pantaiiboih.webp"
             alt="Informasi Sabang"
             className="w-full h-full object-cover scale-110"
           />

@@ -34,12 +34,12 @@ export function StrollPage() {
       <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="/assets/destinasi/pantaiiboih.jpg"
+            src="/assets/destinasi/pantaiiboih.webp"
             alt="Stroll Background"
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
-              target.src = "/assets/destinasi/pantaiiboih.jpg";
+              target.src = "/assets/destinasi/pantaiiboih.webp";
             }}
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-black/20 dark:from-black/90 dark:via-black/60 dark:to-black/30"></div>
@@ -89,7 +89,7 @@ export function StrollPage() {
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
-                      target.src = "/assets/destinasi/pantaiiboih.jpg";
+                      target.src = "/assets/destinasi/pantaiiboih.webp";
                     }}
                   />
                   <div className="absolute top-2 left-2 bg-emerald-500 text-white px-3 py-1 rounded-full text-sm font-semibold">

@@ -16,7 +16,7 @@ const tourGuideData = [
     id: 1,
     name: "Achmad Atha Zayyan",
     role: "Tour Guide & Pendiri",
-    image: "/assets/images/fotoAtha.png",
+    image: "/assets/images/fotoAtha.webp",
     bio: "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia. Dengan pengalaman lebih dari 10 tahun di industri pariwisata, ia ahli dalam wisata budaya dan sejarah Sabang.",
     expertise: "Wisata Budaya",
     rating: 4.9,
@@ -32,7 +32,7 @@ const tourGuideData = [
     id: 2,
     name: "Muhammad Aidil Fitrah",
     role: "Pemandu Wisata Petualang",
-    image: "/assets/images/fotoAidil.png",
+    image: "/assets/images/fotoAidil.webp",
     bio: "Aidil mengelola tur petualangan di Sabang, dengan keahlian dalam diving, hiking, dan eksplorasi alam.",
     expertise: "Wisata Alam",
     rating: 4.7,
@@ -48,7 +48,7 @@ const tourGuideData = [
     id: 3,
     name: "Muhammad Naufal Hanif",
     role: "Pemandu Wisata Teknologi",
-    image: "/assets/images/fotoHanif.png",
+    image: "/assets/images/fotoHanif.webp",
     bio: "Hanif menggabungkan teknologi dengan wisata, menawarkan tur interaktif dengan panduan digital di Sabang.",
     expertise: "Wisata Teknologi",
     rating: 4.8,
@@ -100,7 +100,7 @@ export function TourGuidePage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/destinasi/pantaiiboih.jpg"
+            src="/assets/destinasi/pantaiiboih.webp"
             alt="Tour Guide Sabang"
             className="w-full h-full object-cover scale-110"
           />

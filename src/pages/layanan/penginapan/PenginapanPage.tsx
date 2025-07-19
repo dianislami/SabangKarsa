@@ -17,12 +17,12 @@ const penginapanData = [
     name: "Sabang Fair Hotel",
     description:
       "Hotel mewah di pusat kota Sabang dengan fasilitas lengkap dan pemandangan laut yang menakjubkan. Terletak strategis dekat dengan berbagai destinasi wisata utama.",
-    image: "/assets/destinasi/pantaiiboih.jpg",
+    image: "/assets/destinasi/pantaiiboih.webp",
     gallery: [
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
     ],
     rating: 4.8,
     price: "Rp 750.000",
@@ -41,12 +41,12 @@ const penginapanData = [
     name: "Weh Island Resort",
     description:
       "Resort eksklusif di tepi pantai dengan konsep ramah lingkungan. Nikmati ketenangan alam dengan fasilitas modern dan aktivitas air yang menarik.",
-    image: "/assets/destinasi/pulaurubiah.jpg",
+    image: "/assets/destinasi/pulaurubiah.webp",
     gallery: [
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
     ],
     rating: 4.9,
     price: "Rp 1.200.000",
@@ -65,12 +65,12 @@ const penginapanData = [
     name: "Sabang Inn",
     description:
       "Penginapan nyaman dengan harga terjangkau di pusat kota. Cocok untuk backpacker dan wisatawan budget dengan fasilitas yang memadai.",
-    image: "/assets/destinasi/wisataguasarang.jpeg",
+    image: "/assets/destinasi/wisataguasarang.webp",
     gallery: [
-      "/assets/destinasi/wisataguasarang.jpeg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
+      "/assets/destinasi/wisataguasarang.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
     ],
     rating: 4.3,
     price: "Rp 250.000",
@@ -89,12 +89,12 @@ const penginapanData = [
     name: "Ocean View Hotel",
     description:
       "Hotel modern dengan pemandangan laut yang menakjubkan. Dilengkapi fasilitas bisnis dan rekreasi untuk berbagai kebutuhan wisatawan.",
-    image: "/assets/destinasi/pantaisumurtiga.jpg",
+    image: "/assets/destinasi/pantaisumurtiga.webp",
     gallery: [
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/pulaurubiah.webp",
+      "/assets/destinasi/wisataguasarang.webp",
     ],
     rating: 4.6,
     price: "Rp 550.000",
@@ -113,12 +113,12 @@ const penginapanData = [
     name: "Freddie's Homestay",
     description:
       "Homestay tradisional dengan nuansa kekeluargaan. Pengalaman menginap autentik dengan keramahan khas masyarakat Sabang.",
-    image: "/assets/destinasi/pantaianoiitam.jpeg",
+    image: "/assets/destinasi/pantaianoiitam.webp",
     gallery: [
-      "/assets/destinasi/pantaianoiitam.jpeg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pulaurubiah.jpg",
+      "/assets/destinasi/pantaianoiitam.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pulaurubiah.webp",
     ],
     rating: 4.4,
     price: "Rp 180.000",
@@ -137,12 +137,12 @@ const penginapanData = [
     name: "Sumur Tiga Beach Hotel",
     description:
       "Hotel boutique di lokasi eksklusif dekat Pantai Sumur Tiga. Kombinasi sempurna antara kemewahan dan keindahan alam.",
-    image: "/assets/destinasi/tugu0km.jpg",
+    image: "/assets/destinasi/tugu0km.webp",
     gallery: [
-      "/assets/destinasi/tugu0km.jpg",
-      "/assets/destinasi/pantaisumurtiga.jpg",
-      "/assets/destinasi/pantaiiboih.jpg",
-      "/assets/destinasi/wisataguasarang.jpeg",
+      "/assets/destinasi/tugu0km.webp",
+      "/assets/destinasi/pantaisumurtiga.webp",
+      "/assets/destinasi/pantaiiboih.webp",
+      "/assets/destinasi/wisataguasarang.webp",
     ],
     rating: 4.7,
     price: "Rp 950.000",
@@ -196,7 +196,7 @@ export function PenginapanPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/destinasi/pantaiiboih.jpg"
+            src="/assets/destinasi/pantaiiboih.webp"
             alt="Penginapan Sabang"
             className="w-full h-full object-cover scale-110"
           />

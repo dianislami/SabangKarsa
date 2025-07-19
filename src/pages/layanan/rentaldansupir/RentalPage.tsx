@@ -17,11 +17,11 @@ const rentalData = [
     name: "Honda Scoopy",
     description:
       "Skuter matic yang nyaman dan stylish, cocok untuk menjelajahi jalanan kota Sabang dengan lincah.",
-    image: "/assets/images/motor3.png",
+    image: "/assets/images/motor3.webp",
     gallery: [
-      "/assets/rental/scoopy.jpg",
-      "/assets/rental/scoopy_side.jpg",
-      "/assets/rental/scoopy_front.jpg",
+      "/assets/rental/scoopy.webp",
+      "/assets/rental/scoopy_side.webp",
+      "/assets/rental/scoopy_front.webp",
     ],
     rating: 4.7,
     price: "Rp 100.000",
@@ -39,11 +39,11 @@ const rentalData = [
     name: "Yamaha NMAX",
     description:
       "Motor matic premium dengan performa tangguh, ideal untuk perjalanan jarak jauh di Sabang.",
-    image: "/assets/images/motor2.png",
+    image: "/assets/images/motor2.webp",
     gallery: [
-      "/assets/rental/nmax.jpg",
-      "/assets/rental/nmax_side.jpg",
-      "/assets/rental/nmax_back.jpg",
+      "/assets/rental/nmax.webp",
+      "/assets/rental/nmax_side.webp",
+      "/assets/rental/nmax_back.webp",
     ],
     rating: 4.8,
     price: "Rp 150.000",
@@ -61,11 +61,11 @@ const rentalData = [
     name: "Toyota Avanza",
     description:
       "Mobil keluarga yang luas dan nyaman, cocok untuk perjalanan bersama di Sabang.",
-    image: "/assets/images/mobil1.png",
+    image: "/assets/images/mobil1.webp",
     gallery: [
-      "/assets/rental/avanza.jpg",
-      "/assets/rental/avanza_interior.jpg",
-      "/assets/rental/avanza_side.jpg",
+      "/assets/rental/avanza.webp",
+      "/assets/rental/avanza_interior.webp",
+      "/assets/rental/avanza_side.webp",
     ],
     rating: 4.5,
     price: "Rp 400.000",
@@ -83,11 +83,11 @@ const rentalData = [
     name: "Toyota Innova with Driver",
     description:
       "Mobil premium dengan supir berpengalaman, menawarkan perjalanan nyaman tanpa perlu mengemudi sendiri.",
-    image: "/assets/images/mobil2.png",
+    image: "/assets/images/mobil2.webp",
     gallery: [
-      "/assets/rental/innova.jpg",
-      "/assets/rental/innova_interior.jpg",
-      "/assets/rental/innova_side.jpg",
+      "/assets/rental/innova.webp",
+      "/assets/rental/innova_interior.webp",
+      "/assets/rental/innova_side.webp",
     ],
     rating: 4.9,
     price: "Rp 800.000",
@@ -105,11 +105,11 @@ const rentalData = [
     name: "Honda Vario 125",
     description:
       "Motor matic hemat bahan bakar, cocok untuk backpacker yang ingin menjelajahi Sabang dengan budget terjangkau.",
-    image: "/assets/images/motor1.png",
+    image: "/assets/images/motor1.webp",
     gallery: [
-      "/assets/rental/vario.jpg",
-      "/assets/rental/vario_side.jpg",
-      "/assets/rental/vario_front.jpg",
+      "/assets/rental/vario.webp",
+      "/assets/rental/vario_side.webp",
+      "/assets/rental/vario_front.webp",
     ],
     rating: 4.4,
     price: "Rp 90.000",
@@ -127,11 +127,11 @@ const rentalData = [
     name: "Daihatsu Xenia with Driver",
     description:
       "Mobil keluarga dengan supir berpengalaman, cocok untuk perjalanan wisata yang santai di Sabang.",
-    image: "/assets/images/mobil3.png",
+    image: "/assets/images/mobil3.webp",
     gallery: [
-      "/assets/rental/xenia.jpg",
-      "/assets/rental/xenia_interior.jpg",
-      "/assets/rental/xenia_side.jpg",
+      "/assets/rental/xenia.webp",
+      "/assets/rental/xenia_interior.webp",
+      "/assets/rental/xenia_side.webp",
     ],
     rating: 4.6,
     price: "Rp 700.000",
@@ -184,7 +184,7 @@ export function RentalPage() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img
-            src="/assets/images/sectionhero.jpg"
+            src="/assets/images/sectionhero.webp"
             alt="Rental Sabang"
             className="w-full h-full object-cover scale-110"
           />
