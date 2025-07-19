@@ -164,14 +164,14 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
 
           {/* Progress bar container */}
           <motion.div
-            className="w-64 md:w-80 bg-muted rounded-full h-3 overflow-hidden shadow-inner"
+            className="w-64 md:w-80 bg-muted/50 dark:bg-muted-foreground/20 rounded-full h-3 overflow-hidden shadow-inner border border-border/50"
             initial={{ width: 0, opacity: 0 }}
             animate={{ width: "100%", opacity: 1 }}
             transition={{ delay: 1, duration: 0.6 }}
           >
             {/* Progress bar fill */}
             <motion.div
-              className="h-full bg-primary rounded-full shadow-lg"
+              className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 rounded-full shadow-lg"
               style={{
                 width: `${progress}%`
               }}
@@ -202,7 +202,7 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
             {[0, 1, 2].map((index) => (
               <motion.div
                 key={index}
-                className="w-3 h-3 bg-primary rounded-full"
+                className="w-3 h-3 bg-emerald-500 dark:bg-emerald-400 rounded-full"
                 animate={{
                   scale: [1, 1.5, 1],
                   opacity: [0.5, 1, 0.5]
