@@ -3,7 +3,7 @@ import { MapPin, Home, Car, MessageCircle, Users, Award } from "lucide-react"
 
 export function FeaturesMarquee() {
   return (
-    <section className="py-16 bg-emerald-600 dark:bg-emerald-800 overflow-hidden">
+    <section className="py-5 bg-emerald-600 dark:bg-emerald-800 overflow-hidden ">
       <div className="mb-8">
         <motion.h2 
           className="text-center text-3xl md:text-4xl font-bold text-white mb-4"

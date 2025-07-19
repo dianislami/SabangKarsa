@@ -33,6 +33,7 @@ export function AboutUs() {
             <img 
                 src="/assets/destinasi/pantaiiboih.jpg" 
                 alt="Sabang" 
+                    loading="lazy"
                 className="w-full h-full object-cover opacity-40"
             />
         </div>
@@ -109,7 +110,7 @@ export function AboutUs() {
       </section>
 
       {/* Team Section */}
-      <section className="py-12 px-4 bg-muted/50">
+      <section className="py-12 px-4 bg-muted/50 ">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center"
@@ -119,7 +120,7 @@ export function AboutUs() {
           >
             Tim Kami
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15 px-6 ">
             {team.map((member) => (
               <motion.div
                 key={member.id}
@@ -132,6 +133,7 @@ export function AboutUs() {
                   <img
                     src={member.image}
                     alt={member.name}
+                        loading="eager"
                     className="w-full h-full object-cover"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;

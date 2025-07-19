@@ -12,6 +12,7 @@ export function ParallaxImageSection() {
           backgroundImage: `url('/assets/destinasi/pantaiiboih.jpg')`,
           y: backgroundY,
           scale: 1.4
+          
         }}
       />
       <div className="absolute inset-0 bg-black/20"></div>

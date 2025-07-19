@@ -2,74 +2,25 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Destinations from "../../data/destinations.json"
 import { Star, Camera, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
-const destinations = [
-  {
-    id: 1,
-    name: "Pantai Iboih",
-    description:
-      "Pantai dengan air jernih dan terumbu karang yang indah. Destinasi snorkeling terbaik di Sabang.",
-    image: "/assets/destinasi/pantaiiboih.jpg",
-    rating: 4.8,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 2,
-    name: "Gua Sarang",
-    description:
-      "Gua dengan stalaktit dan stalagmit yang menakjubkan. Petualangan di dalam bumi.",
-    image: "/assets/destinasi/wisataguasarang.jpeg",
-    rating: 4.7,
-    price: "Rp 10.000",
-    category: "Gua",
-  },
-  {
-    id: 3,
-    name: "Pantai Sumur Tiga",
-    description:
-      "Pantai dengan formasi bebatuan unik dan air terjun. Keindahan alam yang eksotis.",
-    image: "/assets/destinasi/pantaisumurtiga.jpg",
-    rating: 4.9,
-    price: "Gratis",
-    category: "Pantai",
-  },
-  {
-    id: 4,
-    name: "Danau Aneuk Laot",
-    description:
-      "Danau air tawar di tengah pulau dengan pemandangan alam yang memukau.",
-    image: "/assets/destinasi/wisataguasarang.jpeg",
-    rating: 4.6,
-    price: "Gratis",
-    category: "Danau",
-  },
-  {
-    id: 5,
-    name: "Benteng Anoi Itam",
-    description:
-      "Benteng bersejarah dengan pemandangan laut yang indah dan nilai sejarah tinggi.",
-    image: "/assets/destinasi/pantaianoiitam.jpeg",
-    rating: 4.5,
-    price: "Rp 5.000",
-    category: "Sejarah",
-  },
-  {
-    id: 6,
-    name: "Tugu Kilometer 0",
-    description:
-      "Monumen titik paling barat Indonesia yang ikonik. Landmark bersejarah Sabang.",
-    image: "/assets/destinasi/tugu0km.jpg",
-    rating: 4.8,
-    price: "Gratis",
-    category: "Monumen",
-  },
-];
+
+interface Destination {
+  id: number;
+  name: string;
+  description: string;
+  image: string;
+  rating: number;
+  price: string;
+  category: string;
+}
 
 export function DestinationsSection() {
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
+  const destinations: Destination[] = Destinations.slice(0, 4);
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -101,7 +52,7 @@ export function DestinationsSection() {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 left-2 right-2">
           {destinations.map((destination, index) => (
             <motion.div
               key={destination.id}
@@ -153,21 +104,18 @@ export function DestinationsSection() {
                 </p>
 
                 <div className="flex items-center justify-between">
+                  <span  className="text-sm">Kisaran Harga Masuk</span>
                   <span className="text-lg font-semibold text-primary dark:text-white">
                     {destination.price}
                   </span>
-                  <Button
-                    size="sm"
-                    className="btn-primary"
-                    onClick={() =>
-                      user
-                        ? alert(`Booking ${destination.name} segera hadir!`)
-                        : navigate("/login")
-                    }
-                  >
-                    {user ? "Booking" : "Login untuk Booking"}
-                  </Button>
+              
                 </div>
+                  <div className="mt-4"></div>
+                    <Link to={`/destinations/${destination.id}`} className="text-sm text-primary dark:text-white hover:underline flex items-center">
+                    Lihat Detail
+                    <ArrowRight className="ml-1 w-3 h-3" />
+                    </Link>
+          
               </div>
             </motion.div>
           ))}
@@ -181,9 +129,7 @@ export function DestinationsSection() {
           viewport={{ once: true }}
         >
           <Button
-            onClick={() =>
-              user ? navigate("/destinations") : navigate("/login")
-            }
+            onClick={() => navigate("/destinations")}
             variant="outline"
             className="btn-outline px-6 md:px-8 py-3 text-base md:text-lg"
           >

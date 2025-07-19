@@ -2,8 +2,8 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { motion} from "framer-motion"
 import { Button } from "@/components/ui/button"
-import { ChevronDown, ArrowRight } from "lucide-react"
-import videoBg from "@/assets/video/videobg.mp4"
+import {  ArrowRight } from "lucide-react"
+import videoBg from "@/assets/video/videobg.webm"
 
 export function HeroSection() {
   const [user, setUser] = useState<any>(null)
@@ -21,6 +21,7 @@ export function HeroSection() {
   }, [])
 
   return (
+  
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
@@ -130,15 +131,6 @@ export function HeroSection() {
           </motion.div>
         </motion.div>
       </div>
-
-      {/* Scroll Indicator */}
-      <motion.div 
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-white"
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-      >
-        <ChevronDown size={32} />
-      </motion.div>
     </section>
   )
 }

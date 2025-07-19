@@ -87,6 +87,7 @@ export function AgendaDetail() {
           <img
             src={event.image}
             alt={event.name}
+                loading="eager"
             className="w-full h-full object-cover scale-110 transition-transform duration-700 hover:scale-105"
             onError={(e) => {
               const target = e.target as HTMLImageElement;

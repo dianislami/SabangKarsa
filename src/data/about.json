@@ -1,30 +1,23 @@
 [
   {
     "id": 1,
-    "name": "Ahmad Syahputra",
+    "name": "Achmad Atha Zayyan",
     "role": "Founder & CEO",
-    "image": "/assets/destinasi/pantaiiboih.jpg",
-    "bio": "Ahmad adalah pendiri JakSabang, dengan pengalaman 10 tahun di industri pariwisata Aceh. Ia berdedikasi untuk mempromosikan keindahan Sabang ke dunia."
+    "image": "/assets/images/fotoAtha.png",
+    "bio": "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia."
   },
   {
     "id": 2,
-    "name": "Siti Nurhaliza",
+    "name": "Muhammad Aidil Fitrah",
     "role": "Manajer Operasional",
-    "image": "/assets/destinasi/pulaurubiah.jpg",
-    "bio": "Siti mengelola operasional tur dan memastikan pengalaman wisatawan di Sabang tak terlupakan, dengan keahlian di bidang logistik dan pelayanan pelanggan."
+    "image": "/assets/images/fotoAidil.png",
+    "bio": "Aidil mengelola operasional tur di Sabang, dengan keahlian logistik dan pelayanan pelanggan."
   },
   {
     "id": 3,
-    "name": "Budi Santoso",
-    "role": "Pemandu Wisata",
-    "image": "/assets/destinasi/pantaisumurtiga.jpg",
-    "bio": "Budi adalah pemandu wisata berpengalaman yang mengenal setiap sudut Sabang, dari Pantai Iboih hingga Tugu Kilometer Nol."
-  },
-  {
-    "id": 4,
-    "name": "Rina Amelia",
-    "role": "Spesialis Kuliner",
-    "image": "/assets/destinasi/tugu0km.jpg",
-    "bio": "Rina bertanggung jawab untuk mengkurasi pengalaman kuliner khas Sabang, seperti Sate Gurita dan Mie Jalak, untuk wisatawan."
+    "name": "Muhammad Naufal Hanif",
+    "role": "CTO",
+    "image": "/assets/images/fotoHanif.png",
+    "bio": "Hanif mengelola infrastruktur teknologi dan pengembangan JakSabang, memastikan platform kami memberikan optimal."
   }
 ]
