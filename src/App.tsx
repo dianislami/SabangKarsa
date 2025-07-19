@@ -15,29 +15,33 @@ import { StrollDetailPage } from "./pages/stroll/StrollDetailPage";
 import { AboutUs } from "./pages/aboutus/AboutUs";
 import { RentalPage } from "./pages/layanan/rentaldansupir/RentalPage";
 import { TourGuidePage } from "./pages/layanan/tourguide/TourGuidePage";
+import { GlobalChatbot } from "./components/chatbot/global-chatbot";
+import { PageTransitionWrapper } from "./components/transitions/PageTransitionWrapper";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/destinations" element={<DestinationsPage />} />
-          <Route path="/destinations/:id" element={<DestinationDetailPage />} />
-          <Route path="/layanan/penginapan" element={<PenginapanPage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-          <Route path="/informations" element={<InformationsPage />} />
-          <Route path="/informations/:id" element={<DetailInformations />} />
-          <Route path="/agenda" element={<AgendaPage />} />
-          <Route path="/agenda/:id" element={<AgendaDetail />} />
-          <Route path="/stroll" element={<StrollPage />} />
-          <Route path="/stroll/:id" element={<StrollDetailPage />} />
-          <Route path="/about" element={<AboutUs />} />
-          <Route path="/layanan/rental" element={<RentalPage />} />
-          <Route path="/layanan/tourguide" element={<TourGuidePage />} />
-          
-        </Routes>
+        <PageTransitionWrapper>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/destinations" element={<DestinationsPage />} />
+            <Route path="/destinations/:id" element={<DestinationDetailPage />} />
+            <Route path="/layanan/penginapan" element={<PenginapanPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/informations" element={<InformationsPage />} />
+            <Route path="/informations/:id" element={<DetailInformations />} />
+            <Route path="/agenda" element={<AgendaPage />} />
+            <Route path="/agenda/:id" element={<AgendaDetail />} />
+            <Route path="/stroll" element={<StrollPage />} />
+            <Route path="/stroll/:id" element={<StrollDetailPage />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/layanan/rental" element={<RentalPage />} />
+            <Route path="/layanan/tourguide" element={<TourGuidePage />} />
+          </Routes>
+          <GlobalChatbot />
+        </PageTransitionWrapper>
       </Router>
     </ThemeProvider>
   );
