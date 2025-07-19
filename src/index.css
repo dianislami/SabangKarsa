@@ -425,6 +425,58 @@
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
 }
 
+/* Transition Page Styles */
+.transition-container {
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.transition-logo-glow {
+  background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+  opacity: 0.3;
+}
+
+.transition-progress-bg {
+  background-color: var(--muted);
+}
+
+.transition-progress-fill {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--primary) 100%);
+}
+
+.transition-dots {
+  background-color: var(--primary);
+}
+
+/* Floating animation for transition elements */
+@keyframes floatSlow {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-15px) scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.1);
+  }
+}
+
+.animate-float-slow {
+  animation: floatSlow 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
 /* Smooth scrollbar for chat area */
 .chatbot-overlay ::-webkit-scrollbar {
   width: 6px;
