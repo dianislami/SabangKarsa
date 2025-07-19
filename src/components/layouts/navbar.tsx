@@ -21,8 +21,8 @@ import {
 } from "lucide-react";
 import logoNav from "@/assets/JakSabangFIX.svg";
 
-export const Navbar = forwardRef<HTMLElement, { id: string }>((props, ref) => {
-  const { id } = props;
+export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
+  const { id = "navbar" } = props;
   const [user, setUser] = useState<any>(null);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isDestinationsDropdownOpen, setIsDestinationsDropdownOpen] =

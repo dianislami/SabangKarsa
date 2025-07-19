@@ -15,6 +15,7 @@ import { StrollDetailPage } from "./pages/stroll/StrollDetailPage";
 import { AboutUs } from "./pages/aboutus/AboutUs";
 import { RentalPage } from "./pages/layanan/rentaldansupir/RentalPage";
 import { TourGuidePage } from "./pages/layanan/tourguide/TourGuidePage";
+import { GlobalChatbot } from "./components/chatbot/global-chatbot";
 
 function App() {
   return (
@@ -36,8 +37,8 @@ function App() {
           <Route path="/about" element={<AboutUs />} />
           <Route path="/layanan/rental" element={<RentalPage />} />
           <Route path="/layanan/tourguide" element={<TourGuidePage />} />
-          
         </Routes>
+        <GlobalChatbot />
       </Router>
     </ThemeProvider>
   );
