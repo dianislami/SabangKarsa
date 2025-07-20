@@ -158,6 +158,14 @@ export function RegisterPage() {
                 : "-translate-x-12 opacity-0"
             }`}
           >
+            {/* Logo */}
+            <div className="mb-2">
+              <img 
+                src="/assets/JakSabang.svg" 
+                alt="JakSabang Logo" 
+                className="w-48 h-48 mx-auto mb-2 drop-shadow-lg"
+              />
+            </div>
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
               Bergabung dengan
               <br />
@@ -182,9 +190,6 @@ export function RegisterPage() {
             >
               {/* Header */}
               <div className="text-center mb-4">
-                <div className="inline-flex items-center justify-center w-12 h-12 bg-button rounded-full mb-3 shadow-lg">
-                  <User className="w-6 h-6 text-button-foreground" />
-                </div>
                 <h2 className="text-2xl font-bold text-foreground mb-1">
                   Daftar Akun Baru
                 </h2>
@@ -370,7 +375,7 @@ export function RegisterPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-2 text-sm bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full py-2 text-sm bg-emerald-500 text-white hover:bg-emerald-600 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {loading ? "Loading..." : "Daftar Sekarang"}
                 </Button>

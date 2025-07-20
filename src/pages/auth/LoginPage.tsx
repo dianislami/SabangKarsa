@@ -133,6 +133,14 @@ export function LoginPage() {
                 : "-translate-x-12 opacity-0"
             }`}
           >
+            {/* Logo */}
+            <div className="mb-2">
+              <img 
+                src="/assets/JakSabang.svg" 
+                alt="JakSabang Logo" 
+                className="w-48 h-48 mx-auto mb-2 drop-shadow-lg"
+              />
+            </div>
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
               Selamat Datang di
               <br />
@@ -157,9 +165,6 @@ export function LoginPage() {
             >
               {/* Header */}
               <div className="text-center mb-8">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-button rounded-full mb-4 shadow-lg">
-                  <MapPin className="w-8 h-8 text-button-foreground" />
-                </div>
                 <h2 className="text-3xl font-bold text-foreground mb-2">
                   Masuk ke JakSabang
                 </h2>
@@ -230,7 +235,7 @@ export function LoginPage() {
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full py-3 bg-button text-button-foreground hover:bg-button/90 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                  className="w-full py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
                   {loading ? "Loading..." : "Masuk"}
                 </Button>
