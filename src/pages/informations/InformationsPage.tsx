@@ -445,10 +445,10 @@ export function InformationsPage() {
 
               <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
                 <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
-                  💰 Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
+                  Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
                 </p>
                 <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
-                  ⏱️ Durasi perjalanan: ±45 menit
+                  Durasi perjalanan: ±45 menit
                 </p>
               </div>
             </div>
@@ -502,10 +502,10 @@ export function InformationsPage() {
 
               <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
                 <p className="text-sm text-emerald-700 dark:text-emerald-300 font-medium">
-                  💰 Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
+                  Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
                 </p>
                 <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-1">
-                  ⏱️ Durasi perjalanan: ±45 menit
+                  Durasi perjalanan: ±45 menit
                 </p>
               </div>
             </div>
@@ -519,7 +519,7 @@ export function InformationsPage() {
           >
             <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-4 max-w-3xl mx-auto">
               <p className="text-yellow-800 dark:text-yellow-200 text-sm">
-                ⚠️ <strong>Catatan:</strong> Jadwal dapat berubah sewaktu-waktu
+                <strong>Catatan:</strong> Jadwal dapat berubah sewaktu-waktu
                 tergantung cuaca dan kondisi laut. Disarankan untuk konfirmasi
                 jadwal sebelum keberangkatan.
               </p>
@@ -702,12 +702,12 @@ export function InformationsPage() {
                 >
                   <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
                     <span className="text-white font-bold">
-                      📅 15-17 Agustus 2025
+                      15-17 Agustus 2025
                     </span>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
                     <span className="text-white font-bold">
-                      📍 Pantai Iboih
+                      Pantai Iboih
                     </span>
                   </div>
                   <Button

@@ -1,4 +1,5 @@
 import { motion, useScroll, useTransform } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
   MapPin,
   Phone,
@@ -42,7 +43,7 @@ export function Footer() {
       <footer ref={containerRef} className="bg-foreground dark:bg-background text-background dark:text-foreground py-16 px-4">
         {containerInView && (
           <div className="container mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
               <div>
                 <div className="flex items-center gap-2 mb-6">
                   <img 
@@ -78,51 +79,50 @@ export function Footer() {
                   </motion.div>
                 </div>
               </div>
-
               <div>
                 <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
                   Destinasi
                 </h3>
                 <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Pantai Iboih
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Pulau Rubiah
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Tugu Kilometer Nol
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Pantai Sumur Tiga
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Gua Sarang
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -133,44 +133,44 @@ export function Footer() {
                 </h3>
                 <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Booking Destinasi
-                    </a>
+                      Cari Destinasi
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/layanan/penginapan"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Reservasi Hotel
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/layanan/rental"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Sewa Kendaraan
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/layanan/tourguide"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
                       Tour Guide
-                    </a>
+                    </Link>
                   </li>
                   <li>
-                    <a
-                      href="#"
+                    <Link
+                      to="/informations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      ChatBot AI
-                    </a>
+                      Info Wisata
+                    </Link>
                   </li>
                 </ul>
               </div>

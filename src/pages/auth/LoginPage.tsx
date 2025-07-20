@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
-import { Eye, EyeOff, Mail, Lock, MapPin } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock} from "lucide-react";
 
 export function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
