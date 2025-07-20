@@ -8,7 +8,6 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const [overlayHeight, setOverlayHeight] = useState<number>(0);
     const [overlayWidth, setOverlayWidth] = useState<number>(580);
     const [elements, setElements] = useState<React.ReactNode[]>([]);
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
     let token = localStorage.getItem("token")|| "";
 
     const callbot = () => {
@@ -47,18 +46,30 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
 
     useEffect(() => {
         const updateOverlayHeight = () => {
-            const navbarHeight = navbar.current?.clientHeight;
+            const navbarHeight = navbar.current?.clientHeight || 64; // fallback to 64px
             const windowHeight = window.innerHeight;
             const buttonEl = button.current;
             const buttonRect = buttonEl?.getBoundingClientRect();
         
-            if (buttonRect && navbarHeight) {
+            if (buttonRect) {
                 const buttonPosY = window.innerHeight - buttonRect.bottom;
                 const buttonStyle = window.getComputedStyle(buttonEl as Element);
-                const buttonPT = Number(buttonStyle.getPropertyValue("padding-top").replace("px", ""));
-                const height = windowHeight - navbarHeight - buttonRect.height - buttonPosY - (buttonPT * 2);
+                const buttonPT = Number(buttonStyle.getPropertyValue("padding-top").replace("px", "")) || 16;
+                const height = Math.max(400, windowHeight - navbarHeight - buttonRect.height - buttonPosY - (buttonPT * 2) - 32); // Added margin and minimum height
         
+                console.log('Overlay height calculation:', { 
+                    windowHeight, 
+                    navbarHeight, 
+                    buttonHeight: buttonRect.height, 
+                    buttonPosY, 
+                    buttonPT, 
+                    calculatedHeight: height 
+                });
+                
                 setOverlayHeight(height);
+            } else {
+                // Fallback when button rect is not available
+                setOverlayHeight(500);
             }
         }
 
@@ -67,26 +78,18 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         window.addEventListener("resize", updateOverlayHeight);
 
         return () => window.removeEventListener("resize", updateOverlayHeight);
-    }, [navbar, button]);
+    }, [navbar, button, showOverlay]); // Added showOverlay as dependency
 
     useEffect(() => {
-        const overlayRef = ref as RefObject<HTMLDivElement>;
-
         const updateOverlayWidth = () => {
             const currentWidth = window.innerWidth;
-            
-            setWindowWidth(currentWidth);
 
-            if (windowWidth < 640) {
-                const overlayPadX = Number(window.getComputedStyle(overlayRef.current).getPropertyValue("right").replace("px", ""));
-                const overlayCurrentWidth = Math.abs(windowWidth - overlayPadX);
-                const newOverlayWidth = Math.abs(windowWidth - (overlayCurrentWidth * 2));
-
-                setOverlayWidth(newOverlayWidth);
-
-                console.log(`padX: ${overlayPadX}; OCurW: ${overlayCurrentWidth}; WinW: ${windowWidth}; width: ${newOverlayWidth}`);
-            }
-            else {
+            if (currentWidth < 640) {
+                // For mobile, use most of the screen width with some padding
+                const padding = 32; // 16px on each side
+                setOverlayWidth(currentWidth - padding);
+            } else {
+                // For desktop, use fixed width
                 setOverlayWidth(580);
             }
         }
@@ -96,10 +99,23 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         window.addEventListener("resize", updateOverlayWidth);
 
         return () => window.removeEventListener("resize", updateOverlayWidth);
-    }, [ref, windowWidth])
+    }, []) // Removed dependency on windowWidth to prevent infinite loop
 
     return (
-        <div ref={ref} className={`bg-white dark:bg-gray-800 overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 fixed right-6 bottom-26 z-10 transition-all duration-500 ease-in-out ${showOverlay ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0'}`} style={{ height: `${overlayHeight}px`, width: `${overlayWidth}px` }}>
+        <div 
+            ref={ref} 
+            className={`bg-white dark:bg-gray-800 overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 fixed z-40 transition-all duration-500 ease-in-out ${
+                showOverlay 
+                    ? 'translate-x-0 opacity-100 visible scale-100' 
+                    : 'translate-x-full opacity-0 invisible scale-95'
+            }`} 
+            style={{ 
+                height: overlayHeight > 0 ? `${overlayHeight}px` : '500px', 
+                width: `${overlayWidth}px`,
+                right: '24px',
+                bottom: '96px' // 6rem = 96px for bottom-24
+            }}
+        >
             <div className="flex flex-col w-full h-full">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 p-4 rounded-t-2xl">
