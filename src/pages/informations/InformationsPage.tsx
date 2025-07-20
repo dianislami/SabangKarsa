@@ -13,8 +13,8 @@ import {
   MapPin,
   ChevronLeft,
   ChevronRight,
-  Star,
   Percent,
+  CalendarDays,
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
@@ -371,7 +371,7 @@ export function InformationsPage() {
         </div>
       </section>
       {/* Jadwal Kapal Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/20 dark:to-cyan-900/20">
+      <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             className="text-center mb-12"
@@ -380,7 +380,7 @@ export function InformationsPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Ship className="w-8 h-8 text-blue-600" />
+              <Ship className="w-8 h-8 text-emerald-700 dark:text-emerald-400" />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                 Jadwal Kapal Ferry
               </h2>
@@ -397,10 +397,16 @@ export function InformationsPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Banda Aceh ke Sabang */}
-            <div className="bg-card rounded-2xl p-6 shadow-lg border border-border">
+            <div 
+              className="rounded-2xl p-6 shadow-lg border"
+              style={{
+                backgroundColor: 'var(--ferry-schedule-bg)',
+                borderColor: 'var(--ferry-schedule-border)'
+              }}
+            >
               <div className="flex items-center gap-3 mb-6">
-                <div className="bg-blue-100 dark:bg-blue-900/30 p-3 rounded-full">
-                  <MapPin className="w-6 h-6 text-blue-600" />
+                <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
+                  <MapPin className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground">
@@ -433,7 +439,12 @@ export function InformationsPage() {
                       {schedule.times.map((time, timeIdx) => (
                         <span
                           key={timeIdx}
-                          className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 px-3 py-1 rounded-full text-sm font-medium"
+                          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm border"
+                          style={{
+                            backgroundColor: 'var(--ferry-time-bg)',
+                            color: 'var(--ferry-time-text)',
+                            borderColor: 'var(--ferry-time-border)'
+                          }}
                         >
                           {time}
                         </span>
@@ -443,21 +454,39 @@ export function InformationsPage() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-xl">
-                <p className="text-sm text-blue-700 dark:text-blue-300 font-medium">
+              <div 
+                className="mt-6 p-4 rounded-xl border"
+                style={{
+                  backgroundColor: 'var(--ferry-note-bg)',
+                  borderColor: 'var(--ferry-note-border)'
+                }}
+              >
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: 'var(--ferry-note-text)' }}
+                >
                   Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
                 </p>
-                <p className="text-sm text-blue-600 dark:text-blue-400 mt-1">
+                <p 
+                  className="text-sm mt-1"
+                  style={{ color: 'var(--ferry-note-text)' }}
+                >
                   Durasi perjalanan: ±45 menit
                 </p>
               </div>
             </div>
 
             {/* Sabang ke Banda Aceh */}
-            <div className="bg-card rounded-2xl p-6 shadow-lg border border-border">
+            <div 
+              className="rounded-2xl p-6 shadow-lg border"
+              style={{
+                backgroundColor: 'var(--ferry-schedule-bg)',
+                borderColor: 'var(--ferry-schedule-border)'
+              }}
+            >
               <div className="flex items-center gap-3 mb-6">
                 <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
-                  <MapPin className="w-6 h-6 text-emerald-600" />
+                  <MapPin className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground">
@@ -490,7 +519,12 @@ export function InformationsPage() {
                       {schedule.times.map((time, timeIdx) => (
                         <span
                           key={timeIdx}
-                          className="bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300 px-3 py-1 rounded-full text-sm font-medium"
+                          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm border"
+                          style={{
+                            backgroundColor: 'var(--ferry-time-bg)',
+                            color: 'var(--ferry-time-text)',
+                            borderColor: 'var(--ferry-time-border)'
+                          }}
                         >
                           {time}
                         </span>
@@ -500,11 +534,23 @@ export function InformationsPage() {
                 ))}
               </div>
 
-              <div className="mt-6 p-4 bg-emerald-50 dark:bg-emerald-900/20 rounded-xl">
-                <p className="text-sm text-emerald-700 dark:text-emerald-300 font-medium">
+              <div 
+                className="mt-6 p-4 rounded-xl border"
+                style={{
+                  backgroundColor: 'var(--ferry-note-bg)',
+                  borderColor: 'var(--ferry-note-border)'
+                }}
+              >
+                <p 
+                  className="text-sm font-medium"
+                  style={{ color: 'var(--ferry-note-text)' }}
+                >
                   Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
                 </p>
-                <p className="text-sm text-emerald-600 dark:text-emerald-400 mt-1">
+                <p 
+                  className="text-sm mt-1"
+                  style={{ color: 'var(--ferry-note-text)' }}
+                >
                   Durasi perjalanan: ±45 menit
                 </p>
               </div>
@@ -517,8 +563,17 @@ export function InformationsPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-xl p-4 max-w-3xl mx-auto">
-              <p className="text-yellow-800 dark:text-yellow-200 text-sm">
+            <div 
+              className="rounded-xl p-4 max-w-3xl mx-auto border"
+              style={{
+                backgroundColor: 'var(--ferry-note-bg)',
+                borderColor: 'var(--ferry-note-border)'
+              }}
+            >
+              <p 
+                className="text-sm"
+                style={{ color: 'var(--ferry-note-text)' }}
+              >
                 <strong>Catatan:</strong> Jadwal dapat berubah sewaktu-waktu
                 tergantung cuaca dan kondisi laut. Disarankan untuk konfirmasi
                 jadwal sebelum keberangkatan.
@@ -537,7 +592,7 @@ export function InformationsPage() {
             transition={{ duration: 0.8 }}
           >
             <div className="flex items-center justify-center gap-2 mb-4">
-              <Percent className="w-8 h-8 text-orange-600" />
+              <Percent className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
                 Promo & Penawaran Spesial
               </h2>
@@ -555,7 +610,7 @@ export function InformationsPage() {
           >
             {/* Promo 1 - Hotel Discount */}
             <motion.div
-              className="group bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -563,7 +618,6 @@ export function InformationsPage() {
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
                     <span className="text-sm font-bold">DISKON 30%</span>
                   </div>
-                  <Star className="w-6 h-6 text-yellow-300" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">
                   Sabang Paradise Resort
@@ -583,7 +637,7 @@ export function InformationsPage() {
                   </div>
                   <Button
                     size="sm"
-                    className="bg-white text-orange-500 hover:bg-white/90"
+                    className="bg-white text-emerald-600 hover:bg-white/90"
                   >
                     Pesan Sekarang
                   </Button>
@@ -593,7 +647,7 @@ export function InformationsPage() {
 
             {/* Promo 2 - Tour Package */}
             <motion.div
-              className="group bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-teal-500 to-cyan-500 dark:from-teal-600 dark:to-cyan-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -601,7 +655,6 @@ export function InformationsPage() {
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
                     <span className="text-sm font-bold">PAKET HEMAT</span>
                   </div>
-                  <Star className="w-6 h-6 text-yellow-300" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">
                   Sabang Island Hopping
@@ -621,7 +674,7 @@ export function InformationsPage() {
                   </div>
                   <Button
                     size="sm"
-                    className="bg-white text-blue-500 hover:bg-white/90"
+                    className="bg-white text-teal-600 hover:bg-white/90"
                   >
                     Info Lengkap
                   </Button>
@@ -631,7 +684,7 @@ export function InformationsPage() {
 
             {/* Promo 3 - Restaurant */}
             <motion.div
-              className="group bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-green-500 to-emerald-500 dark:from-green-600 dark:to-emerald-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -639,7 +692,6 @@ export function InformationsPage() {
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
                     <span className="text-sm font-bold">BUY 2 GET 1</span>
                   </div>
-                  <Star className="w-6 h-6 text-yellow-300" />
                 </div>
                 <h3 className="text-xl font-bold mb-2">
                   Seafood Bahari Restaurant
@@ -656,7 +708,7 @@ export function InformationsPage() {
                   </div>
                   <Button
                     size="sm"
-                    className="bg-white text-emerald-500 hover:bg-white/90"
+                    className="bg-white text-green-600 hover:bg-white/90"
                   >
                     Lihat Menu
                   </Button>
@@ -672,8 +724,8 @@ export function InformationsPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-pink-600"></div>
-            <div className="absolute inset-0 bg-black/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700"></div>
+            <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
             <div className="relative z-10 px-8 py-12 md:px-16 md:py-20">
               <div className="max-w-4xl mx-auto text-center text-white">
                 <motion.h3
@@ -700,19 +752,21 @@ export function InformationsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 1 }}
                 >
-                  <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                  <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-2">
+                    <CalendarDays className="w-4 h-4 text-white" />
                     <span className="text-white font-bold">
                       15-17 Agustus 2025
                     </span>
                   </div>
-                  <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full">
+                  <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-2">
+                    <MapPin className="w-4 h-4 text-white" />
                     <span className="text-white font-bold">
                       Pantai Iboih
                     </span>
                   </div>
                   <Button
                     size="lg"
-                    className="bg-white text-purple-600 hover:bg-white/90 font-bold"
+                    className="bg-white text-emerald-600 hover:bg-white/90 font-bold"
                   >
                     Daftar Sekarang
                   </Button>
