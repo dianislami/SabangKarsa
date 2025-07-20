@@ -124,7 +124,7 @@ export function AboutUs() {
             {team.map((member) => (
               <motion.div
                 key={member.id}
-                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-300 dark:hover:border-emerald-700"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: member.id * 0.1 }}
