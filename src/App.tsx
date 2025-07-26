@@ -15,6 +15,8 @@ import { StrollDetailPage } from "./pages/stroll/StrollDetailPage";
 import { AboutUs } from "./pages/aboutus/AboutUs";
 import { RentalPage } from "./pages/layanan/rentaldansupir/RentalPage";
 import { TourGuidePage } from "./pages/layanan/tourguide/TourGuidePage";
+import { VerificationFormPage } from "./pages/verification/VerificationFormPage";
+import { VerificationSuccessPage } from "./pages/verification/VerificationSuccessPage";
 import { GlobalChatbot } from "./components/chatbot/global-chatbot";
 import { PageTransitionWrapper } from "./components/transitions/PageTransitionWrapper";
 
@@ -39,6 +41,8 @@ function App() {
             <Route path="/about" element={<AboutUs />} />
             <Route path="/layanan/rental" element={<RentalPage />} />
             <Route path="/layanan/tourguide" element={<TourGuidePage />} />
+            <Route path="/verification/seller" element={<VerificationFormPage />} />
+            <Route path="/verification-success" element={<VerificationSuccessPage />} />
           </Routes>
           <GlobalChatbot />
         </PageTransitionWrapper>

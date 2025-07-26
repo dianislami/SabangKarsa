@@ -9,6 +9,7 @@ import { StatsSection } from "@/components/layouts/stats-section";
 import { TestimonialsSection } from "@/components/layouts/testimonials-section";
 import { BusinessSolutionsSection } from "@/components/layouts/business-solutions-section";
 import { CtaSection } from "@/components/layouts/cta-section";
+import { DemoUserSetter } from "@/components/verification/DemoUserSetter";
 
 export function HomePage() {
   return (
@@ -24,6 +25,9 @@ export function HomePage() {
       <BusinessSolutionsSection />
       <CtaSection />
       <Footer />
+      
+      {/* Demo component for testing - remove in production */}
+      {process.env.NODE_ENV === 'development' && <DemoUserSetter />}
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useState, useEffect, forwardRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
+import { VerificationStatusBadge } from "@/components/verification/VerificationStatusBadge";
 import {
   User,
   LogOut,
@@ -18,6 +19,7 @@ import {
   X,
   ShoppingBag,
   Globe,
+  Shield,
 } from "lucide-react";
 import logoNav from "@/assets/JakSabangFIX.svg";
 
@@ -411,16 +413,21 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                           <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
                             <User className="w-5 h-5 text-white" />
                           </div>
-                          <div>
+                          <div className="flex-1">
                             <p className="text-sm font-medium text-gray-900 dark:text-white">
                               {user.name}
                             </p>
                             <p className="text-xs text-gray-500 dark:text-gray-400">
                               {user.email}
                             </p>
-                            <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                              {user.role || "User"}
-                            </p>
+                            <div className="flex items-center justify-between mt-1">
+                              <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
+                                {user.role || "User"}
+                              </p>
+                              <VerificationStatusBadge 
+                                status={user.verificationStatus || 'none'} 
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -431,6 +438,21 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                         <ShoppingBag className="w-4 h-4" />
                         <span className="font-medium">Pesanan Saya</span>
                       </button>
+                      
+                      {/* Only show verification option for buyers who haven't applied or were rejected */}
+                      {user.role === 'buyer' && (!user.verificationStatus || user.verificationStatus === 'none' || user.verificationStatus === 'rejected') && (
+                        <button
+                          onClick={() => {
+                            navigate("/verification/seller");
+                            setIsProfileDropdownOpen(false);
+                          }}
+                          className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
+                        >
+                          <Shield className="w-4 h-4" />
+                          <span className="font-medium">Ajukan Verifikasi Penjual</span>
+                        </button>
+                      )}
+                      
                       <button
                         onClick={handleLogout}
                         className="flex items-center gap-2 w-full px-4 py-3 text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
