@@ -19,7 +19,8 @@ import { VerificationFormPage } from "./pages/verification/VerificationFormPage"
 import { VerificationSuccessPage } from "./pages/verification/VerificationSuccessPage";
 import { GlobalChatbot } from "./components/chatbot/global-chatbot";
 import { PageTransitionWrapper } from "./components/transitions/PageTransitionWrapper";
-
+import DashboardPage from "./pages/layanan/dashboard/DashboardPage";
+import AdminDashboard from "./pages/verification/AdminDashboard";
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -43,6 +44,8 @@ function App() {
             <Route path="/layanan/tourguide" element={<TourGuidePage />} />
             <Route path="/verification/seller" element={<VerificationFormPage />} />
             <Route path="/verification-success" element={<VerificationSuccessPage />} />
+            <Route path="/layanan/dashboard" element={<DashboardPage />} />
+            <Route path="/admin/dashboard" element={<AdminDashboard />} />
           </Routes>
           <GlobalChatbot />
         </PageTransitionWrapper>

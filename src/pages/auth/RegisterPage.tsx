@@ -14,7 +14,7 @@ export function RegisterPage() {
     email: "",
     password: "",
     confirmPassword: "",
-    role: "",
+    role: "buyer",
     no_hp: "",
     alamat: "",
   });
@@ -308,7 +308,7 @@ export function RegisterPage() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {/* Role Field */}
-                  <div className="space-y-1">
+                  {/* <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
                       Role
                     </label>
@@ -323,7 +323,7 @@ export function RegisterPage() {
                       <option value="buyer">Buyer (Wisatawan)</option>
                       <option value="seller">Seller (Penyedia Layanan)</option>
                     </select>
-                  </div>
+                  </div> */}
 
                   {/* No HP Field */}
                   <div className="space-y-1">
