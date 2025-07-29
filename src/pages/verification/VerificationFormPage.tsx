@@ -12,7 +12,8 @@ import {
   Eye
 } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { useVerification } from '../../hooks/useVerification';
+import { ThemeToggle } from '../../components/theme-toogle';
+import { Footer } from '../../components/layouts/footer';
 import type { VerificationRequest, DocumentType } from '../../types/verification';
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -289,27 +290,11 @@ export function VerificationFormPage() {
                   type="text"
                   value={formData.fullName || ''}
                   onChange={(e) => handleInputChange('fullName', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
+                  className="w-full px-3 py-2 border border-border dark:border-border rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent bg-background dark:bg-background text-foreground dark:text-foreground"
                   placeholder="Masukkan nama lengkap sesuai KTP"
                 />
                 {errors.fullName && (
                   <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  NIK *
-                </label>
-                <input
-                  type="text"
-                  value={formData.nik || ''}
-                  onChange={(e) => handleInputChange('nik', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                  placeholder="Masukkan nomor NIK"
-                />
-                {errors.nik && (
-                  <p className="text-red-500 text-sm mt-1">{errors.nik}</p>
                 )}
               </div>
 
@@ -329,8 +314,8 @@ export function VerificationFormPage() {
                 )}
               </div>
 
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+              <div className="md:col-span-2">
+                <label className="block text-sm font-medium text-foreground dark:text-foreground mb-2">
                   Alamat
                 </label>
                 <textarea
@@ -440,7 +425,7 @@ export function VerificationFormPage() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end gap-4">
+          <div className="flex justify-end">
             <Button
               onClick={handleSubmit}
               disabled={isSubmitting}
@@ -448,15 +433,6 @@ export function VerificationFormPage() {
             >
               {isSubmitting ? 'Mengirim...' : 'Ajukan Verifikasi'}
             </Button>
-            {errors.auth && (
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => window.location.reload()}
-              >
-                Coba Lagi
-              </Button>
-            )}
           </div>
 
           {errors.submit && (
