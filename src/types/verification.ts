@@ -13,6 +13,8 @@ export interface VerificationRequest {
   ktp: string;
   dokumenBisnis: string;
   status: 'pending' | 'approved' | 'rejected';
+  no_rekening: string;
+  nama_rekening: string;
   catatan?: string;
   createdAt?: string;
   updatedAt?: string;

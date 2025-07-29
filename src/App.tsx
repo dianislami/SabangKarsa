@@ -14,13 +14,16 @@ import { StrollPage } from "./pages/stroll/StrollPage";
 import { StrollDetailPage } from "./pages/stroll/StrollDetailPage";
 import { AboutUs } from "./pages/aboutus/AboutUs";
 import { RentalPage } from "./pages/layanan/rentaldansupir/RentalPage";
-import { TourGuidePage } from "./pages/layanan/tourguide/TourGuidePage";
+import TourGuidePage  from "./pages/layanan/tourguide/TourGuidePage";
 import { VerificationFormPage } from "./pages/verification/VerificationFormPage";
 import { VerificationSuccessPage } from "./pages/verification/VerificationSuccessPage";
 import { GlobalChatbot } from "./components/chatbot/global-chatbot";
 import { PageTransitionWrapper } from "./components/transitions/PageTransitionWrapper";
 import DashboardPage from "./pages/layanan/dashboard/DashboardPage";
 import AdminDashboard from "./pages/verification/AdminDashboard";
+import PenginapanDetailPage from "./pages/layanan/penginapan/PenginapanDetailPage";
+import DetailRentalPage from "./pages/layanan/rentaldansupir/DetailRentalPage";
+import DetailTourGuidePage from "./pages/layanan/tourguide/DetailTourGuidePage";
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -46,6 +49,10 @@ function App() {
             <Route path="/verification-success" element={<VerificationSuccessPage />} />
             <Route path="/layanan/dashboard" element={<DashboardPage />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
+            <Route path="/layanan/penginapan/:id" element={<PenginapanDetailPage />} />
+            <Route path="/layanan/rental/:id" element={<DetailRentalPage />} />
+            <Route path="/layanan/tour-guide/:id" element={<DetailTourGuidePage />} />
+
           </Routes>
           <GlobalChatbot />
         </PageTransitionWrapper>

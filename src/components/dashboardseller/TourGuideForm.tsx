@@ -15,7 +15,7 @@ interface TourGuideData {
 interface TourGuideFormProps {
   token: string | null;
   user: {
-    _id: string;
+    id: string;
     name: string;
     email: string;
     no_hp: string;
@@ -54,9 +54,9 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
       Object.entries(tourGuideData).forEach(([key, val]) => {
         if (val !== null) form.append(key, val as string | Blob);
       });
-      form.append('penyedia', user._id); // auto-set penyedia
+      form.append('penyedia', user.id); // auto-set penyedia
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/tourguides`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tourguide`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: form

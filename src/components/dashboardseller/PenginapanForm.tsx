@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Phone, User, MapPin, Mail } from 'lucide-react';
 
@@ -23,18 +23,12 @@ interface PenginapanData {
 
 interface PenginapanFormProps {
   token: string | null;
-  user: {
-    _id: string;
-    name: string;
-    email: string;
-    no_hp: string;
-    alamat: string;
-    role: string;
-  };
+  user: { id: string; name: string; email: string; no_hp: string; alamat: string; role: string; };
   setActiveForm: React.Dispatch<React.SetStateAction<'rental' | 'tourguide' | 'penginapan' | null>>;
+  editData?: any;
 }
 
-export default function PenginapanForm({ token, user, setActiveForm }: PenginapanFormProps) {
+export default function PenginapanForm({ token, user, setActiveForm, editData }: PenginapanFormProps) {
   const [penginapanData, setPenginapanData] = useState<PenginapanData>({
     nama: '',
     lokasi: '',
@@ -53,9 +47,34 @@ export default function PenginapanForm({ token, user, setActiveForm }: Penginapa
     check_out_time: '',
     lokasi_maps: ''
   });
-
   const [preview, setPreview] = useState<string | null>(null);
 
+  // Auto-fill data saat edit
+  useEffect(() => {
+    if (editData) {
+      setPenginapanData({
+        nama: editData.nama || '',
+        lokasi: editData.lokasi || '',
+        deskripsi: editData.deskripsi || '',
+        tipePeningapan: editData.tipePeningapan || '',
+        hargaPerMalam: String(editData.hargaPerMalam || ''),
+        jumlahKamarTersedia: String(editData.jumlahKamarTersedia || ''),
+        namaPenyedia: editData.namaPenyedia || user.name || '',
+        gambar: null, // file tidak ada
+        alamat: editData.alamat || '',
+        no_telepon: editData.no_telepon || '',
+        email: editData.email || '',
+        fasilitas: Array.isArray(editData.fasilitas) ? editData.fasilitas.join(', ') : editData.fasilitas || '',
+        kebijakan: editData.kebijakan || '',
+        check_in_time: editData.check_in_time || '',
+        check_out_time: editData.check_out_time || '',
+        lokasi_maps: editData.lokasi_maps || ''
+      });
+      setPreview(editData.gambar); // pakai url lama
+    }
+  }, [editData, user.name]);
+
+  // Handle input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
     if (type === 'file' && files && files[0]) {
@@ -66,22 +85,34 @@ export default function PenginapanForm({ token, user, setActiveForm }: Penginapa
     }
   };
 
+  // Submit form
   const submitPenginapan = async () => {
     try {
       const form = new FormData();
       Object.entries(penginapanData).forEach(([key, val]) => {
         if (val !== null) form.append(key, val as string | Blob);
       });
-      form.append('penyedia', user._id); // ambil id user
+      form.append('penyedia', user.id);
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/api/penginapan`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: form
-      });
+      const apiUrl = import.meta.env.VITE_API_URL;
+      let res;
+      if (editData) {
+        res = await fetch(`${apiUrl}/penginapan/${editData._id}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}` },
+          body: form
+        });
+      } else {
+        res = await fetch(`${apiUrl}/penginapan`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: form
+        });
+      }
       const data = await res.json();
-      console.log('Penginapan added:', data);
+      console.log('Saved:', data);
 
+      // Reset & kembali
       setActiveForm(null);
       setPenginapanData({
         nama: '', lokasi: '', deskripsi: '', tipePeningapan: '', hargaPerMalam: '',
@@ -91,7 +122,7 @@ export default function PenginapanForm({ token, user, setActiveForm }: Penginapa
       });
       setPreview(null);
     } catch (e) {
-      console.error('Error adding penginapan', e);
+      console.error('Error saving penginapan', e);
     }
   };
 
@@ -99,23 +130,16 @@ export default function PenginapanForm({ token, user, setActiveForm }: Penginapa
     <>
       <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-white">Tambah Penginapan</h2>
-          <button
-            onClick={() => setActiveForm(null)}
-            className="text-white hover:text-purple-200 text-sm font-medium"
-          >
-            ← Kembali
-          </button>
+          <h2 className="text-xl font-bold text-white">{editData ? 'Edit Penginapan' : 'Tambah Penginapan'}</h2>
+          <button onClick={() => setActiveForm(null)} className="text-white hover:text-purple-200 text-sm font-medium">← Kembali</button>
         </div>
       </div>
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <Input label="Nama Penginapan *" name="nama" value={penginapanData.nama} onChange={handleChange} placeholder="Hotel Sabang View" />
           <InputWithIcon icon={MapPin} label="Lokasi *" name="lokasi" value={penginapanData.lokasi} onChange={handleChange} placeholder="Sabang, Aceh" />
-          <Select
-            label="Tipe Penginapan *" name="tipePeningapan" value={penginapanData.tipePeningapan} onChange={handleChange}
-            options={['Hotel','Villa','Guest House','Resort','Homestay','Boutique Hotel','Inn','Motel']}
-          />
+          <Select label="Tipe Penginapan *" name="tipePeningapan" value={penginapanData.tipePeningapan} onChange={handleChange}
+            options={['Hotel','Villa','Guest House','Resort','Homestay','Boutique Hotel','Inn','Motel']} />
           <Input label="Harga per Malam *" name="hargaPerMalam" value={penginapanData.hargaPerMalam} onChange={handleChange} placeholder="300000" type="number" />
           <Input label="Jumlah Kamar *" name="jumlahKamarTersedia" value={penginapanData.jumlahKamarTersedia} onChange={handleChange} placeholder="10" type="number" />
           <InputWithIcon icon={User} label="Nama Penyedia" name="namaPenyedia" value={penginapanData.namaPenyedia} onChange={handleChange} placeholder="Nama" />
@@ -144,12 +168,14 @@ export default function PenginapanForm({ token, user, setActiveForm }: Penginapa
           </div>
         </div>
         <Button onClick={submitPenginapan} className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 text-lg font-medium">
-          Tambah Penginapan
+          {editData ? 'Update Penginapan' : 'Tambah Penginapan'}
         </Button>
       </div>
     </>
   );
 }
+
+
 
 function Input({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
