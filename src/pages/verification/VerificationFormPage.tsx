@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -12,8 +12,9 @@ import {
   Eye
 } from 'lucide-react';
 import { Button } from '../../components/ui/button';
-import { useVerification } from '../../hooks/useVerification';
 import type { VerificationRequest, DocumentType } from '../../types/verification';
+
+const API_URL = import.meta.env.VITE_API_URL;
 
 const documentTypes: DocumentType[] = [
   {
@@ -44,27 +45,29 @@ const documentTypes: DocumentType[] = [
 
 export function VerificationFormPage() {
   const navigate = useNavigate();
-  const { submitVerificationRequest } = useVerification();
   const [formData, setFormData] = useState<Partial<VerificationRequest>>({
-    user: '',
-    npwp: '',
-    ktp: '',
-    dokumenBisnis: '',
-    status: 'pending',
-    catatan: '',
     fullName: '',
-    nik: '',
     phoneNumber: '',
     address: '',
-    businessType: '',
-    businessDescription: '',
     documents: []
   });
-  
   const [uploadedFiles, setUploadedFiles] = useState<Record<string, File>>({});
   const [previewImages, setPreviewImages] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  // Use user data from localStorage to prefill form
+  useEffect(() => {
+    const userData = JSON.parse(localStorage.getItem('user') || '{}');
+    const user = typeof userData === 'object' && userData.user ? userData.user : userData;
+    setFormData(prev => ({
+      ...prev,
+      fullName: user.name || '',
+      phoneNumber: user.no_hp || user.phoneNumber || '',
+      address: user.alamat || user.address || '',
+      email: user.email || ''
+    }));
+  }, []);
 
   const handleInputChange = (
     field: keyof VerificationRequest,
@@ -153,10 +156,6 @@ export function VerificationFormPage() {
       newErrors.fullName = 'Nama lengkap harus diisi';
     }
 
-    if (!formData.nik?.trim()) {
-      newErrors.nik = 'NIK harus diisi';
-    }
-
     if (!formData.phoneNumber?.trim()) {
       newErrors.phoneNumber = 'Nomor telepon harus diisi';
     }
@@ -173,14 +172,51 @@ export function VerificationFormPage() {
 
   const handleSubmit = async () => {
     if (!validateForm()) return;
+    if (!localStorage.getItem('token')) {
+      setErrors({ submit: 'Silakan login terlebih dahulu' });
+      return;
+    }
 
     setIsSubmitting(true);
-    
+
     try {
-      const success = await submitVerificationRequest(formData);
-      
-      if (success) {
-        navigate('/verification-success');
+      // Update user profile
+      const updateResponse = await fetch(`${API_URL}/auth/update`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: JSON.stringify({
+          name: formData.fullName,
+          no_hp: formData.phoneNumber,
+          alamat: formData.address
+          
+        })
+      });
+
+      if (!updateResponse.ok) {
+        let errorMessage = 'Gagal memperbarui data pengguna';
+        if (updateResponse.status === 500) errorMessage = 'Terjadi kesalahan server saat memperbarui data';
+        throw new Error(errorMessage);
+      }
+
+      // Submit verification documents
+      const formDataToSend = new FormData();
+      formDataToSend.append('ktp', uploadedFiles['ktp']);
+      formDataToSend.append('npwp', uploadedFiles['npwp']);
+      formDataToSend.append('dokumenBisnis', uploadedFiles['dokumenBisnis']);
+
+      const verificationResponse = await fetch(`${API_URL}/verifikasi`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem('token')}`
+        },
+        body: formDataToSend
+      });
+
+      if (verificationResponse.ok) {
+        navigate('/');
       } else {
         setErrors({ submit: 'Gagal mengirim permohonan verifikasi. Silakan coba lagi.' });
       }
@@ -250,26 +286,10 @@ export function VerificationFormPage() {
                   value={formData.fullName || ''}
                   onChange={(e) => handleInputChange('fullName', e.target.value)}
                   className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                  placeholder="Masukkan nama lengkap sesuai KTP"
+                  placeholder="Masukkan nama lengkap"
                 />
                 {errors.fullName && (
                   <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  NIK *
-                </label>
-                <input
-                  type="text"
-                  value={formData.nik || ''}
-                  onChange={(e) => handleInputChange('nik', e.target.value)}
-                  className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent dark:bg-gray-800 dark:text-white"
-                  placeholder="Masukkan nomor NIK"
-                />
-                {errors.nik && (
-                  <p className="text-red-500 text-sm mt-1">{errors.nik}</p>
                 )}
               </div>
 
@@ -289,7 +309,7 @@ export function VerificationFormPage() {
                 )}
               </div>
 
-              <div>
+              <div className="md:col-span-2">
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Alamat
                 </label>
@@ -400,7 +420,7 @@ export function VerificationFormPage() {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-end">
+          <div className="flex justify-end gap-4">
             <Button
               onClick={handleSubmit}
               disabled={isSubmitting}
@@ -408,6 +428,15 @@ export function VerificationFormPage() {
             >
               {isSubmitting ? 'Mengirim...' : 'Ajukan Verifikasi'}
             </Button>
+            {errors.auth && (
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => window.location.reload()}
+              >
+                Coba Lagi
+              </Button>
+            )}
           </div>
 
           {errors.submit && (

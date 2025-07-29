@@ -1,9 +1,7 @@
-
 import { useState, useEffect, forwardRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
-import { VerificationStatusBadge } from "@/components/verification/VerificationStatusBadge";
 import {
   User,
   LogOut,
@@ -270,10 +268,9 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                               navigate("/layanan/penginapan");
                             } else if (dropdownItem.id === "driver-rental") {
                               navigate("/layanan/rental");
-                            } else if(dropdownItem.id === "tour-guide"){
+                            } else if (dropdownItem.id === "tour-guide") {
                               navigate("/layanan/tourguide");
-                            } 
-                            else {
+                            } else {
                               handleNavigation(dropdownItem.id);
                             }
                             closeDropdown(item.id);
@@ -424,9 +421,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                               <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
                                 {user.role || "User"}
                               </p>
-                              <VerificationStatusBadge 
-                                status={user.verificationStatus || 'none'} 
-                              />
+                            
                             </div>
                           </div>
                         </div>
@@ -438,21 +433,43 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                         <ShoppingBag className="w-4 h-4" />
                         <span className="font-medium">Pesanan Saya</span>
                       </button>
-                      
+
                       {/* Only show verification option for buyers who haven't applied or were rejected */}
-                      {user.role === 'buyer' && (!user.verificationStatus || user.verificationStatus === 'none' || user.verificationStatus === 'rejected') && (
-                        <button
-                          onClick={() => {
-                            navigate("/verification/seller");
-                            setIsProfileDropdownOpen(false);
-                          }}
-                          className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
-                        >
-                          <Shield className="w-4 h-4" />
-                          <span className="font-medium">Ajukan Verifikasi Penjual</span>
-                        </button>
-                      )}
-                      
+                      {user.role === "buyer" &&
+                        (!user.verificationStatus ||
+                          user.verificationStatus === "none" ||
+                          user.verificationStatus === "rejected") && (
+                          <button
+                            onClick={() => {
+                              navigate("/verification/seller");
+                              setIsProfileDropdownOpen(false);
+                            }}
+                            className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
+                          >
+                            <Shield className="w-4 h-4" />
+                            <span className="font-medium">
+                              Ajukan Verifikasi Penjual
+                            </span>
+                          </button>
+                        )}
+                        {user.role === "seller" && (
+                          <button
+                            onClick={() => {
+                              navigate("/layanan/dashboard");
+                              setIsProfileDropdownOpen(false);
+                            }}
+                          >
+                            Dashboard Penjualan
+                          </button>
+                        )}
+                        {user.role === "admin" && (<Button onClick={() => {
+                          navigate("/admin/dashboard");
+                          setIsProfileDropdownOpen(false);
+                        }}
+                      >
+                        Dashboard Admin
+                      </Button>)}
+
                       <button
                         onClick={handleLogout}
                         className="flex items-center gap-2 w-full px-4 py-3 text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
