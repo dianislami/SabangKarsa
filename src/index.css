@@ -69,6 +69,12 @@
 
   /* Tema chatbot overlay */
   --chatbot: oklch(97.9% 0.021 166.113);
+
+  /* Verification overlay box */
+  --verification-overlay: oklch(1 0 0);
+  --verification-overlay-border: oklch(0.15 0.02 150);
+  --verification-overlay-success: oklch(0.95 0.02 158);
+  --verification-overlay-success-border: oklch(0.85 0.025 158);
 }
 
 .dark {
@@ -139,6 +145,12 @@
 
   /* Tema chatbot overlay */
   --chatbot: #1a1a1a;
+
+  /* Verification overlay box */
+  --verification-overlay: #151515;
+  --verification-overlay-border: oklch(0.59 0.15 158);
+  --verification-overlay-success: #1e1e1e;
+  --verification-overlay-success-border: oklch(0.59 0.15 158);
 }
 
 /* Custom gradient classes untuk tema hijau */
@@ -163,6 +175,23 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+/* Verification overlay styles */
+.bg-verification-overlay {
+  background-color: var(--verification-overlay);
+}
+
+.border-verification-overlay-border {
+  border-color: var(--verification-overlay-border);
+}
+
+.bg-verification-overlay-success {
+  background-color: var(--verification-overlay-success);
+}
+
+.border-verification-overlay-success-border {
+  border-color: var(--verification-overlay-success-border);
 }
 
 /* Modern Navbar Styles */
