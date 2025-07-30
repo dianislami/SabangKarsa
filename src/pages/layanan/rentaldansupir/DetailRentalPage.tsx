@@ -124,7 +124,7 @@ export default function DetailRentalPage() {
             <Button
               size="lg"
               className="bg-emerald-600 text-white hover:bg-emerald-700 transition-colors duration-300"
-              onClick={() => window.location.href = `/layanan/rental/${rental._id}/booking`}
+              onClick={() => window.location.href = `/rental/${rental._id}/booking`}
             >
               Booking Sekarang
             </Button>

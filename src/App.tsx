@@ -24,6 +24,9 @@ import AdminDashboard from "./pages/verification/AdminDashboard";
 import PenginapanDetailPage from "./pages/layanan/penginapan/PenginapanDetailPage";
 import DetailRentalPage from "./pages/layanan/rentaldansupir/DetailRentalPage";
 import DetailTourGuidePage from "./pages/layanan/tourguide/DetailTourGuidePage";
+import BookingPenginapanPage from "./pages/layanan/booking/BookingPenginapanPage";
+import BookingRentalPage from "./pages/layanan/booking/BoookingRentalPage";
+import BookingTourguidePage from "./pages/layanan/booking/BookingTourguidePage";
 function App() {
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
@@ -52,7 +55,10 @@ function App() {
             <Route path="/layanan/penginapan/:id" element={<PenginapanDetailPage />} />
             <Route path="/layanan/rental/:id" element={<DetailRentalPage />} />
             <Route path="/layanan/tour-guide/:id" element={<DetailTourGuidePage />} />
-
+          
+            <Route path="/penginapan/:id/booking" element={<BookingPenginapanPage />} />
+            <Route path="/rental/:id/booking" element={<BookingRentalPage />} />
+            <Route path="/tourguide/:id/booking" element={<BookingTourguidePage />} />
           </Routes>
           <GlobalChatbot />
         </PageTransitionWrapper>

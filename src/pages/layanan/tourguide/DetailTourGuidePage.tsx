@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
@@ -21,6 +21,7 @@ interface TourGuide {
 
 export default function DetailTourGuidePage() {
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [guide, setGuide] = useState<TourGuide | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -62,7 +63,9 @@ export default function DetailTourGuidePage() {
 
       <section className="container mx-auto max-w-4xl py-10 px-4">
         <motion.div
-          initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
+          initial={{ opacity: 0, y: 20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6 }}
           className="bg-card rounded-2xl shadow-xl p-6 border border-border"
         >
           <h2 className="text-2xl font-semibold mb-4 text-foreground">Detail Pemandu Wisata</h2>
@@ -87,7 +90,13 @@ export default function DetailTourGuidePage() {
             <div className="text-3xl font-bold text-emerald-600">Rp {guide.harga.toLocaleString()}</div>
           </div>
 
-          <Button size="lg" className="bg-emerald-500 hover:bg-emerald-600 text-white">Pesan Sekarang</Button>
+          <Button 
+            size="lg" 
+            className="bg-emerald-500 hover:bg-emerald-600 text-white" 
+            onClick={() => navigate(`/tourguide/${guide._id}/booking`)}
+          >
+            Pesan Sekarang
+          </Button>
         </motion.div>
       </section>
 
