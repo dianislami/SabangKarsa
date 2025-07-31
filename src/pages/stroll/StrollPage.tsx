@@ -52,12 +52,14 @@ export function StrollPage() {
         >
           <div className="relative p-8 text-white">
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
-              Stroll & Kuliner
-            </h1>
-            <p className="text-lg md:text-xl text-white/90 dark:text-white/80 max-w-2xl">
-              Jelajahi kuliner lezat dan tempat nongkrong menarik di Sabang, dari sate gurita hingga sunset di Pantai Iboih!
-            </p>
+            <div className="relative z-10">
+              <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
+                Stroll & Kuliner
+              </h1>
+              <p className="text-lg md:text-xl text-white/90 dark:text-white/80 max-w-2xl">
+                Jelajahi kuliner lezat dan tempat nongkrong menarik di Sabang, dari sate gurita hingga sunset di Pantai Iboih!
+              </p>
+            </div>
           </div>
         </motion.div>
       </section>
