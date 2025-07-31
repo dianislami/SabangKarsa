@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Car, Home, User, Calendar, MapPin, CreditCard, Package, Mail } from 'lucide-react';
+import { ArrowLeft, Car, Home, User, Calendar, MapPin, CreditCard, Package} from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
