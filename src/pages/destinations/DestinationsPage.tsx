@@ -263,7 +263,7 @@ export function DestinationsPage() {
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm font-medium text-muted-foreground">
+                    <span className="text-sm text-white font-medium text-muted-foreground">
                       Kisaran Harga Masuk
                     </span>
                     <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">

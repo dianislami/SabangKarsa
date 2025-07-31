@@ -65,18 +65,17 @@ export default function TourGuidePage() {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* Hero */}
+      {/* Hero section */}
       <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
-        <img src="/assets/destinasi/pantaiiboih.webp" alt="Tour Guide Sabang"
-          className="w-full h-full object-cover scale-110" />
+        <div className="absolute inset-0">
+          <img src="/assets/destinasi/pantaiiboih.webp" alt="Tour Guide Sabang" className="w-full h-full object-cover scale-110" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
         <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <h1 className="text-4xl md:text-6xl font-bold mb-6">Pemandu Wisata di Sabang</h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Temukan pemandu wisata profesional untuk menjelajahi Sabang.
-            </p>
+            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">Pemandu Wisata Terbaik di Sabang</motion.h1>
+            <motion.p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">Jelajahi keindahan Sabang bersama pemandu wisata berpengalaman dan terpercaya</motion.p>
           </motion.div>
         </div>
       </section>
