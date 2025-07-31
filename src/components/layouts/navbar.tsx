@@ -18,6 +18,7 @@ import {
   ShoppingBag,
   Globe,
   Shield,
+  Settings,
 } from "lucide-react";
 import logoNav from "@/assets/JakSabangFIX.svg";
 
@@ -428,7 +429,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                       </div>
                       <button
                         onClick={() => navigate("/pesanan")}
-                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
+                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
                       >
                         <ShoppingBag className="w-4 h-4" />
                         <span className="font-medium">Pesanan Saya</span>
@@ -444,7 +445,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                               navigate("/verification/seller");
                               setIsProfileDropdownOpen(false);
                             }}
-                            className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-blue-900/20 transition-colors duration-200"
+                            className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
                           >
                             <Shield className="w-4 h-4" />
                             <span className="font-medium">
@@ -458,17 +459,24 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                               navigate("/layanan/dashboard");
                               setIsProfileDropdownOpen(false);
                             }}
+                            className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
                           >
-                            Dashboard Penjualan
+                            <ShoppingBag className="w-4 h-4" />
+                            <span className="font-medium">Dashboard Penjualan</span>
                           </button>
                         )}
-                        {user.role === "admin" && (<Button onClick={() => {
-                          navigate("/admin/dashboard");
-                          setIsProfileDropdownOpen(false);
-                        }}
-                      >
-                        Dashboard Admin
-                      </Button>)}
+                        {user.role === "admin" && (
+                          <button
+                            onClick={() => {
+                              navigate("/admin/dashboard");
+                              setIsProfileDropdownOpen(false);
+                            }}
+                            className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
+                          >
+                            <Settings className="w-4 h-4" />
+                            <span className="font-medium">Dashboard Admin</span>
+                          </button>
+                        )}
 
                       <button
                         onClick={handleLogout}
