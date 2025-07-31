@@ -125,7 +125,7 @@ export function DestinationsSection() {
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span  className="text-sm">Kisaran Harga Masuk</span>
+                    <span className="text-sm text-white">Kisaran Harga Masuk</span>
                     <span className="text-lg font-semibold text-primary dark:text-white">
                       {destination.price}
                     </span>

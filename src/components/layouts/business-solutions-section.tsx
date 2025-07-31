@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react";
-import { Home, Car, Award } from "lucide-react"
+import { Home, Car, UserCheck } from "lucide-react"
 
 export function BusinessSolutionsSection() {
   const [containerInView, setContainerInView] = useState(false);
@@ -84,11 +84,11 @@ export function BusinessSolutionsSection() {
               viewport={{ once: true }}
             >
               <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <Award className="w-10 h-10 text-primary-foreground" />
+                <UserCheck className="w-10 h-10 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">SERTIFIKASI WISATA</h3>
+              <h3 className="text-xl font-bold mb-4 text-foreground">JARINGAN TOUR GUIDE</h3>
               <p className="text-muted-foreground">
-                Dapatkan sertifikasi untuk bisnis pariwisata Anda dan tingkatkan kredibilitas di mata wisatawan.
+                Bergabunglah dengan jaringan tour guide profesional kami dan berikan pengalaman wisata terbaik untuk para wisatawan.
               </p>
             </motion.div>
           </div>
