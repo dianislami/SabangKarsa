@@ -3,9 +3,6 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
-  Users,
-  FileText,
-  Settings,
   LogOut,
   ChevronLeft,
   ChevronRight,
@@ -27,34 +24,6 @@ const menuItems = [
     path: '/admin/dashboard',
     active: true
   },
-  {
-    id: 'users',
-    label: 'Pengguna',
-    icon: Users,
-    path: '/admin/users',
-    active: false
-  },
-  {
-    id: 'verifikasi',
-    label: 'Verifikasi',
-    icon: Shield,
-    path: '/admin/verifikasi',
-    active: false
-  },
-  {
-    id: 'documents',
-    label: 'Dokumen',
-    icon: FileText,
-    path: '/admin/documents',
-    active: false
-  },
-  {
-    id: 'settings',
-    label: 'Pengaturan',
-    icon: Settings,
-    path: '/admin/settings',
-    active: false
-  }
 ];
 
 export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps) {
@@ -86,7 +55,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
                   JakSabang Admin
                 </h2>
                 <p className="text-xs text-admin-muted">
-                  Panel Administrasi
+                  Halaman Admin
                 </p>
               </div>
             </div>
@@ -143,7 +112,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
         {!isCollapsed && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-admin-muted">
-              Theme
+              Tema
             </span>
             <ThemeToggle />
           </div>
