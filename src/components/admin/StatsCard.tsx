@@ -6,10 +6,6 @@ interface StatsCardProps {
   value: string | number;
   icon: LucideIcon;
   color: 'blue' | 'emerald' | 'purple' | 'orange' | 'red';
-  trend?: {
-    value: number;
-    isPositive: boolean;
-  };
 }
 
 const colorClasses = {
@@ -40,7 +36,7 @@ const colorClasses = {
   }
 };
 
-export function StatsCard({ title, value, icon: Icon, color, trend }: StatsCardProps) {
+export function StatsCard({ title, value, icon: Icon, color }: StatsCardProps) {
   const colors = colorClasses[color];
 
   return (
