@@ -3,9 +3,8 @@ import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
-import { HeroSectionStatic } from "@/components/layouts/hero-section-static";
 import { Footer } from "@/components/layouts/footer";
-import { Star, Camera, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Camera, ChevronLeft, ChevronRight, Search, Filter } from "lucide-react";
 import data from "../../data/destinations.json";
 
 interface Destination {
@@ -22,18 +21,57 @@ const allDestinations: Destination[] = data;
 const ITEMS_PER_PAGE = 9;
 
 export function DestinationsPage() {
-
   const [currentPage, setCurrentPage] = useState(1);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [sortBy, setSortBy] = useState("name");
   const navigate = useNavigate();
 
+  // Get unique categories from destinations
+  const categories = ["Semua", ...Array.from(new Set(allDestinations.map(dest => dest.category)))];
 
+  // Filter and sort destinations
+  const filteredDestinations = allDestinations
+    .filter(destination => {
+      const matchesSearch = destination.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                           destination.description.toLowerCase().includes(searchTerm.toLowerCase());
+      const matchesCategory = selectedCategory === "Semua" || destination.category === selectedCategory;
+      return matchesSearch && matchesCategory;
+    })
+    .sort((a, b) => {
+      switch (sortBy) {
+        case "name":
+          return a.name.localeCompare(b.name);
+        case "rating":
+          return b.rating - a.rating;
+        case "category":
+          return a.category.localeCompare(b.category);
+        default:
+          return 0;
+      }
+    });
 
-  const totalPages = Math.ceil(allDestinations.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(filteredDestinations.length / ITEMS_PER_PAGE);
   const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentDestinations = allDestinations.slice(
+  const currentDestinations = filteredDestinations.slice(
     startIndex,
     startIndex + ITEMS_PER_PAGE
   );
+
+  const handleSearchChange = (value: string) => {
+    setSearchTerm(value);
+    setCurrentPage(1);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setSelectedCategory(category);
+    setCurrentPage(1);
+  };
+
+  const handleSortChange = (value: string) => {
+    setSortBy(value);
+    setCurrentPage(1);
+  };
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -55,7 +93,104 @@ export function DestinationsPage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar id="navbar" />
-      <HeroSectionStatic />
+      
+      {/* Hero Section */}
+      <section className="relative h-[60vh] min-h-[400px] overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src="/assets/destinasi/pantaiiboih.webp"
+            alt="Destinasi Sabang"
+            className="w-full h-full object-cover scale-110"
+          />
+        </div>
+
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/20"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
+
+        {/* Content */}
+        <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="max-w-4xl mx-auto"
+          >
+            <motion.h1
+              className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Destinasi <span className="text-emerald-400">Wisata</span>
+            </motion.h1>
+            <motion.p
+              className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Jelajahi keindahan alam Sabang yang memukau dengan berbagai destinasi wisata terbaik yang menawan hati.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Search and Filter Section */}
+      <section className="py-8 px-4 bg-background border-b border-border">
+        <div className="container mx-auto max-w-7xl">
+          <motion.div
+            className="flex flex-col lg:flex-row gap-4 items-center justify-between"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            {/* Search Bar */}
+            <div className="relative flex-1 max-w-md">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
+              <input
+                type="text"
+                placeholder="Cari destinasi..."
+                value={searchTerm}
+                onChange={(e) => handleSearchChange(e.target.value)}
+                className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              />
+            </div>
+
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => handleCategoryChange(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                    selectedCategory === category
+                      ? "bg-emerald-500 text-white shadow-lg scale-105"
+                      : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20"
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+
+            {/* Sort Dropdown */}
+            <div className="flex items-center gap-2">
+              <Filter className="w-5 h-5 text-muted-foreground" />
+              <select
+                value={sortBy}
+                onChange={(e) => handleSortChange(e.target.value)}
+                className="px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
+              >
+                <option value="name">Nama A-Z</option>
+                <option value="rating">Rating Tertinggi</option>
+                <option value="category">Kategori</option>
+              </select>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Destinations Grid */}
       <section className="py-16 px-4">
@@ -67,7 +202,10 @@ export function DestinationsPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              Semua Destinasi ({allDestinations.length})
+              {searchTerm || selectedCategory !== "Semua" 
+                ? `Hasil Pencarian (${filteredDestinations.length})`
+                : `Semua Destinasi (${allDestinations.length})`
+              }
             </h2>
             <div className="text-muted-foreground">
               Halaman {currentPage} dari {totalPages}
@@ -147,67 +285,88 @@ export function DestinationsPage() {
             ))}
           </div>
 
+          {filteredDestinations.length === 0 && (
+            <motion.div
+              className="text-center py-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="text-6xl mb-4">🏝️</div>
+              <h3 className="text-xl font-semibold text-foreground mb-2">
+                Destinasi tidak ditemukan
+              </h3>
+              <p className="text-muted-foreground">
+                Coba ubah kriteria pencarian atau filter kategori
+              </p>
+            </motion.div>
+          )}
+
           {/* Pagination */}
-          <motion.div
-            className="flex justify-center items-center gap-2"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handlePreviousPage}
-              disabled={currentPage === 1}
-              className="flex items-center gap-1"
+          {totalPages > 1 && (
+            <motion.div
+              className="flex justify-center items-center gap-2"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             >
-              <ChevronLeft className="w-4 h-4" />
-              Previous
-            </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handlePreviousPage}
+                disabled={currentPage === 1}
+                className="flex items-center gap-1"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                Previous
+              </Button>
 
-            <div className="flex gap-1">
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                (page) => (
-                  <Button
-                    key={page}
-                    variant={page === currentPage ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => handlePageChange(page)}
-                    className={
-                      page === currentPage
-                        ? "bg-emerald-500 hover:bg-emerald-600 text-white"
-                        : ""
-                    }
-                  >
-                    {page}
-                  </Button>
-                )
-              )}
-            </div>
+              <div className="flex gap-1">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <Button
+                      key={page}
+                      variant={page === currentPage ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => handlePageChange(page)}
+                      className={
+                        page === currentPage
+                          ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                          : ""
+                      }
+                    >
+                      {page}
+                    </Button>
+                  )
+                )}
+              </div>
 
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleNextPage}
-              disabled={currentPage === totalPages}
-              className="flex items-center gap-1"
-            >
-              Next
-              <ChevronRight className="w-4 h-4" />
-            </Button>
-          </motion.div>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={handleNextPage}
+                disabled={currentPage === totalPages}
+                className="flex items-center gap-1"
+              >
+                Next
+                <ChevronRight className="w-4 h-4" />
+              </Button>
+            </motion.div>
+          )}
 
           {/* Page Info */}
-          <motion.div
-            className="text-center mt-6 text-muted-foreground"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          >
-            Menampilkan {startIndex + 1}-
-            {Math.min(startIndex + ITEMS_PER_PAGE, allDestinations.length)} dari{" "}
-            {allDestinations.length} destinasi
-          </motion.div>
+          {filteredDestinations.length > 0 && (
+            <motion.div
+              className="text-center mt-6 text-muted-foreground"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              Menampilkan {startIndex + 1}-
+              {Math.min(startIndex + ITEMS_PER_PAGE, filteredDestinations.length)} dari{" "}
+              {filteredDestinations.length} destinasi
+            </motion.div>
+          )}
         </div>
       </section>
 
