@@ -56,7 +56,7 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
       });
       form.append('penyedia', user.id); // auto-set penyedia
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/tourguide`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/tourguides`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
         body: form

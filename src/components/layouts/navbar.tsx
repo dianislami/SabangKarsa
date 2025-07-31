@@ -427,13 +427,18 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                           </div>
                         </div>
                       </div>
-                      <button
-                        onClick={() => navigate("/pesanan")}
+                        <button
+                        onClick={() => {
+                          navigate(user.role === "seller" ? "/pemesanan" : "/pesanan");
+                          setIsProfileDropdownOpen(false);
+                        }}
                         className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
-                      >
+                        >
                         <ShoppingBag className="w-4 h-4" />
-                        <span className="font-medium">Pesanan Saya</span>
-                      </button>
+                        <span className="font-medium">
+                          {user.role === "seller" ? "Pemesanan" : "Pesanan Saya"}
+                        </span>
+                        </button>
 
                       {/* Only show verification option for buyers who haven't applied or were rejected */}
                       {user.role === "buyer" &&
