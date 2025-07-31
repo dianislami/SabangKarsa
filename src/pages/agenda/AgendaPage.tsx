@@ -90,7 +90,7 @@ export function AgendaPage() {
             {events.map((event) => (
               <motion.div
                 key={event.id}
-                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="bg-card rounded-xl shadow-lg border border-border card-border-hover overflow-hidden"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: event.id * 0.1 }}

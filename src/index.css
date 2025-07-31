@@ -1041,3 +1041,18 @@ body {
   font-style: italic;
   font-display: swap;
 }
+
+/* Card Border Styles */
+.card-border-hover {
+  transition: all 0.3s ease;
+}
+
+.card-border-hover:hover {
+  border-color: rgb(16 185 129 / 0.5);
+  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.1), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+}
+
+:root[class~="dark"] .card-border-hover:hover {
+  border-color: rgb(16 185 129 / 0.4);
+  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.2), 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 10px 10px -5px rgb(0 0 0 / 0.2);
+}
