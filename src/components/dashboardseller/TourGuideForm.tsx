@@ -76,12 +76,12 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
 
   return (
     <>
-      <div className="bg-gradient-to-r from-green-600 to-green-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Tambah Tour Guide</h2>
           <button
             onClick={() => setActiveForm()}
-            className="text-white hover:text-green-200 text-sm font-medium"
+            className="text-white hover:text-emerald-200 text-sm font-medium"
           >
             ← Kembali
           </button>
@@ -90,84 +90,84 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Nama Tour Guide *</label>
+            <label className="form-label text-sm">Nama Tour Guide *</label>
             <div className="relative">
-              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 form-icon" />
               <input
                 name="name"
                 placeholder="John Doe"
                 value={tourGuideData.name}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="form-input-with-icon"
               />
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">No. HP *</label>
+            <label className="form-label text-sm">No. HP *</label>
             <div className="relative">
-              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 form-icon" />
               <input
                 name="no_hp"
                 placeholder="08123456789"
                 value={tourGuideData.no_hp}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="form-input-with-icon"
               />
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Instagram</label>
+            <label className="form-label text-sm">Instagram</label>
             <input
               name="instagram"
               placeholder="@johndoe"
               value={tourGuideData.instagram}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="form-input"
             />
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Wilayah</label>
+            <label className="form-label text-sm">Wilayah</label>
             <div className="relative">
-              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+              <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 form-icon" />
               <input
                 name="wilayah"
                 placeholder="Sabang, Aceh"
                 value={tourGuideData.wilayah}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                className="form-input-with-icon"
               />
             </div>
           </div>
           <div className="space-y-2">
-            <label className="text-sm font-medium text-gray-700">Harga per Hari *</label>
+            <label className="form-label text-sm">Harga per Hari *</label>
             <input
               name="harga"
               placeholder="500000"
               type="number"
               value={tourGuideData.harga}
               onChange={handleChange}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              className="form-input"
             />
           </div>
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Kata-kata/Bio *</label>
+          <label className="form-label text-sm">Kata-kata/Bio *</label>
           <textarea
             name="kataKata"
             placeholder="Ceritakan pengalaman Anda sebagai tour guide..."
             rows={4}
             value={tourGuideData.kataKata}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-green-500 focus:border-green-500"
+            className="form-input"
           />
         </div>
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Foto Profil</label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-green-400 transition-colors">
+          <label className="form-label text-sm">Foto Profil</label>
+          <div className="form-upload-area hover:border-green-400 transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+              <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
             <input
               type="file"
@@ -177,14 +177,14 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
               id="guide-photo"
               accept="image/*"
             />
-            <label htmlFor="guide-photo" className="cursor-pointer text-sm text-gray-600">
+            <label htmlFor="guide-photo" className="cursor-pointer text-sm text-admin">
               {preview ? 'Ganti foto' : 'Klik untuk upload foto'}
             </label>
           </div>
         </div>
         <Button
           onClick={submitTourGuide}
-          className="w-full bg-green-600 hover:bg-green-700 text-white py-3 text-lg font-medium"
+          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium"
         >
           Tambah Tour Guide
         </Button>

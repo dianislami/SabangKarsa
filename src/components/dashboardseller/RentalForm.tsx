@@ -105,10 +105,10 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
 
   return (
     <>
-      <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{editData ? 'Edit Rental Kendaraan' : 'Tambah Rental Kendaraan'}</h2>
-          <button onClick={() => setActiveForm()} className="text-white hover:text-blue-200 text-sm font-medium">
+          <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">
             ← Kembali
           </button>
         </div>
@@ -122,20 +122,20 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
         </div>
         <TextareaWithIcon icon={AlignLeft} label="Deskripsi Kendaraan" name="deskripsi" value={rentalData.deskripsi} onChange={handleChange} placeholder="Contoh: Kondisi bagus, AC dingin, dll." rows={3} />
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Foto Kendaraan</label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors">
+          <label className="form-label text-sm">Foto Kendaraan</label>
+          <div className="form-upload-area transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+              <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
             <input type="file" name="gambar" onChange={handleChange} className="hidden" id="rental-photo" accept="image/*" />
-            <label htmlFor="rental-photo" className="cursor-pointer text-sm text-gray-600">
+            <label htmlFor="rental-photo" className="cursor-pointer text-sm text-admin">
               {preview ? 'Ganti foto' : 'Klik untuk upload foto'}
             </label>
           </div>
         </div>
-        <Button onClick={submitRental} className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 text-lg font-medium">
+        <Button onClick={submitRental} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
           {editData ? 'Update Rental' : 'Tambah Rental'}
         </Button>
       </div>
@@ -147,8 +147,8 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
 function Input({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
-      <input {...props} className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+      <label className="form-label text-sm">{label}</label>
+      <input {...props} className="form-input" />
     </div>
   );
 }
@@ -156,10 +156,10 @@ function Input({ label, ...props }: { label: string } & React.InputHTMLAttribute
 function InputWithIcon({ label, icon: Icon, ...props }: { label: string; icon: React.ElementType } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="form-label text-sm">{label}</label>
       <div className="relative">
-        <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-        <input {...props} className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 form-icon" />
+        <input {...props} className="form-input-with-icon" />
       </div>
     </div>
   );
@@ -168,10 +168,10 @@ function InputWithIcon({ label, icon: Icon, ...props }: { label: string; icon: R
 function TextareaWithIcon({ label, icon: Icon, ...props }: { label: string; icon: React.ElementType } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="form-label text-sm">{label}</label>
       <div className="relative">
-        <Icon className="absolute left-3 top-3 w-4 h-4 text-gray-400" />
-        <textarea {...props} className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500" />
+        <Icon className="absolute left-3 top-3 w-4 h-4 form-icon" />
+        <textarea {...props} className="form-input-with-icon resize-none" />
       </div>
     </div>
   );
@@ -180,8 +180,8 @@ function TextareaWithIcon({ label, icon: Icon, ...props }: { label: string; icon
 function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
-      <select {...props} className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      <label className="form-label text-sm">{label}</label>
+      <select {...props} className="form-input">
         <option value="">Pilih jenis</option>
         {options.map((opt) => <option key={opt} value={opt}>{opt.charAt(0).toUpperCase() + opt.slice(1)}</option>)}
       </select>

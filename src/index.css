@@ -280,6 +280,94 @@
   color: var(--admin-text-muted);
 }
 
+/* Form Input Styles */
+.form-input {
+  border: 1px solid rgb(110 231 183);
+  background-color: rgb(236 253 245);
+  color: var(--admin-text);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.2);
+  border-color: rgb(16 185 129);
+}
+
+.dark .form-input {
+  border-color: var(--admin-border);
+  background-color: var(--admin-card);
+  color: var(--admin-text);
+}
+
+.dark .form-input:focus {
+  box-shadow: 0 0 0 2px rgb(52 211 153 / 0.2);
+  border-color: rgb(52 211 153);
+}
+
+/* Form input with icon - extra left padding */
+.form-input-with-icon {
+  border: 1px solid rgb(110 231 183);
+  background-color: rgb(236 253 245);
+  color: var(--admin-text);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem 0.75rem 2.75rem;
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.form-input-with-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.2);
+  border-color: rgb(16 185 129);
+}
+
+.dark .form-input-with-icon {
+  border-color: var(--admin-border);
+  background-color: var(--admin-card);
+  color: var(--admin-text);
+}
+
+.dark .form-input-with-icon:focus {
+  box-shadow: 0 0 0 2px rgb(52 211 153 / 0.2);
+  border-color: rgb(52 211 153);
+}
+
+.form-label {
+  color: var(--admin-text);
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.form-icon {
+  color: rgb(52 211 153);
+}
+
+.form-upload-area {
+  border: 2px dashed rgb(110 231 183);
+  background-color: rgb(236 253 245);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.2s;
+}
+
+.form-upload-area:hover {
+  border-color: rgb(52 211 153);
+}
+
+.dark .form-upload-area {
+  border-color: var(--admin-border);
+  background-color: var(--admin-card);
+}
+
+.dark .form-upload-area:hover {
+  border-color: rgb(52 211 153);
+}
+
 /* Alert Styles */
 .alert-error {
   background: linear-gradient(135deg, rgb(254 242 242), rgb(252 231 243));

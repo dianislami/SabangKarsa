@@ -128,10 +128,10 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
 
   return (
     <>
-      <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{editData ? 'Edit Penginapan' : 'Tambah Penginapan'}</h2>
-          <button onClick={() => setActiveForm()} className="text-white hover:text-purple-200 text-sm font-medium">← Kembali</button>
+          <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">← Kembali</button>
         </div>
       </div>
       <div className="p-6 space-y-6">
@@ -154,20 +154,20 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
         <Textarea label="Kebijakan" name="kebijakan" value={penginapanData.kebijakan} onChange={handleChange} placeholder="Aturan tamu, dll..." rows={3} />
         <Input label="Link Google Maps" name="lokasi_maps" value={penginapanData.lokasi_maps} onChange={handleChange} placeholder="https://maps.google.com/..." />
         <div className="space-y-2">
-          <label className="text-sm font-medium text-gray-700">Foto Penginapan</label>
-          <div className="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-purple-400 transition-colors">
+          <label className="form-label text-sm">Foto Penginapan</label>
+          <div className="form-upload-area transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
-              <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
+              <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
             <input type="file" name="gambar" onChange={handleChange} className="hidden" id="penginapan-image" accept="image/*" />
-            <label htmlFor="penginapan-image" className="cursor-pointer text-sm text-gray-600">
+            <label htmlFor="penginapan-image" className="cursor-pointer text-sm text-admin">
               {preview ? 'Ganti foto' : 'Klik untuk upload foto'}
             </label>
           </div>
         </div>
-        <Button onClick={submitPenginapan} className="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 text-lg font-medium">
+        <Button onClick={submitPenginapan} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
           {editData ? 'Update Penginapan' : 'Tambah Penginapan'}
         </Button>
       </div>
@@ -180,8 +180,8 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
 function Input({ label, ...props }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
-      <input {...props} className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500" />
+      <label className="form-label text-sm">{label}</label>
+      <input {...props} className="form-input" />
     </div>
   );
 }
@@ -189,10 +189,10 @@ function Input({ label, ...props }: { label: string } & React.InputHTMLAttribute
 function InputWithIcon({ label, icon: Icon, ...props }: { label: string; icon: React.ElementType } & React.InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
+      <label className="form-label text-sm">{label}</label>
       <div className="relative">
-        <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-        <input {...props} className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500" />
+        <Icon className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 form-icon" />
+        <input {...props} className="form-input-with-icon" />
       </div>
     </div>
   );
@@ -201,8 +201,8 @@ function InputWithIcon({ label, icon: Icon, ...props }: { label: string; icon: R
 function Textarea({ label, ...props }: { label: string } & React.TextareaHTMLAttributes<HTMLTextAreaElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
-      <textarea {...props} className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500" />
+      <label className="form-label text-sm">{label}</label>
+      <textarea {...props} className="form-input resize-none" />
     </div>
   );
 }
@@ -210,8 +210,8 @@ function Textarea({ label, ...props }: { label: string } & React.TextareaHTMLAtt
 function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <div className="space-y-2">
-      <label className="text-sm font-medium text-gray-700">{label}</label>
-      <select {...props} className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-purple-500 focus:border-purple-500">
+      <label className="form-label text-sm">{label}</label>
+      <select {...props} className="form-input">
         <option value="">Pilih tipe penginapan</option>
         {options.map((opt) => <option key={opt} value={opt.toLowerCase()}>{opt}</option>)}
       </select>
