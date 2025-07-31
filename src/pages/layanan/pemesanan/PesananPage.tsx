@@ -1,4 +1,10 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { ArrowLeft, Car, Home, User, Calendar, MapPin, CreditCard, Package } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { ThemeToggle } from '@/components/theme-toogle';
+import { Footer } from '@/components/layouts/footer';
+import { useNavigate } from 'react-router-dom';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -48,6 +54,7 @@ interface BookingTourGuide {
 }
 
 export default function PesananPage() {
+  const navigate = useNavigate();
   const [rentalBookings, setRentalBookings] = useState<BookingRental[]>([]);
   const [penginapanBookings, setPenginapanBookings] = useState<BookingPenginapan[]>([]);
   const [tourGuideBookings, setTourGuideBookings] = useState<BookingTourGuide[]>([]);
@@ -100,94 +107,317 @@ export default function PesananPage() {
   const renderItemName = (item: string | { nama: string }) =>
     typeof item === 'string' ? item : item.nama;
 
+  const getStatusColor = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case 'paid':
+      case 'settlement':
+      case 'capture':
+        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
+      case 'pending':
+        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
+      case 'expire':
+      case 'cancel':
+      case 'deny':
+        return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400';
+      default:
+        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
+    }
+  };
+
+  const getStatusText = (status: string) => {
+    switch (status?.toLowerCase()) {
+      case 'paid':
+      case 'settlement':
+      case 'capture':
+        return 'Berhasil';
+      case 'pending':
+        return 'Menunggu Pembayaran';
+      case 'expire':
+        return 'Kedaluwarsa';
+      case 'cancel':
+        return 'Dibatalkan';
+      case 'deny':
+        return 'Ditolak';
+      default:
+        return status || 'Tidak Diketahui';
+    }
+  };
+
   return (
-    <div className="p-6 space-y-6">
-      <h1 className="text-2xl font-bold">Pesanan Saya</h1>
-
-      {loading && <p>Loading...</p>}
-      {error && <p className="text-red-600">{error}</p>}
-
-      {!loading && !error && (
-        <>
-          <div className="flex gap-4">
-            <button
-              onClick={() => setActiveTab('rental')}
-              className={`px-4 py-2 rounded ${
-                activeTab === 'rental' ? 'bg-blue-600 text-white' : 'bg-gray-200'
-              }`}
-            >
-              Rental
-            </button>
-            <button
-              onClick={() => setActiveTab('penginapan')}
-              className={`px-4 py-2 rounded ${
-                activeTab === 'penginapan' ? 'bg-purple-600 text-white' : 'bg-gray-200'
-              }`}
-            >
-              Penginapan
-            </button>
-            <button
-              onClick={() => setActiveTab('tourguide')}
-              className={`px-4 py-2 rounded ${
-                activeTab === 'tourguide' ? 'bg-emerald-600 text-white' : 'bg-gray-200'
-              }`}
-            >
-              Tour Guide
-            </button>
+    <div className="min-h-screen bg-background">
+      {/* Header */}
+      <div className="bg-card border-b border-border">
+        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
+              <ArrowLeft className="w-4 h-4" /> Kembali
+            </Button>
+            <div>
+              <h1 className="text-2xl font-bold text-foreground">Pesanan Saya</h1>
+              <p className="text-muted-foreground">Kelola dan pantau semua pesanan Anda</p>
+            </div>
           </div>
+          <ThemeToggle />
+        </div>
+      </div>
 
-          {activeTab === 'rental' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {rentalBookings.length === 0 && <p>Tidak ada pesanan rental.</p>}
-              {rentalBookings.map((booking) => (
-                <div key={booking._id} className="p-4 border rounded shadow">
-                  <p>Rental: {renderItemName(booking.rental)}</p>
-                  <p>
-                    Tanggal: {new Date(booking.tanggalMulai).toLocaleDateString()} -{' '}
-                    {new Date(booking.tanggalSelesai).toLocaleDateString()}
-                  </p>
-                  <p>Total Harga: Rp {booking.totalHarga.toLocaleString()}</p>
-                  <p>Status: <span className="font-medium">{booking.status_pembayaran}</span></p>
-                </div>
-              ))}
+      <div className="max-w-6xl mx-auto px-4 py-8">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="space-y-8">
+          {loading ? (
+            <div className="text-center py-12">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
+              <p className="text-muted-foreground">Memuat pesanan...</p>
             </div>
-          )}
+          ) : error ? (
+            <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
+              <p className="text-red-600 dark:text-red-400">{error}</p>
+            </div>
+          ) : (
+            <>
+              {/* Tab Navigation */}
+              <div className="bg-card rounded-lg border border-border p-6">
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
+                    <Package className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  </div>
+                  <div>
+                    <h2 className="text-lg font-semibold text-foreground">Kategori Pesanan</h2>
+                    <p className="text-sm text-muted-foreground">Pilih kategori untuk melihat pesanan</p>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap gap-3">
+                  <button
+                    onClick={() => setActiveTab('rental')}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
+                      activeTab === 'rental'
+                        ? 'bg-emerald-500 text-white shadow-lg'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                    }`}
+                  >
+                    <Car className="w-4 h-4" />
+                    Rental Kendaraan
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('penginapan')}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
+                      activeTab === 'penginapan'
+                        ? 'bg-emerald-600 text-white shadow-lg'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                    }`}
+                  >
+                    <Home className="w-4 h-4" />
+                    Penginapan
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('tourguide')}
+                    className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
+                      activeTab === 'tourguide'
+                        ? 'bg-emerald-700 text-white shadow-lg'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                    }`}
+                  >
+                    <User className="w-4 h-4" />
+                    Tour Guide
+                  </button>
+                </div>
+              </div>
 
-          {activeTab === 'penginapan' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {penginapanBookings.length === 0 && <p>Tidak ada pesanan penginapan.</p>}
-              {penginapanBookings.map((booking) => (
-                <div key={booking._id} className="p-4 border rounded shadow">
-                  <p>Penginapan: {renderItemName(booking.penginapan)}</p>
-                  <p>Check-in: {new Date(booking.check_in_date).toLocaleDateString()}</p>
-                  <p>Check-out: {new Date(booking.check_out_date).toLocaleDateString()}</p>
-                  <p>Jumlah Kamar: {booking.jumlah_kamar}</p>
-                  <p>Total Harga: Rp {booking.total_harga.toLocaleString()}</p>
-                  <p>Status: <span className="font-medium">{booking.status_pembayaran}</span></p>
+              {/* Rental Bookings */}
+              {activeTab === 'rental' && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <Car className="w-5 h-5 text-emerald-500" />
+                    Pesanan Rental Kendaraan
+                  </h3>
+                  {rentalBookings.length === 0 ? (
+                    <div className="text-center py-12 bg-card rounded-lg border border-border">
+                      <Car className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                      <p className="text-muted-foreground">Belum ada pesanan rental kendaraan</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {rentalBookings.map((booking) => (
+                        <motion.div
+                          key={booking._id}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow"
+                        >
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
+                                <Car className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-foreground">{renderItemName(booking.rental)}</h4>
+                                <p className="text-sm text-muted-foreground">Rental Kendaraan</p>
+                              </div>
+                            </div>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
+                              {getStatusText(booking.status_pembayaran)}
+                            </span>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-sm">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Periode:</span>
+                              <span className="text-foreground">
+                                {new Date(booking.tanggalMulai).toLocaleDateString()} - {new Date(booking.tanggalSelesai).toLocaleDateString()}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CreditCard className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Total:</span>
+                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                                Rp {booking.totalHarga.toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
-          )}
+              )}
 
-          {activeTab === 'tourguide' && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {tourGuideBookings.length === 0 && <p>Tidak ada pesanan tour guide.</p>}
-              {tourGuideBookings.map((booking) => (
-                <div key={booking._id} className="p-4 border rounded shadow">
-                  <p>Tour Guide: {renderItemName(booking.tourGuide)}</p>
-                  <p>
-                    Tanggal: {new Date(booking.tanggalMulai).toLocaleDateString()} -{' '}
-                    {new Date(booking.tanggalSelesai).toLocaleDateString()}
-                  </p>
-                  <p>Lokasi Jemput: {booking.lokasiJemput}</p>
-                  <p>Total Harga: Rp {booking.totalHarga.toLocaleString()}</p>
-                  <p>Status: <span className="font-medium">{booking.status_pembayaran}</span></p>
+              {/* Penginapan Bookings */}
+              {activeTab === 'penginapan' && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <Home className="w-5 h-5 text-emerald-600" />
+                    Pesanan Penginapan
+                  </h3>
+                  {penginapanBookings.length === 0 ? (
+                    <div className="text-center py-12 bg-card rounded-lg border border-border">
+                      <Home className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                      <p className="text-muted-foreground">Belum ada pesanan penginapan</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {penginapanBookings.map((booking) => (
+                        <motion.div
+                          key={booking._id}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow"
+                        >
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
+                                <Home className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-foreground">{renderItemName(booking.penginapan)}</h4>
+                                <p className="text-sm text-muted-foreground">Penginapan</p>
+                              </div>
+                            </div>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
+                              {getStatusText(booking.status_pembayaran)}
+                            </span>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-sm">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Check-in:</span>
+                              <span className="text-foreground">{new Date(booking.check_in_date).toLocaleDateString()}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Check-out:</span>
+                              <span className="text-foreground">{new Date(booking.check_out_date).toLocaleDateString()}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <Home className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Kamar:</span>
+                              <span className="text-foreground">{booking.jumlah_kamar} kamar</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CreditCard className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Total:</span>
+                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                                Rp {booking.total_harga.toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              ))}
-            </div>
+              )}
+
+              {/* Tour Guide Bookings */}
+              {activeTab === 'tourguide' && (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
+                    <User className="w-5 h-5 text-emerald-500" />
+                    Pesanan Tour Guide
+                  </h3>
+                  {tourGuideBookings.length === 0 ? (
+                    <div className="text-center py-12 bg-card rounded-lg border border-border">
+                      <User className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
+                      <p className="text-muted-foreground">Belum ada pesanan tour guide</p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                      {tourGuideBookings.map((booking) => (
+                        <motion.div
+                          key={booking._id}
+                          initial={{ opacity: 0, scale: 0.95 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          className="bg-card rounded-lg border border-border p-6 hover:shadow-lg transition-shadow"
+                        >
+                          <div className="flex items-start justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
+                                <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-foreground">{renderItemName(booking.tourGuide)}</h4>
+                                <p className="text-sm text-muted-foreground">Tour Guide</p>
+                              </div>
+                            </div>
+                            <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
+                              {getStatusText(booking.status_pembayaran)}
+                            </span>
+                          </div>
+                          
+                          <div className="space-y-3">
+                            <div className="flex items-center gap-2 text-sm">
+                              <Calendar className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Periode:</span>
+                              <span className="text-foreground">
+                                {new Date(booking.tanggalMulai).toLocaleDateString()} - {new Date(booking.tanggalSelesai).toLocaleDateString()}
+                              </span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <MapPin className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Lokasi Jemput:</span>
+                              <span className="text-foreground">{booking.lokasiJemput}</span>
+                            </div>
+                            <div className="flex items-center gap-2 text-sm">
+                              <CreditCard className="w-4 h-4 text-muted-foreground" />
+                              <span className="text-muted-foreground">Total:</span>
+                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                                Rp {booking.totalHarga.toLocaleString()}
+                              </span>
+                            </div>
+                          </div>
+                        </motion.div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              )}
+            </>
           )}
-        </>
-      )}
+        </motion.div>
+      </div>
+
+      <Footer />
     </div>
   );
 }
