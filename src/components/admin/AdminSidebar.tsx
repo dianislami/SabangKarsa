@@ -5,8 +5,7 @@ import {
   LayoutDashboard,
   LogOut,
   ChevronLeft,
-  ChevronRight,
-  Shield
+  ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
@@ -43,19 +42,23 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
       className="h-screen bg-admin-card border-r border-admin flex flex-col"
     >
       {/* Header */}
-      <div className="p-4 border-b border-admin">
+      <div className="p-3 border-b border-admin">
         <div className="flex items-center justify-between">
           {!isCollapsed && (
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-lg flex items-center justify-center">
-                <Shield className="w-6 h-6 text-white" />
+              <div className="w-13 h-13">
+                <img 
+                  src="/assets/JakSabangFIX.svg" 
+                  alt="JakSabang Logo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div>
                 <h2 className="text-lg font-bold text-admin">
                   JakSabang Admin
                 </h2>
                 <p className="text-xs text-admin-muted">
-                  Halaman Admin
+                  Panel Administrasi
                 </p>
               </div>
             </div>
@@ -76,7 +79,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 p-4">
+      <nav className="flex-1 p-3">
         <div className="space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
@@ -108,7 +111,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
       </nav>
 
       {/* Footer */}
-      <div className="p-4 border-t border-admin space-y-3">
+      <div className="p-3 border-t border-admin space-y-3">
         {!isCollapsed && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-admin-muted">

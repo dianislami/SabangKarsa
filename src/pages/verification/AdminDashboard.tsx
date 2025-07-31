@@ -324,7 +324,7 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Detail Verifikasi */}
       {selectedVerifikasi && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
           <motion.div
@@ -446,9 +446,8 @@ export default function AdminDashboard() {
                     Setujui Verifikasi
                   </Button>
                   <Button 
-                    variant="destructive" 
                     onClick={() => selectedVerifikasi && updateVerifikasiStatus(selectedVerifikasi._id, 'rejected')}
-                    className="flex-1"
+                    className="flex-1 bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700"
                   >
                     <X className="w-4 h-4 mr-2" />
                     Tolak Verifikasi
