@@ -24,7 +24,7 @@ interface PenginapanData {
 interface PenginapanFormProps {
   token: string | null;
   user: { id: string; name: string; email: string; no_hp: string; alamat: string; role: string; };
-  setActiveForm: React.Dispatch<React.SetStateAction<'rental' | 'tourguide' | 'penginapan' | null>>;
+  setActiveForm: () => void;
   editData?: any;
 }
 
@@ -113,7 +113,7 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
       console.log('Saved:', data);
 
       // Reset & kembali
-      setActiveForm(null);
+      setActiveForm();
       setPenginapanData({
         nama: '', lokasi: '', deskripsi: '', tipePeningapan: '', hargaPerMalam: '',
         jumlahKamarTersedia: '', namaPenyedia: user.name || '', gambar: null,
@@ -131,7 +131,7 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
       <div className="bg-gradient-to-r from-purple-600 to-purple-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{editData ? 'Edit Penginapan' : 'Tambah Penginapan'}</h2>
-          <button onClick={() => setActiveForm(null)} className="text-white hover:text-purple-200 text-sm font-medium">← Kembali</button>
+          <button onClick={() => setActiveForm()} className="text-white hover:text-purple-200 text-sm font-medium">← Kembali</button>
         </div>
       </div>
       <div className="p-6 space-y-6">

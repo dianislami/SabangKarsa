@@ -22,7 +22,7 @@ interface TourGuideFormProps {
     alamat: string;
     role: string;
   };
-  setActiveForm: React.Dispatch<React.SetStateAction<'rental' | 'tourguide' | 'penginapan' | null>>;
+  setActiveForm: () => void;
 }
 
 export default function TourGuideForm({ token, user, setActiveForm }: TourGuideFormProps) {
@@ -64,7 +64,7 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
       const data = await res.json();
       console.log('Tour guide added:', data);
 
-      setActiveForm(null);
+      setActiveForm();
       setTourGuideData({
         name: '', no_hp: '', instagram: '', kataKata: '', wilayah: '', harga: '', foto: null
       });
@@ -80,7 +80,7 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">Tambah Tour Guide</h2>
           <button
-            onClick={() => setActiveForm(null)}
+            onClick={() => setActiveForm()}
             className="text-white hover:text-green-200 text-sm font-medium"
           >
             ← Kembali

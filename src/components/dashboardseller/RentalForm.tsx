@@ -21,7 +21,7 @@ interface RentalFormProps {
     alamat: string;
     role: string;
   };
-  setActiveForm: React.Dispatch<React.SetStateAction<'rental' | 'tourguide' | 'penginapan' | null>>;
+  setActiveForm: () => void;
   editData?: any;
 }
 
@@ -95,7 +95,7 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
       console.log('Saved:', data);
 
       // Reset dan kembali
-      setActiveForm(null);
+      setActiveForm();
       setRentalData({ name: '', type: '', harga: '', deskripsi: '', gambar: null, no_telepon: user.no_hp || '' });
       setPreview(null);
     } catch (e) {
@@ -108,7 +108,7 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
       <div className="bg-gradient-to-r from-blue-600 to-blue-700 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{editData ? 'Edit Rental Kendaraan' : 'Tambah Rental Kendaraan'}</h2>
-          <button onClick={() => setActiveForm(null)} className="text-white hover:text-blue-200 text-sm font-medium">
+          <button onClick={() => setActiveForm()} className="text-white hover:text-blue-200 text-sm font-medium">
             ← Kembali
           </button>
         </div>
