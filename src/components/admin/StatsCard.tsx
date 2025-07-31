@@ -58,14 +58,6 @@ export function StatsCard({ title, value, icon: Icon, color, trend }: StatsCardP
           <p className={`text-3xl font-bold ${colors.value}`}>
             {value}
           </p>
-          {trend && (
-            <div className="flex items-center mt-2">
-              <span className={`text-sm ${trend.isPositive ? 'text-emerald-600' : 'text-red-600'}`}>
-                {trend.isPositive ? '+' : ''}{trend.value}%
-              </span>
-              <span className="text-xs text-admin-muted ml-1">dari bulan lalu</span>
-            </div>
-          )}
         </div>
         <div className={`p-3 rounded-lg ${colors.bg}`}>
           <Icon className={`w-6 h-6 ${colors.icon}`} />
