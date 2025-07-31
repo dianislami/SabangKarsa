@@ -161,7 +161,6 @@ export default function AdminDashboard() {
                 value={users.length}
                 icon={Users}
                 color="blue"
-                trend={{ value: 12, isPositive: true }}
               />
               <StatsCard
                 title="Verifikasi Pending"
@@ -174,7 +173,6 @@ export default function AdminDashboard() {
                 value={users.filter(u => u.role === 'seller').length}
                 icon={UserCheck}
                 color="emerald"
-                trend={{ value: 8, isPositive: true }}
               />
               <StatsCard
                 title="Admin"
