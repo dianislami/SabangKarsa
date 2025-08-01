@@ -97,12 +97,7 @@ export default function PemesananPage() {
     fetchData();
   }, [token]);
 
-  const renderUserInfo = (user: User | string) => {
-    if (typeof user === 'string') {
-      return <p className="font-semibold">User ID: {user}</p>;
-    }
-    return <p className="font-semibold">User: {user.name} ({user.email})</p>;
-  };
+ 
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {
