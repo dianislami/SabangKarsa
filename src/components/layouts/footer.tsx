@@ -12,9 +12,12 @@ import { useState, useEffect, useRef } from "react";
 
 export function Footer() {
   const { scrollYProgress } = useScroll();
-  const parallaxY = useTransform(scrollYProgress, [0.8, 1], [-600, 0]);
+  const [parallaxScrollRange, setParallaxScrollRange] = useState([0, 1]);
+  const [parallaxTransformRange, setParallaxTransformRange] = useState([0, 0]);
+  const parallaxY = useTransform(scrollYProgress, parallaxScrollRange, parallaxTransformRange);
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const parallaxContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -34,6 +37,30 @@ export function Footer() {
 
     return () => window.removeEventListener("scroll", checkInViewState);
   }, [containerRef, containerInView]);
+
+  useEffect(() => {
+    const getCurrentRange = () => {
+      const parallaxContainerElement = parallaxContainerRef.current;
+
+      if (parallaxContainerElement) {
+        const parallaxContainerRect = parallaxContainerElement.getBoundingClientRect();
+        const currentRangeStart = ((parallaxContainerRect.top + window.scrollY) / document.body.clientHeight);
+
+        setParallaxScrollRange([parseFloat(currentRangeStart.toFixed(2)), 1]);
+        setParallaxTransformRange([-parallaxContainerRect.height, 0]);
+      }
+    }
+      
+    getCurrentRange();
+
+    window.addEventListener("scroll", getCurrentRange);
+    window.addEventListener("resize", getCurrentRange);
+
+    return () => {
+      window.removeEventListener("scroll", getCurrentRange);
+      window.removeEventListener("resize", getCurrentRange);
+    }
+  }, [containerRef, containerInView, parallaxContainerRef])
 
   return (
     <>
@@ -197,7 +224,7 @@ export function Footer() {
             </div>
 
             {/* Parallax JAKSABANG - Behind Footer Effect */}
-            <div className="relative overflow-hidden py-16 border-t border-border">
+            <div ref={parallaxContainerRef} className="relative overflow-hidden py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   className="text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
