@@ -21,6 +21,7 @@ export default function PenginapanDetailPage() {
       try {
         const res = await fetch(`${API_URL}/penginapan/${id}`);
         const data = await res.json();
+
         setPenginapan(data);
       } catch (error) {
         console.error("Failed to fetch detail penginapan", error);
@@ -34,30 +35,32 @@ export default function PenginapanDetailPage() {
     if (localStorage.getItem(localStorageKey)) {
       setHasRated(true);
     }
-  }, [id]);
+  }, [id, localStorageKey]);
 
   const handleSubmitRating = async () => {
     if (!userRating) return;
 
     try {
-    // Get the token from localStorage or wherever you store it
-    const token = localStorage.getItem('token');
-    
-    await fetch(`${API_URL}/penginapan/${id}`, {
-      method: "PUT",
-      headers: { 
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${token}`
-      },
-body: JSON.stringify({ add_review: { rating: userRating } })
-    });
+      // Get the token from localStorage or wherever you store it
+      const token = localStorage.getItem('token');
+      
+      await fetch(`${API_URL}/penginapan/${id}`, {
+        method: "PUT",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify({ add_review: { rating: userRating } })
+      });
       localStorage.setItem(localStorageKey, "true"); // supaya hanya sekali
+
       setHasRated(true);
       alert("Terima kasih atas rating Anda!");
       
       // refresh data
       const res = await fetch(`${API_URL}/penginapan/${id}`);
       const data = await res.json();
+
       setPenginapan(data);
     } catch (error) {
       console.error("Failed to submit rating", error);
@@ -275,7 +278,7 @@ body: JSON.stringify({ add_review: { rating: userRating } })
           <h2 className="text-2xl font-semibold mb-4">Lokasi</h2>
           {penginapan.lokasi_maps && penginapan.lokasi_maps !== "not yet" ? (
             <iframe
-              src={penginapan.lokasi_maps}
+              src={`https://www.google.com/maps?q=${penginapan.nama}&output=embed`}
               className="w-full h-64 rounded-xl border border-border"
               allowFullScreen
               loading="lazy"
