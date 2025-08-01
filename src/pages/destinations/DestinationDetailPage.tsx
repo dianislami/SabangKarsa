@@ -318,17 +318,15 @@ export function DestinationDetailPage() {
                     kembali ke daftar destinasi
                   </Button>
 
-                  <div className="mt-4 pt-4 border-t border-border">
+                  <div className="mt-4 pt-4 border-t border-border w-full overflow-hidden ">
                     <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d7279.303944405486!2d95.37151319006357!3d5.845942307037927!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1sbenteng%20anoi%20itam!5e0!3m2!1sid!2sid!4v1752837935266!5m2!1sid!2sid" 
-          width="400" 
-          height="300" 
-          style={{ border: 0 }} 
-          allowFullScreen={true} 
-          loading="lazy" 
-          referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
-                  
+                      src={`https://www.google.com/maps?q=${destination.name}&output=embed`}
+                      style={{ border: 0 }} 
+                      allowFullScreen={true} 
+                      loading="lazy" 
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="w-full h-[300px] rounded-xl"
+                    ></iframe>
                   </div>
                 </div>
               </motion.div>
