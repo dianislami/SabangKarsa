@@ -253,7 +253,7 @@ export function AgendaDetail() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Tanggal & Waktu:</span>
-                    <span className="font-medium">{event.date} | {event.time}</span>
+                    <span className="font-medium text-right">{event.date} | {event.time}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">Lokasi:</span>
@@ -267,7 +267,7 @@ export function AgendaDetail() {
                     <span className="text-muted-foreground">Kontak:</span>
                     <a
                       href={`mailto:${event.contact}`}
-                      className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
+                      className="text-emerald-600 text-wrap truncate dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
                     >
                       {event.contact}
                     </a>
