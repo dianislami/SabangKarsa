@@ -147,7 +147,6 @@ export function PenginapanPage() {
             <div className="text-center text-muted-foreground">Memuat data penginapan...</div>
           ) : filteredPenginapan.length === 0 ? (
             <motion.div className="text-center py-12" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
-              <div className="text-6xl mb-4">🏨</div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Penginapan tidak ditemukan</h3>
               <p className="text-muted-foreground">Coba ubah kriteria pencarian atau filter kategori</p>
             </motion.div>

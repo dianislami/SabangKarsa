@@ -120,7 +120,6 @@ export default function TourGuidePage() {
             <div className="text-center py-12 text-muted-foreground">Memuat data...</div>
           ) : filteredTourGuides.length === 0 ? (
             <div className="text-center py-12">
-              <div className="text-6xl mb-4">🧑‍🦯</div>
               <h3 className="text-xl font-semibold text-foreground mb-2">Pemandu wisata tidak ditemukan</h3>
               <p className="text-muted-foreground">Coba ubah kata kunci atau filter</p>
             </div>
