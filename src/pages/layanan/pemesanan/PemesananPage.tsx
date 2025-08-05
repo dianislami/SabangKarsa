@@ -104,15 +104,15 @@ export default function PemesananPage() {
       case 'paid':
       case 'settlement':
       case 'capture':
-        return 'bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400';
+        return 'bg-emerald-500 text-white shadow-md';
       case 'pending':
-        return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/20 dark:text-yellow-400';
+        return 'bg-amber-500 text-white shadow-md';
       case 'expire':
       case 'cancel':
       case 'deny':
-        return 'bg-red-100 text-red-800 dark:bg-red-900/20 dark:text-red-400';
+        return 'bg-red-500 text-white shadow-md';
       default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300';
+        return 'bg-gray-500 text-white shadow-md';
     }
   };
 
@@ -169,8 +169,8 @@ export default function PemesananPage() {
               {/* Tab Navigation */}
               <div className="bg-card rounded-lg border border-border p-6">
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                    <Package className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <div className="p-3 bg-emerald-500 rounded-lg shadow-md">
+                    <Package className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold text-foreground">Kategori Pemesanan</h2>
@@ -194,7 +194,7 @@ export default function PemesananPage() {
                     onClick={() => setActiveTab('penginapan')}
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
                       activeTab === 'penginapan'
-                        ? 'bg-emerald-600 text-white shadow-lg'
+                        ? 'bg-emerald-500 text-white shadow-lg'
                         : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
                     }`}
                   >
@@ -205,7 +205,7 @@ export default function PemesananPage() {
                     onClick={() => setActiveTab('tourguide')}
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
                       activeTab === 'tourguide'
-                        ? 'bg-emerald-700 text-white shadow-lg'
+                        ? 'bg-emerald-500 text-white shadow-lg'
                         : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
                     }`}
                   >
@@ -238,8 +238,8 @@ export default function PemesananPage() {
                         >
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-3">
-                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-                                <Car className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              <div className="p-3 bg-emerald-500 rounded-lg shadow-md">
+                                <Car className="w-5 h-5 text-white" />
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">Rental Kendaraan</h4>
@@ -304,8 +304,8 @@ export default function PemesananPage() {
                         >
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-3">
-                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-                                <Home className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              <div className="p-3 bg-emerald-500 rounded-lg shadow-md">
+                                <Home className="w-5 h-5 text-white" />
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">Penginapan</h4>
@@ -378,8 +378,8 @@ export default function PemesananPage() {
                         >
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex items-center gap-3">
-                              <div className="p-2 bg-emerald-100 dark:bg-emerald-900/20 rounded-lg">
-                                <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                              <div className="p-3 bg-emerald-500 rounded-lg shadow-md">
+                                <User className="w-5 h-5 text-white" />
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">Tour Guide</h4>
