@@ -3,8 +3,16 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapIcon } from "lucide-react";
+import type { UserData } from '@/types/userData';
 
 export function RegisterPage() {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (userData.id) {
+    navigate(-1);
+  }
+  
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -20,7 +28,6 @@ export function RegisterPage() {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const navigate = useNavigate();
   const API_URL = import.meta.env.VITE_API_URL;
 
   // Mouse tracking for parallax effect

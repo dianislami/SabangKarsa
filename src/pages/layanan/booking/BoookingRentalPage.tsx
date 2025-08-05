@@ -5,11 +5,18 @@ import { ArrowLeft, Calendar, Car, CreditCard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
+import type { UserData } from '@/types/userData';
 
 export default function BookingRentalPage() {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
+
   const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
   const [rental, setRental] = useState<any>(null);
   const [tanggalMulai, setTanggalMulai] = useState('');
@@ -31,7 +38,7 @@ export default function BookingRentalPage() {
       }
     };
     if (id) fetchRental();
-  }, [id]);
+  }, [id, API_URL]);
 
   // Hitung total harga
   useEffect(() => {

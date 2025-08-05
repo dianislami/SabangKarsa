@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,6 +46,12 @@ interface BookingTourGuide {
 
 export default function PemesananPage() {
   const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+
+  if (!userData.id || userData.role !== "seller") {
+    navigate(-1);
+  }
+
   const [rentalBookings, setRentalBookings] = useState<BookingRental[]>([]);
   const [penginapanBookings, setPenginapanBookings] = useState<BookingPenginapan[]>([]);
   const [tourGuideBookings, setTourGuideBookings] = useState<BookingTourGuide[]>([]);
@@ -79,10 +86,6 @@ export default function PemesananPage() {
             .then((data) => (Array.isArray(data) ? data : [])),
         ]);
 
-        console.log('[Rental]', rentalRes);
-        console.log('[Penginapan]', penginapanRes);
-        console.log('[Tour guide]', tourguideRes);
-
         setRentalBookings(rentalRes);
         setPenginapanBookings(penginapanRes);
         setTourGuideBookings(tourguideRes);
@@ -96,8 +99,6 @@ export default function PemesananPage() {
 
     fetchData();
   }, [token]);
-
- 
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {

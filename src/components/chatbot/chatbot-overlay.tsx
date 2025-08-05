@@ -56,15 +56,6 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                 const buttonStyle = window.getComputedStyle(buttonEl as Element);
                 const buttonPT = Number(buttonStyle.getPropertyValue("padding-top").replace("px", "")) || 16;
                 const height = Math.max(400, windowHeight - navbarHeight - buttonRect.height - buttonPosY - (buttonPT * 2) - 32); // Added margin and minimum height
-        
-                console.log('Overlay height calculation:', { 
-                    windowHeight, 
-                    navbarHeight, 
-                    buttonHeight: buttonRect.height, 
-                    buttonPosY, 
-                    buttonPT, 
-                    calculatedHeight: height 
-                });
                 
                 setOverlayHeight(height);
             } else {

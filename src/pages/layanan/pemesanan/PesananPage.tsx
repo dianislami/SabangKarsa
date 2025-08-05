@@ -5,28 +5,20 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 // Interfaces
-interface Rental {
+interface ResItem {
   _id: string;
   nama: string;
-}
-
-interface Penginapan {
-  _id: string;
-  nama: string;
-}
-
-interface TourGuide {
-  _id: string;
-  nama: string;
+  name: string;
 }
 
 interface BookingRental {
   _id: string;
-  rental: string | Rental;
+  rental: string | ResItem;
   tanggalMulai: string;
   tanggalSelesai: string;
   totalHarga: number;
@@ -35,7 +27,7 @@ interface BookingRental {
 
 interface BookingPenginapan {
   _id: string;
-  penginapan: string | Penginapan;
+  penginapan: string | ResItem;
   check_in_date: string;
   check_out_date: string;
   jumlah_kamar: number;
@@ -45,7 +37,7 @@ interface BookingPenginapan {
 
 interface BookingTourGuide {
   _id: string;
-  tourGuide: string | TourGuide;
+  tourGuide: string | ResItem;
   tanggalMulai: string;
   tanggalSelesai: string;
   lokasiJemput: string;
@@ -55,6 +47,12 @@ interface BookingTourGuide {
 
 export default function PesananPage() {
   const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
+
   const [rentalBookings, setRentalBookings] = useState<BookingRental[]>([]);
   const [penginapanBookings, setPenginapanBookings] = useState<BookingPenginapan[]>([]);
   const [tourGuideBookings, setTourGuideBookings] = useState<BookingTourGuide[]>([]);
@@ -92,6 +90,10 @@ export default function PesananPage() {
         setRentalBookings(Array.isArray(rentalRes) ? rentalRes : []);
         setPenginapanBookings(Array.isArray(penginapanRes) ? penginapanRes : []);
         setTourGuideBookings(Array.isArray(tourguideRes) ? tourguideRes : []);
+
+        console.log(rentalRes);
+        console.log(penginapanRes);
+        console.log(tourguideRes);
       } catch (err) {
         console.error('Failed to fetch bookings', err);
         setError('Gagal memuat data. Silakan coba lagi.');
@@ -104,8 +106,8 @@ export default function PesananPage() {
   }, [token]);
 
   // helper function
-  const renderItemName = (item: string | { nama: string }) =>
-    typeof item === 'string' ? item : item.nama;
+  const renderItemName = (item: string | { nama: string; name: string }) =>
+    typeof item === 'string' ? item : item.nama || item.name;
 
   const getStatusColor = (status: string) => {
     switch (status?.toLowerCase()) {

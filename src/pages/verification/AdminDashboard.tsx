@@ -6,6 +6,8 @@ import { AdminHeader } from '@/components/admin/AdminHeader';
 import { StatsCard } from '@/components/admin/StatsCard';
 import { DataTable } from '@/components/admin/DataTable';
 import { AlertCircle, CheckCircle, Eye, X, Users, Shield, FileText, UserCheck } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -29,6 +31,13 @@ type User = {
 };
 
 export default function AdminDashboard() {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "admin") {
+    navigate(-1);
+  }
+
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(false);

@@ -9,10 +9,19 @@ import RentalForm from '../../../components/dashboardseller/RentalForm';
 import TourGuideForm from '../../../components/dashboardseller/TourGuideForm';
 import PenginapanForm from '../../../components/dashboardseller/PenginapanForm';
 import { Car, Users, Home } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function DashboardPage() {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "seller") {
+    navigate(-1);
+  }
+
   const token = localStorage.getItem('token');
   const [searchParams] = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(false);

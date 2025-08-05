@@ -5,11 +5,18 @@ import { ArrowLeft, Calendar, Users, MapPin, CreditCard, Home } from 'lucide-rea
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
+import type { UserData } from '@/types/userData';
 
 export default function BookingPenginapanPage() {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
+
   const API_URL = import.meta.env.VITE_API_URL;
   const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
 
   const [penginapan, setPenginapan] = useState<any>(null);
   const [checkIn, setCheckIn] = useState('');
@@ -32,7 +39,7 @@ export default function BookingPenginapanPage() {
       }
     };
     if (id) fetchPenginapan();
-  }, [id]);
+  }, [id, API_URL]);
 
   // Hitung total harga
   useEffect(() => {

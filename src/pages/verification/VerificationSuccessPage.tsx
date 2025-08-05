@@ -3,9 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CheckCircle, Clock, ArrowLeft, Home } from 'lucide-react';
 import { Button } from '../../components/ui/button';
+import type { UserData } from '@/types/userData';
 
 export function VerificationSuccessPage() {
   const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
 
   useEffect(() => {
     // Auto redirect after 10 seconds

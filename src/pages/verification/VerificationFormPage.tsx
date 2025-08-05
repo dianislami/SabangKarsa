@@ -8,6 +8,7 @@ import { Button } from '../../components/ui/button';
 import { ThemeToggle } from '../../components/theme-toogle';
 import { Footer } from '../../components/layouts/footer';
 import type { VerificationRequest, DocumentType } from '../../types/verification';
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -19,6 +20,12 @@ const documentTypes: DocumentType[] = [
 
 export function VerificationFormPage() {
   const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
+
   const [formData, setFormData] = useState<Partial<VerificationRequest>>({
     fullName: '', phoneNumber: '', address: '',
     no_rekening: '', nama_rekening: '', documents: []

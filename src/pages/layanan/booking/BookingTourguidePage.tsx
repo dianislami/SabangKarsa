@@ -6,6 +6,7 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toogle";
 import { Footer } from "@/components/layouts/footer";
+import type { UserData } from '@/types/userData';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -18,8 +19,14 @@ interface TourGuide {
 }
 
 export default function BookingTourguidePage() {
-  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  
+  if (!userData.id || userData.role !== "buyer") {
+    navigate(-1);
+  }
+
+  const { id } = useParams<{ id: string }>();
   const [tourGuide, setTourGuide] = useState<TourGuide | null>(null);
   const [tanggalMulai, setTanggalMulai] = useState("");
   const [tanggalSelesai, setTanggalSelesai] = useState("");
