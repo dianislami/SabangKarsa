@@ -133,7 +133,7 @@ export function RentalPage() {
                 <div key={rental._id} className="bg-card border rounded-2xl overflow-hidden shadow hover:-translate-y-2 transition">
                   <img src={rental.gambar} alt={rental.name} className="w-full h-64 object-cover" />
                   <div className="p-4">
-                    <h3 className="font-bold text-xl mb-2">{rental.name}</h3>
+                    <a href={`/layanan/rental/${rental._id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">{rental.name}</a>
                     <p className="text-muted-foreground text-sm mb-2">{rental.deskripsi}</p>
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-emerald-600 font-bold">Rp {rental.harga.toLocaleString()}</span>

@@ -131,12 +131,12 @@ export function AboutUs() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: member.id * 0.1 }}
               >
-                <div className="relative h-48">
+                <div className="relative h-64">
                   <img
                     src={member.image}
                     alt={member.name}
-                        loading="eager"
-                    className="w-full h-full object-cover"
+                    loading="eager"
+                    className="w-full h-full object-cover object-[0px_-42px]"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/assets/destinasi/pantaiiboih.webp";
@@ -192,7 +192,7 @@ export function AboutUs() {
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
-                      info@jaksabang.com
+                      jaksabang@gmail.com
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
@@ -212,7 +212,7 @@ export function AboutUs() {
                 </p>
                 <Button
                   className="bg-emerald-500 hover:bg-emerald-600 text-white"
-                  onClick={() => alert(t("about-alert"))}
+                  onClick={() => window.open("mailto:jaksabang@gmail.com", "_blank")}
                 >
                   {t("about-send-btn")}
                 </Button>

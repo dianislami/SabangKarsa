@@ -113,9 +113,9 @@ export function AgendaPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">
+                  <a href={`/agenda/${event.id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">
                     {event.name}
-                  </h3>
+                  </a>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                     {event.description}
                   </p>

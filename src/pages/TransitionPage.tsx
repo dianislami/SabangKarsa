@@ -11,7 +11,6 @@ interface TransitionPageProps {
 }
 
 export function TransitionPage({ onComplete, duration = 4000, targetPage }: TransitionPageProps) {
-  const [progress, setProgress] = useState(0);
   const { t } = useTranslation();
 
   // Function to get dynamic loading message based on target page
@@ -31,6 +30,21 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
     
     return messages[targetPage as keyof typeof messages] || messages.default;
   };
+
+  return <Transition message={getLoadingMessage()} duration={duration} onComplete={onComplete} />
+}
+
+export function Transition ({
+  message,
+  duration = 4000,
+  onComplete,
+}: {
+  message: string;
+  duration?: number;
+  onComplete: () => void;
+}) {
+  const [progress, setProgress] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -161,7 +175,7 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
                 ease: "easeInOut"
               }}
             >
-              {getLoadingMessage()}
+              {message}
             </motion.p>
           </motion.div>
 
@@ -234,4 +248,4 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
       </main>
     </div>
   );
-}
+} 

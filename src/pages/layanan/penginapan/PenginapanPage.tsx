@@ -185,7 +185,7 @@ export function PenginapanPage() {
                   </div>
 
                   <div className="p-6">
-                    <h3 className="text-xl font-bold text-foreground group-hover:text-emerald-600 transition-colors mb-3">{p.nama}</h3>
+                    <a href={`/layanan/penginapan/${p._id}`} className="text-xl font-bold text-foreground hover:text-emerald-600 transition-colors mb-3 no-underline cursor-pointer duration-200">{p.nama}</a>
                     <div className="flex items-center gap-2 text-muted-foreground mb-3">
                       <MapPin className="w-4 h-4" />
                       <span className="text-sm">{p.lokasi}</span>

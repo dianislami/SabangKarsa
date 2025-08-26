@@ -39,22 +39,22 @@ const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === 
 export function AgendaDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [user, setUser] = useState<any>(null);
+  // const [user, setUser] = useState<any>(null);
   const [event, setEvent] = useState<Event | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const { t } = useTranslation();
 
-  useEffect(() => {
-    const userData = localStorage.getItem("user");
-    if (userData) {
-      try {
-        setUser(JSON.parse(userData));
-      } catch (error) {
-        console.error(t("agenda-err-msg"), error);
-      }
-    }
-  }, [t]);
+  // useEffect(() => {
+  //   const userData = localStorage.getItem("user");
+  //   if (userData) {
+  //     try {
+  //       setUser(JSON.parse(userData));
+  //     } catch (error) {
+  //       console.error(t("agenda-err-msg"), error);
+  //     }
+  //   }
+  // }, [t]);
 
   useEffect(() => {
     if (id) {
@@ -274,7 +274,7 @@ export function AgendaDetail() {
                     </a>
                   </div>
                 </div>
-                <Button
+                {/* <Button
                   className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
                   onClick={() =>
                     user
@@ -283,7 +283,7 @@ export function AgendaDetail() {
                   }
                 >
                   {user ? t("agenda-btn-1") : t("agenda-btn-2")}
-                </Button>
+                </Button> */}
                 <div className="mt-4 pt-4 border-t border-border">
                   <p className="text-xs text-muted-foreground text-center">
                     {t("agenda-agree")}

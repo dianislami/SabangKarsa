@@ -214,7 +214,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-center gap-3">
                     <Mail className="w-4 h-4" />
-                    <span>hello@jaksabang.com</span>
+                    <span>jaksabang@gmail.com</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="w-4 h-4" />

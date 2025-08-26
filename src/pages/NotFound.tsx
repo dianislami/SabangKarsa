@@ -3,14 +3,27 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Footer } from "@/components/layouts/footer";
 import { useTranslation } from "react-i18next";
+import { Navbar } from "@/components/layouts/navbar";
 import "../i18n/i18n"
 
-export function NotFound () {
+export function NotFound ({
+    title,
+    message,
+    buttonText,
+    buttonRoute,
+}: {
+    title?: string;
+    message?: string;
+    buttonText?: string;
+    buttonRoute?: string;
+}) {
     const navigate = useNavigate();
     const { t } = useTranslation();
 
     return (
         <div className="min-h-screen bg-background">
+            <Navbar />
+
             <section className="relative h-[48vh] min-h-[400px] overflow-hidden">
                 {/* Background Image */}
                 <div className="absolute inset-0">
@@ -39,7 +52,7 @@ export function NotFound () {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.2 }}
                     >
-                        {t("nf-page")} <span className="text-emerald-400">{t("nf-not-found")}</span>
+                        {title ? title : t("nf-page")} <span className="text-emerald-400">{t("nf-not-found")}</span>
                     </motion.h1>
                     <motion.p
                         className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -47,17 +60,17 @@ export function NotFound () {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: 0.4 }}
                     >
-                        {t("nf-massage")}
+                        {message ? message : t("nf-massage")}
                     </motion.p>
                     <Button
                       size="lg"
                       className="bg-emerald-500 hover:bg-emerald-600 text-white"
                       onClick={(e) => {
                         e.stopPropagation();
-                        navigate(`/`);
+                        navigate(buttonRoute ? buttonRoute : `/`);
                       }}
                     >
-                      {t("nf-button")}
+                      {buttonText ? buttonText : t("nf-button")}
                     </Button>
                 </motion.div>
                 </div>

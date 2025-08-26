@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { NotFound } from "@/pages/NotFound";
+import { Transition } from "@/pages/TransitionPage";
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,6 +21,7 @@ interface Rental {
   penyedia: string;
   namaPenyedia: string;
   no_telepon: string;
+  error: string;
 }
 
 export default function DetailRentalPage() {
@@ -26,6 +29,7 @@ export default function DetailRentalPage() {
   const [rental, setRental] = useState<Rental | null>(null);
   const [loading, setLoading] = useState(true);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRental = async () => {
@@ -44,17 +48,13 @@ export default function DetailRentalPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-        {t("dr-loading")}
-      </div>
+      <Transition message={t("dr-loading")} onComplete={() => navigate(`/layanan/rental/${id}`)} />
     );
   }
 
-  if (!rental) {
+  if (!rental || rental.error) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        {t("dr-not-found")}
-      </div>
+      <NotFound title="Data" message={t("dr-not-found")} buttonText={t("back-btn")} buttonRoute="/layanan/rental" />
     );
   }
 

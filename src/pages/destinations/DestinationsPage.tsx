@@ -258,9 +258,9 @@ export function DestinationsPage() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-3 text-foreground dark:text-white">
+                  <a href={`/destinations/${destination.id}`} className="text-xl font-bold mb-3 text-foreground dark:text-white hover:text-emerald-100 transition-colors no-underline cursor-pointer duration-200">
                     {destination.name}
-                  </h3>
+                  </a>
                   <p className="text-muted-foreground dark:text-white/80 mb-6 text-sm leading-relaxed">
                     {destination.description}
                   </p>

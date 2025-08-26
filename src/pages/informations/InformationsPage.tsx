@@ -266,9 +266,9 @@ export function InformationsPage() {
                     </div>
                   </div>
 
-                  <h2 className="text-xl font-bold text-foreground group-hover:text-emerald-600 transition-colors mb-3 line-clamp-2">
+                  <a href={`/informations/${info.id}`} className="text-xl font-bold text-foreground hover:text-emerald-600 transition-colors mb-3 line-clamp-2 no-underline cursor-pointer duration-200">
                     {info.title}
-                  </h2>
+                  </a>
 
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                     {info.excerpt}

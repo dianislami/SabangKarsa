@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, MapPin, Phone, Mail, BedDouble, Landmark } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import { NotFound } from "@/pages/NotFound";
+import { Transition } from "@/pages/TransitionPage";
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -18,6 +20,7 @@ export default function PenginapanDetailPage() {
   const [hasRated, setHasRated] = useState(false);
   const localStorageKey = `rated_penginapan_${id}`;
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -73,17 +76,13 @@ export default function PenginapanDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-        {t("pd-loading")}
-      </div>
+      <Transition message={t("pd-loading")} onComplete={() => navigate(`/layanan/penginapan/${id}`)} />
     );
   }
 
-  if (!penginapan) {
+  if (penginapan.error) {
     return (
-      <div className="min-h-screen flex items-center justify-center text-red-500">
-        {t("pd-not-found")}
-      </div>
+      <NotFound title="Data" message={t("pd-not-found")} buttonText={t("back-btn")} buttonRoute="/layanan/penginapan" />
     );
   }
 

@@ -617,7 +617,7 @@ i18n.use(initReactI18next).init({
                 "pd-err-msg-1": "Failed to fetch accommodation details",
                 "pd-err-msg-2": "Failed to send rating data",
                 "pd-thanks": "Thank you for your rating!",
-                "pd-loading": "Loading accommodation details...",
+                "pd-loading": "Loading accommodation details",
                 "pd-not-found": "Accommodation data not found",
                 "pd-desc": "Description",
                 "pd-fasility": "Facilities",
@@ -654,7 +654,7 @@ i18n.use(initReactI18next).init({
                 "ppg-detail": "View Details",
 
                 "dr-err-msg-1": "Failed to fetch rental details:",
-                "dr-loading": "Loading rental details...",
+                "dr-loading": "Loading rental details",
                 "dr-not-found": "Rental details not found",
                 "dr-type": "Type",
                 "dr-provider": "Provider",
@@ -679,7 +679,7 @@ i18n.use(initReactI18next).init({
                 "rpg-detail": "View Details",
 
                 "dtg-err-msg": "Failed to fetch tour guide data:",
-                "dtg-loading": "Loading data...",
+                "dtg-loading": "Loading tour guide data",
                 "dtg-not-found": "Tour guide not found",
                 "dtg-detail": "Tour Guide Details",
                 "dtg-price": "Price per day",
@@ -824,7 +824,9 @@ i18n.use(initReactI18next).init({
                 "nf-page": "Page",
                 "nf-not-found": "Not Found",
                 "nf-massage": "We apologize, the page is not available on the JakSabang platform",
-                "nf-button": "Back to Home"
+                "nf-button": "Back to Home",
+
+                "back-btn": "Back",
             },
         },
         id: {
@@ -1439,7 +1441,7 @@ i18n.use(initReactI18next).init({
                 "pd-err-msg-1": "Gagal mengambil data detail penginapan",
                 "pd-err-msg-2": "Gagal mengirim data penilaian",
                 "pd-thanks": "Terima kasih atas penilaian Anda!",
-                "pd-loading": "Memuat detail penginapan...",
+                "pd-loading": "Memuat detail penginapan",
                 "pd-not-found": "Data penginapan tidak ditemukan",
                 "pd-desc": "Deskripsi",
                 "pd-fasility": "Fasilitas",
@@ -1476,7 +1478,7 @@ i18n.use(initReactI18next).init({
                 "ppg-detail": "Lihat Detail",
 
                 "dr-err-msg-1": "Gagal mengambil data detail rental:",
-                "dr-loading": "Memuat detail rental...",
+                "dr-loading": "Memuat detail rental",
                 "dr-not-found": "Data rental tidak ditemukan",
                 "dr-type": "Tipe",
                 "dr-provider": "Penyedia",
@@ -1501,7 +1503,7 @@ i18n.use(initReactI18next).init({
                 "rpg-detail": "Lihat Detail",
 
                 "dtg-err-msg": "Gagal mengambil data pemandu wisata:",
-                "dtg-loading": "Memuat data...",
+                "dtg-loading": "Memuat data pemandu wisata",
                 "dtg-not-found": "Pemandu wisata tidak ditemukan",
                 "dtg-detail": "Detail Pemandu Wisata",
                 "dtg-price": "Harga per hari",
@@ -1646,7 +1648,9 @@ i18n.use(initReactI18next).init({
                 "nf-page": "Halaman",
                 "nf-not-found": "Tidak Ditemukan",
                 "nf-massage": "Mohon maaf, halaman tersebut tidak tersedia di platform JakSabang",
-                "nf-button": "Kembali ke Beranda"
+                "nf-button": "Kembali ke Beranda",
+
+                "back-btn": "Kembali",
             },
         },
     },

@@ -102,9 +102,9 @@ export function StrollPage() {
                   </div>
                 </div>
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-foreground mb-2">
+                  <a href={`/stroll/${item.id}`} className="font-bold text-xl text-foreground mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">
                     {item.name}
-                  </h3>
+                  </a>
                   <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
                     {item.description}
                   </p>

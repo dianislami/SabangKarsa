@@ -6,6 +6,8 @@ import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { NotFound } from "@/pages/NotFound";
+import { Transition } from "@/pages/TransitionPage";
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,6 +21,7 @@ interface TourGuide {
   wilayah: string;
   harga: number;
   foto: string;
+  error: string;
 }
 
 export default function DetailTourGuidePage() {
@@ -34,6 +37,7 @@ export default function DetailTourGuidePage() {
         const res = await fetch(`${API_URL}/tourguides/${id}`);
         const data = await res.json();
         setGuide(data);
+        console.log(data)
       } catch (err) {
         console.error(t("dtg-err-msg"), err);
       } finally {
@@ -44,11 +48,15 @@ export default function DetailTourGuidePage() {
   }, [id, t]);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">{t("dtg-loading")}</div>;
+    return (
+      <Transition message={t("dtg-loading")} onComplete={() => navigate(`/layanan/tourguide/${id}`)} />
+    );
   }
 
-  if (!guide) {
-    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">{t("dtg-not-found")}</div>;
+  if (!guide || guide.error) {
+    return (
+      <NotFound title="Data" message={t("dtg-not-found")} buttonText={t("back-btn")} buttonRoute="/layanan/tourguide" />
+    );
   }
 
   return (

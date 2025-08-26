@@ -149,7 +149,7 @@ export default function TourGuidePage() {
                     </div>
                   </div>
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 group-hover:text-emerald-600 transition-colors">{guide.name}</h3>
+                    <a href={`/layanan/tour-guide/${guide._id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">{guide.name}</a>
                     <p className="text-muted-foreground text-sm mb-2">{guide.kataKata}</p>
                     <div className="flex items-center gap-2 text-muted-foreground mb-4">
                       <Map className="w-4 h-4" /><span className="text-sm">{guide.wilayah}</span>
