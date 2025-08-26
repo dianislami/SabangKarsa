@@ -1,23 +1,48 @@
-[
-  {
-    "id": 1,
-    "name": "Achmad Atha Zayyan",
-    "role": "Founder & CEO",
-    "image": "/assets/images/fotoAtha.webp",
-    "bio": "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia."
-  },
-  {
-    "id": 2,
-    "name": "Muhammad Aidil Fitrah",
-    "role": "Front-End Developer",
-    "image": "/assets/images/fotoAidil.webp",
-    "bio": "Aidil mengelola desain antarmuka pada web Jaksabang, memastikan desain yang diperlihatkan kepada pengguna menarik."
-  },
-  {
-    "id": 3,
-    "name": "Naufal Hanif",
-    "role": "CTO",
-    "image": "/assets/images/fotoHanif.webp",
-    "bio": "Hanif mengelola infrastruktur teknologi dan pengembangan JakSabang, memastikan platform kami berjalan optimal."
-  }
-]
+{
+  "en": [
+    {
+      "id": 1,
+      "name": "Achmad Atha Zayyan",
+      "role": "Founder & CEO",
+      "image": "/assets/images/fotoAtha.webp",
+      "bio": "Achmad, founder of JakSabang, is dedicated to promoting Sabang to the world."
+    },
+    {
+      "id": 2,
+      "name": "Muhammad Aidil Fitrah",
+      "role": "Front-End Developer",
+      "image": "/assets/images/fotoAidil.webp",
+      "bio": "Aidil manages the interface design on the JakSabang website, ensuring that the design presented to users is attractive."
+    },
+    {
+      "id": 3,
+      "name": "Naufal Hanif",
+      "role": "CTO",
+      "image": "/assets/images/fotoHanif.webp",
+      "bio": "Hanif manages JakSabang's technology infrastructure and development, ensuring our platform runs optimally."
+    }
+  ],
+  "id": [
+    {
+      "id": 1,
+      "name": "Achmad Atha Zayyan",
+      "role": "Founder & CEO",
+      "image": "/assets/images/fotoAtha.webp",
+      "bio": "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia."
+    },
+    {
+      "id": 2,
+      "name": "Muhammad Aidil Fitrah",
+      "role": "Front-End Developer",
+      "image": "/assets/images/fotoAidil.webp",
+      "bio": "Aidil mengelola desain antarmuka pada web Jaksabang, memastikan desain yang diperlihatkan kepada pengguna menarik."
+    },
+    {
+      "id": 3,
+      "name": "Naufal Hanif",
+      "role": "CTO",
+      "image": "/assets/images/fotoHanif.webp",
+      "bio": "Hanif mengelola infrastruktur teknologi dan pengembangan JakSabang, memastikan platform kami berjalan optimal."
+    }
+  ]
+}
