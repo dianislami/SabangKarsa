@@ -5,6 +5,8 @@ import { Star, MapPin, Phone, Mail, BedDouble, Landmark } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -15,6 +17,7 @@ export default function PenginapanDetailPage() {
   const [userRating, setUserRating] = useState(0);
   const [hasRated, setHasRated] = useState(false);
   const localStorageKey = `rated_penginapan_${id}`;
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchDetail = async () => {
@@ -24,7 +27,7 @@ export default function PenginapanDetailPage() {
 
         setPenginapan(data);
       } catch (error) {
-        console.error("Failed to fetch detail penginapan", error);
+        console.error(t("pd-err-msg-1"), error);
       } finally {
         setLoading(false);
       }
@@ -35,7 +38,7 @@ export default function PenginapanDetailPage() {
     if (localStorage.getItem(localStorageKey)) {
       setHasRated(true);
     }
-  }, [id, localStorageKey]);
+  }, [id, localStorageKey, t]);
 
   const handleSubmitRating = async () => {
     if (!userRating) return;
@@ -55,7 +58,7 @@ export default function PenginapanDetailPage() {
       localStorage.setItem(localStorageKey, "true"); // supaya hanya sekali
 
       setHasRated(true);
-      alert("Terima kasih atas rating Anda!");
+      alert(t("pd-thanks"));
       
       // refresh data
       const res = await fetch(`${API_URL}/penginapan/${id}`);
@@ -63,15 +66,15 @@ export default function PenginapanDetailPage() {
 
       setPenginapan(data);
     } catch (error) {
-      console.error("Failed to submit rating", error);
-      alert("Gagal mengirim rating");
+      console.error(`${t("pd-err-msg-2")}:`, error);
+      alert(t("pd-err-msg-2"));
     }
   };
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-        Memuat detail penginapan...
+        {t("pd-loading")}
       </div>
     );
   }
@@ -79,7 +82,7 @@ export default function PenginapanDetailPage() {
   if (!penginapan) {
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
-        Data penginapan tidak ditemukan.
+        {t("pd-not-found")}
       </div>
     );
   }
@@ -125,7 +128,7 @@ export default function PenginapanDetailPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <h2 className="text-2xl font-semibold mb-2">Deskripsi</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t("pd-desc")}</h2>
               <p className="text-muted-foreground">{penginapan.deskripsi}</p>
             </motion.div>
 
@@ -135,7 +138,7 @@ export default function PenginapanDetailPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <h2 className="text-2xl font-semibold mb-2">Fasilitas</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t("pd-fasility")}</h2>
               <div className="flex flex-wrap gap-2">
                 {penginapan.fasilitas.map((f: string, idx: number) => (
                   <span
@@ -154,9 +157,9 @@ export default function PenginapanDetailPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              <h2 className="text-2xl font-semibold mb-2">Kebijakan</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t("pd-policy")}</h2>
               <p className="text-muted-foreground">
-                {penginapan.kebijakan || "Tidak ada kebijakan khusus."}
+                {penginapan.kebijakan || t("pd-no-policy")}
               </p>
             </motion.div>
 
@@ -164,7 +167,7 @@ export default function PenginapanDetailPage() {
             <div className="flex gap-4 mt-4">
               <div className="flex-1 bg-card p-4 rounded-xl border border-border">
                 <div className="font-medium text-muted-foreground">
-                  Check-in
+                  {t("pd-cin")}
                 </div>
                 <div className="text-lg font-semibold">
                   {penginapan.check_in_time}
@@ -172,7 +175,7 @@ export default function PenginapanDetailPage() {
               </div>
               <div className="flex-1 bg-card p-4 rounded-xl border border-border">
                 <div className="font-medium text-muted-foreground">
-                  Check-out
+                  {t("pd-cout")}
                 </div>
                 <div className="text-lg font-semibold">
                   {penginapan.check_out_time}
@@ -182,9 +185,9 @@ export default function PenginapanDetailPage() {
 
             {/* Rating */}
             <div className="mt-6">
-              <h2 className="text-2xl font-semibold mb-2">Beri Rating</h2>
+              <h2 className="text-2xl font-semibold mb-2">{t("pd-rating")}</h2>
               {hasRated ? (
-                <p className="text-muted-foreground">Anda sudah memberi rating untuk penginapan ini.</p>
+                <p className="text-muted-foreground">{t("pd-rate-done")}</p>
               ) : (
                 <div className="flex items-center gap-2">
                   {[1,2,3,4,5].map(num => (
@@ -199,7 +202,7 @@ export default function PenginapanDetailPage() {
                     onClick={handleSubmitRating}
                     className="bg-emerald-600 text-white"
                   >
-                    Kirim
+                    {t("pd-send-btn")}
                   </Button>
                 </div>
               )}
@@ -221,13 +224,13 @@ export default function PenginapanDetailPage() {
                   </span>
                 </div>
                 <span className="text-muted-foreground text-sm">
-                  {penginapan.jumlah_review} review
+                  {penginapan.jumlah_review} {t("pd-review")}
                 </span>
               </div>
 
               <div>
                 <span className="text-muted-foreground text-sm">
-                  Harga per malam
+                  {t("pd-price")}
                 </span>
                 <div className="text-3xl font-bold text-emerald-600">
                   Rp {penginapan.hargaPerMalam.toLocaleString()}
@@ -236,7 +239,7 @@ export default function PenginapanDetailPage() {
 
               <div className="flex items-center gap-2 text-muted-foreground">
                 <BedDouble className="w-5 h-5" />
-                <span>{penginapan.jumlahKamarTersedia} kamar tersedia</span>
+                <span>{penginapan.jumlahKamarTersedia} {t("pd-room")}</span>
               </div>
 
               <div className="flex items-center gap-2 text-muted-foreground">
@@ -248,20 +251,20 @@ export default function PenginapanDetailPage() {
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" /> 
                   <a href={`tel:${penginapan.no_telepon}`} className="hover:text-emerald-600">
-                    {penginapan.no_telepon || 'Nomor tidak tersedia'}
+                    {penginapan.no_telepon || t("pd-no-phone")}
                   </a>
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" /> 
                   <a href={`mailto:${penginapan.email}`} className="hover:text-emerald-600">
-                    {penginapan.email || 'Email tidak tersedia'}
+                    {penginapan.email || t("pd-no-email")}
                   </a>
                 </div>
                 <Button 
                   className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white transition-colors duration-300 cursor-pointer"
                   onClick={() => window.location.href = `/penginapan/${id}/booking`}
                 >
-                  Booking Sekarang
+                  {t("pd-book-btn")}
                 </Button>
               </div>
             </div>
@@ -275,7 +278,7 @@ export default function PenginapanDetailPage() {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-2xl font-semibold mb-4">Lokasi</h2>
+          <h2 className="text-2xl font-semibold mb-4">{t("pd-loc")}</h2>
           {penginapan.lokasi_maps && penginapan.lokasi_maps !== "not yet" ? (
             <iframe
               src={`https://www.google.com/maps?q=${penginapan.nama}&output=embed`}
@@ -284,7 +287,7 @@ export default function PenginapanDetailPage() {
               loading="lazy"
             ></iframe>
           ) : (
-            <p className="text-muted-foreground">Lokasi maps belum tersedia.</p>
+            <p className="text-muted-foreground">{t("pd-no-loc")}</p>
           )}
         </motion.div>
       </section>

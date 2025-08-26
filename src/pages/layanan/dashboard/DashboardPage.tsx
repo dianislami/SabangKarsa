@@ -11,12 +11,15 @@ import PenginapanForm from '../../../components/dashboardseller/PenginapanForm';
 import { Car, Users, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 export default function DashboardPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "seller") {
     navigate(-1);
@@ -46,10 +49,10 @@ export default function DashboardPage() {
         const parsed = JSON.parse(stored);
         setUser(parsed?.user || parsed);
       } catch (e) {
-        console.error('Failed to parse user from localStorage', e);
+        console.error(t("db-err-msg-1"), e);
       }
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     if (!token) return;
@@ -64,11 +67,11 @@ export default function DashboardPage() {
         setPenginapanList(penginapanRes);
         setTourguideList(tourguideRes);
       } catch (e) {
-        console.error('Failed to fetch data', e);
+        console.error(t("db-err-msg-2"), e);
       }
     };
     fetchAll();
-  }, [token]);
+  }, [token, t]);
 
   // Filter data berdasarkan user
   const userRentals = rentalList.filter(item => (item.penyedia?._id || item.penyedia) === user?.id);
@@ -93,25 +96,25 @@ export default function DashboardPage() {
     if (currentForm) {
       switch (currentForm) {
         case 'rental':
-          return { title: editData ? 'Edit Rental' : 'Tambah Rental', subtitle: 'Kelola layanan rental kendaraan Anda' };
+          return { title: editData ? t("db-rental-edit") : t("db-rental-add"), subtitle: t("db-rental-sub") };
         case 'penginapan':
-          return { title: editData ? 'Edit Penginapan' : 'Tambah Penginapan', subtitle: 'Kelola layanan penginapan Anda' };
+          return { title: editData ? t("db-acc-edit") : t("db-acc-add"), subtitle: t("db-acc-sub") };
         case 'tourguide':
-          return { title: editData ? 'Edit Tour Guide' : 'Tambah Tour Guide', subtitle: 'Kelola layanan tour guide Anda' };
+          return { title: editData ? t("db-tg-edit") : t("db-tg-add"), subtitle: t("db-tg-sub") };
         default:
-          return { title: 'Dashboard Seller', subtitle: 'Kelola layanan wisata Anda dengan mudah' };
+          return { title: t("db-seller"), subtitle: t("db-seller-sub") };
       }
     }
 
     switch (currentTab) {
       case 'rental-saya':
-        return { title: 'Rental Saya', subtitle: 'Kelola layanan rental kendaraan Anda' };
+        return { title: t("db-my-rental"), subtitle: t("db-my-rental-sub") };
       case 'penginapan-saya':
-        return { title: 'Penginapan Saya', subtitle: 'Kelola layanan penginapan Anda' };
+        return { title: t("db-my-acc"), subtitle: t("db-my-acc-sub") };
       case 'tourguide-saya':
-        return { title: 'Tour Guide Saya', subtitle: 'Kelola layanan tour guide Anda' };
+        return { title: t("db-my-tg"), subtitle: t("db-my-tg-sub") };
       default:
-        return { title: 'Dashboard Seller', subtitle: 'Kelola layanan wisata Anda dengan mudah' };
+        return { title: t("db-seller"), subtitle: t("db-seller-sub") };
     }
   };
 
@@ -139,34 +142,34 @@ export default function DashboardPage() {
               {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <SellerStatsCard
-                  title="Rental Kendaraan"
+                  title={t("db-card-title-1")}
                   value={userRentals.length}
                   icon={Car}
                   color="blue"
-                  description="Layanan aktif"
+                  description={t("db-card-desc")}
                   onClick={() => window.location.href = '/layanan/dashboard?tab=rental-saya'}
                 />
                 <SellerStatsCard
-                  title="Penginapan"
+                  title={t("db-card-title-2")}
                   value={userPenginapan.length}
                   icon={Home}
                   color="purple"
-                  description="Layanan aktif"
+                  description={t("db-card-desc")}
                   onClick={() => window.location.href = '/layanan/dashboard?tab=penginapan-saya'}
                 />
                 <SellerStatsCard
-                  title="Tour Guide"
+                  title={t("db-card-title-3")}
                   value={userTourguides.length}
                   icon={Users}
                   color="emerald"
-                  description="Layanan aktif"
+                  description={t("db-card-desc")}
                   onClick={() => window.location.href = '/layanan/dashboard?tab=tourguide-saya'}
                 />
               </div>
 
               {/* Quick Actions */}
               <div className="bg-admin-card rounded-lg border border-admin p-6">
-                <h3 className="text-lg font-semibold text-admin mb-4">Tambah Layanan Baru</h3>
+                <h3 className="text-lg font-semibold text-admin mb-4">{t("db-add-h")}</h3>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <motion.div
                     whileHover={{ scale: 1.02 }}
@@ -179,8 +182,8 @@ export default function DashboardPage() {
                         <Car className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-admin">Rental Kendaraan</h4>
-                        <p className="text-sm text-admin-muted">Tambah layanan rental</p>
+                        <h4 className="font-medium text-admin">{t("db-rental-add-h")}</h4>
+                        <p className="text-sm text-admin-muted">{t("db-rental-add-p")}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -196,8 +199,8 @@ export default function DashboardPage() {
                         <Home className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-admin">Penginapan</h4>
-                        <p className="text-sm text-admin-muted">Tambah layanan penginapan</p>
+                        <h4 className="font-medium text-admin">{t("db-acc-add-h")}</h4>
+                        <p className="text-sm text-admin-muted">{t("db-acc-add-p")}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -213,8 +216,8 @@ export default function DashboardPage() {
                         <Users className="w-5 h-5" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-admin">Tour Guide</h4>
-                        <p className="text-sm text-admin-muted">Tambah layanan tour guide</p>
+                        <h4 className="font-medium text-admin">{t("db-tg-add-h")}</h4>
+                        <p className="text-sm text-admin-muted">{t("db-tg-add-p")}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -226,7 +229,7 @@ export default function DashboardPage() {
           {/* Rental Saya */}
           {!currentForm && currentTab === 'rental-saya' && (
             <ServiceList
-              title="Rental Kendaraan Saya"
+              title={t("db-service-1")}
               services={userRentals}
               type="rental"
               onEdit={(service) => handleEdit('rental', service)}
@@ -236,7 +239,7 @@ export default function DashboardPage() {
           {/* Penginapan Saya */}
           {!currentForm && currentTab === 'penginapan-saya' && (
             <ServiceList
-              title="Penginapan Saya"
+              title={t("db-service-2")}
               services={userPenginapan}
               type="penginapan"
               onEdit={(service) => handleEdit('penginapan', service)}
@@ -246,7 +249,7 @@ export default function DashboardPage() {
           {/* Tour Guide Saya */}
           {!currentForm && currentTab === 'tourguide-saya' && (
             <ServiceList
-              title="Tour Guide Saya"
+              title={t("db-service-3")}
               services={userTourguides}
               type="tourguide"
               onEdit={(service) => handleEdit('tourguide', service)}

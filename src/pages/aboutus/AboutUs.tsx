@@ -1,28 +1,31 @@
 
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone, Users } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-import data from "../../data/about.json";
+// import data from "../../data/about.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
-interface TeamMember {
-  id: number;
-  name: string;
-  role: string;
-  image: string;
-  bio: string;
-}
+// interface TeamMember {
+//   id: number;
+//   name: string;
+//   role: string;
+//   image: string;
+//   bio: string;
+// }
 
-const teamData: TeamMember[] = data;
+// const teamData: TeamMember[] = data;
 
 export function AboutUs() {
-  const [team, setTeam] = useState<TeamMember[]>([]);
+  // const [team, setTeam] = useState<TeamMember[]>([]);
+  const { t } = useTranslation();
 
-  useEffect(() => {
-    setTeam(teamData);
-  }, []);
+  // useEffect(() => {
+  //   setTeam(teamData);
+  // }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -37,14 +40,14 @@ export function AboutUs() {
                 className="w-full h-full object-cover opacity-40"
             />
         </div>
-        <div className="container mx-auto max-w-7xl px-4 py-20 md:py-28 flex flex-col items-center">
+        <div className="container mx-auto max-w-7xl px-4 py-32 md:py-36 flex flex-col items-center">
             <motion.h1 
                 className="text-4xl md:text-6xl font-bold text-center mb-6"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8 }}
             >
-                Tentang Jak Sabang
+                {t("about-header-1")}
             </motion.h1>
             <motion.p 
                 className="text-lg md:text-xl text-center max-w-3xl mb-8"
@@ -52,7 +55,7 @@ export function AboutUs() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
             >
-                Kami membantu Anda menikmati pengalaman wisata terbaik di Pulau Weh dengan layanan transportasi dan tur yang personal dan memukau.
+                {t("about-tagline")}
             </motion.p>
             <motion.div 
                 className="flex flex-wrap gap-4 justify-center"
@@ -62,11 +65,11 @@ export function AboutUs() {
             >
                 <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
                     <Users className="w-5 h-5" />
-                    <span>3+ Tahun Pengalaman</span>
+                    <span>{t("about-point-1")}</span>
                 </div>
                 <div className="flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full backdrop-blur-sm">
                     <MapPin className="w-5 h-5" />
-                    <span>Tour Terbaik di Sabang</span>
+                    <span>{t("about-point-2")}</span>
                 </div>
             </motion.div>
         </div>
@@ -81,7 +84,7 @@ export function AboutUs() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Misi & Visi Kami
+            {t("about-header-2")}
           </motion.h2>
           <motion.div
             className="grid grid-cols-1 md:grid-cols-2 gap-8"
@@ -91,18 +94,18 @@ export function AboutUs() {
           >
             <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg bg-card">
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                Misi
+                {t("about-mission")}
               </h3>
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                Menyediakan pengalaman wisata yang autentik dan berkelanjutan di Sabang, dengan fokus pada pelayanan terbaik, pelestarian budaya lokal, dan keindahan alam Pulau Weh.
+                {t("about-mission-p")}
               </p>
             </div>
             <div className="detail-box rounded-2xl p-6 md:p-8 shadow-lg bg-card">
               <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                Visi
+                {t("about-vision")}
               </h3>
               <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                Menjadikan Sabang sebagai destinasi wisata kelas dunia yang dikenal karena keindahan alam, kekayaan kuliner, dan keramahan masyarakatnya.
+                {t("about-vision-p")}
               </p>
             </div>
           </motion.div>
@@ -110,7 +113,7 @@ export function AboutUs() {
       </section>
 
       {/* Team Section */}
-      <section className="py-12 px-4 bg-muted/50 ">
+      {/* <section className="py-12 px-4 bg-muted/50 ">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center"
@@ -118,7 +121,7 @@ export function AboutUs() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Tim Kami
+            {t("about-team")}
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15 px-6 ">
             {team.map((member) => (
@@ -156,7 +159,7 @@ export function AboutUs() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Contact Section */}
       <section className="py-12 px-4">
@@ -167,7 +170,7 @@ export function AboutUs() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Hubungi Kami
+            {t("about-contact")}
           </motion.h2>
           <motion.div
             className="detail-box rounded-2xl p-6 md:p-8 shadow-lg bg-card"
@@ -178,13 +181,13 @@ export function AboutUs() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                  Informasi Kontak
+                  {t("about-contact-1")}
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
                     <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
-                      Jalan Perdagangan No. 123, Sabang, Pulau Weh, Aceh
+                      {t("about-contact-1-1")}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
@@ -203,16 +206,16 @@ export function AboutUs() {
               </div>
               <div>
                 <h3 className="text-xl md:text-2xl font-bold text-foreground mb-4">
-                  Kirim Pesan
+                  {t("about-contact-2")}
                 </h3>
                 <p className="text-muted-foreground mb-4">
-                  Hubungi kami untuk informasi lebih lanjut atau pertanyaan tentang layanan wisata di Sabang.
+                  {t("about-contact-2-1")}
                 </p>
                 <Button
                   className="bg-emerald-500 hover:bg-emerald-600 text-white"
-                  onClick={() => alert("Fitur kontak segera hadir!")}
+                  onClick={() => alert(t("about-alert"))}
                 >
-                  Kirim Pesan
+                  {t("about-send-btn")}
                 </Button>
               </div>
             </div>

@@ -7,6 +7,8 @@ import { MapPin} from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/stroll.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface StrollItem {
   id: number;
@@ -17,10 +19,11 @@ interface StrollItem {
   category: string;
 }
 
-const strollData: StrollItem[] = data;
+const strollData: StrollItem[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function StrollPage() {
   const [items, setItems] = useState<StrollItem[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setItems(strollData);
@@ -54,10 +57,10 @@ export function StrollPage() {
             <div className="absolute inset-0 bg-gradient-to-r from-white/20 via-white/10 to-white/5 dark:from-white/10 dark:via-white/5 dark:to-white/2 backdrop-blur-xl rounded-3xl border border-white/20 dark:border-white/10 shadow-2xl"></div>
             <div className="relative z-10">
               <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-white to-white/80 dark:from-white dark:via-gray-100 dark:to-gray-300 bg-clip-text text-transparent">
-                Stroll & Kuliner
+                {t("spg-header")}
               </h1>
               <p className="text-lg md:text-xl text-white/90 dark:text-white/80 max-w-2xl">
-                Jelajahi kuliner lezat dan tempat nongkrong menarik di Sabang, dari sate gurita hingga sunset di Pantai Iboih!
+                {t("spg-line")}
               </p>
             </div>
           </div>
@@ -73,7 +76,7 @@ export function StrollPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Daftar Kuliner & Tempat Strolling
+            {t("spg-list")}
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {items.map((item) => (
@@ -111,7 +114,7 @@ export function StrollPage() {
                   </div>
                   <Link to={`/stroll/${item.id}`}>
                     <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
-                      Lihat Detail
+                      {t("spg-detail")}
                     </Button>
                   </Link>
                 </div>

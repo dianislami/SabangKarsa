@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock, User, Phone, MapIcon } from "lucide-react";
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function RegisterPage() {
   const navigate = useNavigate();
@@ -29,6 +31,7 @@ export function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const API_URL = import.meta.env.VITE_API_URL;
+  const { t } = useTranslation();
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -63,12 +66,12 @@ export function RegisterPage() {
 
     // Basic validation
     if (formData.password !== formData.confirmPassword) {
-      setError("Password dan konfirmasi password tidak sama!");
+      setError(t("reg-error-1"));
       return;
     }
 
-    if (formData.password.length < 6) {
-      setError("Password minimal 6 karakter!");
+    if (formData.password.length < 8) {
+      setError(t("reg-error-2"));
       return;
     }
 
@@ -93,10 +96,10 @@ export function RegisterPage() {
         localStorage.setItem("user", JSON.stringify(result.user));
         navigate("/");
       } else {
-        setError(result.error || "Registrasi gagal.");
+        setError(result.error || t("reg-error"));
       }
     } catch (err) {
-      setError("Terjadi kesalahan saat mendaftar.");
+      setError(t("reg-err-msg"));
     } finally {
       setLoading(false);
     }
@@ -174,13 +177,12 @@ export function RegisterPage() {
               />
             </div>
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
-              Bergabung dengan
+              {t("reg-welcome")}
               <br />
               <span className="gradient-text-alt">JakSabang</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-              Daftarkan diri Anda dan mulai menikmati layanan terpadu untuk
-              menjelajahi keindahan Sabang.
+              {t("reg-line")}
             </p>
           </div>
         </div>
@@ -198,10 +200,10 @@ export function RegisterPage() {
               {/* Header */}
               <div className="text-center mb-4">
                 <h2 className="text-2xl font-bold text-foreground mb-1">
-                  Daftar Akun Baru
+                  {t("reg-header")}
                 </h2>
                 <p className="text-sm text-muted-foreground">
-                  Lengkapi form untuk membuat akun JakSabang
+                  {t("reg-p")}
                 </p>
               </div>
 
@@ -212,7 +214,7 @@ export function RegisterPage() {
                   {/* Nama Field */}
                   <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      Nama Lengkap
+                      {t("reg-name")}
                     </label>
                     <div className="relative">
                       <User className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -221,7 +223,7 @@ export function RegisterPage() {
                         name="name"
                         value={formData.name}
                         onChange={handleInputChange}
-                        placeholder="Nama lengkap"
+                        placeholder={t("reg-name-ph")}
                         className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                         required
                       />
@@ -231,7 +233,7 @@ export function RegisterPage() {
                   {/* Email Field */}
                   <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      Email
+                      {t("reg-email")}
                     </label>
                     <div className="relative">
                       <Mail className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -240,7 +242,7 @@ export function RegisterPage() {
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
-                        placeholder="Email"
+                        placeholder={t("reg-email-ph")}
                         className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                         required
                       />
@@ -252,7 +254,7 @@ export function RegisterPage() {
                   {/* Password Field */}
                   <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      Kata Sandi
+                      {t("reg-pass")}
                     </label>
                     <div className="relative">
                       <Lock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -261,7 +263,7 @@ export function RegisterPage() {
                         name="password"
                         value={formData.password}
                         onChange={handleInputChange}
-                        placeholder="Min 6 karakter"
+                        placeholder={t("reg-pass-ph")}
                         className="w-full pl-8 pr-8 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                         required
                         minLength={6}
@@ -283,7 +285,7 @@ export function RegisterPage() {
                   {/* Confirm Password Field */}
                   <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      Konfirmasi Kata Sandi
+                      {t("reg-pass-verif")}
                     </label>
                     <div className="relative">
                       <Lock className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -292,7 +294,7 @@ export function RegisterPage() {
                         name="confirmPassword"
                         value={formData.confirmPassword}
                         onChange={handleInputChange}
-                        placeholder="Ulangi kata sandi"
+                        placeholder={t("reg-pass-verif-ph")}
                         className="w-full pl-8 pr-8 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                         required
                       />
@@ -317,7 +319,7 @@ export function RegisterPage() {
                   {/* Role Field */}
                   {/* <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      Role
+                      {t("reg-role")}
                     </label>
                     <select
                       name="role"
@@ -326,16 +328,16 @@ export function RegisterPage() {
                       className="w-full px-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                       required
                     >
-                      <option value="">Pilih Role</option>
-                      <option value="buyer">Buyer (Wisatawan)</option>
-                      <option value="seller">Seller (Penyedia Layanan)</option>
+                      <option value="">{t("reg-role-op-1")}</option>
+                      <option value="buyer">{t("reg-role-op-2")}</option>
+                      <option value="seller">{t("reg-role-op-3")}</option>
                     </select>
                   </div> */}
 
                   {/* No HP Field */}
                   <div className="space-y-1">
                     <label className="block text-xs font-medium text-foreground">
-                      No. Handphone
+                      {t("reg-phone")}
                     </label>
                     <div className="relative">
                       <Phone className="absolute left-2 top-1/2 transform -translate-y-1/2 h-3 w-3 text-muted-foreground" />
@@ -344,7 +346,7 @@ export function RegisterPage() {
                         name="no_hp"
                         value={formData.no_hp}
                         onChange={handleInputChange}
-                        placeholder="08xxxxxxxxxx"
+                        placeholder={t("reg-phone-ph")}
                         className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                         required
                       />
@@ -355,7 +357,7 @@ export function RegisterPage() {
                 {/* Alamat Field */}
                 <div className="space-y-1">
                   <label className="block text-xs font-medium text-foreground">
-                    Alamat
+                    {t("reg-addr")}
                   </label>
                   <div className="relative">
                     <MapIcon className="absolute left-2 top-2 h-3 w-3 text-muted-foreground" />
@@ -363,7 +365,7 @@ export function RegisterPage() {
                       name="alamat"
                       value={formData.alamat}
                       onChange={handleInputChange}
-                      placeholder="Masukkan alamat lengkap"
+                      placeholder={t("reg-addr-ph")}
                       rows={2}
                       className="w-full pl-8 pr-2 py-2 text-sm bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200 resize-none"
                       required
@@ -373,7 +375,7 @@ export function RegisterPage() {
 
                 {/* Error Message */}
                 {error && (
-                  <div className="text-destructive text-xs bg-destructive/10 border border-destructive/20 rounded-md p-2">
+                  <div className="text-destructive text-red-500 text-xs bg-destructive/10 border border-destructive/20 rounded-md p-2">
                     {error}
                   </div>
                 )}
@@ -384,20 +386,20 @@ export function RegisterPage() {
                   disabled={loading}
                   className="w-full py-2 text-sm bg-emerald-500 text-white hover:bg-emerald-600 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  {loading ? "Loading..." : "Daftar Sekarang"}
+                  {loading ? t("reg-loading") : t("reg-button")}
                 </Button>
               </form>
 
               {/* Login Link */}
               <div className="mt-4 text-center">
                 <p className="text-xs text-muted-foreground">
-                  Sudah punya akun?
+                  {t("reg-login-text")}
                   <button
                     type="button"
                     onClick={() => navigate("/login")}
                     className="ml-1 text-secondary hover:text-secondary/80 transition-colors font-medium"
                   >
-                    Masuk di sini
+                    {t("reg-login-hl")}
                   </button>
                 </p>
               </div>

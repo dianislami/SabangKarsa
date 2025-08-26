@@ -8,14 +8,14 @@ import {
   ArrowLeft,
   MapPin,
   Clock,
-
   X,
   Expand,
-
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/events.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Event {
   id: number;
@@ -34,7 +34,7 @@ interface Event {
   detailDescription: string;
 }
 
-const eventsData: Event[] = data;
+const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function AgendaDetail() {
   const { id } = useParams();
@@ -43,6 +43,7 @@ export function AgendaDetail() {
   const [event, setEvent] = useState<Event | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const userData = localStorage.getItem("user");
@@ -50,10 +51,10 @@ export function AgendaDetail() {
       try {
         setUser(JSON.parse(userData));
       } catch (error) {
-        console.error("Error parsing user data:", error);
+        console.error(t("agenda-err-msg"), error);
       }
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     if (id) {
@@ -67,10 +68,10 @@ export function AgendaDetail() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground mb-4">
-            Acara tidak ditemukan
+            {t("agenda-not-found")}
           </h2>
           <Button onClick={() => navigate("/agenda")}>
-            Kembali ke Agenda
+            {t("agenda-back-btn")}
           </Button>
         </div>
       </div>
@@ -235,36 +236,36 @@ export function AgendaDetail() {
             >
               <div className="detail-box rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Informasi Acara
+                  {t("agenda-info")}
                 </h3>
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Harga Tiket:</span>
+                    <span className="text-muted-foreground">{t("agenda-price")}</span>
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400 text-lg">
                       {event.price}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Rating:</span>
+                    <span className="text-muted-foreground">{t("agenda-rating")}</span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="font-semibold">{event.rating}/5</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Tanggal & Waktu:</span>
+                    <span className="text-muted-foreground">{t("agenda-time-date")}</span>
                     <span className="font-medium text-right">{event.date} | {event.time}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Lokasi:</span>
+                    <span className="text-muted-foreground">{t("agenda-loc")}</span>
                     <span className="font-medium text-right">{event.location}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Penyelenggara:</span>
+                    <span className="text-muted-foreground">{t("agenda-org")}</span>
                     <span className="font-medium text-right">{event.organizer}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Kontak:</span>
+                    <span className="text-muted-foreground">{t("agenda-contact")}</span>
                     <a
                       href={`mailto:${event.contact}`}
                       className="text-emerald-600 text-wrap truncate dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
@@ -277,15 +278,15 @@ export function AgendaDetail() {
                   className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
                   onClick={() =>
                     user
-                      ? alert(`Booking ${event.name} segera hadir!`)
+                      ? alert(`Booking ${event.name} ${t("agenda-coming-soon")}!`)
                       : navigate("/login")
                   }
                 >
-                  {user ? "Booking Sekarang" : "Login untuk Booking"}
+                  {user ? t("agenda-btn-1") : t("agenda-btn-2")}
                 </Button>
                 <div className="mt-4 pt-4 border-t border-border">
                   <p className="text-xs text-muted-foreground text-center">
-                    Dengan melakukan booking, Anda menyetujui syarat dan ketentuan yang berlaku
+                    {t("agenda-agree")}
                   </p>
                 </div>
               </div>

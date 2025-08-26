@@ -20,6 +20,8 @@ import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/informations.json";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Information {
   id: number;
@@ -38,17 +40,18 @@ interface Information {
 
 interface InformationData {
   informationData: Information[];
-  categories: string[];
 }
 
-const { informationData, categories }: InformationData = data;
+const { informationData }: InformationData = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function InformationsPage() {
+  const { t } = useTranslation();
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedCategory, setSelectedCategory] = useState(t("dipg-all"));
   const [sortBy, setSortBy] = useState("latest");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
+  const categories = [t("dipg-all"), ...Array.from(new Set(informationData.map(info => info.category)))];
 
   const allFilteredInformation = informationData
     .filter((info) => {
@@ -56,7 +59,7 @@ export function InformationsPage() {
         info.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         info.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
       const matchesCategory =
-        selectedCategory === "Semua" || info.category === selectedCategory;
+        selectedCategory === t("dipg-all") || info.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -141,7 +144,7 @@ export function InformationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              The <span className="text-emerald-400">Blog</span>
+              {t("dipg-header-1")} <span className="text-emerald-400">{t("dipg-header-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -149,8 +152,7 @@ export function InformationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Informasi, tips, dan panduan lengkap tentang wisata Sabang.
-              Temukan wawasan berharga untuk petualangan Anda.
+              {t("dipg-line")}
             </motion.p>
           </motion.div>
         </div>
@@ -169,7 +171,7 @@ export function InformationsPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
-                placeholder="Cari artikel..."
+                placeholder={t("dipg-ph")}
                 value={searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -201,9 +203,9 @@ export function InformationsPage() {
                 onChange={(e) => handleSortChange(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
               >
-                <option value="latest">Terbaru</option>
-                <option value="oldest">Terlama</option>
-                <option value="views">Paling Populer</option>
+                <option value="latest">{t("dipg-filter-1")}</option>
+                <option value="oldest">{t("dipg-filter-2")}</option>
+                <option value="views">{t("dipg-filter-3")}</option>
               </select>
             </div>
           </motion.div>
@@ -291,7 +293,7 @@ export function InformationsPage() {
                       variant="ghost"
                       className="w-full justify-between text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 dark:hover:bg-emerald-900/20"
                     >
-                      Baca Selengkapnya
+                      {t("dipg-detail")}
                       <ArrowRight className="w-4 h-4" />
                     </Button>
                   </Link>
@@ -309,10 +311,10 @@ export function InformationsPage() {
             >
               <div className="text-6xl mb-4">📚</div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Artikel tidak ditemukan
+                {t("dipg-not-found")}
               </h3>
               <p className="text-muted-foreground">
-                Coba ubah kriteria pencarian atau filter kategori
+                {t("dipg-suggest")}
               </p>
             </motion.div>
           )}
@@ -333,7 +335,7 @@ export function InformationsPage() {
                 className="flex items-center gap-1"
               >
                 <ChevronLeft className="w-4 h-4" />
-                Sebelumnya
+                {t("dipg-prev")}
               </Button>
 
               <div className="flex gap-1">
@@ -363,7 +365,7 @@ export function InformationsPage() {
                 disabled={currentPage === totalPages}
                 className="flex items-center gap-1"
               >
-                Selanjutnya
+                {t("dipg-next")}
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </motion.div>
@@ -382,11 +384,11 @@ export function InformationsPage() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Ship className="w-8 h-8 text-emerald-700 dark:text-emerald-400" />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Jadwal Kapal Ferry
+                {t("dipg-ferry")}
               </h2>
             </div>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Informasi jadwal keberangkatan kapal ferry dari dan ke Sabang
+              {t("dipg-ferry-p")}
             </p>
           </motion.div>
 
@@ -410,21 +412,21 @@ export function InformationsPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground">
-                    Banda Aceh → Sabang
+                    {t("dipg-dest-1")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Pelabuhan Ulee Lheue - Balohan
+                    {t("dipg-dest-1-port")}
                   </p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 {[
-                  { day: "Senin - Kamis", times: ["08.00", "14.00", "17.00"] },
-                  { day: "Jumat", times: ["08.00", "11.00", "14.00", "17.00"] },
-                  { day: "Sabtu", times: ["08.00", "14.00", "17.00", "20.00"] },
+                  { day: t("dipg-dest-1-sch-1"), times: ["08.00", "14.00", "17.00"] },
+                  { day: t("dipg-dest-1-sch-2"), times: ["08.00", "11.00", "14.00", "17.00"] },
+                  { day: t("dipg-dest-1-sch-3"), times: ["08.00", "14.00", "17.00", "20.00"] },
                   {
-                    day: "Minggu",
+                    day: t("dipg-dest-1-sch-4"),
                     times: ["08.00", "11.00", "14.00", "17.00"],
                   },
                 ].map((schedule, idx) => (
@@ -465,13 +467,13 @@ export function InformationsPage() {
                   className="text-sm font-medium"
                   style={{ color: 'var(--ferry-note-text)' }}
                 >
-                  Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
+                  {t("dipg-dest-1-note-1")}
                 </p>
                 <p 
                   className="text-sm mt-1"
                   style={{ color: 'var(--ferry-note-text)' }}
                 >
-                  Durasi perjalanan: ±45 menit
+                  {t("dipg-dest-1-note-2")}
                 </p>
               </div>
             </div>
@@ -490,21 +492,21 @@ export function InformationsPage() {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-foreground">
-                    Sabang → Banda Aceh
+                    {t("dipg-dest-2")}
                   </h3>
                   <p className="text-muted-foreground">
-                    Balohan - Pelabuhan Ulee Lheue
+                    {t("dipg-dest-2-port")}
                   </p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 {[
-                  { day: "Senin - Kamis", times: ["06.30", "12.00", "15.30"] },
-                  { day: "Jumat", times: ["06.30", "09.30", "12.00", "15.30"] },
-                  { day: "Sabtu", times: ["06.30", "12.00", "15.30", "18.30"] },
+                  { day: t("dipg-dest-2-sch-1"), times: ["06.30", "12.00", "15.30"] },
+                  { day: t("dipg-dest-2-sch-2"), times: ["06.30", "09.30", "12.00", "15.30"] },
+                  { day: t("dipg-dest-2-sch-3"), times: ["06.30", "12.00", "15.30", "18.30"] },
                   {
-                    day: "Minggu",
+                    day: t("dipg-dest-2-sch-4"),
                     times: ["06.30", "09.30", "12.00", "15.30"],
                   },
                 ].map((schedule, idx) => (
@@ -545,13 +547,13 @@ export function InformationsPage() {
                   className="text-sm font-medium"
                   style={{ color: 'var(--ferry-note-text)' }}
                 >
-                  Tarif: Dewasa Rp 14.000 | Anak Rp 7.000
+                  {t("dipg-dest-2-note-1")}
                 </p>
                 <p 
                   className="text-sm mt-1"
                   style={{ color: 'var(--ferry-note-text)' }}
                 >
-                  Durasi perjalanan: ±45 menit
+                  {t("dipg-dest-2-note-2")}
                 </p>
               </div>
             </div>
@@ -574,9 +576,7 @@ export function InformationsPage() {
                 className="text-sm"
                 style={{ color: 'var(--ferry-note-text)' }}
               >
-                <strong>Catatan:</strong> Jadwal dapat berubah sewaktu-waktu
-                tergantung cuaca dan kondisi laut. Disarankan untuk konfirmasi
-                jadwal sebelum keberangkatan.
+                <strong>{t("dipg-note")}</strong> {t("dipg-note-text")}
               </p>
             </div>
           </motion.div>
@@ -594,11 +594,11 @@ export function InformationsPage() {
             <div className="flex items-center justify-center gap-2 mb-4">
               <Percent className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
               <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-                Promo & Penawaran Spesial
+                {t("dipg-promo-h")}
               </h2>
             </div>
             <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Jangan lewatkan penawaran menarik dari mitra wisata kami
+              {t("dipg-promo-line")}
             </p>
           </motion.div>
 
@@ -616,15 +616,14 @@ export function InformationsPage() {
               <div className="p-6 text-white">
                 <div className="flex items-center justify-between mb-4">
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-sm font-bold">DISKON 30%</span>
+                    <span className="text-sm font-bold">{t("dipg-discount-1")}</span>
                   </div>
                 </div>
                 <h3 className="text-xl font-bold mb-2">
-                  Sabang Paradise Resort
+                  {t("dipg-discount-1-h")}
                 </h3>
                 <p className="text-white/90 text-sm mb-4">
-                  Menginap 3 malam atau lebih dan dapatkan diskon fantastis!
-                  Berlaku hingga akhir bulan.
+                  {t("dipg-discount-1-p")}
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
@@ -639,7 +638,7 @@ export function InformationsPage() {
                     size="sm"
                     className="bg-white text-emerald-600 hover:bg-white/90"
                   >
-                    Pesan Sekarang
+                    {t("dipg-discount-1-btn")}
                   </Button>
                 </div>
               </div>
@@ -653,15 +652,14 @@ export function InformationsPage() {
               <div className="p-6 text-white">
                 <div className="flex items-center justify-between mb-4">
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-sm font-bold">PAKET HEMAT</span>
+                    <span className="text-sm font-bold">{t("dipg-discount-2")}</span>
                   </div>
                 </div>
                 <h3 className="text-xl font-bold mb-2">
-                  Sabang Island Hopping
+                  {t("dipg-discount-2-h")}
                 </h3>
                 <p className="text-white/90 text-sm mb-4">
-                  Jelajahi 5 pulau cantik sekitar Sabang dalam 1 hari! Termasuk
-                  makan siang dan snorkeling.
+                  {t("dipg-discount-2-p")}
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
@@ -676,7 +674,7 @@ export function InformationsPage() {
                     size="sm"
                     className="bg-white text-teal-600 hover:bg-white/90"
                   >
-                    Info Lengkap
+                    {t("dipg-discount-2-btn")}
                   </Button>
                 </div>
               </div>
@@ -690,27 +688,26 @@ export function InformationsPage() {
               <div className="p-6 text-white">
                 <div className="flex items-center justify-between mb-4">
                   <div className="bg-white/20 backdrop-blur-sm px-3 py-1 rounded-full">
-                    <span className="text-sm font-bold">BUY 2 GET 1</span>
+                    <span className="text-sm font-bold">{t("dipg-discount-3")}</span>
                   </div>
                 </div>
                 <h3 className="text-xl font-bold mb-2">
-                  Seafood Bahari Restaurant
+                  {t("dipg-discount-3-h")}
                 </h3>
                 <p className="text-white/90 text-sm mb-4">
-                  Nikmati menu seafood segar dengan promo spesial! Beli 2 main
-                  course gratis 1 dessert.
+                  {t("dipg-discount-3-p")}
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
                     <span className="text-white font-bold text-lg">
-                      Mulai Rp 75.000
+                      {t("dipg-discount-3-price")}
                     </span>
                   </div>
                   <Button
                     size="sm"
                     className="bg-white text-green-600 hover:bg-white/90"
                   >
-                    Lihat Menu
+                    {t("dipg-discount-3-btn")}
                   </Button>
                 </div>
               </div>
@@ -734,7 +731,7 @@ export function InformationsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.6 }}
                 >
-                  Festival Sabang Fair 2025
+                  {t("dipg-event-h")}
                 </motion.h3>
                 <motion.p
                   className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -742,9 +739,7 @@ export function InformationsPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
                 >
-                  Bergabunglah dalam perayaan budaya terbesar Sabang! Pameran
-                  kuliner, pertunjukan seni, dan berbagai aktivitas menarik
-                  menanti Anda.
+                  {t("dipg-event-desc")}
                 </motion.p>
                 <motion.div
                   className="flex flex-col sm:flex-row gap-4 items-center justify-center"
@@ -755,20 +750,20 @@ export function InformationsPage() {
                   <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-2">
                     <CalendarDays className="w-4 h-4 text-white" />
                     <span className="text-white font-bold">
-                      15-17 Agustus 2025
+                      {t("dipg-event-date")}
                     </span>
                   </div>
                   <div className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full flex items-center gap-2">
                     <MapPin className="w-4 h-4 text-white" />
                     <span className="text-white font-bold">
-                      Pantai Iboih
+                      {t("dipg-event-place")}
                     </span>
                   </div>
                   <Button
                     size="lg"
                     className="bg-white text-emerald-600 hover:bg-white/90 font-bold"
                   >
-                    Daftar Sekarang
+                    {t("dipg-event-reg")}
                   </Button>
                 </motion.div>
               </div>

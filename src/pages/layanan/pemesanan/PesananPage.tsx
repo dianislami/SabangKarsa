@@ -6,6 +6,8 @@ import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -48,6 +50,7 @@ interface BookingTourGuide {
 export default function PesananPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -64,7 +67,7 @@ export default function PesananPage() {
 
   useEffect(() => {
     if (!token) {
-      setError('No authentication token found');
+      setError(t("book-err-msg-1"));
       setLoading(false);
       return;
     }
@@ -91,19 +94,19 @@ export default function PesananPage() {
         setPenginapanBookings(Array.isArray(penginapanRes) ? penginapanRes : []);
         setTourGuideBookings(Array.isArray(tourguideRes) ? tourguideRes : []);
 
-        console.log(rentalRes);
-        console.log(penginapanRes);
-        console.log(tourguideRes);
+        // console.log(rentalRes);
+        // console.log(penginapanRes);
+        // console.log(tourguideRes);
       } catch (err) {
-        console.error('Failed to fetch bookings', err);
-        setError('Gagal memuat data. Silakan coba lagi.');
+        console.error(t("book-err-msg-2"), err);
+        setError(t("book-err-msg-3"));
       } finally {
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [token]);
+  }, [token, t]);
 
   // helper function
   const renderItemName = (item: string | { nama: string; name: string }) =>
@@ -131,17 +134,17 @@ export default function PesananPage() {
       case 'paid':
       case 'settlement':
       case 'capture':
-        return 'Berhasil';
+        return t("usrbook-status-1");
       case 'pending':
-        return 'Menunggu Pembayaran';
+        return t("usrbook-status-2");
       case 'expire':
-        return 'Kedaluwarsa';
+        return t("usrbook-status-3");
       case 'cancel':
-        return 'Dibatalkan';
+        return t("usrbook-status-4");
       case 'deny':
-        return 'Ditolak';
+        return t("usrbook-status-5");
       default:
-        return status || 'Tidak Diketahui';
+        return status || t("usrbook-status-6");
     }
   };
 
@@ -152,11 +155,11 @@ export default function PesananPage() {
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Kembali
+              <ArrowLeft className="w-4 h-4" /> {t("book-back-btn")}
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Pesanan Saya</h1>
-              <p className="text-muted-foreground">Kelola dan pantau semua pesanan Anda</p>
+              <h1 className="text-2xl font-bold text-foreground">{t("book-header")}</h1>
+              <p className="text-muted-foreground">{t("book-line")}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -168,7 +171,7 @@ export default function PesananPage() {
           {loading ? (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Memuat pesanan...</p>
+              <p className="text-muted-foreground">{t("book-loading")}</p>
             </div>
           ) : error ? (
             <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-4">
@@ -183,8 +186,8 @@ export default function PesananPage() {
                     <Package className="w-5 h-5 text-white" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-foreground">Kategori Pesanan</h2>
-                    <p className="text-sm text-muted-foreground">Pilih kategori untuk melihat pesanan</p>
+                    <h2 className="text-lg font-semibold text-foreground">{t("book-cat-h")}</h2>
+                    <p className="text-sm text-muted-foreground">{t("book-cat-p")}</p>
                   </div>
                 </div>
                 
@@ -198,7 +201,7 @@ export default function PesananPage() {
                     }`}
                   >
                     <Car className="w-4 h-4" />
-                    Rental Kendaraan
+                    {t("book-rental-btn")}
                   </button>
                   <button
                     onClick={() => setActiveTab('penginapan')}
@@ -209,7 +212,7 @@ export default function PesananPage() {
                     }`}
                   >
                     <Home className="w-4 h-4" />
-                    Penginapan
+                    {t("book-acc-btn")}
                   </button>
                   <button
                     onClick={() => setActiveTab('tourguide')}
@@ -220,7 +223,7 @@ export default function PesananPage() {
                     }`}
                   >
                     <User className="w-4 h-4" />
-                    Tour Guide
+                    {t("book-tg-btn")}
                   </button>
                 </div>
               </div>
@@ -230,12 +233,12 @@ export default function PesananPage() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <Car className="w-5 h-5 text-emerald-500" />
-                    Pesanan Rental Kendaraan
+                    {t("book-rental-h")}
                   </h3>
                   {rentalBookings.length === 0 ? (
                     <div className="text-center py-12 bg-card rounded-lg border border-border">
                       <Car className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">Belum ada pesanan rental kendaraan</p>
+                      <p className="text-muted-foreground">{t("book-rental-p")}</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -253,7 +256,7 @@ export default function PesananPage() {
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">{renderItemName(booking.rental)}</h4>
-                                <p className="text-sm text-muted-foreground">Rental Kendaraan</p>
+                                <p className="text-sm text-muted-foreground">{t("book-rental-ch-p")}</p>
                               </div>
                             </div>
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
@@ -264,14 +267,14 @@ export default function PesananPage() {
                           <div className="space-y-3">
                             <div className="flex items-center gap-2 text-sm">
                               <Calendar className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Periode:</span>
+                              <span className="text-muted-foreground">{t("book-rental-periode")}</span>
                               <span className="text-foreground">
                                 {new Date(booking.tanggalMulai).toLocaleDateString()} - {new Date(booking.tanggalSelesai).toLocaleDateString()}
                               </span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Total:</span>
+                              <span className="text-muted-foreground">{t("book-rental-total")}</span>
                               <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                                 Rp {booking.totalHarga.toLocaleString()}
                               </span>
@@ -289,12 +292,12 @@ export default function PesananPage() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <Home className="w-5 h-5 text-emerald-600" />
-                    Pesanan Penginapan
+                    {t("book-acc-h")}
                   </h3>
                   {penginapanBookings.length === 0 ? (
                     <div className="text-center py-12 bg-card rounded-lg border border-border">
                       <Home className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">Belum ada pesanan penginapan</p>
+                      <p className="text-muted-foreground">{t("book-acc-p")}</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -312,7 +315,7 @@ export default function PesananPage() {
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">{renderItemName(booking.penginapan)}</h4>
-                                <p className="text-sm text-muted-foreground">Penginapan</p>
+                                <p className="text-sm text-muted-foreground">{t("book-acc-ch-p")}</p>
                               </div>
                             </div>
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
@@ -323,22 +326,22 @@ export default function PesananPage() {
                           <div className="space-y-3">
                             <div className="flex items-center gap-2 text-sm">
                               <Calendar className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Check-in:</span>
+                              <span className="text-muted-foreground">{t("book-acc-cin")}</span>
                               <span className="text-foreground">{new Date(booking.check_in_date).toLocaleDateString()}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <Calendar className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Check-out:</span>
+                              <span className="text-muted-foreground">{t("book-acc-cout")}</span>
                               <span className="text-foreground">{new Date(booking.check_out_date).toLocaleDateString()}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <Home className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Kamar:</span>
-                              <span className="text-foreground">{booking.jumlah_kamar} kamar</span>
+                              <span className="text-muted-foreground">{t("book-acc-room")}</span>
+                              <span className="text-foreground">{booking.jumlah_kamar} {t("book-acc-room-w")}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Total:</span>
+                              <span className="text-muted-foreground">{t("book-acc-total")}</span>
                               <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                                 Rp {booking.total_harga.toLocaleString()}
                               </span>
@@ -356,12 +359,12 @@ export default function PesananPage() {
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
                     <User className="w-5 h-5 text-emerald-500" />
-                    Pesanan Tour Guide
+                    {t("book-tg-h")}
                   </h3>
                   {tourGuideBookings.length === 0 ? (
                     <div className="text-center py-12 bg-card rounded-lg border border-border">
                       <User className="w-12 h-12 text-muted-foreground mx-auto mb-4" />
-                      <p className="text-muted-foreground">Belum ada pesanan tour guide</p>
+                      <p className="text-muted-foreground">{t("book-tg-p")}</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -379,7 +382,7 @@ export default function PesananPage() {
                               </div>
                               <div>
                                 <h4 className="font-semibold text-foreground">{renderItemName(booking.tourGuide)}</h4>
-                                <p className="text-sm text-muted-foreground">Tour Guide</p>
+                                <p className="text-sm text-muted-foreground">{t("book-tg-ch-p")}</p>
                               </div>
                             </div>
                             <span className={`px-3 py-1 rounded-full text-xs font-medium ${getStatusColor(booking.status_pembayaran)}`}>
@@ -390,19 +393,19 @@ export default function PesananPage() {
                           <div className="space-y-3">
                             <div className="flex items-center gap-2 text-sm">
                               <Calendar className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Periode:</span>
+                              <span className="text-muted-foreground">{t("book-tg-periode")}</span>
                               <span className="text-foreground">
                                 {new Date(booking.tanggalMulai).toLocaleDateString()} - {new Date(booking.tanggalSelesai).toLocaleDateString()}
                               </span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <MapPin className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Lokasi Jemput:</span>
+                              <span className="text-muted-foreground">{t("book-tg-loc")}</span>
                               <span className="text-foreground">{booking.lokasiJemput}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
-                              <span className="text-muted-foreground">Total:</span>
+                              <span className="text-muted-foreground">{t("book-tg-total")}</span>
                               <span className="font-semibold text-emerald-600 dark:text-emerald-400">
                                 Rp {booking.totalHarga.toLocaleString()}
                               </span>

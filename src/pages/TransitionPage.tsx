@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Navbar } from "@/components/layouts/navbar";
+import { useTranslation } from "react-i18next";
+import "../i18n/i18n"
 
 interface TransitionPageProps {
   onComplete: () => void;
@@ -10,20 +12,21 @@ interface TransitionPageProps {
 
 export function TransitionPage({ onComplete, duration = 4000, targetPage }: TransitionPageProps) {
   const [progress, setProgress] = useState(0);
+  const { t } = useTranslation();
 
   // Function to get dynamic loading message based on target page
   const getLoadingMessage = () => {
     const messages = {
-      '/': 'Menyiapkan beranda untuk Anda...',
-      '/destinations': 'Mengeksplorasi destinasi wisata terbaik...',
-      '/layanan/penginapan': 'Mencari penginapan terbaik untuk Anda...',
-      '/layanan/rental': 'Menyiapkan kendaraan rental terbaik...',
-      '/layanan/tourguide': 'Menghubungkan Anda dengan guide terpercaya...',
-      '/informations': 'Mengumpulkan informasi terkini untuk Anda...',
-      '/agenda': 'Menyusun agenda perjalanan yang menarik...',
-      '/stroll': 'Menemukan rute jalan-jalan terbaik...',
-      '/about': 'Mempersiapkan cerita tentang kami...',
-      default: 'Menyiapkan pengalaman terbaik untuk Anda...'
+      '/': t("tpg-msg-1"),
+      '/destinations': t("tpg-msg-2"),
+      '/layanan/penginapan': t("tpg-msg-3"),
+      '/layanan/rental': t("tpg-msg-4"),
+      '/layanan/tourguide': t("tpg-msg-5"),
+      '/informations': t("tpg-msg-6"),
+      '/agenda': t("tpg-msg-7"),
+      '/stroll': t("tpg-msg-8"),
+      '/about': t("tpg-msg-9"),
+      default: t("tpg-msg-10")
     };
     
     return messages[targetPage as keyof typeof messages] || messages.default;
@@ -225,7 +228,7 @@ export function TransitionPage({ onComplete, duration = 4000, targetPage }: Tran
           transition={{ delay: 2, duration: 0.6 }}
         >
           <p className="text-muted-foreground text-sm">
-            Platform wisata terpadu untuk menjelajahi keindahan Sabang
+            {t("tpg-main")}
           </p>
         </motion.div>
       </main>

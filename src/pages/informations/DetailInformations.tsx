@@ -15,6 +15,8 @@ import {
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/informations.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Information {
   id: number;
@@ -36,7 +38,7 @@ interface InformationData {
   categories: string[];
 }
 
-const { informationData }: InformationData = data;
+const { informationData }: InformationData = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function DetailInformations() {
   const { id } = useParams();
@@ -44,6 +46,7 @@ export function DetailInformations() {
   const [information, setInformation] = useState<Information | null>(null);
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -86,7 +89,7 @@ export function DetailInformations() {
     } else {
       // Fallback for browsers that don't support Web Share API
       navigator.clipboard.writeText(window.location.href);
-      alert("Link berhasil disalin ke clipboard!");
+      alert(t("di-copied"));
     }
   };
 
@@ -95,10 +98,10 @@ export function DetailInformations() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground mb-4">
-            Artikel tidak ditemukan
+            {t("di-not-found")}
           </h2>
           <Button onClick={() => navigate("/informations")}>
-            Kembali ke Blog
+            {t("di-back-btn-1")}
           </Button>
         </div>
       </div>
@@ -182,7 +185,7 @@ export function DetailInformations() {
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4" />
-                <span>{information.views.toLocaleString()} views</span>
+                <span>{information.views.toLocaleString()} {t("di-viewer")}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -205,7 +208,7 @@ export function DetailInformations() {
                   {information.author}
                 </h4>
                 <p className="text-sm text-muted-foreground">
-                  Dipublikasikan {formatDate(information.publishDate)}
+                  {t("di-publisher")} {formatDate(information.publishDate)}
                 </p>
               </div>
 
@@ -221,7 +224,7 @@ export function DetailInformations() {
                 {/* Tags */}
                 <div className="mt-8 pt-6 border-t border-border">
                   <h4 className="text-lg font-semibold text-foreground mb-4">
-                    Tags:
+                    {t("di-tags")}
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {information.tags.map((tag: string, index: number) => (
@@ -257,7 +260,7 @@ export function DetailInformations() {
                       className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 transition-colors"
                     >
                       <Share2 className="w-5 h-5" />
-                      <span>Share</span>
+                      <span>{t("di-share")}</span>
                     </button>
                   </div>
                   
@@ -275,29 +278,29 @@ export function DetailInformations() {
                 <div className="detail-box rounded-2xl p-6 shadow-lg">
                   <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
                     <BookOpen className="w-5 h-5" />
-                    Info Artikel
+                    {t("di-info")}
                   </h3>
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Kategori:</span>
+                      <span className="text-muted-foreground">{t("di-category")}</span>
                       <span className="font-medium">
                         {information.category}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Waktu Baca:</span>
+                      <span className="text-muted-foreground">{t("di-time")}</span>
                       <span className="font-medium">
                         {information.readTime}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Views:</span>
+                      <span className="text-muted-foreground">{t("di-viewer-info")}</span>
                       <span className="font-medium">
                         {information.views.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-muted-foreground">Penulis:</span>
+                      <span className="text-muted-foreground">{t("di-writer")}</span>
                       <span className="font-medium">{information.author || "Admin"}</span>
                     </div>
                   </div>
@@ -306,7 +309,7 @@ export function DetailInformations() {
                 {/* Related Articles */}
                 <div className="detail-box rounded-2xl p-6 shadow-lg">
                   <h3 className="text-lg font-semibold text-foreground mb-4">
-                    Artikel Terkait
+                    {t("di-related")}
                   </h3>
                   <div className="space-y-4">
                     {informationData
@@ -349,7 +352,7 @@ export function DetailInformations() {
                   onClick={() => navigate("/informations")}
                   className="w-full bg-emerald-500 hover:bg-emerald-600 text-white"
                 >
-                  Kembali ke Blog
+                  {t("di-back-btn-2")}
                 </Button>
               </div>
               

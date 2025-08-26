@@ -5,6 +5,8 @@ import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { Phone, MapPin, Instagram } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -24,6 +26,7 @@ export default function DetailTourGuidePage() {
   const navigate = useNavigate();
   const [guide, setGuide] = useState<TourGuide | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchGuide = async () => {
@@ -32,20 +35,20 @@ export default function DetailTourGuidePage() {
         const data = await res.json();
         setGuide(data);
       } catch (err) {
-        console.error("Gagal mengambil data tour guide:", err);
+        console.error(t("dtg-err-msg"), err);
       } finally {
         setLoading(false);
       }
     };
     fetchGuide();
-  }, [id]);
+  }, [id, t]);
 
   if (loading) {
-    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Memuat data...</div>;
+    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">{t("dtg-loading")}</div>;
   }
 
   if (!guide) {
-    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">Tour guide tidak ditemukan.</div>;
+    return <div className="min-h-screen flex items-center justify-center text-muted-foreground">{t("dtg-not-found")}</div>;
   }
 
   return (
@@ -68,7 +71,7 @@ export default function DetailTourGuidePage() {
           transition={{ duration: 0.6 }}
           className="bg-card rounded-2xl shadow-xl p-6 border border-border"
         >
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">Detail Pemandu Wisata</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-foreground">{t("dtg-detail")}</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="flex items-center gap-2 text-muted-foreground">
@@ -86,7 +89,7 @@ export default function DetailTourGuidePage() {
           </div>
 
           <div className="mb-6">
-            <span className="text-muted-foreground">Harga per hari</span>
+            <span className="text-muted-foreground">{t("dtg-price")}</span>
             <div className="text-3xl font-bold text-emerald-600">Rp {guide.harga.toLocaleString()}</div>
           </div>
 
@@ -95,7 +98,7 @@ export default function DetailTourGuidePage() {
             className="bg-emerald-500 hover:bg-emerald-600 text-white" 
             onClick={() => navigate(`/tourguide/${guide._id}/booking`)}
           >
-            Pesan Sekarang
+            {t("dtg-book-btn")}
           </Button>
         </motion.div>
       </section>

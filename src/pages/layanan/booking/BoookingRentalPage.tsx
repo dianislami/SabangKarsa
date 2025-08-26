@@ -6,10 +6,13 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 export default function BookingRentalPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -30,15 +33,15 @@ export default function BookingRentalPage() {
     const fetchRental = async () => {
       try {
         const res = await fetch(`${API_URL}/rental/${id}`);
-        if (!res.ok) throw new Error('Gagal mengambil data rental');
+        if (!res.ok) throw new Error(t("br-err-msg-1"));
         const data = await res.json();
         setRental(data);
       } catch (e: any) {
-        setError(e.message || 'Terjadi kesalahan saat memuat rental');
+        setError(e.message || t("br-err-msg-2"));
       }
     };
     if (id) fetchRental();
-  }, [id, API_URL]);
+  }, [id, API_URL, t]);
 
   // Hitung total harga
   useEffect(() => {
@@ -60,7 +63,7 @@ export default function BookingRentalPage() {
       setError('');
       setLoading(true);
       const token = localStorage.getItem('token');
-      if (!token) throw new Error('Anda belum login');
+      if (!token) throw new Error(t("br-err-msg-3"));
 
       const res = await fetch(`${API_URL}/booking/rental`, {
         method: 'POST',
@@ -77,16 +80,16 @@ export default function BookingRentalPage() {
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || 'Gagal booking rental');
+      if (!res.ok) throw new Error(data.error || t("br-err-msg-4"));
 
       if (data.payment?.redirect_url) {
         // redirect ke Midtrans
         window.location.href = data.payment.redirect_url;
       } else {
-        alert('Booking berhasil, tetapi link pembayaran tidak tersedia');
+        alert(t("br-err-msg-5"));
       }
     } catch (e: any) {
-      setError(e.message || 'Terjadi kesalahan saat booking');
+      setError(e.message || t("br-err-msg-6"));
     } finally {
       setLoading(false);
     }
@@ -99,11 +102,11 @@ export default function BookingRentalPage() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Kembali
+              <ArrowLeft className="w-4 h-4" /> {t("br-back-btn")}
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Booking Rental</h1>
-              <p className="text-muted-foreground">Lengkapi data booking untuk melanjutkan</p>
+              <h1 className="text-2xl font-bold text-foreground">{t("br-header")}</h1>
+              <p className="text-muted-foreground">{t("br-line")}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -121,8 +124,8 @@ export default function BookingRentalPage() {
                     <Car className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-foreground">Informasi Kendaraan</h2>
-                    <p className="text-sm text-muted-foreground">Detail kendaraan yang akan disewa</p>
+                    <h2 className="text-lg font-semibold text-foreground">{t("br-info")}</h2>
+                    <p className="text-sm text-muted-foreground">{t("br-info-p")}</p>
                   </div>
                 </div>
                 
@@ -143,7 +146,7 @@ export default function BookingRentalPage() {
                       <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         Rp {rental.harga?.toLocaleString()}
                       </span>
-                      <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">per hari</span>
+                      <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">{t("br-per-day")}</span>
                     </div>
                   </div>
                 </div>
@@ -156,14 +159,14 @@ export default function BookingRentalPage() {
                     <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-foreground">Detail Booking</h2>
-                    <p className="text-sm text-muted-foreground">Pilih tanggal rental kendaraan</p>
+                    <h2 className="text-lg font-semibold text-foreground">{t("br-detail")}</h2>
+                    <p className="text-sm text-muted-foreground">{t("br-date-opt")}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-foreground">Tanggal Mulai *</label>
+                    <label className="block text-sm font-medium mb-2 text-foreground">{t("br-date-start")}</label>
                     <input
                       type="date"
                       value={tanggalMulai}
@@ -173,7 +176,7 @@ export default function BookingRentalPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-foreground">Tanggal Selesai *</label>
+                    <label className="block text-sm font-medium mb-2 text-foreground">{t("br-date-end")}</label>
                     <input
                       type="date"
                       value={tanggalSelesai}
@@ -192,25 +195,25 @@ export default function BookingRentalPage() {
                       <CreditCard className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
-                      <h2 className="text-lg font-semibold text-foreground">Ringkasan Pembayaran</h2>
-                      <p className="text-sm text-muted-foreground">Total biaya rental</p>
+                      <h2 className="text-lg font-semibold text-foreground">{t("br-sum")}</h2>
+                      <p className="text-sm text-muted-foreground">{t("br-price-total")}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Harga per hari</span>
+                      <span className="text-muted-foreground">{t("br-price-per-day")}</span>
                       <span className="text-foreground">Rp {rental.harga?.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Jumlah hari</span>
+                      <span className="text-muted-foreground">{t("br-day-total")}</span>
                       <span className="text-foreground">
-                        {tanggalMulai && tanggalSelesai ? Math.ceil((new Date(tanggalSelesai).getTime() - new Date(tanggalMulai).getTime()) / (1000 * 60 * 60 * 24)) : 0} hari
+                        {tanggalMulai && tanggalSelesai ? Math.ceil((new Date(tanggalSelesai).getTime() - new Date(tanggalMulai).getTime()) / (1000 * 60 * 60 * 24)) : 0} {t("br-day")}
                       </span>
                     </div>
                     <hr className="border-border" />
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-foreground">Total Harga</span>
+                      <span className="text-lg font-semibold text-foreground">{t("br-price-sum")}</span>
                       <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         Rp {totalHarga.toLocaleString()}
                       </span>
@@ -226,7 +229,7 @@ export default function BookingRentalPage() {
                   disabled={loading || !tanggalMulai || !tanggalSelesai || totalHarga === 0}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3"
                 >
-                  {loading ? 'Memproses...' : 'Booking & Bayar'}
+                  {loading ? t("br-btn-1") : t("br-btn-2")}
                 </Button>
               </div>
 
@@ -240,7 +243,7 @@ export default function BookingRentalPage() {
           ) : (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Memuat data rental...</p>
+              <p className="text-muted-foreground">{t("br-loading")}</p>
             </div>
           )}
         </motion.div>

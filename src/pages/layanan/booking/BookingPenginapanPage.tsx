@@ -6,10 +6,13 @@ import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
 import { Footer } from '@/components/layouts/footer';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 export default function BookingPenginapanPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -31,15 +34,15 @@ export default function BookingPenginapanPage() {
     const fetchPenginapan = async () => {
       try {
         const res = await fetch(`${API_URL}/penginapan/${id}`);
-        if (!res.ok) throw new Error('Gagal mengambil data penginapan');
+        if (!res.ok) throw new Error(t("bp-err-msg-1"));
         const data = await res.json();
         setPenginapan(data);
       } catch (e: any) {
-        setError(e.message || 'Terjadi kesalahan saat memuat penginapan');
+        setError(e.message || t("bp-err-msg-2"));
       }
     };
     if (id) fetchPenginapan();
-  }, [id, API_URL]);
+  }, [id, API_URL, t]);
 
   // Hitung total harga
   useEffect(() => {
@@ -57,7 +60,7 @@ export default function BookingPenginapanPage() {
       setLoading(true);
 
       const token = localStorage.getItem('token');
-      if (!token) throw new Error('Anda belum login');
+      if (!token) throw new Error(t("bp-err-msg-3"));
 
       const res = await fetch(`${API_URL}/booking/penginapan`, {
         method: 'POST',
@@ -76,18 +79,18 @@ export default function BookingPenginapanPage() {
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || 'Gagal booking');
+        throw new Error(data.error || t("bp-err-msg-4"));
       }
 
       if (data.payment?.redirect_url) {
         // Redirect ke Midtrans
         window.location.href = data.payment.redirect_url;
       } else {
-        alert('Booking berhasil, tetapi tidak ada link pembayaran');
-        console.log('Booking data:', data.booking);
+        alert(t("bp-err-msg-5"));
+        // console.log('Booking data:', data.booking);
       }
     } catch (e: any) {
-      setError(e.message || 'Terjadi kesalahan saat booking');
+      setError(e.message || t("bp-err-msg-6"));
     } finally {
       setLoading(false);
     }
@@ -100,11 +103,11 @@ export default function BookingPenginapanPage() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Kembali
+              <ArrowLeft className="w-4 h-4" /> {t("bp-back-btn")}
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Booking Penginapan</h1>
-              <p className="text-muted-foreground">Lengkapi data booking untuk melanjutkan</p>
+              <h1 className="text-2xl font-bold text-foreground">{t("bp-header")}</h1>
+              <p className="text-muted-foreground">{t("bp-line")}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -122,8 +125,8 @@ export default function BookingPenginapanPage() {
                     <Home className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-foreground">Informasi Penginapan</h2>
-                    <p className="text-sm text-muted-foreground">Detail penginapan yang akan dipesan</p>
+                    <h2 className="text-lg font-semibold text-foreground">{t("bp-info")}</h2>
+                    <p className="text-sm text-muted-foreground">{t("bp-info-p")}</p>
                   </div>
                 </div>
                 
@@ -149,7 +152,7 @@ export default function BookingPenginapanPage() {
                       <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         Rp {penginapan.hargaPerMalam?.toLocaleString()}
                       </span>
-                      <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">per malam</span>
+                      <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">{t("bp-per-night")}</span>
                     </div>
                   </div>
                 </div>
@@ -162,14 +165,14 @@ export default function BookingPenginapanPage() {
                     <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                   </div>
                   <div>
-                    <h2 className="text-lg font-semibold text-foreground">Detail Booking</h2>
-                    <p className="text-sm text-muted-foreground">Pilih tanggal dan jumlah kamar</p>
+                    <h2 className="text-lg font-semibold text-foreground">{t("bp-detail")}</h2>
+                    <p className="text-sm text-muted-foreground">{t("bp-options")}</p>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-foreground">Check-in *</label>
+                    <label className="block text-sm font-medium mb-2 text-foreground">{t("bp-cin")}</label>
                     <input
                       type="date"
                       value={checkIn}
@@ -179,7 +182,7 @@ export default function BookingPenginapanPage() {
                   </div>
                   
                   <div>
-                    <label className="block text-sm font-medium mb-2 text-foreground">Check-out *</label>
+                    <label className="block text-sm font-medium mb-2 text-foreground">{t("bp-cout")}</label>
                     <input
                       type="date"
                       value={checkOut}
@@ -189,7 +192,7 @@ export default function BookingPenginapanPage() {
                   </div>
                   
                   <div className="md:col-span-2">
-                    <label className="block text-sm font-medium mb-2 text-foreground">Jumlah Kamar *</label>
+                    <label className="block text-sm font-medium mb-2 text-foreground">{t("bp-room-total")}</label>
                     <div className="flex items-center gap-2">
                       <Users className="w-4 h-4 text-muted-foreground" />
                       <input
@@ -202,7 +205,7 @@ export default function BookingPenginapanPage() {
                       />
                     </div>
                     <p className="text-xs text-muted-foreground mt-1">
-                      Tersedia {penginapan.jumlahKamarTersedia} kamar
+                      {penginapan.jumlahKamarTersedia} {t("bp-room")} {t("bp-available")}
                     </p>
                   </div>
                 </div>
@@ -216,29 +219,29 @@ export default function BookingPenginapanPage() {
                       <CreditCard className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                     </div>
                     <div>
-                      <h2 className="text-lg font-semibold text-foreground">Ringkasan Pembayaran</h2>
-                      <p className="text-sm text-muted-foreground">Total biaya booking</p>
+                      <h2 className="text-lg font-semibold text-foreground">{t("bp-sum")}</h2>
+                      <p className="text-sm text-muted-foreground">{t("bp-total-price")}</p>
                     </div>
                   </div>
                   
                   <div className="space-y-3">
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Harga per malam</span>
+                      <span className="text-muted-foreground">{t("bp-price")}</span>
                       <span className="text-foreground">Rp {penginapan.hargaPerMalam?.toLocaleString()}</span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Jumlah malam</span>
+                      <span className="text-muted-foreground">{t("bp-night-total")}</span>
                       <span className="text-foreground">
-                        {checkIn && checkOut ? Math.ceil((+new Date(checkOut) - +new Date(checkIn)) / (1000 * 60 * 60 * 24)) : 0} malam
+                        {checkIn && checkOut ? Math.ceil((+new Date(checkOut) - +new Date(checkIn)) / (1000 * 60 * 60 * 24)) : 0} {t("bp-night")}
                       </span>
                     </div>
                     <div className="flex justify-between text-sm">
-                      <span className="text-muted-foreground">Jumlah kamar</span>
-                      <span className="text-foreground">{jumlahKamar} kamar</span>
+                      <span className="text-muted-foreground">{t("bp-room-sum")}</span>
+                      <span className="text-foreground">{jumlahKamar} {t("bp-room")}</span>
                     </div>
                     <hr className="border-border" />
                     <div className="flex justify-between items-center">
-                      <span className="text-lg font-semibold text-foreground">Total Harga</span>
+                      <span className="text-lg font-semibold text-foreground">{t("bp-price-sum")}</span>
                       <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         Rp {totalHarga.toLocaleString()}
                       </span>
@@ -254,7 +257,7 @@ export default function BookingPenginapanPage() {
                   disabled={loading || !checkIn || !checkOut || totalHarga === 0}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3"
                 >
-                  {loading ? 'Memproses...' : 'Booking & Bayar'}
+                  {loading ? t("bp-btn-1") : t("bp-btn-2")}
                 </Button>
               </div>
 
@@ -268,7 +271,7 @@ export default function BookingPenginapanPage() {
           ) : (
             <div className="text-center py-12">
               <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-              <p className="text-muted-foreground">Memuat data penginapan...</p>
+              <p className="text-muted-foreground">{t("bp-loading")}</p>
             </div>
           )}
         </motion.div>

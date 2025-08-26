@@ -7,6 +7,8 @@ import { Calendar, MapPin } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/events.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Event {
   id: number;
@@ -18,10 +20,11 @@ interface Event {
     location: string;
 }
 
-const eventsData: Event[] = data;
+const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function AgendaPage() {
   const [events, setEvents] = useState<Event[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     setEvents(eventsData);
@@ -61,7 +64,7 @@ export function AgendaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-               Event <span className="text-emerald-400">   dan Agenda</span>
+              {t("agendapg-h-1")} <span className="text-emerald-400">   {t("agendapg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -69,7 +72,7 @@ export function AgendaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-                Temukan berbagai informasi menarik tentang acara dan agenda di Sabang. Dari festival budaya hingga acara olahraga, kami menyediakan semua yang Anda butuhkan untuk merencanakan kunjungan Anda.
+                {t("agendapg-p")}
             </motion.p>
           </motion.div>
         </div>
@@ -84,7 +87,7 @@ export function AgendaPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            Daftar Acara
+            {t("agendapg-list")}
           </motion.h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {events.map((event) => (
@@ -126,7 +129,7 @@ export function AgendaPage() {
                   </div>
                   <Link to={`/agenda/${event.id}`}>
                     <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
-                      Lihat Detail
+                      {t("agendapg-btn")}
                     </Button>
                   </Link>
                 </div>

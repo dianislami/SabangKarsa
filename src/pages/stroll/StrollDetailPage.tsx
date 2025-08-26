@@ -12,6 +12,8 @@ import {
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/stroll.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface StrollItem {
   id: number;
@@ -26,15 +28,15 @@ interface StrollItem {
   detailDescription: string;
 }
 
-const strollData: StrollItem[] = data;
+const strollData: StrollItem[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function StrollDetailPage() {
   const { id } = useParams();
   const navigate = useNavigate();
-
   const [item, setItem] = useState<StrollItem | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (id) {
@@ -48,10 +50,10 @@ export function StrollDetailPage() {
       <div className="min-h-screen bg-background flex items-center justify-center">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-foreground mb-4">
-            Kuliner atau Tempat tidak ditemukan
+            {t("sd-not-found")}
           </h2>
           <Button onClick={() => navigate("/stroll")}>
-            Kembali ke Stroll & Kuliner
+            {t("sd-back-btn")}
           </Button>
         </div>
       </div>
@@ -209,28 +211,28 @@ export function StrollDetailPage() {
             >
               <div className="detail-box rounded-2xl p-6 shadow-lg">
                 <h3 className="text-xl font-bold text-foreground mb-4">
-                  Informasi Kuliner/Tempat
+                  {t("sd-info")}
                 </h3>
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Kategori:</span>
+                    <span className="text-muted-foreground">{t("sd-category")}</span>
                     <span className="font-medium">{item.category}</span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Harga:</span>
+                    <span className="text-muted-foreground">{t("sd-price")}</span>
                     <span className="font-semibold text-emerald-600 dark:text-emerald-400 text-lg">
                       {item.price}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Rating:</span>
+                    <span className="text-muted-foreground">{t("sd-rating")}</span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
                       <span className="font-semibold">{item.rating}/5</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Lokasi:</span>
+                    <span className="text-muted-foreground">{t("sd-loc")}</span>
                     <span className="font-medium text-right">{item.location}</span>
                   </div>
                 </div>

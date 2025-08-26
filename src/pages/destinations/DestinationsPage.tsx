@@ -6,6 +6,8 @@ import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Star, Camera, ChevronLeft, ChevronRight, Search, Filter } from "lucide-react";
 import data from "../../data/destinations.json";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Destination {
   id: number;
@@ -17,25 +19,26 @@ interface Destination {
   category: string;
 }
 
-const allDestinations: Destination[] = data;
+const allDestinations: Destination[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 const ITEMS_PER_PAGE = 9;
 
 export function DestinationsPage() {
+  const { t } = useTranslation();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedCategory, setSelectedCategory] = useState(t("destpg-all"));
   const [sortBy, setSortBy] = useState("name");
   const navigate = useNavigate();
 
   // Get unique categories from destinations
-  const categories = ["Semua", ...Array.from(new Set(allDestinations.map(dest => dest.category)))];
+  const categories = [t("destpg-all"), ...Array.from(new Set(allDestinations.map(dest => dest.category)))];
 
   // Filter and sort destinations
   const filteredDestinations = allDestinations
     .filter(destination => {
       const matchesSearch = destination.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            destination.description.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === "Semua" || destination.category === selectedCategory;
+      const matchesCategory = selectedCategory === t("destpg-all") || destination.category === selectedCategory;
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -123,7 +126,7 @@ export function DestinationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Destinasi <span className="text-emerald-400">Wisata</span>
+              {t("destpg-h-1")} <span className="text-emerald-400">{t("destpg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -131,7 +134,7 @@ export function DestinationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Jelajahi keindahan alam Sabang yang memukau dengan berbagai destinasi wisata terbaik yang menawan hati.
+              {t("destpg-line")}
             </motion.p>
           </motion.div>
         </div>
@@ -151,7 +154,7 @@ export function DestinationsPage() {
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-5 h-5" />
               <input
                 type="text"
-                placeholder="Cari destinasi..."
+                placeholder={t("destpg-ph")}
                 value={searchTerm}
                 onChange={(e) => handleSearchChange(e.target.value)}
                 className="w-full pl-10 pr-4 py-3 rounded-xl border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
@@ -183,9 +186,9 @@ export function DestinationsPage() {
                 onChange={(e) => handleSortChange(e.target.value)}
                 className="px-4 py-2 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-emerald-500"
               >
-                <option value="name">Nama A-Z</option>
-                <option value="rating">Rating Tertinggi</option>
-                <option value="category">Kategori</option>
+                <option value="name">{t("destpg-filter-1")}</option>
+                <option value="rating">{t("destpg-filter-2")}</option>
+                <option value="category">{t("destpg-filter-3")}</option>
               </select>
             </div>
           </motion.div>
@@ -202,13 +205,13 @@ export function DestinationsPage() {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">
-              {searchTerm || selectedCategory !== "Semua" 
-                ? `Hasil Pencarian (${filteredDestinations.length})`
-                : `Semua Destinasi (${allDestinations.length})`
+              {searchTerm || selectedCategory !== t("destpg-all") 
+                ? `${t("destpg-result")} (${filteredDestinations.length})`
+                : `${t("destpg-all-res")} (${allDestinations.length})`
               }
             </h2>
             <div className="text-muted-foreground">
-              Halaman {currentPage} dari {totalPages}
+              {t("destpg-page-1")} {currentPage} {t("destpg-page-2")} {totalPages}
             </div>
           </motion.div>
 
@@ -264,7 +267,7 @@ export function DestinationsPage() {
 
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-white font-medium text-muted-foreground">
-                      Kisaran Harga Masuk
+                      {t("destpg-price")}
                     </span>
                     <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
                       {destination.price}
@@ -277,7 +280,7 @@ export function DestinationsPage() {
                         navigate(`/destinations/${destination.id}`);
                       }}
                     >
-                      Lihat Detail
+                      {t("destpg-detail")}
                     </Button>
                   </div>
                 </div>
@@ -294,10 +297,10 @@ export function DestinationsPage() {
             >
               <div className="text-6xl mb-4">🏝️</div>
               <h3 className="text-xl font-semibold text-foreground mb-2">
-                Destinasi tidak ditemukan
+                {t("destpg-not-found")}
               </h3>
               <p className="text-muted-foreground">
-                Coba ubah kriteria pencarian atau filter kategori
+                {t("destpg-suggest")}
               </p>
             </motion.div>
           )}
@@ -318,7 +321,7 @@ export function DestinationsPage() {
                 className="flex items-center gap-1"
               >
                 <ChevronLeft className="w-4 h-4" />
-                Previous
+                {t("destpg-prev")}
               </Button>
 
               <div className="flex gap-1">
@@ -348,7 +351,7 @@ export function DestinationsPage() {
                 disabled={currentPage === totalPages}
                 className="flex items-center gap-1"
               >
-                Next
+                {t("destpg-next")}
                 <ChevronRight className="w-4 h-4" />
               </Button>
             </motion.div>
@@ -362,9 +365,9 @@ export function DestinationsPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
             >
-              Menampilkan {startIndex + 1}-
-              {Math.min(startIndex + ITEMS_PER_PAGE, filteredDestinations.length)} dari{" "}
-              {filteredDestinations.length} destinasi
+              {t("destpg-shown-1")} {startIndex + 1}-
+              {Math.min(startIndex + ITEMS_PER_PAGE, filteredDestinations.length)} {t("destpg-page-2")}{" "}
+              {filteredDestinations.length} {t("destpg-shown-2")}
             </motion.div>
           )}
         </div>

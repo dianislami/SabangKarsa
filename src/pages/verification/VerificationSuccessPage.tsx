@@ -4,10 +4,13 @@ import { motion } from 'framer-motion';
 import { CheckCircle, Clock, ArrowLeft, Home } from 'lucide-react';
 import { Button } from '../../components/ui/button';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function VerificationSuccessPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -49,7 +52,7 @@ export function VerificationSuccessPage() {
           transition={{ delay: 0.3, duration: 0.5 }}
           className="text-2xl font-bold text-foreground mb-4"
         >
-          Permohonan Berhasil Dikirim!
+          {t("vs-success")}
         </motion.h1>
 
         {/* Description */}
@@ -60,26 +63,26 @@ export function VerificationSuccessPage() {
           className="space-y-4 mb-8"
         >
           <p className="text-muted-foreground">
-            Terima kasih telah mengajukan verifikasi penjual. Permohonan Anda telah berhasil dikirim dan sedang dalam proses review.
+            {t("vs-thanks")}
           </p>
           
           <div className="bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-lg p-4">
             <div className="flex items-center gap-2 text-blue-600 mb-2">
               <Clock className="w-5 h-5" />
-              <span className="font-medium">Status: Sedang Diproses</span>
+              <span className="font-medium">{t("vs-on-progress")}</span>
             </div>
             <p className="text-sm text-blue-600">
-              Tim kami akan melakukan review dalam 1-3 hari kerja. Anda akan mendapat notifikasi melalui email dan WhatsApp.
+              {t("vs-note")}
             </p>
           </div>
 
           <div className="text-left bg-gray-50 dark:bg-gray-800 rounded-lg p-4">
-            <h3 className="font-medium text-foreground mb-2">Langkah Selanjutnya:</h3>
+            <h3 className="font-medium text-foreground mb-2">{t("vs-next-steps")}</h3>
             <ul className="text-sm text-muted-foreground space-y-1">
-              <li>• Pastikan nomor telepon dan email Anda aktif</li>
-              <li>• Tunggu konfirmasi dari tim JakSabang</li>
-              <li>• Jika ada dokumen yang perlu diperbaiki, Anda akan dihubungi</li>
-              <li>• Setelah disetujui, akun Anda akan diupgrade menjadi penjual</li>
+              <li>• {t("vs-step-1")}</li>
+              <li>• {t("vs-step-2")}</li>
+              <li>• {t("vs-step-3")}</li>
+              <li>• {t("vs-step-4")}</li>
             </ul>
           </div>
         </motion.div>
@@ -97,14 +100,14 @@ export function VerificationSuccessPage() {
             className="flex items-center gap-2"
           >
             <ArrowLeft className="w-4 h-4" />
-            Kembali
+            {t("vs-back-btn")}
           </Button>
           <Button
             onClick={() => navigate('/')}
             className="flex items-center gap-2"
           >
             <Home className="w-4 h-4" />
-            Ke Beranda
+            {t("vs-home-btn")}
           </Button>
         </motion.div>
 
@@ -115,7 +118,7 @@ export function VerificationSuccessPage() {
           transition={{ delay: 1, duration: 0.5 }}
           className="text-xs text-muted-foreground mt-6"
         >
-          Anda akan dialihkan ke beranda dalam 10 detik
+          {t("vs-home-msg")}
         </motion.p>
       </motion.div>
     </div>

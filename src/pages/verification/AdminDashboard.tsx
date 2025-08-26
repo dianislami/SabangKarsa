@@ -8,6 +8,9 @@ import { DataTable } from '@/components/admin/DataTable';
 import { AlertCircle, CheckCircle, Eye, X, Users, Shield, FileText, UserCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
+import type { TFunction } from 'i18next';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -33,6 +36,7 @@ type User = {
 export default function AdminDashboard() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "admin") {
     navigate(-1);
@@ -45,7 +49,7 @@ export default function AdminDashboard() {
   const [success, setSuccess] = useState<string | null>(null);
   const [selectedVerifikasi, setSelectedVerifikasi] = useState<Verifikasi | null>(null);
 
-  const fetchUsers = async () => {
+  const fetchUsers = async (translator: TFunction<"translation", undefined>) => {
     setLoading(true);
     setError(null);
     try {
@@ -53,21 +57,21 @@ export default function AdminDashboard() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
       });
       if (!res.ok) {
-        if (res.status === 403) throw new Error('Hanya admin yang boleh mengakses');
-        else throw new Error('Gagal memuat data pengguna');
+        if (res.status === 403) throw new Error(translator("ad-msg-1"));
+        else throw new Error(translator("ad-msg-2"));
       }
       const data = await res.json();
       setUsers(data.users || []);
     } catch (err: any) {
-      setError(err.message || 'Terjadi kesalahan');
+      setError(err.message || translator("ad-msg-3"));
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers(t);
+  }, [t]);
 
   const updateUserRole = async (userId: string, newRole: string) => {
     setError(null);
@@ -82,14 +86,14 @@ export default function AdminDashboard() {
         body: JSON.stringify({ role: newRole })
       });
       if (!res.ok) {
-        if (res.status === 400) throw new Error('Role tidak valid');
-        if (res.status === 404) throw new Error('User tidak ditemukan');
-        throw new Error('Gagal mengupdate role');
+        if (res.status === 400) throw new Error(t("ad-msg-4"));
+        if (res.status === 404) throw new Error(t("ad-msg-5"));
+        throw new Error(t("ad-msg-6"));
       }
-      setSuccess('Role berhasil diupdate');
-      fetchUsers();
+      setSuccess(t("ad-msg-7"));
+      fetchUsers(t);
     } catch (err: any) {
-      setError(err.message || 'Terjadi kesalahan');
+      setError(err.message || t("ad-msg-3"));
     }
   };
 
@@ -105,12 +109,12 @@ export default function AdminDashboard() {
         },
         body: JSON.stringify({ status: newStatus })
       });
-      if (!res.ok) throw new Error('Gagal memperbarui status verifikasi');
-      setSuccess('Status verifikasi berhasil diperbarui');
+      if (!res.ok) throw new Error(t("ad-msg-8"));
+      setSuccess(t("ad-msg-9"));
       setSelectedVerifikasi(null);
-      fetchUsers();
+      fetchUsers(t);
     } catch (err: any) {
-      setError(err.message || 'Terjadi kesalahan');
+      setError(err.message || t("ad-msg-3"));
     }
   };
 
@@ -123,8 +127,8 @@ export default function AdminDashboard() {
       <div className="flex-1 flex flex-col overflow-hidden">
         {/* Header */}
         <AdminHeader
-          title="Dashboard Admin"
-          subtitle="Kelola pengguna dan verifikasi penjual JakSabang"
+          title={t("ad-header-t")}
+          subtitle={t("ad-header-sub")}
         />
 
         {/* Content Area */}
@@ -143,7 +147,7 @@ export default function AdminDashboard() {
               >
                 <div className="flex items-center gap-2">
                   <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
-                  <span className="font-medium text-red-800 dark:text-red-300">Error</span>
+                  <span className="font-medium text-red-800 dark:text-red-300">{t("ad-error")}</span>
                 </div>
                 <p className="text-red-600 dark:text-red-400 mt-1">{error}</p>
               </motion.div>
@@ -157,7 +161,7 @@ export default function AdminDashboard() {
               >
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
-                  <span className="font-medium text-emerald-800 dark:text-emerald-300">Berhasil</span>
+                  <span className="font-medium text-emerald-800 dark:text-emerald-300">{t("ad-success")}</span>
                 </div>
                 <p className="text-emerald-600 dark:text-emerald-400 mt-1">{success}</p>
               </motion.div>
@@ -166,25 +170,25 @@ export default function AdminDashboard() {
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <StatsCard
-                title="Total Pengguna"
+                title={t("ad-card-t-1")}
                 value={users.length}
                 icon={Users}
                 color="blue"
               />
               <StatsCard
-                title="Verifikasi Pending"
+                title={t("ad-card-t-2")}
                 value={users.filter(u => u.verifikasi?.status === 'pending').length}
                 icon={Shield}
                 color="orange"
               />
               <StatsCard
-                title="Seller Aktif"
+                title={t("ad-card-t-3")}
                 value={users.filter(u => u.role === 'seller').length}
                 icon={UserCheck}
                 color="emerald"
               />
               <StatsCard
-                title="Admin"
+                title={t("ad-card-t-4")}
                 value={users.filter(u => u.role === 'admin').length}
                 icon={FileText}
                 color="purple"
@@ -193,11 +197,11 @@ export default function AdminDashboard() {
 
             {/* Users Table */}
             <DataTable
-              title="Daftar Pengguna"
-              subtitle="Kelola role dan status verifikasi pengguna"
+              title={t("ad-tab-1-t")}
+              subtitle={t("ad-tab-1-sub")}
               loading={loading}
               data={users}
-              emptyMessage="Tidak ada pengguna ditemukan"
+              emptyMessage={t("ad-tab-1-err")}
               onRowClick={(user) => {
                 if (user.verifikasi) {
                   setSelectedVerifikasi(user.verifikasi);
@@ -206,21 +210,21 @@ export default function AdminDashboard() {
               columns={[
                 {
                   key: 'name',
-                  label: 'Nama',
+                  label: t("ad-tab-1-col-1"),
                   render: (value) => (
                     <div className="font-medium">{value}</div>
                   )
                 },
                 {
                   key: 'email',
-                  label: 'Email',
+                  label: t("ad-tab-1-col-2"),
                   render: (value) => (
                     <div className="text-muted-foreground">{value}</div>
                   )
                 },
                 {
                   key: 'role',
-                  label: 'Role',
+                  label: t("ad-tab-1-col-3"),
                   render: (value) => (
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
                       value === 'admin' 
@@ -235,12 +239,12 @@ export default function AdminDashboard() {
                 },
                 {
                   key: 'no_hp',
-                  label: 'No HP',
+                  label: t("ad-tab-1-col-4"),
                   render: (value) => value || '-'
                 },
                 {
                   key: 'alamat',
-                  label: 'Alamat',
+                  label: t("ad-tab-1-col-5"),
                   render: (value) => (
                     <div className="max-w-xs truncate">
                       {value || '-'}
@@ -249,7 +253,7 @@ export default function AdminDashboard() {
                 },
                 {
                   key: 'verifikasi',
-                  label: 'Verifikasi',
+                  label: t("ad-tab-1-col-6"),
                   render: (verifikasi) => (
                     <div className="flex items-center gap-2">
                       {verifikasi ? (
@@ -261,8 +265,8 @@ export default function AdminDashboard() {
                               ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
                               : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
                           }`}>
-                            {verifikasi.status === 'pending' ? 'Pending' :
-                             verifikasi.status === 'approved' ? 'Approved' : 'Rejected'}
+                            {verifikasi.status === 'pending' ? t("ad-verif-status-1") :
+                             verifikasi.status === 'approved' ? t("ad-verif-status-2") : t("ad-verif-status-3")}
                           </span>
                           <Button
                             size="sm"
@@ -278,7 +282,7 @@ export default function AdminDashboard() {
                         </>
                       ) : (
                         <span className="text-sm text-muted-foreground">
-                          Belum mengajukan
+                          {t("ad-verif-status-4")}
                         </span>
                       )}
                     </div>
@@ -286,7 +290,7 @@ export default function AdminDashboard() {
                 },
                 {
                   key: '_id',
-                  label: 'Kelola Role',
+                  label: t("ad-tab-1-col-7"),
                   render: (_, user) => (
                     <div className="flex flex-wrap gap-1">
                       <Button 
@@ -298,7 +302,7 @@ export default function AdminDashboard() {
                         }}
                         className="text-xs h-6 px-2"
                       >
-                        Buyer
+                        {t("ad-role-1")}
                       </Button>
                       <Button 
                         size="sm" 
@@ -309,7 +313,7 @@ export default function AdminDashboard() {
                         }}
                         className="text-xs h-6 px-2"
                       >
-                        Seller
+                        {t("ad-role-2")}
                       </Button>
                       <Button 
                         size="sm" 
@@ -320,7 +324,7 @@ export default function AdminDashboard() {
                         }}
                         className="text-xs h-6 px-2"
                       >
-                        Admin
+                        {t("ad-role-3")}
                       </Button>
                     </div>
                   )
@@ -342,10 +346,10 @@ export default function AdminDashboard() {
             <div className="flex items-center justify-between p-6 border-b border-admin">
               <div>
                 <h2 className="text-lg font-semibold text-admin">
-                  Detail Dokumen Verifikasi
+                  {t("ad-verif-detail-h")}
                 </h2>
                 <p className="text-sm text-admin-muted">
-                  Review dan kelola status verifikasi
+                  {t("ad-verif-detail-p")}
                 </p>
               </div>
               <Button
@@ -363,7 +367,7 @@ export default function AdminDashboard() {
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-sm font-medium text-admin mb-2">
-                      Status Verifikasi
+                      {t("ad-verif-status-h")}
                     </h3>
                     <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
                       selectedVerifikasi?.status === 'pending'
@@ -372,15 +376,15 @@ export default function AdminDashboard() {
                         ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
                         : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
                     }`}>
-                      {selectedVerifikasi?.status === 'pending' ? 'Menunggu Review' :
-                       selectedVerifikasi?.status === 'approved' ? 'Disetujui' : 'Ditolak'}
+                      {selectedVerifikasi?.status === 'pending' ? t("ad-verif-status-1") :
+                       selectedVerifikasi?.status === 'approved' ? t("ad-verif-status-2") : t("ad-verif-status-3")}
                     </span>
                   </div>
 
                   {selectedVerifikasi?.catatan && (
                     <div>
                       <h3 className="text-sm font-medium text-admin mb-2">
-                        Catatan
+                        {t("ad-note")}
                       </h3>
                       <p className="text-sm text-admin-muted bg-admin p-3 rounded-lg">
                         {selectedVerifikasi.catatan}
@@ -391,14 +395,14 @@ export default function AdminDashboard() {
 
                 <div className="space-y-4">
                   <h3 className="text-sm font-medium text-admin">
-                    Dokumen yang Diunggah
+                    {t("ad-docs")}
                   </h3>
                   
                   <div className="space-y-3">
                     <div className="flex items-center justify-between p-3 bg-admin rounded-lg">
                       <div className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-blue-600 dark:text-blue-400" />
-                        <span className="text-sm font-medium text-admin">KTP</span>
+                        <span className="text-sm font-medium text-admin">{t("ad-ktp")}</span>
                       </div>
                       <Button
                         size="sm"
@@ -406,14 +410,14 @@ export default function AdminDashboard() {
                         onClick={() => selectedVerifikasi && window.open(`${API_URL}/${selectedVerifikasi.ktp}`, '_blank')}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        Lihat
+                        {t("ad-see-button")}
                       </Button>
                     </div>
 
                     <div className="flex items-center justify-between p-3 bg-admin rounded-lg">
                       <div className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
-                        <span className="text-sm font-medium text-admin">NPWP</span>
+                        <span className="text-sm font-medium text-admin">{t("ad-npwp")}</span>
                       </div>
                       <Button
                         size="sm"
@@ -421,14 +425,14 @@ export default function AdminDashboard() {
                         onClick={() => selectedVerifikasi && window.open(`${API_URL}/${selectedVerifikasi.npwp}`, '_blank')}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        Lihat
+                        {t("ad-see-button")}
                       </Button>
                     </div>
 
                     <div className="flex items-center justify-between p-3 bg-admin rounded-lg">
                       <div className="flex items-center gap-2">
                         <FileText className="w-4 h-4 text-purple-600 dark:text-purple-400" />
-                        <span className="text-sm font-medium text-admin">Dokumen Bisnis</span>
+                        <span className="text-sm font-medium text-admin">{t("ad-bussiness")}</span>
                       </div>
                       <Button
                         size="sm"
@@ -436,7 +440,7 @@ export default function AdminDashboard() {
                         onClick={() => selectedVerifikasi && window.open(`${API_URL}/${selectedVerifikasi.dokumenBisnis}`, '_blank')}
                       >
                         <Eye className="w-4 h-4 mr-1" />
-                        Lihat
+                        {t("ad-see-button")}
                       </Button>
                     </div>
                   </div>
@@ -450,14 +454,14 @@ export default function AdminDashboard() {
                     className="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white"
                   >
                     <CheckCircle className="w-4 h-4 mr-2" />
-                    Setujui Verifikasi
+                    {t("ad-approve-btn")}
                   </Button>
                   <Button 
                     onClick={() => selectedVerifikasi && updateVerifikasiStatus(selectedVerifikasi._id, 'rejected')}
                     className="flex-1 bg-red-600 hover:bg-red-700 text-white border-red-600 hover:border-red-700"
                   >
                     <X className="w-4 h-4 mr-2" />
-                    Tolak Verifikasi
+                    {t("ad-reject-btn")}
                   </Button>
                 </div>
               )}

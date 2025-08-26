@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
 import { Eye, EyeOff, Mail, Lock} from "lucide-react";
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function LoginPage() {
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ export function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const API_URL = import.meta.env.VITE_API_URL;
+  const { t } = useTranslation();
 
   // Mouse tracking for parallax effect
   useEffect(() => {
@@ -67,13 +70,13 @@ export function LoginPage() {
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
 
-        console.log(result);
+        // console.log(result);
         navigate("/");
       } else {
-        setError(result.error || "Login gagal.");
+        setError(result.error || t("login-error"));
       }
     } catch (err) {
-      setError("Terjadi kesalahan saat login.");
+      setError(t("login-err-msg"));
     } finally {
       setLoading(false);
     }
@@ -151,13 +154,12 @@ export function LoginPage() {
               />
             </div>
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
-              Selamat Datang di
+              {t("login-welcome")}
               <br />
               <span className="gradient-text-alt">JakSabang</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
-              Jelajahi keindahan Sabang dengan layanan terpadu untuk destinasi
-              wisata, penginapan, dan transportasi.
+              {t("login-line")}
             </p>
           </div>
         </div>
@@ -175,10 +177,10 @@ export function LoginPage() {
               {/* Header */}
               <div className="text-center mb-8">
                 <h2 className="text-3xl font-bold text-foreground mb-2">
-                  Masuk ke JakSabang
+                  {t("login-header")}
                 </h2>
                 <p className="text-muted-foreground">
-                  Masuk untuk melanjutkan perjalanan Anda
+                  {t("login-p")}
                 </p>
               </div>
 
@@ -187,7 +189,7 @@ export function LoginPage() {
                 {/* Email Field */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-foreground">
-                    Email
+                    {t("login-email")}
                   </label>
                   <div className="relative">
                     <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -196,7 +198,7 @@ export function LoginPage() {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder="Masukkan email Anda"
+                      placeholder={t("login-email-ph")}
                       className="w-full pl-10 pr-3 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                       required
                     />
@@ -206,7 +208,7 @@ export function LoginPage() {
                 {/* Password Field */}
                 <div className="space-y-2">
                   <label className="block text-sm font-medium text-foreground">
-                    Kata Sandi
+                    {t("login-pass")}
                   </label>
                   <div className="relative">
                     <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -215,7 +217,7 @@ export function LoginPage() {
                       name="password"
                       value={formData.password}
                       onChange={handleInputChange}
-                      placeholder="Masukkan kata sandi"
+                      placeholder={t("login-pass-ph")}
                       className="w-full pl-10 pr-10 py-3 bg-input/50 backdrop-blur-sm border border-border/50 rounded-lg text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring focus:bg-input transition-all duration-200"
                       required
                     />
@@ -235,7 +237,7 @@ export function LoginPage() {
 
                 {/* Error Message */}
                 {error && (
-                  <div className="text-destructive text-sm bg-destructive/10 border border-destructive/20 rounded-md p-3">
+                  <div className="text-destructive text-red-500 text-sm bg-destructive/10 border border-destructive/20 rounded-md p-3">
                     {error}
                   </div>
                 )}
@@ -246,20 +248,20 @@ export function LoginPage() {
                   disabled={loading}
                   className="w-full py-3 bg-emerald-500 text-white hover:bg-emerald-600 transition-all duration-300 transform hover:scale-[1.02] shadow-lg font-semibold disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
                 >
-                  {loading ? "Loading..." : "Masuk"}
+                  {loading ? t("login-loading") : t("login-button")}
                 </Button>
               </form>
 
               {/* Register Link */}
               <div className="mt-6 text-center">
                 <p className="text-muted-foreground">
-                  Belum punya akun?
+                  {t("login-reg-text")}
                   <button
                     type="button"
                     onClick={() => navigate("/register")}
                     className="ml-1 text-secondary hover:text-secondary/80 transition-colors font-medium"
                   >
-                    Daftar di sini
+                    {t("login-reg-hl")}
                   </button>
                 </p>
               </div>

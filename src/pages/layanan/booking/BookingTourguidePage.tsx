@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toogle";
 import { Footer } from "@/components/layouts/footer";
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -21,6 +23,7 @@ interface TourGuide {
 export default function BookingTourguidePage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const { t } = useTranslation();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -39,9 +42,9 @@ export default function BookingTourguidePage() {
     if (id) {
       axios.get(`${API_URL}/tourguides/${id}`)
         .then(res => setTourGuide(res.data))
-        .catch(err => console.error("Gagal mengambil data tour guide:", err));
+        .catch(err => console.error(t("btg-err-msg-1"), err));
     }
-  }, [id]);
+  }, [id, t]);
 
   // Hitung total harga setiap kali tanggal berubah
   useEffect(() => {
@@ -62,7 +65,7 @@ export default function BookingTourguidePage() {
 
   const handleBooking = async () => {
     if (!tanggalMulai || !tanggalSelesai || !lokasiJemput || !totalHarga || !id) {
-      alert("Lengkapi semua data booking!");
+      alert(t("btg-err-msg-2"));
       return;
     }
 
@@ -78,7 +81,7 @@ export default function BookingTourguidePage() {
 
       window.location.href = res.data.payment.redirect_url;
     } catch (err: any) {
-      alert(err.response?.data?.error || "Gagal booking");
+      alert(err.response?.data?.error || t("btg-err-msg-3"));
     } finally {
       setLoading(false);
     }
@@ -91,11 +94,11 @@ export default function BookingTourguidePage() {
           <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-                <ArrowLeft className="w-4 h-4" /> Kembali
+                <ArrowLeft className="w-4 h-4" /> {t("btg-back-btn")}
               </Button>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Booking Tour Guide</h1>
-                <p className="text-muted-foreground">Lengkapi data booking untuk melanjutkan</p>
+                <h1 className="text-2xl font-bold text-foreground">{t("btg-header")}</h1>
+                <p className="text-muted-foreground">{t("btg-line")}</p>
               </div>
             </div>
             <ThemeToggle />
@@ -104,7 +107,7 @@ export default function BookingTourguidePage() {
         <div className="max-w-4xl mx-auto px-4 py-8">
           <div className="text-center py-12">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-500 mx-auto mb-4"></div>
-            <p className="text-muted-foreground">Memuat data tour guide...</p>
+            <p className="text-muted-foreground">{t("btg-loading")}</p>
           </div>
         </div>
       </div>
@@ -118,11 +121,11 @@ export default function BookingTourguidePage() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Kembali
+              <ArrowLeft className="w-4 h-4" /> {t("btg-back-btn")}
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Booking Tour Guide</h1>
-              <p className="text-muted-foreground">Lengkapi data booking untuk melanjutkan</p>
+              <h1 className="text-2xl font-bold text-foreground">{t("btg-header")}</h1>
+              <p className="text-muted-foreground">{t("btg-line")}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -138,8 +141,8 @@ export default function BookingTourguidePage() {
                 <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Informasi Tour Guide</h2>
-                <p className="text-sm text-muted-foreground">Detail tour guide yang akan dipesan</p>
+                <h2 className="text-lg font-semibold text-foreground">{t("btg-info-h")}</h2>
+                <p className="text-sm text-muted-foreground">{t("btg-info-p")}</p>
               </div>
             </div>
             
@@ -161,7 +164,7 @@ export default function BookingTourguidePage() {
                   <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     Rp {tourGuide.harga.toLocaleString()}
                   </span>
-                  <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">per hari</span>
+                  <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">{t("btg-per-day")}</span>
                 </div>
               </div>
             </div>
@@ -174,14 +177,14 @@ export default function BookingTourguidePage() {
                 <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Detail Booking</h2>
-                <p className="text-sm text-muted-foreground">Pilih tanggal dan lokasi jemput</p>
+                <h2 className="text-lg font-semibold text-foreground">{t("btg-detail")}</h2>
+                <p className="text-sm text-muted-foreground">{t("btg-date-loc")}</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 text-foreground">Tanggal Mulai *</label>
+                <label className="block text-sm font-medium mb-2 text-foreground">{t("btg-date-start")}</label>
                 <input
                   type="date"
                   value={tanggalMulai}
@@ -191,7 +194,7 @@ export default function BookingTourguidePage() {
               </div>
               
               <div>
-                <label className="block text-sm font-medium mb-2 text-foreground">Tanggal Selesai *</label>
+                <label className="block text-sm font-medium mb-2 text-foreground">{t("btg-date-end")}</label>
                 <input
                   type="date"
                   value={tanggalSelesai}
@@ -201,12 +204,12 @@ export default function BookingTourguidePage() {
               </div>
               
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2 text-foreground">Lokasi Jemput *</label>
+                <label className="block text-sm font-medium mb-2 text-foreground">{t("btg-loc")}</label>
                 <input
                   type="text"
                   value={lokasiJemput}
                   onChange={(e) => setLokasiJemput(e.target.value)}
-                  placeholder="Contoh: Bandara Sabang"
+                  placeholder={t("btg-loc-ph")}
                   className="w-full px-3 py-2 border border-border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground"
                 />
               </div>
@@ -221,25 +224,25 @@ export default function BookingTourguidePage() {
                   <CreditCard className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <div>
-                  <h2 className="text-lg font-semibold text-foreground">Ringkasan Pembayaran</h2>
-                  <p className="text-sm text-muted-foreground">Total biaya booking</p>
+                  <h2 className="text-lg font-semibold text-foreground">{t("btg-sum")}</h2>
+                  <p className="text-sm text-muted-foreground">{t("btg-price-total")}</p>
                 </div>
               </div>
               
               <div className="space-y-3">
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Harga per hari</span>
+                  <span className="text-muted-foreground">{t("btg-price-per-day")}</span>
                   <span className="text-foreground">Rp {tourGuide.harga.toLocaleString()}</span>
                 </div>
                 <div className="flex justify-between text-sm">
-                  <span className="text-muted-foreground">Jumlah hari</span>
+                  <span className="text-muted-foreground">{t("btg-day-total")}</span>
                   <span className="text-foreground">
-                    {tanggalMulai && tanggalSelesai ? Math.ceil((new Date(tanggalSelesai).getTime() - new Date(tanggalMulai).getTime()) / (1000 * 60 * 60 * 24)) : 0} hari
+                    {tanggalMulai && tanggalSelesai ? Math.ceil((new Date(tanggalSelesai).getTime() - new Date(tanggalMulai).getTime()) / (1000 * 60 * 60 * 24)) : 0} {t("btg-day")}
                   </span>
                 </div>
                 <hr className="border-border" />
                 <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold text-foreground">Total Harga</span>
+                  <span className="text-lg font-semibold text-foreground">{t("btg-price-sum")}</span>
                   <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                     Rp {totalHarga.toLocaleString()}
                   </span>
@@ -255,7 +258,7 @@ export default function BookingTourguidePage() {
               disabled={loading || !tanggalMulai || !tanggalSelesai || !lokasiJemput || totalHarga === null || totalHarga <= 0}
               className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3"
             >
-              {loading ? "Memproses..." : "Booking Sekarang"}
+              {loading ? t("btg-btn-1") : t("btg-btn-2")}
             </Button>
           </div>
         </motion.div>

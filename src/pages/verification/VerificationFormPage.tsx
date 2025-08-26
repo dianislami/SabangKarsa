@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import {
@@ -9,18 +9,20 @@ import { ThemeToggle } from '../../components/theme-toogle';
 import { Footer } from '../../components/layouts/footer';
 import type { VerificationRequest, DocumentType } from '../../types/verification';
 import type { UserData } from '@/types/userData';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-const documentTypes: DocumentType[] = [
-  { id: 'ktp', label: 'KTP', description: 'Kartu Tanda Penduduk', required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] },
-  { id: 'npwp', label: 'NPWP', description: 'Nomor Pokok Wajib Pajak', required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] },
-  { id: 'dokumenBisnis', label: 'Dokumen Bisnis', description: 'Dokumen pendukung bisnis (SIUP, TDP, dll)', required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] }
-];
-
 export function VerificationFormPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  const documentTypes = useMemo<DocumentType[]>(() => [
+    { id: 'ktp', label: t("vf-label-1"), description: t("vf-desc-1"), required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] },
+    { id: 'npwp', label: t("vf-label-2"), description: t("vf-desc-2"), required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] },
+    { id: 'dokumenBisnis', label: t("vf-label-3"), description: t("vf-desc-3"), required: true, maxSize: 10, acceptedFormats: ['image/jpeg', 'image/png', 'image/jpg', 'application/pdf'] }
+  ], [t]);
 
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -57,11 +59,11 @@ export function VerificationFormPage() {
     if (!docType) return;
 
     if (file.size > docType.maxSize * 1024 * 1024) {
-      setErrors(prev => ({ ...prev, [documentType]: `Ukuran file maksimal ${docType.maxSize}MB` }));
+      setErrors(prev => ({ ...prev, [documentType]: `${t("vf-err-msg-1")} ${docType.maxSize}MB` }));
       return;
     }
     if (!docType.acceptedFormats.includes(file.type)) {
-      setErrors(prev => ({ ...prev, [documentType]: 'Format file tidak didukung' }));
+      setErrors(prev => ({ ...prev, [documentType]: t("vf-err-msg-2") }));
       return;
     }
 
@@ -72,7 +74,7 @@ export function VerificationFormPage() {
       reader.readAsDataURL(file);
     }
     if (errors[documentType]) setErrors(prev => ({ ...prev, [documentType]: '' }));
-  }, [errors]);
+  }, [errors, documentTypes, t]);
 
   const removeFile = (documentType: string) => {
     setUploadedFiles(prev => { const copy = { ...prev }; delete copy[documentType]; return copy; });
@@ -81,13 +83,13 @@ export function VerificationFormPage() {
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
-    if (!formData.fullName?.trim()) newErrors.fullName = 'Nama lengkap harus diisi';
-    if (!formData.phoneNumber?.trim()) newErrors.phoneNumber = 'Nomor telepon harus diisi';
-    if (!formData.no_rekening?.trim()) newErrors.no_rekening = 'Nomor rekening harus diisi';
-    if (!formData.nama_rekening?.trim()) newErrors.nama_rekening = 'Nama rekening harus diisi';
+    if (!formData.fullName?.trim()) newErrors.fullName = t("vf-warn-msg-1");
+    if (!formData.phoneNumber?.trim()) newErrors.phoneNumber = t("vf-warn-msg-2");
+    if (!formData.no_rekening?.trim()) newErrors.no_rekening = t("vf-warn-msg-3");
+    if (!formData.nama_rekening?.trim()) newErrors.nama_rekening = t("vf-warn-msg-4");
 
     documentTypes.forEach(doc => {
-      if (doc.required && !uploadedFiles[doc.id]) newErrors[doc.id] = `${doc.label} harus diunggah`;
+      if (doc.required && !uploadedFiles[doc.id]) newErrors[doc.id] = `${doc.label} ${t("vf-warn-msg-5")}`;
     });
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
@@ -96,7 +98,7 @@ export function VerificationFormPage() {
   const handleSubmit = async () => {
     if (!validateForm()) return;
     if (!localStorage.getItem('token')) {
-      setErrors({ submit: 'Silakan login terlebih dahulu' });
+      setErrors({ submit: t("vf-err-msg-3") });
       return;
     }
     setIsSubmitting(true);
@@ -121,10 +123,10 @@ export function VerificationFormPage() {
         body: formDataToSend
       });
       if (res.ok) navigate('/');
-      else setErrors({ submit: 'Gagal mengirim permohonan verifikasi. Silakan coba lagi.' });
+      else setErrors({ submit: t("vf-err-msg-4") });
     } catch (e) {
       console.error('Error:', e);
-      setErrors({ submit: 'Terjadi kesalahan. Silakan coba lagi.' });
+      setErrors({ submit: t("vf-err-msg-5") });
     } finally {
       setIsSubmitting(false);
     }
@@ -136,11 +138,11 @@ export function VerificationFormPage() {
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
-              <ArrowLeft className="w-4 h-4" /> Kembali
+              <ArrowLeft className="w-4 h-4" /> {t("vf-back-btn")}
             </Button>
             <div>
-              <h1 className="text-2xl font-bold text-foreground">Ajukan Verifikasi Penjual</h1>
-              <p className="text-muted-foreground">Lengkapi data & dokumen untuk verifikasi</p>
+              <h1 className="text-2xl font-bold text-foreground">{t("vf-header")}</h1>
+              <p className="text-muted-foreground">{t("vf-line")}</p>
             </div>
           </div>
           <ThemeToggle />
@@ -156,33 +158,33 @@ export function VerificationFormPage() {
                 <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Informasi Pribadi</h2>
-                <p className="text-sm text-muted-foreground">Data pribadi yang akan diverifikasi</p>
+                <h2 className="text-lg font-semibold text-foreground">{t("vf-info-h")}</h2>
+                <p className="text-sm text-muted-foreground">{t("vf-info-p")}</p>
               </div>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2">Nama Lengkap *</label>
-                <input value={formData.fullName || ''} onChange={(e) => handleInputChange('fullName', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder="Nama lengkap" />
+                <label className="block text-sm font-medium mb-2">{t("vf-name-label")}</label>
+                <input value={formData.fullName || ''} onChange={(e) => handleInputChange('fullName', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder={t("vf-name-ph")} />
                 {errors.fullName && <p className="text-red-500 text-sm mt-1">{errors.fullName}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Nomor Telepon *</label>
-                <input value={formData.phoneNumber || ''} onChange={(e) => handleInputChange('phoneNumber', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder="Nomor telepon" />
+                <label className="block text-sm font-medium mb-2">{t("vf-phone-label")}</label>
+                <input value={formData.phoneNumber || ''} onChange={(e) => handleInputChange('phoneNumber', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder={t("vf-phone-ph")} />
                 {errors.phoneNumber && <p className="text-red-500 text-sm mt-1">{errors.phoneNumber}</p>}
               </div>
               <div className="md:col-span-2">
-                <label className="block text-sm font-medium mb-2">Alamat</label>
-                <textarea value={formData.address || ''} onChange={(e) => handleInputChange('address', e.target.value)} rows={2} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder="Alamat lengkap" />
+                <label className="block text-sm font-medium mb-2">{t("vf-addr-label")}</label>
+                <textarea value={formData.address || ''} onChange={(e) => handleInputChange('address', e.target.value)} rows={2} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder={t("vf-addr-ph")} />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Nomor Rekening *</label>
-                <input value={formData.no_rekening || ''} onChange={(e) => handleInputChange('no_rekening', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder="Nomor rekening" />
+                <label className="block text-sm font-medium mb-2">{t("vf-banknum-label")}</label>
+                <input value={formData.no_rekening || ''} onChange={(e) => handleInputChange('no_rekening', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder={t("vf-banknum-ph")} />
                 {errors.no_rekening && <p className="text-red-500 text-sm mt-1">{errors.no_rekening}</p>}
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2">Nama Rekening *</label>
-                <input value={formData.nama_rekening || ''} onChange={(e) => handleInputChange('nama_rekening', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder="Nama sesuai buku tabungan" />
+                <label className="block text-sm font-medium mb-2">{t("vf-bankname-label")}</label>
+                <input value={formData.nama_rekening || ''} onChange={(e) => handleInputChange('nama_rekening', e.target.value)} className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-emerald-500 bg-background text-foreground" placeholder={t("vf-bankname-ph")} />
                 {errors.nama_rekening && <p className="text-red-500 text-sm mt-1">{errors.nama_rekening}</p>}
               </div>
             </div>
@@ -195,8 +197,8 @@ export function VerificationFormPage() {
                 <FileText className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
               </div>
               <div>
-                <h2 className="text-lg font-semibold text-foreground">Dokumen Verifikasi</h2>
-                <p className="text-sm text-muted-foreground">Unggah dokumen pendukung</p>
+                <h2 className="text-lg font-semibold text-foreground">{t("vf-verif-h")}</h2>
+                <p className="text-sm text-muted-foreground">{t("vf-verif-p")}</p>
               </div>
             </div>
 
@@ -216,7 +218,7 @@ export function VerificationFormPage() {
                 ) : (
                   <div onClick={() => document.getElementById(`file-${doc.id}`)?.click()} className="border-2 border-dashed rounded p-4 text-center hover:border-emerald-400 cursor-pointer">
                     <Upload className="w-6 h-6 mx-auto text-muted-foreground" />
-                    <p className="text-sm">Klik untuk unggah</p>
+                    <p className="text-sm">{t("vf-upload-btn")}</p>
                     <input type="file" id={`file-${doc.id}`} accept={doc.acceptedFormats.join(',')} onChange={(e) => e.target.files && handleFileUpload(doc.id, e.target.files[0])} className="hidden" />
                   </div>
                 )}
@@ -228,7 +230,7 @@ export function VerificationFormPage() {
           {/* Submit */}
           <div className="flex justify-end">
             <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-emerald-600 text-white">
-              {isSubmitting ? 'Mengirim...' : 'Ajukan Verifikasi'}
+              {isSubmitting ? t("vf-btn-1") : t("vf-btn-2")}
             </Button>
           </div>
 

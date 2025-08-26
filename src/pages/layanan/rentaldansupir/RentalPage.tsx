@@ -5,9 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Filter, Search } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
-const categories = ["Semua", "Motor", "Mobil", "Mobil dengan Supir"];
 
 interface Rental {
   _id: string;
@@ -22,8 +23,10 @@ interface Rental {
 }
 
 export function RentalPage() {
+  const { t } = useTranslation();
+  const categories = [t("rpg-all"), t("rpg-cat-1"), t("rpg-cat-2"), t("rpg-cat-3")];
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("Semua");
+  const [selectedCategory, setSelectedCategory] = useState(t("rpg-all"));
   const [sortBy, setSortBy] = useState("name");
   const [rentals, setRentals] = useState<Rental[]>([]);
   const [loading, setLoading] = useState(true);
@@ -35,18 +38,18 @@ export function RentalPage() {
         const data = await res.json();
         setRentals(data);
       } catch (err) {
-        console.error("Gagal fetch rental:", err);
+        console.error(t("rpg-err-msg-1"), err);
       } finally {
         setLoading(false);
       }
     };
     fetchRentals();
-  }, []);
+  }, [t]);
 
   const filteredRental = rentals
     .filter((rental) => {
       const matchesSearch = rental.name.toLowerCase().includes(searchTerm.toLowerCase());
-      const matchesCategory = selectedCategory === "Semua" || rental.type === selectedCategory.toLowerCase();
+      const matchesCategory = selectedCategory === t("rpg-all") || rental.type === selectedCategory.toLowerCase();
       return matchesSearch && matchesCategory;
     })
     .sort((a, b) => {
@@ -59,6 +62,10 @@ export function RentalPage() {
           return a.name.localeCompare(b.name);
       }
     });
+
+  const getCategory = (category: string) => {
+    return category === t("rpg-cat-1") ? "Motor" : category === t("rpg-cat-2") ? "Mobil" : category === t("rpg-cat-3") ? "Mobil dengan Sopir" : t("rpg-all");
+  }
 
   return (
     <div className="min-h-screen bg-background">
@@ -73,8 +80,12 @@ export function RentalPage() {
         <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-transparent to-black/30"></div>
         <div className="relative z-10 h-full flex items-center justify-center text-center text-white px-4">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
-            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">Rental Kendaraan di Sabang</motion.h1>
-            <motion.p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">Temukan kendaraan terbaik untuk petualangan Anda di Sabang</motion.p>
+            <motion.h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-white to-white/80 bg-clip-text text-transparent">
+              {t("rpg-header")}
+            </motion.h1>
+            <motion.p className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+              {t("rpg-line")}
+            </motion.p>
           </motion.div>
         </div>
       </section>
@@ -89,8 +100,10 @@ export function RentalPage() {
           </div>
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
-              <button key={category} onClick={() => setSelectedCategory(category)}
-                className={`px-4 py-2 rounded-full text-sm ${selectedCategory === category ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600"}`}>
+              <button key={category} onClick={() => {
+                setSelectedCategory(getCategory(category));
+              }}
+                className={`px-4 py-2 rounded-full text-sm ${selectedCategory === (getCategory(category)) ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600"}`}>
                 {category}
               </button>
             ))}
@@ -99,9 +112,9 @@ export function RentalPage() {
             <Filter className="w-5 h-5 text-muted-foreground" />
             <select value={sortBy} onChange={(e) => setSortBy(e.target.value)}
               className="px-4 py-2 rounded-lg border border-border bg-background text-foreground">
-              <option value="name">Nama A-Z</option>
-              <option value="price-low">Harga Terendah</option>
-              <option value="price-high">Harga Tertinggi</option>
+              <option value="name">{t("rpg-filter-1")}</option>
+              <option value="price-low">{t("rpg-filter-2")}</option>
+              <option value="price-high">{t("rpg-filter-3")}</option>
             </select>
           </div>
         </div>
@@ -111,9 +124,9 @@ export function RentalPage() {
       <section className="py-12 px-4">
         <div className="container mx-auto max-w-7xl">
           {loading ? (
-            <div className="text-center text-muted-foreground">Memuat data rental...</div>
+            <div className="text-center text-muted-foreground">{t("rpg-loading")}</div>
           ) : filteredRental.length === 0 ? (
-            <div className="text-center text-muted-foreground">Tidak ada kendaraan ditemukan.</div>
+            <div className="text-center text-muted-foreground">{t("rpg-not-found")}</div>
           ) : (
             <motion.div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredRental.map((rental) => (
@@ -125,7 +138,7 @@ export function RentalPage() {
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-emerald-600 font-bold">Rp {rental.harga.toLocaleString()}</span>
                       <Link to={`/layanan/rental/${rental._id}`}>
-                        <Button size="sm" className="bg-emerald-500 text-white">Lihat Detail</Button>
+                        <Button size="sm" className="bg-emerald-500 text-white">{t("rpg-detail")}</Button>
                       </Link>
                     </div>
                   </div>

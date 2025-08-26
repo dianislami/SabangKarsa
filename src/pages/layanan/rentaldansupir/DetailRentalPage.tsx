@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
+import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -23,6 +25,7 @@ export default function DetailRentalPage() {
   const { id } = useParams<{ id: string }>();
   const [rental, setRental] = useState<Rental | null>(null);
   const [loading, setLoading] = useState(true);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchRental = async () => {
@@ -31,18 +34,18 @@ export default function DetailRentalPage() {
         const data = await res.json();
         setRental(data);
       } catch (err) {
-        console.error("Gagal mengambil detail rental:", err);
+        console.error(t("dr-err-msg-1"), err);
       } finally {
         setLoading(false);
       }
     };
     fetchRental();
-  }, [id]);
+  }, [id, t]);
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center text-muted-foreground">
-        Memuat detail rental...
+        {t("dr-loading")}
       </div>
     );
   }
@@ -50,7 +53,7 @@ export default function DetailRentalPage() {
   if (!rental) {
     return (
       <div className="min-h-screen flex items-center justify-center text-red-500">
-        Data rental tidak ditemukan.
+        {t("dr-not-found")}
       </div>
     );
   }
@@ -77,7 +80,7 @@ export default function DetailRentalPage() {
             {rental.name}
           </motion.h1>
           <div className="text-sm text-gray-300">
-            Tipe: {rental.type} · Penyedia: {rental.namaPenyedia}
+            {t("dr-type")}: {rental.type} · {t("dr-provider")}: {rental.namaPenyedia}
           </div>
         </div>
       </section>
@@ -91,7 +94,7 @@ export default function DetailRentalPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-2xl font-semibold mb-2">Deskripsi</h2>
+            <h2 className="text-2xl font-semibold mb-2">{t("dr-desc")}</h2>
             <p className="text-muted-foreground">{rental.deskripsi}</p>
           </motion.div>
 
@@ -103,13 +106,13 @@ export default function DetailRentalPage() {
             className="grid grid-cols-1 md:grid-cols-2 gap-4"
           >
             <div className="bg-card border border-border rounded-xl p-4">
-              <div className="font-medium text-muted-foreground mb-1">Harga Sewa</div>
+              <div className="font-medium text-muted-foreground mb-1">{t("dr-price")}</div>
               <div className="text-2xl font-bold text-emerald-600">
-                Rp {rental.harga.toLocaleString()} / hari
+                Rp {rental.harga.toLocaleString()} / {t("dr-day")}
               </div>
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
-              <div className="font-medium text-muted-foreground mb-1">Nomor Telepon</div>
+              <div className="font-medium text-muted-foreground mb-1">{t("dr-phone")}</div>
               <a
                 href={`tel:${rental.no_telepon}`}
                 className="text-lg font-semibold text-emerald-600 hover:underline"
@@ -126,7 +129,7 @@ export default function DetailRentalPage() {
               className="bg-emerald-600 text-white hover:bg-emerald-700 transition-colors duration-300"
               onClick={() => window.location.href = `/rental/${rental._id}/booking`}
             >
-              Booking Sekarang
+              {t("dr-book-btn")}
             </Button>
           </div>
         </div>
