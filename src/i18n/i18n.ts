@@ -179,6 +179,8 @@ i18n.use(initReactI18next).init({
 
                 "admin-sb-header": "JakSabang Admin",
                 "admin-sb-p": "Administration Panel",
+                "admin-sb-theme": "Theme",
+                "admin-sb-exit": "Exit",
                 "admin-dt-loading": "Loading data...",
                 "admin-dt-number": "NO",
                 "admin-dt-act": "ACTION",
@@ -999,6 +1001,8 @@ i18n.use(initReactI18next).init({
 
                 "admin-sb-header": "Admin JakSabang",
                 "admin-sb-p": "Panel Administrasi",
+                "admin-sb-theme": "Tema",
+                "admin-sb-exit": "Keluar",
                 "admin-dt-loading": "Memuat data...",
                 "admin-dt-number": "NO",
                 "admin-dt-act": "AKSI",

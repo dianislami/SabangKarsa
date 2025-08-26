@@ -117,7 +117,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
         {!isCollapsed && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-admin-muted">
-              Tema
+              {t("admin-sb-theme")}
             </span>
             <ThemeToggle />
           </div>
@@ -129,7 +129,7 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
           className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
         >
           <LogOut className="w-5 h-5 flex-shrink-0" />
-          {!isCollapsed && <span>Keluar</span>}
+          {!isCollapsed && <span>{t("admin-sb-exit")}</span>}
         </Button>
       </div>
     </motion.div>
