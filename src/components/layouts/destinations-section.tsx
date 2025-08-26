@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import Destinations from "../../data/destinations.json"
 import { Star, Camera, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Destination {
   id: number;
@@ -19,9 +21,11 @@ interface Destination {
 export function DestinationsSection() {
   const [user, setUser] = useState<any>(null);
   const navigate = useNavigate();
-  const destinations: Destination[] = Destinations.slice(0, 4);
+  const destData = localStorage.getItem("language")?.toLowerCase() === "id" ? Destinations.id : Destinations.en;
+  const destinations: Destination[] = destData.slice(0, 4);
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -48,10 +52,10 @@ export function DestinationsSection() {
       try {
         setUser(JSON.parse(userData));
       } catch (error) {
-        console.error("Error parsing user data:", error);
+        console.error(t("ds-err-msg"), error);
       }
     }
-  }, []);
+  }, [t]);
 
   return (
     <section ref={containerRef} id="destinations" className="py-20 px-4 section-gray">
@@ -65,11 +69,10 @@ export function DestinationsSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              Destinasi Unggulan Sabang
+              {t("ds-header")}
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Jelajahi keindahan alam Sabang yang memukau dengan berbagai
-              destinasi wisata terbaik
+              {t("ds-line")}
             </p>
           </motion.div>
 
@@ -125,7 +128,7 @@ export function DestinationsSection() {
                   </p>
 
                   <div className="flex items-center justify-between">
-                    <span className="text-sm text-white">Kisaran Harga Masuk</span>
+                    <span className="text-sm text-white">{t("ds-price")}</span>
                     <span className="text-lg font-semibold text-primary dark:text-white">
                       {destination.price}
                     </span>
@@ -133,7 +136,7 @@ export function DestinationsSection() {
                   </div>
                     <div className="mt-4"></div>
                       <Link to={`/destinations/${destination.id}`} className="text-sm text-primary dark:text-white hover:underline flex items-center">
-                      Lihat Detail
+                      {t("ds-detail")}
                       <ArrowRight className="ml-1 w-3 h-3" />
                       </Link>
             
@@ -154,7 +157,7 @@ export function DestinationsSection() {
               variant="outline"
               className="btn-outline px-6 md:px-8 py-3 text-base md:text-lg"
             >
-              {user ? "Jelajahi Semua" : "Lihat Semua Destinasi"}
+              {user ? t("ds-button-1") : t("ds-button-2")}
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
             </Button>
           </motion.div>

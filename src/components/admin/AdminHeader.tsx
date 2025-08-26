@@ -15,7 +15,7 @@ export function AdminHeader({
   subtitle, 
   showAddButton = false, 
   onAddClick, 
-  addButtonText = "Tambah" 
+  addButtonText = localStorage.getItem("language") === "ID" ? "Tambah" : "Add" 
 }: AdminHeaderProps) {
   return (
     <motion.div

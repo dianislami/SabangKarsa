@@ -9,6 +9,8 @@ import {
   Twitter,
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function Footer() {
   const { scrollYProgress } = useScroll();
@@ -18,6 +20,7 @@ export function Footer() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
   const parallaxContainerRef = useRef<HTMLDivElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -81,9 +84,7 @@ export function Footer() {
                   <span className="text-3xl font-bold">JakSabang</span>
                 </div>
                 <p className="text-muted-foreground dark:text-muted-foreground mb-6 leading-relaxed">
-                  Platform wisata terpadu untuk menjelajahi keindahan Sabang
-                  dengan mudah dan nyaman. Temukan destinasi terbaik, penginapan
-                  berkualitas, dan layanan transportasi terpercaya.
+                  {t("footer-desc")}
                 </p>
                 <div className="flex gap-4">
                   <motion.div
@@ -108,7 +109,7 @@ export function Footer() {
               </div>
               <div>
                 <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  Destinasi
+                  {t("footer-dest")}
                 </h3>
                 <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
                   <li>
@@ -116,7 +117,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Pantai Iboih
+                      {t("footer-dli-1")}
                     </Link>
                   </li>
                   <li>
@@ -124,7 +125,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Pulau Rubiah
+                      {t("footer-dli-2")}
                     </Link>
                   </li>
                   <li>
@@ -132,7 +133,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Tugu Kilometer Nol
+                      {t("footer-dli-3")}
                     </Link>
                   </li>
                   <li>
@@ -140,7 +141,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Pantai Sumur Tiga
+                      {t("footer-dli-4")}
                     </Link>
                   </li>
                   <li>
@@ -148,7 +149,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Gua Sarang
+                      {t("footer-dli-5")}
                     </Link>
                   </li>
                 </ul>
@@ -156,7 +157,7 @@ export function Footer() {
 
               <div>
                 <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  Layanan
+                  {t("footer-services")}
                 </h3>
                 <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
                   <li>
@@ -164,7 +165,7 @@ export function Footer() {
                       to="/destinations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Cari Destinasi
+                      {t("footer-sli-1")}
                     </Link>
                   </li>
                   <li>
@@ -172,7 +173,7 @@ export function Footer() {
                       to="/layanan/penginapan"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Reservasi Hotel
+                      {t("footer-sli-2")}
                     </Link>
                   </li>
                   <li>
@@ -180,7 +181,7 @@ export function Footer() {
                       to="/layanan/rental"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Sewa Kendaraan
+                      {t("footer-sli-3")}
                     </Link>
                   </li>
                   <li>
@@ -188,7 +189,7 @@ export function Footer() {
                       to="/layanan/tourguide"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Tour Guide
+                      {t("footer-sli-4")}
                     </Link>
                   </li>
                   <li>
@@ -196,7 +197,7 @@ export function Footer() {
                       to="/informations"
                       className="hover:text-foreground dark:hover:text-foreground transition-colors"
                     >
-                      Info Wisata
+                      {t("footer-sli-5")}
                     </Link>
                   </li>
                 </ul>
@@ -204,7 +205,7 @@ export function Footer() {
 
               <div>
                 <h3 className="text-xl font-bold mb-6 text-foreground dark:text-foreground">
-                  Kontak
+                  {t("footer-contact")}
                 </h3>
                 <ul className="space-y-3 text-muted-foreground dark:text-muted-foreground">
                   <li className="flex items-center gap-3">

@@ -1,6 +1,8 @@
 import { Send, Bot } from "lucide-react"
 import React, { useRef, useState, forwardRef, useEffect, type RefObject } from "react"
 import { BotBubble, UserBubble } from "./chatbot-bubble";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean, navbar: RefObject<HTMLElement | null>, button: RefObject<HTMLButtonElement | null> }>(({ showOverlay, navbar, button }, ref) => {
     const inputRef = useRef<HTMLTextAreaElement | null>(null);
@@ -8,7 +10,8 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const [overlayHeight, setOverlayHeight] = useState<number>(0);
     const [overlayWidth, setOverlayWidth] = useState<number>(580);
     const [elements, setElements] = useState<React.ReactNode[]>([]);
-    let token = localStorage.getItem("token")|| "";
+    const token = localStorage.getItem("token") || "";
+    const { t } = useTranslation();
 
     const callbot = () => {
         const inputValue = inputRef.current?.value.trim();
@@ -112,9 +115,9 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                 <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 p-4 rounded-t-2xl">
                     <h1 className="font-bold text-lg text-white flex items-center gap-2">
                         <Bot className="w-6 h-6" />
-                        JakSabang AI Assistant
+                        {t("chatbot-header")}
                     </h1>
-                    <p className="text-emerald-100 text-sm mt-1">Siap membantu Anda!</p>
+                    <p className="text-emerald-100 text-sm mt-1">{t("chatbot-tagline")}</p>
                 </div>
                 
                 {/* Chat Area */}
@@ -126,25 +129,25 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                             <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
                                 <Bot className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
                             </div>
-                            <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">Halo!</p>
-                            <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">Ada yang bisa saya bantu?</p>
+                            <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">{t("chatbot-hello")}</p>
+                            <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">{t("chatbot-question")}</p>
                         </div> 
                     )}
                 </div>
                 
                 {/* Input Area */}
                 <div className="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
-                    <div className="flex items-end gap-3">
-                        <div className="flex-1 relative">
+                    <div className="flex items-center justify-center gap-3">
+                        <div className="flex-1 relative flex items-center justify-end">
                             <textarea 
                                 ref={inputRef} 
                                 onKeyDown={handleKeyDown}
                                 onChange={handleInputChange}
                                 className="w-full bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 focus:border-emerald-400 dark:focus:border-emerald-500 focus:outline-none p-3 resize-none rounded-lg text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-200 min-h-[44px]" 
-                                placeholder="Ketik pesan Anda... (Enter untuk kirim)" 
+                                placeholder={t("chatbot-placeholder")}
                                 rows={1}
                             />
-                            <div className="absolute bottom-5 right-8 text-xs text-gray-400">
+                            <div className="absolute px-4 text-xs text-gray-500">
                                 Enter ↵
                             </div>
                         </div>

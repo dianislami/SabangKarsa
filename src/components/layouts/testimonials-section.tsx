@@ -1,34 +1,36 @@
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react";
 import { Star } from "lucide-react"
-
-const testimonials = [
-  {
-    name: "Ahmad Rizki",
-    role: "Wisatawan Jakarta",
-    comment: "Sabang sangat indah! Pantai Iboih benar-benar memukau dengan air yang jernih.",
-    rating: 5,
-    image: "/images/sabanglogin.jpg"
-  },
-  {
-    name: "Sarah Putri",
-    role: "Travel Blogger",
-    comment: "Pelayanan driver sangat ramah dan profesional. Recommended banget!",
-    rating: 5,
-    image: "/images/testimonials/user2.jpg"
-  },
-  {
-    name: "Budi Santoso",
-    role: "Fotografer",
-    comment: "Spot-spot foto di Sabang luar biasa. Dari sunrise sampai sunset semuanya cantik.",
-    rating: 5,
-    image: "/images/testimonials/user3.jpg"
-  }
-]
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function TestimonialsSection() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
+  const testimonials = [
+    {
+      name: "Ahmad Rizki",
+      role: t("testi-role-1"),
+      comment: t("testi-comment-1"),
+      rating: 5,
+      image: "/images/sabanglogin.jpg"
+    },
+    {
+      name: "Sarah Putri",
+      role: t("testi-role-2"),
+      comment: t("testi-comment-2"),
+      rating: 5,
+      image: "/images/testimonials/user2.jpg"
+    },
+    {
+      name: "Budi Santoso",
+      role: t("testi-role-3"),
+      comment: t("testi-comment-3"),
+      rating: 5,
+      image: "/images/testimonials/user3.jpg"
+    }
+  ]
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -61,10 +63,10 @@ export function TestimonialsSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground">
-              Kata Mereka
+              {t("testi-header")}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mobile-px-4">
-              Pengalaman nyata dari para wisatawan yang telah menjelajahi keindahan Sabang
+              {t("testi-line")}
             </p>
           </motion.div>
 

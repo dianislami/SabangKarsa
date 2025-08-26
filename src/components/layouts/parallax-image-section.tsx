@@ -1,11 +1,14 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion"
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function ParallaxImageSection() {
   const { scrollYProgress } = useScroll();
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -49,10 +52,10 @@ export function ParallaxImageSection() {
               className="max-w-4xl mx-auto"
             >
               <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
-                Keindahan Sabang Menanti Anda
+                {t("pis-title")}
               </h2>
               <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed mobile-px-4">
-                Dari pantai eksotis hingga gua yang memukau, setiap sudut Sabang menyimpan keajaiban alam yang luar biasa
+                {t("pis-line")}
               </p>
             </motion.div>
           </div>

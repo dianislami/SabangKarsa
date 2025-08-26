@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface SellerHeaderProps {
   title: string;
@@ -19,9 +21,11 @@ export function SellerHeader({
   subtitle, 
   showAddButton = false, 
   onAddClick, 
-  addButtonText = "Tambah",
+  addButtonText = localStorage.getItem("language") === "ID" ? "Tambah" : "Add" ,
   user
 }: SellerHeaderProps) {
+  const { t } = useTranslation();
+
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -60,7 +64,7 @@ export function SellerHeader({
                   {user.name}
                 </p>
                 <p className="text-xs text-admin-muted">
-                  Seller
+                  {t("sh-header")}
                 </p>
               </div>
               <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">

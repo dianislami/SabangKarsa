@@ -20,7 +20,9 @@ import {
   Shield,
   Settings,
 } from "lucide-react";
-import logoNav from "@/assets/JakSabangFIX.svg";
+import logoNav from "/assets/JakSabangFIX.svg";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
   const { id = "navbar" } = props;
@@ -32,9 +34,10 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const [language, setLanguage] = useState("ID");
+  const language = localStorage.getItem("language");
   const navigate = useNavigate();
   const location = useLocation();
+  const { t } = useTranslation();
 
   // Set active section based on current route
   useEffect(() => {
@@ -69,10 +72,10 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
       try {
         setUser(JSON.parse(userData));
       } catch (error) {
-        console.error("Error parsing user data:", error);
+        console.error(t("nav-err-msg"), error);
       }
     }
-  }, []);
+  }, [t]);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -181,41 +184,47 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
   };
 
   const navItems = [
-    { id: "home", label: "Home", icon: Home },
+    { id: "home", label: t("nav-home"), icon: Home },
     {
       id: "destinations",
-      label: "Destinasi",
+      label: t("nav-dest"),
       icon: MapPinIcon,
       hasDropdown: true,
       dropdownItems: [
-        { id: "info-wisata", label: "Info Wisata", icon: Info },
-        { id: "tujuan-destinasi", label: "Tujuan Destinasi", icon: MapPinIcon },
+        { id: "info-wisata", label: t("nav-info-w"), icon: Info },
+        { id: "tujuan-destinasi", label: t("nav-tujuan-d"), icon: MapPinIcon },
       ],
     },
     {
       id: "services",
-      label: "Layanan",
+      label: t("nav-service"),
       icon: Car,
       hasDropdown: true,
       dropdownItems: [
-        { id: "penginapan", label: "Penginapan", icon: Home },
-        { id: "driver-rental", label: "Driver & Rental", icon: Car },
-        { id: "tour-guide", label: "Tour Guide", icon: UserCheck },
+        { id: "penginapan", label: t("nav-acco"), icon: Home },
+        { id: "driver-rental", label: t("nav-rental"), icon: Car },
+        { id: "tour-guide", label: t("nav-tg"), icon: UserCheck },
       ],
     },
-    { id: "agenda", label: "Agenda", icon: Calendar },
-    { id: "stroll", label: "Stroll & Kuliner", icon: Utensils },
-    { id: "about", label: "Tentang Kami", icon: Info },
+    { id: "agenda", label: t("nav-agenda"), icon: Calendar },
+    { id: "stroll", label: t("nav-kuliner"), icon: Utensils },
+    { id: "about", label: t("nav-about"), icon: Info },
   ];
+
+  const handleChangeLanguage = (lang: string) => {
+    localStorage.setItem("language", lang.toLowerCase());
+    setIsLanguageDropdownOpen(false);
+    window.location.reload();
+  }
 
   return (
     <header
       id={id}
       ref={ref}
-      className="fixed top-0 left-0 lg:left-25 right-0 lg:right-25 z-50"
+      className="fixed top-0 left-0 xl:left-25 right-0 xl:right-25 z-50"
     >
       <div className="mx-auto max-w-8xl px-2 sm:px-4 py-1 sm:py-2">
-        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 py-2 sm:py-3 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[50px] sm:min-h-[55px]">
+        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 xl:px-3 2xl:px-6 py-2 sm:py-3 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[50px] sm:min-h-[55px]">
           <div
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             onClick={() => navigate("/")}
@@ -229,7 +238,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
           </div>
 
           {/* Navigation Menu - Hidden on mobile */}
-          <nav className="hidden lg:flex items-center gap-2 xl:gap-3">
+          <nav className="hidden xl:flex items-center gap-2">
             {navItems.map((item) => (
               <div key={item.id} className="relative">
                 {item.hasDropdown ? (
@@ -302,7 +311,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3 md:gap-4">
+          <div className="flex items-center gap-2 sm:gap-3 md:gap-4 xl:gap-2 2xl:gap-3">
             {/* Language Toggle */}
             <div className="relative language-dropdown-container">
               <button
@@ -313,7 +322,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
               >
                 <Globe className="w-3 h-3 sm:w-4 sm:h-4" />
                 <span className="text-xs sm:text-sm font-medium">
-                  {language}
+                  {language?.toUpperCase()}
                 </span>
                 <ChevronDown
                   className={`w-3 h-3 transition-transform duration-300 ${
@@ -324,7 +333,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
 
               {/* Language Dropdown */}
               <div
-                className={`dropdown-menu absolute top-full right-0 mt-2 w-32 transition-all duration-300 z-50 ${
+                className={`dropdown-menu overflow-hidden absolute top-full right-0 mt-2 w-32 transition-all duration-300 z-50 ${
                   isLanguageDropdownOpen
                     ? "opacity-100 visible translate-y-0"
                     : "opacity-0 invisible -translate-y-2"
@@ -332,32 +341,26 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
               >
                 <div className="py-1">
                   <button
-                    onClick={() => {
-                      setLanguage("ID");
-                      setIsLanguageDropdownOpen(false);
-                    }}
+                    onClick={() => handleChangeLanguage("ID")}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
-                      language === "ID"
-                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700"
+                      language?.toUpperCase() === "ID"
+                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700 cursor-none pointer-events-none"
                         : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
                     }`}
                   >
                     <span>🇮🇩</span>
-                    <span>Indonesia</span>
+                    <span>{t("nav-lang-id")}</span>
                   </button>
                   <button
-                    onClick={() => {
-                      setLanguage("EN");
-                      setIsLanguageDropdownOpen(false);
-                    }}
+                    onClick={() => handleChangeLanguage("EN")}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
-                      language === "EN"
-                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700"
+                      language?.toUpperCase() === "EN"
+                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700 cursor-none pointer-events-none"
                         : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
                     }`}
                   >
                     <span>🇺🇸</span>
-                    <span>English</span>
+                    <span>{t("nav-lang-en")}</span>
                   </button>
                 </div>
               </div>
@@ -366,7 +369,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden px-1.5 py-1.5 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-all duration-300"
+              className="xl:hidden px-1.5 py-1.5 text-emerald-600 dark:text-gray-400 hover:text-emerald-700 dark:hover:text-emerald-300 rounded-lg transition-all duration-300"
             >
               {isMobileMenuOpen ? (
                 <X className="w-5 h-5" />
@@ -420,7 +423,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                             </p>
                             <div className="flex items-center justify-between mt-1">
                               <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">
-                                {user.role || "User"}
+                                {user.role || t("nav-user")}
                               </p>
                             
                             </div>
@@ -436,7 +439,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                         >
                         <ShoppingBag className="w-4 h-4" />
                         <span className="font-medium">
-                          {user.role === "seller" ? "Pemesanan" : "Pesanan Saya"}
+                          {user.role === "seller" ? t("nav-order") : t("nav-my-order")}
                         </span>
                         </button>
 
@@ -454,7 +457,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                           >
                             <Shield className="w-4 h-4" />
                             <span className="font-medium">
-                              Ajukan Verifikasi Penjual
+                              {t("nav-verif")}
                             </span>
                           </button>
                         )}
@@ -467,7 +470,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                             className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors duration-200"
                           >
                             <ShoppingBag className="w-4 h-4" />
-                            <span className="font-medium">Dashboard Penjualan</span>
+                            <span className="font-medium">{t("nav-dash-sales")}</span>
                           </button>
                         )}
                         {user.role === "admin" && (
@@ -479,7 +482,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                             className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
                           >
                             <Settings className="w-4 h-4" />
-                            <span className="font-medium">Dashboard Admin</span>
+                            <span className="font-medium">{t("nav-dash-adm")}</span>
                           </button>
                         )}
 
@@ -488,7 +491,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                         className="flex items-center gap-2 w-full px-4 py-3 text-left text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors duration-200"
                       >
                         <LogOut className="w-4 h-4" />
-                        <span className="font-medium">Logout</span>
+                        <span className="font-medium">{t("nav-logout")}</span>
                       </button>
                     </div>
                   </div>
@@ -505,14 +508,14 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                   size="sm"
                   className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
                 >
-                  Masuk
+                  {t("nav-login")}
                 </Button>
                 <Button
                   onClick={() => navigate("/register")}
                   size="sm"
                   className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
                 >
-                  Daftar
+                  {t("nav-reg")}
                 </Button>
               </>
             )}
@@ -522,18 +525,18 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden transition-all duration-300 ${
+        className={`xl:hidden transition-all duration-300 ${
           isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         } overflow-hidden`}
       >
         <div className="mx-auto max-w-7xl px-2 sm:px-4">
-          <div className="navbar-glass rounded-b-3xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
+          <div className="navbar-glass rounded-3xl px-4 sm:px-6 py-3 sm:py-4 shadow-lg border-t border-gray-200 dark:border-gray-700/50">
             {/* Mobile Auth Buttons & Theme Toggle */}
             <div className="flex items-center justify-between mb-3 pb-3 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-2">
                 <ThemeToggle />
                 <span className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                  Theme
+                  {t("nav-theme")}
                 </span>
               </div>
               {!user && (
@@ -547,7 +550,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     size="sm"
                     className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 px-3 py-1.5 text-xs"
                   >
-                    Masuk
+                    {t("nav-login")}
                   </Button>
                   <Button
                     onClick={() => {
@@ -557,7 +560,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     size="sm"
                     className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 px-3 py-1.5 text-xs"
                   >
-                    Daftar
+                    {t("nav-reg")}
                   </Button>
                 </div>
               )}

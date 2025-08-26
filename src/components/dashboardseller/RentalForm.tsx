@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Car, Phone, AlignLeft } from 'lucide-react';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface RentalData {
   name: string;
@@ -35,6 +37,7 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
     no_telepon: user.no_hp || ''
   });
   const [preview, setPreview] = useState<string | null>(null);
+  const { t } = useTranslation();
 
   // Isi data saat edit
   useEffect(() => {
@@ -99,7 +102,7 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
       setRentalData({ name: '', type: '', harga: '', deskripsi: '', gambar: null, no_telepon: user.no_hp || '' });
       setPreview(null);
     } catch (e) {
-      console.error('Error saving rental', e);
+      console.error(t("rf-err-msg"), e);
     }
   };
 
@@ -107,22 +110,22 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
     <>
       <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-white">{editData ? 'Edit Rental Kendaraan' : 'Tambah Rental Kendaraan'}</h2>
+          <h2 className="text-xl font-bold text-white">{editData ? t("rf-header-1") : t("rf-header-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">
-            ← Kembali
+            ← {t("rf-back-btn")}
           </button>
         </div>
       </div>
       <div className="p-6 space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <InputWithIcon icon={Car} label="Nama Kendaraan *" name="name" value={rentalData.name} onChange={handleChange} placeholder="Toyota Avanza" />
-          <Select label="Jenis Kendaraan *" name="type" value={rentalData.type} onChange={handleChange} options={['mobil','motor','driver']} />
-          <Input label="Harga per Hari *" name="harga" type="number" value={rentalData.harga} onChange={handleChange} placeholder="350000" />
-          <InputWithIcon icon={Phone} label="No. Telepon *" name="no_telepon" value={rentalData.no_telepon} onChange={handleChange} placeholder="08123456789" />
+          <InputWithIcon icon={Car} label={t("rf-label-1")} name="name" value={rentalData.name} onChange={handleChange} placeholder="Toyota Avanza" />
+          <Select label={t("rf-label-2")} name="type" value={rentalData.type} onChange={handleChange} options={[t("rf-label-2-1"),t("rf-label-2-2"),t("rf-label-2-3")]} />
+          <Input label={t("rf-label-3")} name="harga" type="number" value={rentalData.harga} onChange={handleChange} placeholder="350000" />
+          <InputWithIcon icon={Phone} label={t("rf-label-4")} name="no_telepon" value={rentalData.no_telepon} onChange={handleChange} placeholder="08123456789" />
         </div>
-        <TextareaWithIcon icon={AlignLeft} label="Deskripsi Kendaraan" name="deskripsi" value={rentalData.deskripsi} onChange={handleChange} placeholder="Contoh: Kondisi bagus, AC dingin, dll." rows={3} />
+        <TextareaWithIcon icon={AlignLeft} label={t("rf-label-5")} name="deskripsi" value={rentalData.deskripsi} onChange={handleChange} placeholder={t("rf-ph-5")} rows={3} />
         <div className="space-y-2">
-          <label className="form-label text-sm">Foto Kendaraan</label>
+          <label className="form-label text-sm">{t("rf-label-6")}</label>
           <div className="form-upload-area transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
@@ -131,12 +134,12 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
             )}
             <input type="file" name="gambar" onChange={handleChange} className="hidden" id="rental-photo" accept="image/*" />
             <label htmlFor="rental-photo" className="cursor-pointer text-sm text-admin">
-              {preview ? 'Ganti foto' : 'Klik untuk upload foto'}
+              {preview ? t("rf-label-6-1") : t("rf-label-6-2")}
             </label>
           </div>
         </div>
         <Button onClick={submitRental} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
-          {editData ? 'Update Rental' : 'Tambah Rental'}
+          {editData ? t("rf-submit-btn-1") : t("rf-submit-btn-2")}
         </Button>
       </div>
     </>
@@ -182,7 +185,7 @@ function Select({ label, options, ...props }: { label: string; options: string[]
     <div className="space-y-2">
       <label className="form-label text-sm">{label}</label>
       <select {...props} className="form-input">
-        <option value="">Pilih jenis</option>
+        <option value="">{t("rf-select")}</option>
         {options.map((opt) => <option key={opt} value={opt}>{opt.charAt(0).toUpperCase() + opt.slice(1)}</option>)}
       </select>
     </div>

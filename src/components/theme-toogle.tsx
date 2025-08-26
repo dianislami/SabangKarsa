@@ -1,8 +1,11 @@
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "@/components/theme/theme-provider";
+import { useTranslation } from "react-i18next";
+import "../i18n/i18n"
 
 export function ThemeToggle() {
   const { theme, setTheme } = useTheme();
+  const { t } = useTranslation();
 
   return (
     <button
@@ -27,7 +30,7 @@ export function ThemeToggle() {
         </div>
       </div>
 
-      <span className="sr-only">Toggle theme</span>
+      <span className="sr-only">{t("theme-toggle")}</span>
     </button>
   );
 }

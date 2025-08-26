@@ -1,17 +1,19 @@
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react";
 import { Users, MapPin, Home, Award } from "lucide-react"
-
-const stats = [
-  { icon: Users, number: "10K+", label: "Wisatawan" },
-  { icon: MapPin, number: "50+", label: "Destinasi" },
-  { icon: Home, number: "100+", label: "Penginapan" },
-  { icon: Award, number: "4.9", label: "Rating" }
-]
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function StatsSection() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
+  const stats = [
+    { icon: Users, number: "10K+", label: t("stats-li-1") },
+    { icon: MapPin, number: "50+", label: t("stats-li-2") },
+    { icon: Home, number: "100+", label: t("stats-li-3") },
+    { icon: Award, number: "4.9", label: t("stats-li-4") }
+  ]
 
   useEffect(() => {
     const bodyElement = document.body;

@@ -3,12 +3,15 @@ import { useNavigate } from "react-router-dom"
 import { motion} from "framer-motion"
 import { Button } from "@/components/ui/button"
 import {  ArrowRight } from "lucide-react"
-import videoBgWebm from "@/assets/video/videobg.webm"
-import videoBgMP4 from "@/assets/video/videobg.mp4"
+import videoBgWebm from "/video/videobg.webm"
+import videoBgMP4 from "/video/videobg.mp4"
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function HeroSection() {
-  const [user, setUser] = useState<any>(null)
-  const navigate = useNavigate()
+  const [user, setUser] = useState<any>(null);
+  const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     const userData = localStorage.getItem('user')
@@ -16,10 +19,10 @@ export function HeroSection() {
       try {
         setUser(JSON.parse(userData))
       } catch (error) {
-        console.error('Error parsing user data:', error)
+        console.error(t("hero-err-msg"), error)
       }
     }
-  }, [])
+  }, [t])
 
   return (
   
@@ -61,15 +64,15 @@ export function HeroSection() {
             {user ? (
               <>
                 <span className="text-2xl md:text-3xl lg:text-4xl block mb-2">
-                  Selamat Datang, {user.name.split(' ')[0]}!
+                  {t("hero-welcome")}, {user.name.split(' ')[0]}!
                 </span>
                 <span className="text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white to-white/80 dark:from-primary dark:to-primary/70 bg-clip-text text-transparent">
-                  JELAJAHI SABANG
+                  {t("hero-explore-1")}
                 </span>
               </>
             ) : (
               <>
-                JELAJAHI KEINDAHAN
+                {t("hero-explore-2")}
                 <br />
                 <span className="text-5xl md:text-7xl lg:text-8xl bg-gradient-to-r from-white to-white/80 dark:from-primary dark:to-primary/70 bg-clip-text text-transparent">
                   SABANG
@@ -84,7 +87,7 @@ export function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            Platform wisata terpadu untuk menjelajahi destinasi wisata, penginapan, dan transportasi terbaik di ujung barat Indonesia
+            {t("hero-desc")}
           </motion.p>
 
           <motion.div 
@@ -99,7 +102,7 @@ export function HeroSection() {
                   onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
                   className="btn-primary px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
                 >
-                  Mulai Menjelajah
+                  {t("hero-start-e")}
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                 </Button>
                 
@@ -108,7 +111,7 @@ export function HeroSection() {
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
                   className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
                 >
-                  Lihat Layanan
+                  {t("hero-see-serv")}
                 </Button>
               </>
             ) : (
@@ -117,7 +120,7 @@ export function HeroSection() {
                   onClick={() => navigate('/register')}
                   className="bg-white text-emerald-600 hover:bg-emerald-50 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
                 >
-                  Mulai Perjalanan
+                  {t("hero-start-t")}
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
                 </Button>
                 
@@ -126,7 +129,7 @@ export function HeroSection() {
                   onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
                   className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
                 >
-                  Lihat Destinasi
+                  {t("hero-see-dest")}
                 </Button>
               </>
             )}

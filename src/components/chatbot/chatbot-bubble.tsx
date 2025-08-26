@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { DotLoader } from "react-spinners";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function UserBubble({ message }: { message: string }) {
   return (
@@ -21,6 +23,7 @@ export function BotBubble({
   token: string;
 }) {
   const [response, setResponse] = useState("");
+  const { t } = useTranslation();
 
   useEffect(() => {
     const fetchReply = async () => {
@@ -44,14 +47,14 @@ export function BotBubble({
 
         if (errorObj.response?.status === 401) {
           setResponse(
-            "Silakan login terlebih dahulu untuk menggunakan fitur chatbot."
+            t("chatbot-err-msg-1")
           );
         } else {
           setResponse(
             `${errorObj.response?.status || "Error"}: ${
               errorObj.response?.data?.message ||
               errorObj.message ||
-              "Terjadi kesalahan"
+              t("chatbot-err-msg-2")
             }`
           );
         }
@@ -59,7 +62,7 @@ export function BotBubble({
     };
 
     fetchReply();
-  }, [message, token]);
+  }, [message, token, t]);
 
   return (
     <div className="flex justify-start mb-2">
@@ -72,7 +75,7 @@ export function BotBubble({
           <div className="flex items-center gap-2">
             <DotLoader size={16} color="#10b981" />
             <span className="text-gray-500 dark:text-gray-400 text-sm">
-              Mengetik...
+              {t("chatbot-loading")}
             </span>
           </div>
         )}

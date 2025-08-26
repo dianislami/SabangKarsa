@@ -12,66 +12,13 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface SellerSidebarProps {
   isCollapsed: boolean;
   setIsCollapsed: (collapsed: boolean) => void;
 }
-
-const menuItems = [
-  {
-    id: 'dashboard',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-    path: '/layanan/dashboard',
-    active: true
-  },
-  {
-    id: 'rental-saya',
-    label: 'Rental Saya',
-    icon: Car,
-    path: '/layanan/dashboard?tab=rental-saya',
-    color: 'blue'
-  },
-  {
-    id: 'penginapan-saya',
-    label: 'Penginapan Saya',
-    icon: Home,
-    path: '/layanan/dashboard?tab=penginapan-saya',
-    color: 'purple'
-  },
-  {
-    id: 'tourguide-saya',
-    label: 'Tour Guide Saya',
-    icon: Users,
-    path: '/layanan/dashboard?tab=tourguide-saya',
-    color: 'emerald'
-  }
-];
-
-const addMenuItems = [
-  {
-    id: 'tambah-rental',
-    label: 'Tambah Rental',
-    icon: Plus,
-    path: '/layanan/dashboard?form=rental',
-    color: 'blue'
-  },
-  {
-    id: 'tambah-penginapan',
-    label: 'Tambah Penginapan',
-    icon: Plus,
-    path: '/layanan/dashboard?form=penginapan',
-    color: 'purple'
-  },
-  {
-    id: 'tambah-tourguide',
-    label: 'Tambah Tour Guide',
-    icon: Plus,
-    path: '/layanan/dashboard?form=tourguide',
-    color: 'emerald'
-  }
-];
 
 export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProps) {
   const navigate = useNavigate();
@@ -81,6 +28,61 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
   const searchParams = new URLSearchParams(location.search);
   const currentTab = searchParams.get('tab') || 'dashboard';
   const currentForm = searchParams.get('form');
+  const { t } = useTranslation();
+  const menuItems = [
+    {
+      id: 'dashboard',
+      label: t("sells-label-1"),
+      icon: LayoutDashboard,
+      path: '/layanan/dashboard',
+      active: true
+    },
+    {
+      id: 'rental-saya',
+      label: t("sells-label-2"),
+      icon: Car,
+      path: '/layanan/dashboard?tab=rental-saya',
+      color: 'blue'
+    },
+    {
+      id: 'penginapan-saya',
+      label: t("sells-label-3"),
+      icon: Home,
+      path: '/layanan/dashboard?tab=penginapan-saya',
+      color: 'purple'
+    },
+    {
+      id: 'tourguide-saya',
+      label: t("sells-label-4"),
+      icon: Users,
+      path: '/layanan/dashboard?tab=tourguide-saya',
+      color: 'emerald'
+    }
+  ];
+
+  const addMenuItems = [
+    {
+      id: 'tambah-rental',
+      label: t("sells-label-5"),
+      icon: Plus,
+      path: '/layanan/dashboard?form=rental',
+      color: 'blue'
+    },
+    {
+      id: 'tambah-penginapan',
+      label: t("sells-label-6"),
+      icon: Plus,
+      path: '/layanan/dashboard?form=penginapan',
+      color: 'purple'
+    },
+    {
+      id: 'tambah-tourguide',
+      label: t("sells-label-7"),
+      icon: Plus,
+      path: '/layanan/dashboard?form=tourguide',
+      color: 'emerald'
+    }
+  ];
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -143,10 +145,10 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
               </div>
               <div>
                 <h2 className="text-lg font-bold text-admin">
-                  JakSabang Seller
+                  {t("sells-header")}
                 </h2>
                 <p className="text-xs text-admin-muted">
-                  Dashboard Penjual
+                  {t("sells-line")}
                 </p>
               </div>
             </div>
@@ -199,7 +201,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
             <div className="py-2">
               <hr className="border-admin" />
               <p className="text-xs text-admin-muted mt-2 px-3 font-medium">
-                Tambah Layanan
+                {t("sells-sep")}
               </p>
             </div>
           )}
@@ -236,7 +238,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
         {!isCollapsed && (
           <div className="flex items-center justify-between">
             <span className="text-sm text-admin-muted">
-              Tema
+              {t("sells-theme")}
             </span>
             <ThemeToggle />
           </div>
@@ -248,7 +250,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
           className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
         >
           <LogOut className="w-5 h-5 flex-shrink-0" />
-          {!isCollapsed && <span>Keluar</span>}
+          {!isCollapsed && <span>{t("sells-exit")}</span>}
         </Button>
       </div>
     </motion.div>

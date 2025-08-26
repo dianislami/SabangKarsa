@@ -1,4 +1,6 @@
 import React from 'react';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface ServiceCardProps {
   option: {
@@ -13,6 +15,8 @@ interface ServiceCardProps {
 
 export default function ServiceCard({ option, onClick }: ServiceCardProps) {
   const IconComponent = option.icon;
+  const { t } = useTranslation();
+
   return (
     <div className="relative group cursor-pointer" onClick={onClick}>
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden group-hover:scale-105">
@@ -23,7 +27,7 @@ export default function ServiceCard({ option, onClick }: ServiceCardProps) {
           <h3 className="text-xl font-bold text-gray-900 mb-2">{option.title}</h3>
           <p className="text-gray-600 text-sm mb-4">{option.description}</p>
           <div className="flex items-center text-green-600 text-sm font-semibold">
-            Tambah Layanan
+            {t("servc-text")}
           </div>
         </div>
       </div>

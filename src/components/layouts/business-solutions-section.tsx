@@ -1,10 +1,13 @@
 import { motion } from "framer-motion"
 import { useState, useEffect, useRef } from "react";
 import { Home, Car, UserCheck } from "lucide-react"
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function BusinessSolutionsSection() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -36,10 +39,10 @@ export function BusinessSolutionsSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-6 text-foreground">
-              SOLUSI BISNIS PARIWISATA KAMI
+              {t("bs-title")}
             </h2>
             <p className="text-xl text-muted-foreground mb-12 max-w-3xl mx-auto">
-              Kami menyediakan berbagai solusi untuk mendukung perkembangan industri pariwisata di Sabang
+              {t("bs-line-1")}
             </p>
           </motion.div>
           
@@ -54,9 +57,9 @@ export function BusinessSolutionsSection() {
               <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Home className="w-10 h-10 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">PLATFORM PENGINAPAN</h3>
+              <h3 className="text-xl font-bold mb-4 text-foreground">{t("bs-point-1")}</h3>
               <p className="text-muted-foreground">
-                Daftarkan penginapan Anda dan jangkau lebih banyak wisatawan dengan platform kami yang mudah digunakan.
+                {t("bs-point-1-ln")}
               </p>
             </motion.div>
             
@@ -70,9 +73,9 @@ export function BusinessSolutionsSection() {
               <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <Car className="w-10 h-10 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">JARINGAN DRIVER</h3>
+              <h3 className="text-xl font-bold mb-4 text-foreground">{t("bs-point-2")}</h3>
               <p className="text-muted-foreground">
-                Bergabunglah dengan jaringan driver profesional kami dan dapatkan penghasilan tambahan.
+                {t("bs-point-2-ln")}
               </p>
             </motion.div>
             
@@ -86,9 +89,9 @@ export function BusinessSolutionsSection() {
               <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <UserCheck className="w-10 h-10 text-primary-foreground" />
               </div>
-              <h3 className="text-xl font-bold mb-4 text-foreground">JARINGAN TOUR GUIDE</h3>
+              <h3 className="text-xl font-bold mb-4 text-foreground">{t("bs-point-3")}</h3>
               <p className="text-muted-foreground">
-                Bergabunglah dengan jaringan tour guide profesional kami dan berikan pengalaman wisata terbaik untuk para wisatawan.
+                {t("bs-point-3-ln")}
               </p>
             </motion.div>
           </div>

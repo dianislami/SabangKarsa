@@ -1,37 +1,39 @@
 import { motion } from "framer-motion"
 import { useEffect, useState, useRef } from "react";
 import { MapPin, Home, Car, MessageCircle } from "lucide-react"
-
-const services = [
-  {
-    icon: MapPin,
-    title: "Destinasi Wisata",
-    description: "Temukan tempat-tempat indah di Sabang",
-    color: "bg-blue-500"
-  },
-  {
-    icon: Home,
-    title: "Penginapan",
-    description: "Hotel dan homestay terbaik dengan harga terjangkau",
-    color: "bg-green-500"
-  },
-  {
-    icon: Car,
-    title: "Transport & Driver",
-    description: "Layanan transportasi dan driver berpengalaman",
-    color: "bg-yellow-500"
-  },
-  {
-    icon: MessageCircle,
-    title: "ChatBot AI",
-    description: "Bantuan 24/7 untuk merencanakan perjalanan Anda",
-    color: "bg-purple-500"
-  }
-]
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function ServicesSection() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
+  const services = [
+    {
+      icon: MapPin,
+      title: t("ss-title-1"),
+      description: t("ss-desc-1"),
+      color: "bg-blue-500"
+    },
+    {
+      icon: Home,
+      title: t("ss-title-2"),
+      description: t("ss-desc-2"),
+      color: "bg-green-500"
+    },
+    {
+      icon: Car,
+      title: t("ss-title-3"),
+      description: t("ss-desc-3"),
+      color: "bg-yellow-500"
+    },
+    {
+      icon: MessageCircle,
+      title: t("ss-title-4"),
+      description: t("ss-desc-4"),
+      color: "bg-purple-500"
+    }
+  ]
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -64,10 +66,10 @@ export function ServicesSection() {
             viewport={{ once: true }}
           >
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-foreground mobile-center">
-              Layanan Unggulan Kami
+              {t("ss-header")}
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mobile-px-4">
-              Dapatkan pengalaman wisata terbaik dengan layanan lengkap dan terpercaya
+              {t("ss-line")}
             </p>
           </motion.div>
 

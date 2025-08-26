@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Edit, Eye, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface ServiceListProps {
   title: string;
@@ -19,6 +21,7 @@ export function ServiceList({
   onDelete, 
   type 
 }: ServiceListProps) {
+  const { t } = useTranslation();
   const getImageField = (service: any) => {
     switch (type) {
       case 'rental':
@@ -76,13 +79,13 @@ export function ServiceList({
       <div className="flex items-center justify-between">
         <h2 className="text-xl font-semibold text-admin">{title}</h2>
         <span className="text-sm text-admin-muted">
-          {services.length} layanan
+          {services.length} {t("servl-service")}
         </span>
       </div>
 
       {services.length === 0 ? (
         <div className="bg-admin-card rounded-lg border border-admin p-8 text-center">
-          <p className="text-admin-muted">Belum ada layanan yang ditambahkan</p>
+          <p className="text-admin-muted">{t("servl-p")}</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -104,7 +107,7 @@ export function ServiceList({
                   />
                 ) : (
                   <div className="w-full h-full flex items-center justify-center text-admin-muted">
-                    No Image
+                    {t("servl-img")}
                   </div>
                 )}
               </div>
@@ -133,7 +136,7 @@ export function ServiceList({
                       className="flex-1"
                     >
                       <Eye className="w-4 h-4 mr-1" />
-                      Lihat
+                      {t("servl-btn-1")}
                     </Button>
                   )}
                   {onEdit && (
@@ -144,7 +147,7 @@ export function ServiceList({
                       className="flex-1"
                     >
                       <Edit className="w-4 h-4 mr-1" />
-                      Edit
+                      {t("servl-btn-2")}
                     </Button>
                   )}
                   {onDelete && (

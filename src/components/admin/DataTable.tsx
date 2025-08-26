@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { Eye, MoreHorizontal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface Column {
   key: string;
@@ -26,8 +28,10 @@ export function DataTable({
   data, 
   loading = false, 
   onRowClick,
-  emptyMessage = "Tidak ada data ditemukan"
+  emptyMessage = localStorage.getItem("language") === "ID" ? "Tidak ada data ditemukan" : "No data found"
 }: DataTableProps) {
+  const { t } = useTranslation();
+
   if (loading) {
     return (
       <div className="bg-admin-card rounded-lg border border-admin overflow-hidden">
@@ -43,7 +47,7 @@ export function DataTable({
         </div>
         <div className="p-8 text-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-emerald-600 mx-auto"></div>
-          <p className="text-muted-foreground dark:text-muted-foreground mt-4">Memuat data...</p>
+          <p className="text-muted-foreground dark:text-muted-foreground mt-4">{t("admin-dt-loading")}</p>
         </div>
       </div>
     );
@@ -91,7 +95,7 @@ export function DataTable({
           <thead className="bg-muted/30 dark:bg-muted/30">
             <tr>
               <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground dark:text-muted-foreground uppercase tracking-wider">
-                NO
+                {t("admin-dt-number")}
               </th>
               {columns.map((column) => (
                 <th
@@ -102,7 +106,7 @@ export function DataTable({
                 </th>
               ))}
               <th className="px-4 py-3 text-left text-xs font-medium text-muted-foreground dark:text-muted-foreground uppercase tracking-wider">
-                AKSI
+                {t("admin-dt-act")}
               </th>
             </tr>
           </thead>

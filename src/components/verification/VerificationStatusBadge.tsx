@@ -1,34 +1,37 @@
 import { Shield, Clock, CheckCircle, XCircle } from 'lucide-react';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface VerificationStatusBadgeProps {
   status: 'none' | 'pending' | 'approved' | 'rejected';
 }
 
 export function VerificationStatusBadge({ status }: VerificationStatusBadgeProps) {
+  const { t } = useTranslation();
   const getStatusConfig = () => {
     switch (status) {
       case 'pending':
         return {
           icon: Clock,
-          label: 'Verifikasi Pending',
+          label: t("verif-label-1"),
           className: 'text-yellow-600 bg-yellow-50 dark:bg-yellow-900/20',
         };
       case 'approved':
         return {
           icon: CheckCircle,
-          label: 'Penjual Terverifikasi',
+          label: t("verif-label-2"),
           className: 'text-green-600 bg-green-50 dark:bg-green-900/20',
         };
       case 'rejected':
         return {
           icon: XCircle,
-          label: 'Verifikasi Ditolak',
+          label: t("verif-label-3"),
           className: 'text-red-600 bg-red-50 dark:bg-red-900/20',
         };
       default:
         return {
           icon: Shield,
-          label: 'Belum Diverifikasi',
+          label: t("verif-label-4"),
           className: 'text-gray-600 bg-gray-50 dark:bg-gray-900/20',
         };
     }

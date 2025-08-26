@@ -9,26 +9,28 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { ThemeToggle } from '@/components/theme-toogle';
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 interface AdminSidebarProps {
   isCollapsed: boolean;
   setIsCollapsed: (collapsed: boolean) => void;
 }
 
-const menuItems = [
-  {
-    id: 'dashboard',
-    label: 'Dashboard',
-    icon: LayoutDashboard,
-    path: '/admin/dashboard',
-    active: true
-  },
-];
-
 export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps) {
+  const menuItems = [
+    {
+      id: 'dashboard',
+      label: 'Dashboard',
+      icon: LayoutDashboard,
+      path: '/admin/dashboard',
+      active: true
+    },
+  ];
   const navigate = useNavigate();
   const location = useLocation();
   const [activeItem, setActiveItem] = useState('dashboard');
+  const { t } = useTranslation();
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -55,10 +57,10 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
               </div>
               <div>
                 <h2 className="text-lg font-bold text-admin">
-                  JakSabang Admin
+                  {t("admin-sb-header")}
                 </h2>
                 <p className="text-xs text-admin-muted">
-                  Panel Administrasi
+                  {t("admin-sb-p")}
                 </p>
               </div>
             </div>

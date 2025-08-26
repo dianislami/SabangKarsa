@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
 import { useEffect, useState, useRef } from "react";
 import { MapPin, Home, Car, MessageCircle, Users, Award } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import "../../i18n/i18n"
 
 export function FeaturesMarquee() {
   const [containerInView, setContainerInView] = useState(false);
   const containerRef = useRef<HTMLElement>(null);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const bodyElement = document.body;
@@ -26,7 +29,7 @@ export function FeaturesMarquee() {
   }, [containerRef, containerInView]);
 
   return (
-    <section ref={containerRef} className="py-5 bg-emerald-600 dark:bg-emerald-800 overflow-hidden ">
+    <section ref={containerRef} className="py-8 bg-emerald-600 dark:bg-emerald-800 overflow-hidden ">
       {containerInView && (
         <>
           <div className="mb-8">
@@ -37,7 +40,7 @@ export function FeaturesMarquee() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              KENAPA MENGGUNAKAN JAKSABANG?
+              {t("feat-header")}
             </motion.h2>
           </div>
 
@@ -59,42 +62,42 @@ export function FeaturesMarquee() {
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <MapPin className="w-8 h-8" />
                     </div>
-                    <span>50+ DESTINASI WISATA TERBAIK</span>
+                    <span>{t("feat-ln-1")}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-lg font-semibold">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <Home className="w-8 h-8" />
                     </div>
-                    <span>PENGINAPAN TERPERCAYA & NYAMAN</span>
+                    <span>{t("feat-ln-2")}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-lg font-semibold">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <Car className="w-8 h-8" />
                     </div>
-                    <span>DRIVER BERPENGALAMAN</span>
+                    <span>{t("feat-ln-3")}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-lg font-semibold">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <MessageCircle className="w-8 h-8" />
                     </div>
-                    <span>CHATBOT AI 24/7</span>
+                    <span>{t("feat-ln-4")}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-lg font-semibold">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <Users className="w-8 h-8" />
                     </div>
-                    <span>10K+ WISATAWAN PUAS</span>
+                    <span>{t("feat-ln-5")}</span>
                   </div>
 
                   <div className="flex items-center gap-4 text-lg font-semibold">
                     <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center">
                       <Award className="w-8 h-8" />
                     </div>
-                    <span>RATING 4.9 BINTANG</span>
+                    <span>{t("feat-ln-6")}</span>
                   </div>
                 </div>
               ))}
