@@ -181,6 +181,8 @@ function TextareaWithIcon({ label, icon: Icon, ...props }: { label: string; icon
 }
 
 function Select({ label, options, ...props }: { label: string; options: string[] } & React.SelectHTMLAttributes<HTMLSelectElement>) {
+  const { t } = useTranslation();
+  
   return (
     <div className="space-y-2">
       <label className="form-label text-sm">{label}</label>

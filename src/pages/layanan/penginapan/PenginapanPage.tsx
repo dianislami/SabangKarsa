@@ -33,12 +33,7 @@ export function PenginapanPage() {
     };
     fetchPenginapan();
   }, [t]);
-
-  function capitalizeFirst(text: string) {
-    if (!text) return "";
-    return text.charAt(0).toUpperCase() + text.slice(1);
-  }
-
+  
   function capitalizeWords(text: string) {
     return text
       .split(" ")
