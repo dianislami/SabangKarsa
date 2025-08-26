@@ -1,31 +1,30 @@
-
-// import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { MapPin, Mail, Phone, Users } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
-// import data from "../../data/about.json";
+import data from "../../data/about.json";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
 
-// interface TeamMember {
-//   id: number;
-//   name: string;
-//   role: string;
-//   image: string;
-//   bio: string;
-// }
+interface TeamMember {
+  id: number;
+  name: string;
+  role: string;
+  image: string;
+  bio: string;
+}
 
-// const teamData: TeamMember[] = data;
+const teamData: TeamMember[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function AboutUs() {
-  // const [team, setTeam] = useState<TeamMember[]>([]);
+  const [team, setTeam] = useState<TeamMember[]>([]);
   const { t } = useTranslation();
 
-  // useEffect(() => {
-  //   setTeam(teamData);
-  // }, []);
+  useEffect(() => {
+    setTeam(teamData);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background">
@@ -113,7 +112,7 @@ export function AboutUs() {
       </section>
 
       {/* Team Section */}
-      {/* <section className="py-12 px-4 bg-muted/50 ">
+      <section className="py-12 px-4 bg-muted/50 ">
         <div className="container mx-auto max-w-7xl">
           <motion.h2
             className="text-3xl md:text-4xl font-bold text-foreground mb-8 text-center"
@@ -159,7 +158,7 @@ export function AboutUs() {
             ))}
           </div>
         </div>
-      </section> */}
+      </section>
 
       {/* Contact Section */}
       <section className="py-12 px-4">
