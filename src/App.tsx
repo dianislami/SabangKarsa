@@ -29,7 +29,11 @@ import BookingRentalPage from "./pages/layanan/booking/BoookingRentalPage";
 import BookingTourguidePage from "./pages/layanan/booking/BookingTourguidePage";
 import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
+import { NotFound } from "./pages/NotFound";
+
 function App() {
+  if (localStorage.getItem("language") === null) localStorage.setItem("language", "ID");
+
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
       <Router>
@@ -63,6 +67,7 @@ function App() {
             <Route path="/tourguide/:id/booking" element={<BookingTourguidePage />} />
             <Route path="/pemesanan" element={<PemesananPage />} />
             <Route path="/pesanan" element={<PesananPage />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <GlobalChatbot />
         </PageTransitionWrapper>
