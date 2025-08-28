@@ -65,7 +65,7 @@ export function CtaSection() {
                 <>
                   <Button 
                     onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
-                    className="bg-white text-primary hover:bg-white/90 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
+                    className="bg-white text-primary hover:bg-white/90 bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
                   >
                     {t("cta-button-11")}
                     <ArrowRight className="ml-2 w-5 h-5" />

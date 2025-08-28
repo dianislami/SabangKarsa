@@ -1,4 +1,5 @@
 import { Send, Bot } from "lucide-react"
+import { useTheme } from "@/components/theme/theme-provider";
 import React, { useRef, useState, forwardRef, useEffect, type RefObject } from "react"
 import { BotBubble, UserBubble } from "./chatbot-bubble";
 import { useTranslation } from "react-i18next";
@@ -11,6 +12,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const [overlayWidth, setOverlayWidth] = useState<number>(580);
     const [elements, setElements] = useState<React.ReactNode[]>([]);
     const token = localStorage.getItem("token") || "";
+    const { theme } = useTheme();
     const { t } = useTranslation();
 
     const callbot = () => {
@@ -98,7 +100,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     return (
         <div 
             ref={ref} 
-            className={`bg-white dark:bg-gray-800 overflow-hidden rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 fixed z-40 transition-all duration-500 ease-in-out ${
+            className={`${theme === "light" ? "bg-white border-gray-200" : "bg-gray-800 border-gray-700"} overflow-hidden rounded-2xl shadow-xl border fixed z-40 transition-all duration-500 ease-in-out ${
                 showOverlay 
                     ? 'translate-x-0 opacity-100 visible scale-100' 
                     : 'translate-x-full opacity-0 invisible scale-95'
@@ -112,7 +114,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         >
             <div className="flex flex-col w-full h-full">
                 {/* Header */}
-                <div className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 p-4 rounded-t-2xl">
+                <div className={`bg-gradient-to-r ${theme === "light" ? "from-emerald-500 to-emerald-600" : "from-emerald-600 to-emerald-700"} p-4 rounded-t-2xl`}>
                     <h1 className="font-bold text-lg text-white flex items-center gap-2">
                         <Bot className="w-6 h-6" />
                         {t("chatbot-header")}
@@ -121,29 +123,31 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                 </div>
                 
                 {/* Chat Area */}
-                <div ref={outputRef} className="flex flex-col gap-3 w-full overflow-y-auto scroll-smooth grow p-4 bg-gray-50 dark:bg-gray-900">
+                <div ref={outputRef} className={`flex flex-col gap-3 w-full overflow-y-auto scroll-smooth grow p-4 ${theme === "light" ? "bg-gray-50" : "bg-gray-900"}`}>
                     {elements.length !== 0 ? elements.map((el, index) => ( 
                         <div key={index}>{el}</div> 
                     )) : ( 
                         <div className="h-full flex flex-col items-center justify-center text-center">
-                            <div className="w-16 h-16 bg-emerald-100 dark:bg-emerald-900 rounded-full flex items-center justify-center mb-4">
-                                <Bot className="w-8 h-8 text-emerald-600 dark:text-emerald-400" />
+                            <div className={`w-16 h-16 ${theme === "light" ? "bg-emerald-100" : "bg-emerald-900"} rounded-full flex items-center justify-center mb-4`}>
+                                <Bot className={`w-8 h-8 ${theme === "light" ? "text-emerald-600" : "text-emerald-400"}`} />
                             </div>
-                            <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">{t("chatbot-hello")}</p>
-                            <p className="text-gray-400 dark:text-gray-500 text-sm mt-1">{t("chatbot-question")}</p>
+                            <p className={`${theme === "light" ? "text-gray-500" : "text-gray-400"} text-lg font-medium`}>{t("chatbot-hello")}</p>
+                            <p className={`${theme === "light" ? "text-gray-400" : "text-gray-500"} text-sm mt-1`}>{t("chatbot-question")}</p>
                         </div> 
                     )}
                 </div>
                 
                 {/* Input Area */}
-                <div className="bg-white dark:bg-gray-800 p-4 border-t border-gray-200 dark:border-gray-700">
+                <div className={`${theme === "light" ? "bg-white border-gray-200" : "bg-gray-800 border-gray-700"} p-4 border-t`}>
                     <div className="flex items-center justify-center gap-3">
                         <div className="flex-1 relative flex items-center justify-end">
                             <textarea 
                                 ref={inputRef} 
                                 onKeyDown={handleKeyDown}
                                 onChange={handleInputChange}
-                                className="w-full bg-gray-100 dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 focus:border-emerald-400 dark:focus:border-emerald-500 focus:outline-none p-3 resize-none rounded-lg text-gray-800 dark:text-gray-200 placeholder-gray-500 dark:placeholder-gray-400 transition-colors duration-200 min-h-[44px]" 
+                                className={`w-full border-2 focus:outline-none p-3 resize-none rounded-lg transition-colors duration-200 min-h-[44px]
+                                    ${theme === "light" ? "bg-gray-100 border-gray-200 focus:border-emerald-400 text-gray-800 placeholder-gray-500" 
+                                        : "bg-gray-700 border-gray-600 focus:border-emerald-500 text-gray-200 placeholder-gray-400"}`} 
                                 placeholder={t("chatbot-placeholder")}
                                 rows={1}
                             />
@@ -153,7 +157,8 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                         </div>
                         <button 
                             onClick={callbot} 
-                            className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                            className={`cursor-pointer text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg 
+                                ${theme === "light" ? "bg-emerald-500 hover:bg-emerald-600" : "bg-emerald-600 hover:bg-emerald-700"}`}
                         >
                             <Send className="w-5 h-5" />
                         </button>

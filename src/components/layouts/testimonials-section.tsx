@@ -74,7 +74,7 @@ export function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-white dark:bg-emerald-800 border-2 border-gray-200 dark:border-emerald-700 rounded-2xl p-8 shadow-lg"
+                className="bg-emerald-800 border-2 border-emerald-700 rounded-2xl p-8 shadow-lg"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -87,14 +87,14 @@ export function TestimonialsSection() {
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-600 dark:text-emerald-100 mb-6 italic">"{testimonial.comment}"</p>
+                <p className="text-emerald-100 mb-6 italic">"{testimonial.comment}"</p>
                 <div className="flex items-center">
                   <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
                     {testimonial.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-800 dark:text-emerald-200">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600 dark:text-emerald-100">{testimonial.role}</div>
+                    <div className="font-semibold text-emerald-200">{testimonial.name}</div>
+                    <div className="text-sm text-emerald-100">{testimonial.role}</div>
                   </div>
                 </div>
               </motion.div>

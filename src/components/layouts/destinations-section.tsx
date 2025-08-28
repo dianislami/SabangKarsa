@@ -80,7 +80,7 @@ export function DestinationsSection() {
             {destinations.map((destination, index) => (
               <motion.div
                 key={destination.id}
-                className="bg-white dark:bg-emerald-800 border-2 border-gray-200 dark:border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="bg-emerald-800 border-2 border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
@@ -120,22 +120,22 @@ export function DestinationsSection() {
                 </div>
 
                 <div className="p-6">
-                  <h3 className="text-xl font-bold mb-2 text-foreground dark:text-white">
+                  <h3 className="text-xl font-bold mb-2 text-foreground text-white">
                     {destination.name}
                   </h3>
-                  <p className="text-muted-foreground dark:text-white/80 mb-4 text-sm">
+                  <p className="text-muted-foreground text-white/80 mb-4 text-sm">
                     {destination.description}
                   </p>
 
                   <div className="flex items-center justify-between">
                     <span className="text-sm text-white">{t("ds-price")}</span>
-                    <span className="text-lg font-semibold text-primary dark:text-white">
+                    <span className="text-lg font-semibold text-primary text-white">
                       {destination.price}
                     </span>
                 
                   </div>
                     <div className="mt-4"></div>
-                      <Link to={`/destinations/${destination.id}`} className="text-sm text-primary dark:text-white hover:underline flex items-center">
+                      <Link to={`/destinations/${destination.id}`} className="text-sm text-primary text-white hover:underline flex items-center">
                       {t("ds-detail")}
                       <ArrowRight className="ml-1 w-3 h-3" />
                       </Link>

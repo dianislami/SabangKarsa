@@ -1,4 +1,5 @@
 import { useState, useEffect, forwardRef } from "react";
+import { useTheme } from "@/components/theme/theme-provider";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme/theme-toogle";
@@ -28,8 +29,8 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
   const { id = "navbar" } = props;
   const [user, setUser] = useState<any>(null);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  const [isDestinationsDropdownOpen, setIsDestinationsDropdownOpen] =
-    useState(false);
+  const [isDestinationsDropdownOpen, setIsDestinationsDropdownOpen] = useState(false);
+  const { theme } = useTheme();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
@@ -224,7 +225,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
       className="fixed top-0 left-0 xl:left-25 right-0 xl:right-25 z-50"
     >
       <div className="mx-auto max-w-8xl px-2 sm:px-4 py-1 sm:py-2">
-        <div className="navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 xl:px-3 2xl:px-6 py-2 sm:py-3 shadow-lg border border-gray-200 dark:border-gray-700/50 min-h-[50px] sm:min-h-[55px]">
+        <div className={`navbar-glass flex items-center justify-between rounded-full px-4 sm:px-6 xl:px-3 2xl:px-6 py-2 sm:py-3 shadow-lg border ${theme === "light" ? "border-gray-200" : "border-gray-700/50"} min-h-[50px] sm:min-h-[55px]`}>
           <div
             className="flex items-center gap-2 sm:gap-3 group cursor-pointer"
             onClick={() => navigate("/")}
@@ -344,8 +345,8 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     onClick={() => handleChangeLanguage("ID")}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
                       language?.toUpperCase() === "ID"
-                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700 cursor-none pointer-events-none"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
+                        ? `${theme === "light" ? "bg-emerald-50 text-emerald-700" : "bg-emerald-900/30 text-emerald-700"} cursor-none pointer-events-none`
+                        : `${theme === "light" ? "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600" : "text-gray-300 hover:bg-emerald-900/20 hover:text-emerald-600"}`
                     }`}
                   >
                     <span>🇮🇩</span>
@@ -355,8 +356,8 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     onClick={() => handleChangeLanguage("EN")}
                     className={`flex items-center gap-2 w-full px-4 py-2 text-left text-sm transition-colors duration-200 ${
                       language?.toUpperCase() === "EN"
-                        ? "bg-emerald-50 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-700 cursor-none pointer-events-none"
-                        : "text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-600 dark:hover:text-emerald-600"
+                        ? `${theme === "light" ? "bg-emerald-50 text-emerald-700" : "bg-emerald-900/30 text-emerald-700"} cursor-none pointer-events-none`
+                        : `${theme === "light" ? "text-gray-700 hover:bg-emerald-50 hover:text-emerald-600" : "text-gray-300 hover:bg-emerald-900/20 hover:text-emerald-600"}`
                     }`}
                   >
                     <span>🇺🇸</span>
@@ -430,18 +431,20 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                           </div>
                         </div>
                       </div>
+                      {user.role !== "admin" && (
                         <button
-                        onClick={() => {
-                          navigate(user.role === "seller" ? "/pemesanan" : "/pesanan");
-                          setIsProfileDropdownOpen(false);
-                        }}
-                        className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
+                          onClick={() => {
+                            navigate(user.role === "seller" ? "/pemesanan" : "/pesanan");
+                            setIsProfileDropdownOpen(false);
+                          }}
+                          className="flex items-center gap-2 w-full px-4 py-3 text-left text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-purple-900/20 hover:text-emerald-600 dark:hover:text-purple-400 transition-colors duration-200"
                         >
                         <ShoppingBag className="w-4 h-4" />
                         <span className="font-medium">
                           {user.role === "seller" ? t("nav-order") : t("nav-my-order")}
                         </span>
                         </button>
+                      )}
 
                       {/* Only show verification option for buyers who haven't applied or were rejected */}
                       {user.role === "buyer" &&
