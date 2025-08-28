@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useTheme } from "@/components/theme/theme-provider";
 import { DotLoader } from "react-spinners";
 import ReactMarkdown from "react-markdown";
 import axios from "axios";
@@ -24,6 +25,7 @@ export function BotBubble({
 }) {
   const [response, setResponse] = useState("");
   const { t } = useTranslation();
+  const { theme } = useTheme();
 
   useEffect(() => {
     const fetchReply = async () => {
@@ -66,15 +68,15 @@ export function BotBubble({
 
   return (
     <div className="flex justify-start mb-2">
-      <div className="max-w-[80%] bg-white dark:bg-gray-700 border border-gray-200 dark:border-gray-600 px-4 py-3 rounded-2xl rounded-tl-md shadow-sm">
+      <div className={`max-w-[80%] ${theme === "light" ? "bg-gray-100 border-gray-200" : "bg-gray-700 border-gray-600"} border px-4 py-3 rounded-2xl rounded-tl-md shadow-sm`}>
         {response ? (
-          <div className="text-sm leading-relaxed text-gray-800 dark:text-gray-200">
+          <div className={`text-sm leading-relaxed ${theme === "light" ? "text-gray-800" : "text-gray-200"}`}>
             <ReactMarkdown>{response}</ReactMarkdown>
           </div>
         ) : (
           <div className="flex items-center gap-2">
             <DotLoader size={16} color="#10b981" />
-            <span className="text-gray-500 dark:text-gray-400 text-sm">
+            <span className={`${theme === "light" ? "text-gray-500" : "text-gray-400"} text-sm`}>
               {t("chatbot-loading")}
             </span>
           </div>

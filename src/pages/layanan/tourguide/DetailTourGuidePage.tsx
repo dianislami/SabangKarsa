@@ -37,7 +37,6 @@ export default function DetailTourGuidePage() {
         const res = await fetch(`${API_URL}/tourguides/${id}`);
         const data = await res.json();
         setGuide(data);
-        console.log(data)
       } catch (err) {
         console.error(t("dtg-err-msg"), err);
       } finally {
