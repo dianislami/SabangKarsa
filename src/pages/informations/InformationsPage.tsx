@@ -383,7 +383,7 @@ export function InformationsPage() {
         </div>
       </section>
       {/* Jadwal Kapal Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-50 to-emerald-100 dark:from-emerald-900/20 dark:to-emerald-800/20">
+      <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 dark:to-emerald-800/20">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             className="text-center mb-12"
@@ -427,7 +427,7 @@ export function InformationsPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setScheduleType("ferry")}
-                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "ferry" && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "ferry" && "bg-emerald-500 border-none hover:bg-emerald-600 text-white"}`}
                   >
                     {t("dipg-ferry-boat")}
                   </Button>
@@ -435,7 +435,7 @@ export function InformationsPage() {
                     variant="outline"
                     size="sm"
                     onClick={() => setScheduleType("speedboat")}
-                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "speedboat" && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "speedboat" && "bg-emerald-500 border-none hover:bg-emerald-600 text-white"}`}
                   >
                     {t("dipg-speed-boat")}
                   </Button>
@@ -463,7 +463,7 @@ export function InformationsPage() {
                         variant="outline"
                         size="sm"
                         onClick={() => setRouteType(num + 1)}
-                        className={`flex items-center gap-1 ${routeType === num + 1 && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                        className={`flex items-center gap-1 ${routeType === num + 1 && "bg-emerald-500 border-none hover:bg-emerald-600 text-white"}`}
                       >
                         {t(`dipg-dest-${num + 1}`)}
                       </Button>

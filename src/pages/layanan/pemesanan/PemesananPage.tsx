@@ -78,15 +78,24 @@ export default function PemesananPage() {
         const [rentalRes, penginapanRes, tourguideRes] = await Promise.all([
           fetch(`${API_URL}/booking/rental/seller`, { headers: { Authorization: `Bearer ${token}` } })
             .then((r) => r.json())
-            .then((data) => (Array.isArray(data) ? data : [])),
+            .then((data) => {
+              const dataArr = data.data;
+              return Array.isArray(dataArr) ? dataArr : []
+            }),
 
           fetch(`${API_URL}/booking/penginapan/seller`, { headers: { Authorization: `Bearer ${token}` } })
             .then((r) => r.json())
-            .then((data) => (Array.isArray(data) ? data : [])),
+            .then((data) => {
+              const dataArr = data.data;
+              return Array.isArray(dataArr) ? dataArr : []
+            }),
 
           fetch(`${API_URL}/booking/tour-guide/seller`, { headers: { Authorization: `Bearer ${token}` } })
             .then((r) => r.json())
-            .then((data) => (Array.isArray(data) ? data : [])),
+            .then((data) => {
+              const dataArr = data.data;
+              return Array.isArray(dataArr) ? dataArr : []
+            }),
         ]);
 
         setRentalBookings(rentalRes);
@@ -142,7 +151,7 @@ export default function PemesananPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-card border-b border-border">
+      <div className="bg-card bg-emerald-500 text-white dark:text-white">
         <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">

@@ -219,7 +219,7 @@ export function DestinationsPage() {
             {currentDestinations.map((destination, index) => (
               <motion.div
                 key={destination.id}
-                className="bg-white dark:bg-emerald-800 border-2 border-gray-200 dark:border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="bg-emerald-800 border-2 text-white border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -258,10 +258,10 @@ export function DestinationsPage() {
                 </div>
 
                 <div className="p-6">
-                  <a href={`/destinations/${destination.id}`} className="text-xl font-bold mb-3 text-foreground dark:text-white hover:text-emerald-100 transition-colors no-underline cursor-pointer duration-200">
+                  <a href={`/destinations/${destination.id}`} className="text-xl font-bold mb-3 text-foreground text-white hover:text-emerald-100 transition-colors no-underline cursor-pointer duration-200">
                     {destination.name}
                   </a>
-                  <p className="text-muted-foreground dark:text-white/80 mb-6 text-sm leading-relaxed">
+                  <p className="text-muted-foreground text-white/80 mb-6 text-sm leading-relaxed">
                     {destination.description}
                   </p>
 
@@ -269,7 +269,7 @@ export function DestinationsPage() {
                     <span className="text-sm text-white font-medium text-muted-foreground">
                       {t("destpg-price")}
                     </span>
-                    <span className="text-lg font-semibold text-emerald-600 dark:text-emerald-400">
+                    <span className="text-lg font-semibold text-emerald-400">
                       {destination.price}
                     </span>
                     <Button
