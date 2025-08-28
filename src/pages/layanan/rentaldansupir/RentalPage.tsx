@@ -138,7 +138,7 @@ export function RentalPage() {
                     <div className="flex items-center justify-between mt-2">
                       <span className="text-emerald-600 font-bold">Rp {rental.harga.toLocaleString()}</span>
                       <Link to={`/layanan/rental/${rental._id}`}>
-                        <Button size="sm" className="bg-emerald-500 text-white">{t("rpg-detail")}</Button>
+                        <Button size="sm" className="cursor-pointer bg-emerald-500 text-white">{t("rpg-detail")}</Button>
                       </Link>
                     </div>
                   </div>

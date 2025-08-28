@@ -20,15 +20,25 @@ interface Event {
     location: string;
 }
 
-const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function AgendaPage() {
   const [events, setEvents] = useState<Event[]>([]);
+  const language = localStorage.getItem("language");
+  const eventsData: Event[] = language?.toLowerCase() === "id" ? data.id : data.en;
   const { t } = useTranslation();
 
   useEffect(() => {
     setEvents(eventsData);
-  }, []);
+  }, [eventsData]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(language?.toLowerCase() === "id" ? "id-ID" : "en-EN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -121,14 +131,14 @@ export function AgendaPage() {
                   </p>
                   <div className="flex items-center gap-2 text-muted-foreground text-sm mb-2">
                     <Calendar className="w-4 h-4" />
-                    <span>{event.date}</span>
+                    <span>{formatDate(event.date)}</span>
                   </div>
                   <div className="flex items-center gap-2 text-muted-foreground text-sm mb-4">
                     <MapPin className="w-4 h-4" />
                     <span>{event.location}</span>
                   </div>
                   <Link to={`/agenda/${event.id}`}>
-                    <Button className="w-full bg-emerald-500 hover:bg-emerald-600 text-white">
+                    <Button className="w-full cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white">
                       {t("agendapg-btn")}
                     </Button>
                   </Link>

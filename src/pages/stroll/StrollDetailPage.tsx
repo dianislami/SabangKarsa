@@ -216,11 +216,11 @@ export function StrollDetailPage() {
                 <div className="space-y-4 mb-6">
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("sd-category")}</span>
-                    <span className="font-medium">{item.category}</span>
+                    <span className="font-medium text-right">{item.category}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("sd-price")}</span>
-                    <span className="font-semibold text-emerald-600 dark:text-emerald-400 text-lg">
+                    <span className="font-semibold text-right text-emerald-600 dark:text-emerald-400 text-lg">
                       {item.price}
                     </span>
                   </div>
@@ -228,7 +228,7 @@ export function StrollDetailPage() {
                     <span className="text-muted-foreground">{t("sd-rating")}</span>
                     <div className="flex items-center gap-1">
                       <Star className="w-4 h-4 text-yellow-400 fill-current" />
-                      <span className="font-semibold">{item.rating}/5</span>
+                      <span className="font-semibold text-right">{item.rating}/5</span>
                     </div>
                   </div>
                   <div className="flex justify-between items-center">

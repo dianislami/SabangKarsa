@@ -160,7 +160,7 @@ export default function TourGuidePage() {
                         <div className="text-xs text-muted-foreground">{t("tg-per-day")}</div>
                       </div>
                       <Link to={`/layanan/tour-guide/${guide._id}`}>
-                        <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white">
+                        <Button size="sm" className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white">
                           {t("tg-detail")}
                         </Button>
                       </Link>

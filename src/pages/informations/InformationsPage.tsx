@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useTheme } from "@/components/theme/theme-provider";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,12 +16,15 @@ import {
   ChevronRight,
   Percent,
   CalendarDays,
+  Ticket
 } from "lucide-react";
 import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import data from "../../data/informations.json";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import schedule from "../../data/schedule.json";
+import prices from "../../data/sch-prices.json";
 import "../../i18n/i18n"
 
 interface Information {
@@ -42,16 +46,22 @@ interface InformationData {
   informationData: Information[];
 }
 
-const { informationData }: InformationData = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function InformationsPage() {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const language = localStorage.getItem("language");
+  const { informationData }: InformationData = language?.toLowerCase() === "id" ? data.id : data.en;
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(t("dipg-all"));
   const [sortBy, setSortBy] = useState("latest");
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const categories = [t("dipg-all"), ...Array.from(new Set(informationData.map(info => info.category)))];
+  const [scheduleType, setScheduleType] = useState<"ferry" | "speedboat">("ferry");
+  const [routeType, setRouteType] = useState(1);
+  const scheduleInformations = language?.toLowerCase() === "id" ? schedule.id : schedule.en;
+  const priceList = language?.toLowerCase() === "id" ? prices.id : prices.en;
 
   const allFilteredInformation = informationData
     .filter((info) => {
@@ -105,7 +115,7 @@ export function InformationsPage() {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("id-ID", {
+    return date.toLocaleDateString(language?.toLowerCase() === "id" ? "id-ID" : "en-EN", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -248,7 +258,7 @@ export function InformationsPage() {
                   <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/50 backdrop-blur-sm text-white px-3 py-1 rounded-full">
                     <Eye className="w-4 h-4" />
                     <span className="text-sm">
-                      {info.views.toLocaleString()}
+                      {info.views.toLocaleString(language?.toLowerCase() || "id")}
                     </span>
                   </div>
                 </div>
@@ -391,175 +401,141 @@ export function InformationsPage() {
               {t("dipg-ferry-p")}
             </p>
           </motion.div>
-
+            
           <motion.div
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            className="grid grid-cols-1 gap-8"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Banda Aceh ke Sabang */}
             <div 
-              className="rounded-2xl p-6 shadow-lg border"
+              className="rounded-2xl overflow-hidden shadow-lg border"
               style={{
                 backgroundColor: 'var(--ferry-schedule-bg)',
                 borderColor: 'var(--ferry-schedule-border)'
               }}
             >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
-                  <MapPin className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">
-                    {t("dipg-dest-1")}
+              <div className="flex px-6 py-4 items-center justify-between gap-2 w-full border-b border-black/50">
+                <span className="flex gap-3 items-center">
+                  <Clock className="w-7 h-7 text-emerald-700 dark:text-emerald-400" />
+                  <h3 className="font-bold text-xl">
+                    {scheduleType === "ferry" ? t("dipg-sch-ferry-boat") : t("dipg-sch-speed-boat")}
                   </h3>
-                  <p className="text-muted-foreground">
-                    {t("dipg-dest-1-port")}
+                </span>
+                <span className="flex gap-2">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setScheduleType("ferry")}
+                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "ferry" && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                  >
+                    {t("dipg-ferry-boat")}
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setScheduleType("speedboat")}
+                    className={`flex items-center gap-1 rounded-full px-4 ${scheduleType === "speedboat" && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                  >
+                    {t("dipg-speed-boat")}
+                  </Button>
+                </span>
+              </div>
+              <div className="p-6">
+
+                <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-6">
+                  <div className="flex items-center gap-3">
+                    <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
+                      <MapPin className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-foreground">
+                        {t(`dipg-dest-${routeType}`)}
+                      </h3>
+                      <p className="text-muted-foreground">
+                        {t(`dipg-dest-${routeType}-port`)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    {Array.from({length: 2}, (_, i) => i).map(num => (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setRouteType(num + 1)}
+                        className={`flex items-center gap-1 ${routeType === num + 1 && "bg-emerald-500 dark:border-none hover:bg-emerald-600 text-white"}`}
+                      >
+                        {t(`dipg-dest-${num + 1}`)}
+                      </Button>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  {scheduleInformations[scheduleType].map((schedule, idx) => (
+                    <div
+                      key={idx}
+                      className="flex justify-between items-center py-3 gap-4 border-b border-black/50 last:border-b-0"
+                    >
+                      <span className="font-semibold w-fit text-foreground">
+                        <p>{schedule.date}</p>
+                      </span>
+                      <div className="flex gap-3 items-center justify-end flex-wrap">
+                        {schedule[routeType === 1 ? "ulee_lheue" : "balohan"].map((schItem, timeIdx) => (
+                          <span
+                            key={timeIdx}
+                            className="bg-emerald-500 p-1.5 rounded-full text-sm flex text-center gap-1 font-medium shadow-sm"
+                          >
+                            <span className={`font-medium ${theme === "light" ? "text-white" : "text-emerald-950"} px-2 text-center flex items-center justify-center`}>{schItem.boat}</span>
+                            <span className={`font-semibold px-4 py-1 ${theme === "light" ? "bg-emerald-50 text-emerald-500" : "bg-emerald-800 text-emerald-50"} rounded-full`}>{schItem.time} WIB</span>
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-4 flex gap-2 flex-col items-center justify-center rounded-xl">
+                  <span className="w-full text-xl flex gap-3 items-center font-bold py-3 border-b border-black/50">
+                    <Ticket className="w-7 h-7 text-emerald-700 dark:text-emerald-400" />
+                    {scheduleType === "ferry" ? t("dipg-price-ferry-boat") : t("dipg-price-speed-boat")}
+                  </span>
+                  <span className="w-full py-4 flex flex-wrap gap-2 items-center justify-center gap-3">
+                    {priceList[scheduleType === "ferry" ? 0 : 1].prices.map((priceItem, index) => (
+                      <span 
+                        key={index} 
+                        className="py-4 px-8 shadow-md flex flex-col bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl items-center justify-center gap-0.5"
+                      >
+                        <span className="flex gap-1 items-end text-white text-right text-nowrap">
+                          <span className="font-semibold">Rp</span>
+                          <span className="font-bold text-xl">{priceItem.price}</span>
+                        </span>
+                        <h3 className="font-medium text-sm text-white text-nowrap">{priceItem.category}</h3>
+                      </span>
+                    ))}
+                  </span>
+                </div>
+                
+                <div 
+                  className="mt-4 rounded-xl p-4 w-full border"
+                  style={{
+                    backgroundColor: 'var(--ferry-note-bg)',
+                    borderColor: 'var(--ferry-note-border)'
+                  }}
+                >
+                  <p 
+                    className="text-sm"
+                    style={{ color: 'var(--ferry-note-text)' }}
+                  >
+                    <strong>{t("dipg-note")}</strong> {t("dipg-note-text")}
                   </p>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                {[
-                  { day: t("dipg-dest-1-sch-1"), times: ["08.00", "14.00", "17.00"] },
-                  { day: t("dipg-dest-1-sch-2"), times: ["08.00", "11.00", "14.00", "17.00"] },
-                  { day: t("dipg-dest-1-sch-3"), times: ["08.00", "14.00", "17.00", "20.00"] },
-                  {
-                    day: t("dipg-dest-1-sch-4"),
-                    times: ["08.00", "11.00", "14.00", "17.00"],
-                  },
-                ].map((schedule, idx) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center py-3 border-b border-border/50 last:border-b-0"
-                  >
-                    <span className="font-semibold text-foreground">
-                      {schedule.day}
-                    </span>
-                    <div className="flex gap-2 flex-wrap">
-                      {schedule.times.map((time, timeIdx) => (
-                        <span
-                          key={timeIdx}
-                          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm border"
-                          style={{
-                            backgroundColor: 'var(--ferry-time-bg)',
-                            color: 'var(--ferry-time-text)',
-                            borderColor: 'var(--ferry-time-border)'
-                          }}
-                        >
-                          {time}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div 
-                className="mt-6 p-4 rounded-xl border"
-                style={{
-                  backgroundColor: 'var(--ferry-note-bg)',
-                  borderColor: 'var(--ferry-note-border)'
-                }}
-              >
-                <p 
-                  className="text-sm font-medium"
-                  style={{ color: 'var(--ferry-note-text)' }}
-                >
-                  {t("dipg-dest-1-note-1")}
-                </p>
-                <p 
-                  className="text-sm mt-1"
-                  style={{ color: 'var(--ferry-note-text)' }}
-                >
-                  {t("dipg-dest-1-note-2")}
-                </p>
-              </div>
-            </div>
-
-            {/* Sabang ke Banda Aceh */}
-            <div 
-              className="rounded-2xl p-6 shadow-lg border"
-              style={{
-                backgroundColor: 'var(--ferry-schedule-bg)',
-                borderColor: 'var(--ferry-schedule-border)'
-              }}
-            >
-              <div className="flex items-center gap-3 mb-6">
-                <div className="bg-emerald-100 dark:bg-emerald-900/30 p-3 rounded-full">
-                  <MapPin className="w-6 h-6 text-emerald-700 dark:text-emerald-400" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-foreground">
-                    {t("dipg-dest-2")}
-                  </h3>
-                  <p className="text-muted-foreground">
-                    {t("dipg-dest-2-port")}
-                  </p>
-                </div>
-              </div>
-
-              <div className="space-y-4">
-                {[
-                  { day: t("dipg-dest-2-sch-1"), times: ["06.30", "12.00", "15.30"] },
-                  { day: t("dipg-dest-2-sch-2"), times: ["06.30", "09.30", "12.00", "15.30"] },
-                  { day: t("dipg-dest-2-sch-3"), times: ["06.30", "12.00", "15.30", "18.30"] },
-                  {
-                    day: t("dipg-dest-2-sch-4"),
-                    times: ["06.30", "09.30", "12.00", "15.30"],
-                  },
-                ].map((schedule, idx) => (
-                  <div
-                    key={idx}
-                    className="flex justify-between items-center py-3 border-b border-border/50 last:border-b-0"
-                  >
-                    <span className="font-semibold text-foreground">
-                      {schedule.day}
-                    </span>
-                    <div className="flex gap-2 flex-wrap">
-                      {schedule.times.map((time, timeIdx) => (
-                        <span
-                          key={timeIdx}
-                          className="px-3 py-1 rounded-full text-sm font-medium shadow-sm border"
-                          style={{
-                            backgroundColor: 'var(--ferry-time-bg)',
-                            color: 'var(--ferry-time-text)',
-                            borderColor: 'var(--ferry-time-border)'
-                          }}
-                        >
-                          {time}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div 
-                className="mt-6 p-4 rounded-xl border"
-                style={{
-                  backgroundColor: 'var(--ferry-note-bg)',
-                  borderColor: 'var(--ferry-note-border)'
-                }}
-              >
-                <p 
-                  className="text-sm font-medium"
-                  style={{ color: 'var(--ferry-note-text)' }}
-                >
-                  {t("dipg-dest-2-note-1")}
-                </p>
-                <p 
-                  className="text-sm mt-1"
-                  style={{ color: 'var(--ferry-note-text)' }}
-                >
-                  {t("dipg-dest-2-note-2")}
-                </p>
-              </div>
             </div>
           </motion.div>
 
-          <motion.div
+          {/* <motion.div
             className="text-center mt-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -579,7 +555,7 @@ export function InformationsPage() {
                 <strong>{t("dipg-note")}</strong> {t("dipg-note-text")}
               </p>
             </div>
-          </motion.div>
+          </motion.div> */}
         </div>
       </section>{" "}
       {/* Promotions Section */}

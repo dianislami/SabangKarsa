@@ -274,7 +274,7 @@ export function DestinationsPage() {
                     </span>
                     <Button
                       size="sm"
-                      className="bg-emerald-500 hover:bg-emerald-600 text-white"
+                      className="bg-emerald-500 cursor-pointer hover:bg-emerald-600 text-white"
                       onClick={(e) => {
                         e.stopPropagation();
                         navigate(`/destinations/${destination.id}`);

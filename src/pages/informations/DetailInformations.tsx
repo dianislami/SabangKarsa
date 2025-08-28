@@ -38,11 +38,12 @@ interface InformationData {
   categories: string[];
 }
 
-const { informationData }: InformationData = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function DetailInformations() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const language = localStorage.getItem("language");
+  const { informationData }: InformationData = language?.toLowerCase() === "id" ? data.id : data.en;
   const [information, setInformation] = useState<Information | null>(null);
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(0);
@@ -59,11 +60,11 @@ export function DetailInformations() {
         setLikes(Math.floor(Math.random() * 100) + 20);
       }
     }
-  }, [id]);
+  }, [id, informationData]);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString("id-ID", {
+    return date.toLocaleDateString(language?.toLowerCase() === "id" ? "id-ID" : "en-EN", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -185,7 +186,7 @@ export function DetailInformations() {
               </div>
               <div className="flex items-center gap-2">
                 <Eye className="w-4 h-4" />
-                <span>{information.views.toLocaleString()} {t("di-viewer")}</span>
+                <span>{information.views.toLocaleString(language?.toLowerCase() || "id")} {t("di-viewer")}</span>
               </div>
             </motion.div>
           </motion.div>
@@ -283,25 +284,25 @@ export function DetailInformations() {
                   <div className="space-y-3 text-sm">
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">{t("di-category")}</span>
-                      <span className="font-medium">
+                      <span className="font-medium text-right">
                         {information.category}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">{t("di-time")}</span>
-                      <span className="font-medium">
+                      <span className="font-medium text-right">
                         {information.readTime}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">{t("di-viewer-info")}</span>
-                      <span className="font-medium">
+                      <span className="font-medium text-right">
                         {information.views.toLocaleString()}
                       </span>
                     </div>
                     <div className="flex justify-between">
                       <span className="text-muted-foreground">{t("di-writer")}</span>
-                      <span className="font-medium">{information.author || "Admin"}</span>
+                      <span className="font-medium text-right">{information.author || "Admin"}</span>
                     </div>
                   </div>
                 </div>
@@ -312,38 +313,47 @@ export function DetailInformations() {
                     {t("di-related")}
                   </h3>
                   <div className="space-y-4">
-                    {informationData
-                      .filter(
-                        (info) =>
-                          info.id !== information.id &&
-                          info.category === information.category
-                      )
-                      .slice(0, 3)
-                      .map((relatedInfo) => (
-                        <div
-                          key={relatedInfo.id}
-                          className="group cursor-pointer"
-                          onClick={() =>
-                            navigate(`/informations/${relatedInfo.id}`)
-                          }
-                        >
-                          <div className="flex gap-3">
-                            <img
-                              src={relatedInfo.image}
-                              alt={relatedInfo.title}
-                              className="w-16 h-16 rounded-lg object-cover"
-                            />
-                            <div className="flex-1">
-                              <h4 className="text-sm font-medium text-foreground group-hover:text-emerald-600 transition-colors line-clamp-2">
-                                {relatedInfo.title}
-                              </h4>
-                              <p className="text-xs text-muted-foreground mt-1">
-                                {relatedInfo.readTime}
-                              </p>
+                    {(() => {
+                      const relatedData = informationData
+                        .filter(
+                          (info) =>
+                            info.id !== information.id &&
+                            info.category === information.category
+                        )
+                        .slice(0, 3);
+
+                      if (relatedData.length > 0) {
+                        return relatedData.map((relatedInfo) => (
+                          <div
+                            key={relatedInfo.id}
+                            className="group cursor-pointer"
+                            onClick={() => navigate(`/informations/${relatedInfo.id}`)}
+                          >
+                            <div className="flex gap-3">
+                              <img
+                                src={relatedInfo.image}
+                                alt={relatedInfo.title}
+                                className="w-16 h-16 rounded-lg object-cover"
+                              />
+                              <div className="flex-1">
+                                <h4 className="text-sm font-medium text-foreground group-hover:text-emerald-600 transition-colors line-clamp-2">
+                                  {relatedInfo.title}
+                                </h4>
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  {relatedInfo.readTime}
+                                </p>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      ))}
+                        ));
+                      }
+
+                      return (
+                        <p className="text-sm text-muted-foreground">
+                          {t("di-related-nf")}
+                        </p>
+                      );
+                    })()}
                   </div>
                 </div>
 

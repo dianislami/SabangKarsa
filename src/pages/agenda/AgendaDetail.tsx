@@ -34,12 +34,13 @@ interface Event {
   detailDescription: string;
 }
 
-const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
 
 export function AgendaDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
   // const [user, setUser] = useState<any>(null);
+  const language = localStorage.getItem("language");
+  const eventsData: Event[] = localStorage.getItem("language")?.toLowerCase() === "id" ? data.id : data.en;
   const [event, setEvent] = useState<Event | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -61,7 +62,16 @@ export function AgendaDetail() {
       const foundEvent = eventsData.find((evt) => evt.id === parseInt(id));
       setEvent(foundEvent || null);
     }
-  }, [id]);
+  }, [id, eventsData]);
+
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString(language?.toLowerCase() === "id" ? "id-ID" : "en-EN", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  };
 
   if (!event) {
     return (
@@ -147,7 +157,7 @@ export function AgendaDetail() {
                 <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
                   <Clock className="w-4 h-4 text-blue-300 dark:text-blue-400" />
                   <span className="text-white/90 dark:text-white/80 font-medium">
-                    {event.date} | {event.time}
+                    {formatDate(event.date)} | {event.time}
                   </span>
                 </div>
               </motion.div>
@@ -254,7 +264,7 @@ export function AgendaDetail() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("agenda-time-date")}</span>
-                    <span className="font-medium text-right">{event.date} | {event.time}</span>
+                    <span className="font-medium text-right">{formatDate(event.date)} | {event.time}</span>
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("agenda-loc")}</span>

@@ -191,7 +191,7 @@ export function PenginapanPage() {
                       <span className="text-sm">{p.lokasi}</span>
                     </div>
                     <p className="text-muted-foreground text-sm mb-4 line-clamp-2">{p.deskripsi}</p>
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex bg-emerald-50 p-1 rounded-md flex-wrap gap-2 mb-4">
                       {p.fasilitas.slice(0, 3).map((f: string, idx: number) => (
                         <span key={idx} className="bg-muted text-muted-foreground px-2 py-1 rounded-md text-xs">{f}</span>
                       ))}
@@ -207,7 +207,7 @@ export function PenginapanPage() {
                         <span className="text-xs text-muted-foreground">{t("ppg-per-night")}</span>
                       </div>
                       <Link to={`/layanan/penginapan/${p._id}`}>
-                        <Button size="sm" className="bg-emerald-500 hover:bg-emerald-600 text-white px-6">{t("ppg-detail")}</Button>
+                        <Button size="sm" className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white px-6">{t("ppg-detail")}</Button>
                       </Link>
                     </div>
                   </div>
