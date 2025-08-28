@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useTheme } from "@/components/theme/theme-provider";
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Users, MapPin, CreditCard, Home } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,6 +14,7 @@ export default function BookingPenginapanPage() {
   const navigate = useNavigate();
   const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
   const { t } = useTranslation();
+  const { theme } = useTheme();
   
   if (!userData.id || userData.role !== "buyer") {
     navigate(-1);
@@ -99,7 +101,7 @@ export default function BookingPenginapanPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
-      <div className="bg-card border-b border-border">
+      <div className="bg-card bg-emerald-500 text-white dark:text-white">
         <div className="max-w-4xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" onClick={() => navigate(-1)} className="flex items-center gap-2">
@@ -148,7 +150,7 @@ export default function BookingPenginapanPage() {
                         <span className="text-sm">{penginapan.alamat}</span>
                       </div>
                     )}
-                    <div className="bg-emerald-50 dark:bg-emerald-900/30 border border-emerald-200 dark:border-emerald-700 p-3 rounded-lg">
+                    <div className={`${theme === "light" ? "bg-emerald-50" : "bg-emerald-900/30"} border border-emerald-200 dark:border-emerald-700 p-3 rounded-lg`}>
                       <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
                         Rp {penginapan.hargaPerMalam?.toLocaleString()}
                       </span>
