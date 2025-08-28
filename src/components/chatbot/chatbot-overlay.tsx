@@ -153,7 +153,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                         </div>
                         <button 
                             onClick={callbot} 
-                            className="bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
+                            className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 dark:bg-emerald-600 dark:hover:bg-emerald-700 text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg"
                         >
                             <Send className="w-5 h-5" />
                         </button>

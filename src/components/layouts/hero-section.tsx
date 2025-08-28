@@ -100,7 +100,7 @@ export function HeroSection() {
               <>
                 <Button 
                   onClick={() => document.getElementById('destinations')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-primary px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
+                  className="cursor-pointer btn-primary px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
                 >
                   {t("hero-start-e")}
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
@@ -109,7 +109,7 @@ export function HeroSection() {
                 <Button 
                   variant="outline"
                   onClick={() => document.getElementById('services')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
+                  className="cursor-pointer border-2 border-white text-white hover:bg-white/20 hover:backdrop-blur-sm px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold rounded-full mobile-full"
                 >
                   {t("hero-see-serv")}
                 </Button>

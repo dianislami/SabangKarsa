@@ -155,7 +155,7 @@ export function DestinationsSection() {
             <Button
               onClick={() => navigate("/destinations")}
               variant="outline"
-              className="btn-outline px-6 md:px-8 py-3 text-base md:text-lg"
+              className="cursor-pointer btn-outline px-6 md:px-8 py-3 text-base md:text-lg"
             >
               {user ? t("ds-button-1") : t("ds-button-2")}
               <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />
