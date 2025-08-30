@@ -16,8 +16,12 @@ export default function BookingRentalPage() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   
-  if (!userData.id || userData.role !== "buyer") {
+  if (userData.role !== "buyer") {
     navigate(-1);
+  }
+
+  if (!userData.id) {
+    navigate("/login");
   }
 
   const API_URL = import.meta.env.VITE_API_URL;

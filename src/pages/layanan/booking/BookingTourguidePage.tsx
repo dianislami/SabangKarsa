@@ -27,8 +27,12 @@ export default function BookingTourguidePage() {
   const { t } = useTranslation();
   const { theme } = useTheme();
   
-  if (!userData.id || userData.role !== "buyer") {
+  if (userData.role !== "buyer") {
     navigate(-1);
+  }
+
+  if (!userData.id) {
+    navigate("/login");
   }
 
   const { id } = useParams<{ id: string }>();

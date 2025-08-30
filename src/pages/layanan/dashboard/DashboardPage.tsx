@@ -12,14 +12,20 @@ import { Car, Users, Home } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import type { UserData } from '@/types/userData';
 import { useTranslation } from "react-i18next";
+import axios, { AxiosError } from 'axios';
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
 
+export interface EditData {
+  key: string;
+  data: any;
+}
+
 export default function DashboardPage() {
   const navigate = useNavigate();
-  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
   const { t } = useTranslation();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
   
   if (!userData.id || userData.role !== "seller") {
     navigate(-1);
@@ -28,7 +34,7 @@ export default function DashboardPage() {
   const token = localStorage.getItem('token');
   const [searchParams] = useSearchParams();
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [editData, setEditData] = useState<any>(null);
+  const [editData, setEditData] = useState<EditData>({key: "", data: null});
 
   // Get current tab and form from URL params
   const currentTab = searchParams.get('tab') || 'dashboard';
@@ -80,15 +86,33 @@ export default function DashboardPage() {
 
   // Handle edit
   const handleEdit = (type: 'rental' | 'penginapan' | 'tourguide', data: any) => {
-    setEditData(data);
+    setEditData({
+      key: type,
+      data: data
+    });
     // Redirect to form page
-    window.location.href = `/layanan/dashboard?form=${type}`;
+    navigate(`/layanan/dashboard?form=${type}`)
   };
+
+  const handleDelete = async (type: 'rental' | 'penginapan' | 'tourguide', data: any) => {
+    try {
+      await axios.delete(`${API_URL}/${type === "tourguide" ? "tourguides" : type}/${data._id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+      
+      window.location.reload();
+    } catch (error) {
+      const err = error as AxiosError;
+      console.error(err);
+    }
+  }
 
   // Handle close form
   const handleCloseForm = () => {
-    setEditData(null);
-    window.location.href = '/layanan/dashboard';
+    setEditData({key: "", data: null});
+    navigate(`/layanan/dashboard`);
   };
 
   // Get page title and subtitle based on current tab/form
@@ -233,6 +257,8 @@ export default function DashboardPage() {
               services={userRentals}
               type="rental"
               onEdit={(service) => handleEdit('rental', service)}
+              onDelete={(service) => handleDelete('rental', service)}
+              setter={setEditData}
             />
           )}
 
@@ -243,6 +269,8 @@ export default function DashboardPage() {
               services={userPenginapan}
               type="penginapan"
               onEdit={(service) => handleEdit('penginapan', service)}
+              onDelete={(service) => handleDelete('penginapan', service)}
+              setter={setEditData}
             />
           )}
 
@@ -253,6 +281,8 @@ export default function DashboardPage() {
               services={userTourguides}
               type="tourguide"
               onEdit={(service) => handleEdit('tourguide', service)}
+              onDelete={(service) => handleDelete('tourguide', service)}
+              setter={setEditData}
             />
           )}
 
@@ -270,6 +300,7 @@ export default function DashboardPage() {
                   user={user} 
                   setActiveForm={handleCloseForm} 
                   editData={editData} 
+                  setter={setEditData}
                 />
               )}
               {currentForm === 'tourguide' && (
@@ -277,6 +308,8 @@ export default function DashboardPage() {
                   token={token} 
                   user={user} 
                   setActiveForm={handleCloseForm} 
+                  editData={editData} 
+                  setter={setEditData}
                 />
               )}
               {currentForm === 'penginapan' && (
@@ -285,6 +318,7 @@ export default function DashboardPage() {
                   user={user} 
                   setActiveForm={handleCloseForm} 
                   editData={editData} 
+                  setter={setEditData}
                 />
               )}
             </motion.div>
