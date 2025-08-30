@@ -118,6 +118,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
+    localStorage.removeItem("chatbot");
     setUser(null);
     window.location.reload();
   };
@@ -613,10 +614,13 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                                 navigate("/informations");
                               } else if (dropdownItem.id === "penginapan") {
                                 navigate("/layanan/penginapan");
+                              } else if (dropdownItem.id === "driver-rental") {
+                                navigate("/layanan/rental");
+                              } else if (dropdownItem.id === "tour-guide") {
+                                navigate("/layanan/tourguide");
                               } else {
                                 handleNavigation(dropdownItem.id);
                               }
-                              setIsMobileMenuOpen(false);
                               closeDropdown(item.id);
                             }}
                             className="flex items-center gap-3 w-full px-3 py-2 text-left text-emerald-600/70 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-blue-400 rounded-lg transition-all duration-200"

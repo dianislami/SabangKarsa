@@ -6,7 +6,22 @@ import axios from "axios";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
 
-export function UserBubble({ message }: { message: string }) {
+export interface ChatbotMessages {
+  user: string[];
+  bot: string[];
+}
+
+export function UserBubble({ message, save }: { message: string, save: boolean }) {
+  useEffect(() => {
+    if (save) {
+      const localMessages = localStorage.getItem("chatbot") || "{\"user\": [], \"bot\": []}";
+      const messages = JSON.parse(localMessages) as ChatbotMessages;
+
+      messages.user = [...messages.user, message];
+      localStorage.setItem("chatbot", JSON.stringify(messages));
+    }
+  }, [message, save]);
+
   return (
     <div className="flex justify-end mb-2">
       <div className="max-w-[80%] bg-emerald-500 dark:bg-emerald-600 text-white px-4 py-3 rounded-2xl rounded-tr-md shadow-sm">
@@ -19,52 +34,65 @@ export function UserBubble({ message }: { message: string }) {
 export function BotBubble({
   message,
   token,
+  runFetch,
 }: {
   message: string;
   token: string;
+  runFetch: boolean;
 }) {
   const [response, setResponse] = useState("");
   const { t } = useTranslation();
   const { theme } = useTheme();
 
   useEffect(() => {
-    const fetchReply = async () => {
-      try {
-        const res = await axios.post(
-          "https://api-jaksabang-chatbot.vercel.app/",
-          {
-            message,
-          },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
+    if (runFetch) {
+      const localMessages = localStorage.getItem("chatbot") || "{\"user\": [], \"bot\": []}";
+      const messages = JSON.parse(localMessages) as ChatbotMessages;
+
+      const fetchReply = async () => {
+        try {
+          const res = await axios.post(
+            "https://api-jaksabang-chatbot.vercel.app/",
+            {
+              message,
             },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+            }
+          );
+          const response = res.data.response || "Maaf, terjadi kesalahan tak terduga";
+          setResponse(response);
+          messages.bot = [...messages.bot, response];
+          localStorage.setItem("chatbot", JSON.stringify(messages));
+        } catch (error) {
+          const errorObj = error as any;
+
+          console.error(errorObj);
+
+          if (errorObj.response?.status === 401) {
+            setResponse(
+              t("chatbot-err-msg-1")
+            );
+          } else {
+            setResponse(
+              `${errorObj.response?.status || "Error"}: ${
+                errorObj.response?.data?.message ||
+                errorObj.message ||
+                t("chatbot-err-msg-2")
+              }`
+            );
           }
-        );
-        setResponse(res.data.response);
-      } catch (error) {
-        const errorObj = error as any;
-
-        console.error(errorObj);
-
-        if (errorObj.response?.status === 401) {
-          setResponse(
-            t("chatbot-err-msg-1")
-          );
-        } else {
-          setResponse(
-            `${errorObj.response?.status || "Error"}: ${
-              errorObj.response?.data?.message ||
-              errorObj.message ||
-              t("chatbot-err-msg-2")
-            }`
-          );
         }
-      }
-    };
+      };
 
-    fetchReply();
-  }, [message, token, t]);
+      fetchReply();
+    }
+    else {
+      setResponse(message);
+    }
+  }, [message, runFetch, token, t]);
 
   return (
     <div className="flex justify-start mb-2">

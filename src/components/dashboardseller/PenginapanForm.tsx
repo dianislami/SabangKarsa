@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Phone, User, MapPin, Mail } from 'lucide-react';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
+import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
 import "../../i18n/i18n"
 
 interface PenginapanData {
@@ -27,10 +30,11 @@ interface PenginapanFormProps {
   token: string | null;
   user: { id: string; name: string; email: string; no_hp: string; alamat: string; role: string; };
   setActiveForm: () => void;
-  editData?: any;
+  setter: (data: EditData) => void;
+  editData?: EditData;
 }
 
-export default function PenginapanForm({ token, user, setActiveForm, editData }: PenginapanFormProps) {
+export default function PenginapanForm({ token, user, setActiveForm, editData, setter }: PenginapanFormProps) {
   const [penginapanData, setPenginapanData] = useState<PenginapanData>({
     nama: '',
     lokasi: '',
@@ -51,31 +55,47 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
   });
   const [preview, setPreview] = useState<string | null>(null);
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  let newEditData = editData?.data;
+    
+  useEffect(() => {
+    if (!userData.id || userData.role !== "seller") {
+      navigate(-1);
+    }
+  }, [userData, navigate]);
+  
+  if (editData?.key !== "penginapan") newEditData = null;
+  
+  useEffect(() => {
+    if (editData?.key && editData?.key !== "penginapan") setter({key: "", data: null});
+  }, [editData?.key, setter]);
 
   // Auto-fill data saat edit
   useEffect(() => {
-    if (editData) {
+    if (newEditData) {
       setPenginapanData({
-        nama: editData.nama || '',
-        lokasi: editData.lokasi || '',
-        deskripsi: editData.deskripsi || '',
-        tipePeningapan: editData.tipePeningapan || '',
-        hargaPerMalam: String(editData.hargaPerMalam || ''),
-        jumlahKamarTersedia: String(editData.jumlahKamarTersedia || ''),
-        namaPenyedia: editData.namaPenyedia || user.name || '',
+        nama: newEditData.nama || '',
+        lokasi: newEditData.lokasi || '',
+        deskripsi: newEditData.deskripsi || '',
+        tipePeningapan: newEditData.tipePeningapan || '',
+        hargaPerMalam: String(newEditData.hargaPerMalam || ''),
+        jumlahKamarTersedia: String(newEditData.jumlahKamarTersedia || ''),
+        namaPenyedia: newEditData.namaPenyedia || user.name || '',
         gambar: null, // file tidak ada
-        alamat: editData.alamat || '',
-        no_telepon: editData.no_telepon || '',
-        email: editData.email || '',
-        fasilitas: Array.isArray(editData.fasilitas) ? editData.fasilitas.join(', ') : editData.fasilitas || '',
-        kebijakan: editData.kebijakan || '',
-        check_in_time: editData.check_in_time || '',
-        check_out_time: editData.check_out_time || '',
-        lokasi_maps: editData.lokasi_maps || ''
+        alamat: newEditData.alamat || '',
+        no_telepon: newEditData.no_telepon || '',
+        email: newEditData.email || '',
+        fasilitas: Array.isArray(newEditData.fasilitas) ? newEditData.fasilitas.join(', ') : newEditData.fasilitas || '',
+        kebijakan: newEditData.kebijakan || '',
+        check_in_time: newEditData.check_in_time || '',
+        check_out_time: newEditData.check_out_time || '',
+        lokasi_maps: newEditData.lokasi_maps || ''
       });
-      setPreview(editData.gambar); // pakai url lama
+      setPreview(newEditData.gambar); // pakai url lama
     }
-  }, [editData, user.name]);
+  }, [newEditData, user.name]);
 
   // Handle input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -88,6 +108,10 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
     }
   };
 
+  const handleUploadImage = () => {
+    inputRef.current?.click();
+  }
+
   // Submit form
   const submitPenginapan = async () => {
     try {
@@ -98,22 +122,19 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
       form.append('penyedia', user.id);
 
       const apiUrl = import.meta.env.VITE_API_URL;
-      let res;
-      if (editData) {
-        res = await fetch(`${apiUrl}/penginapan/${editData._id}`, {
+      if (newEditData) {
+        await fetch(`${apiUrl}/penginapan/${newEditData._id}`, {
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}` },
           body: form
         });
       } else {
-        res = await fetch(`${apiUrl}/penginapan`, {
+        await fetch(`${apiUrl}/penginapan`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           body: form
         });
       }
-      const data = await res.json();
-      console.log('Saved:', data);
 
       // Reset & kembali
       setActiveForm();
@@ -124,6 +145,7 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
         check_in_time: '', check_out_time: '', lokasi_maps: ''
       });
       setPreview(null);
+      window.location.reload();
     } catch (e) {
       console.error(t("dsell-pf-err"), e);
     }
@@ -133,7 +155,7 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
     <>
       <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-white">{editData ? t("dsell-btn-1") : t("dsell-btn-2")}</h2>
+          <h2 className="text-xl font-bold text-white">{newEditData ? t("dsell-btn-1") : t("dsell-btn-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">← {t("dsell-back-btn")}</button>
         </div>
       </div>
@@ -158,20 +180,20 @@ export default function PenginapanForm({ token, user, setActiveForm, editData }:
         <Input label={t("dsell-label-15")} name="lokasi_maps" value={penginapanData.lokasi_maps} onChange={handleChange} placeholder="https://maps.google.com/..." />
         <div className="space-y-2">
           <label className="form-label text-sm">{t("dsell-label-16")}</label>
-          <div className="form-upload-area transition-colors">
+          <div onClick={handleUploadImage} className="cursor-pointer form-upload-area transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
               <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
-            <input type="file" name="gambar" onChange={handleChange} className="hidden" id="penginapan-image" accept="image/*" />
+            <input ref={inputRef} type="file" name="gambar" onChange={handleChange} className="hidden" id="penginapan-image" accept="image/*" />
             <label htmlFor="penginapan-image" className="cursor-pointer text-sm text-admin">
               {preview ? t("dsell-label-16-1") : t("dsell-label-16-2")}
             </label>
           </div>
         </div>
         <Button onClick={submitPenginapan} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
-          {editData ? t("dsell-submit-btn-1") : t("dsell-submit-btn-2")}
+          {newEditData ? t("dsell-submit-btn-1") : t("dsell-submit-btn-2")}
         </Button>
       </div>
     </>

@@ -3,6 +3,7 @@ import { useTheme } from "@/components/theme/theme-provider";
 import React, { useRef, useState, forwardRef, useEffect, type RefObject } from "react"
 import { BotBubble, UserBubble } from "./chatbot-bubble";
 import { useTranslation } from "react-i18next";
+import type { ChatbotMessages } from "./chatbot-bubble";
 import "../../i18n/i18n"
 
 export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean, navbar: RefObject<HTMLElement | null>, button: RefObject<HTMLButtonElement | null> }>(({ showOverlay, navbar, button }, ref) => {
@@ -10,8 +11,19 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const outputRef = useRef<HTMLDivElement | null>(null);
     const [overlayHeight, setOverlayHeight] = useState<number>(0);
     const [overlayWidth, setOverlayWidth] = useState<number>(580);
-    const [elements, setElements] = useState<React.ReactNode[]>([]);
+    const localMessages = localStorage.getItem("chatbot") || "{\"user\": [], \"bot\": []}";
+    const messages = JSON.parse(localMessages) as ChatbotMessages;
+    const tempElements: React.ReactNode[] = [];
     const token = localStorage.getItem("token") || "";
+
+    console.log(messages.user.length);
+
+    for (let index = 0; index < messages.bot.length; index++) {
+        tempElements.push(<UserBubble key={`user-${index}`} message={messages.user[index]} save={false} />);
+        tempElements.push(<BotBubble key={`bot-${index}`} message={messages.bot[index]} token={token} runFetch={false} />)
+    }
+
+    const [elements, setElements] = useState<React.ReactNode[]>(tempElements);
     const { theme } = useTheme();
     const { t } = useTranslation();
 
@@ -19,8 +31,8 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         const inputValue = inputRef.current?.value.trim();
         
         if (inputValue) {
-            setElements(prev => [...prev, <UserBubble key={`user-${prev.length}`} message={inputValue} />]);
-            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={token} />]);
+            setElements(prev => [...prev, <UserBubble key={`user-${prev.length}`} message={inputValue} save={true} />]);
+            setElements(prev => [...prev, <BotBubble key={`bot-${prev.length}`} message={inputValue} token={token} runFetch={true} />]);
             
             // Clear input after sending
             if (inputRef.current) {

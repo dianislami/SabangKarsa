@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Car, Phone, AlignLeft } from 'lucide-react';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
+import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
 import "../../i18n/i18n"
 
 interface RentalData {
@@ -24,10 +27,11 @@ interface RentalFormProps {
     role: string;
   };
   setActiveForm: () => void;
-  editData?: any;
+  setter: (data: EditData) => void;
+  editData?: EditData;
 }
 
-export default function RentalForm({ token, user, setActiveForm, editData }: RentalFormProps) {
+export default function RentalForm({ token, user, setActiveForm, editData, setter }: RentalFormProps) {
   const [rentalData, setRentalData] = useState<RentalData>({
     name: '',
     type: '',
@@ -36,23 +40,38 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
     gambar: null,
     no_telepon: user.no_hp || ''
   });
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  let newEditData = editData?.data;
+    
+  if (!userData.id || userData.role !== "seller") {
+    navigate(-1);
+  }
+  
+  if (editData?.key !== "rental") newEditData = null;
+  
+  useEffect(() => {
+    if (editData?.key && editData?.key !== "rental") setter({key: "", data: null});
+  }, [editData?.key, setter]);
+
   const [preview, setPreview] = useState<string | null>(null);
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
 
   // Isi data saat edit
   useEffect(() => {
-    if (editData) {
+    if (newEditData) {
       setRentalData({
-        name: editData.name || '',
-        type: editData.type || '',
-        harga: String(editData.harga || ''),
-        deskripsi: editData.deskripsi || '',
+        name: newEditData.name || '',
+        type: newEditData.type || '',
+        harga: String(newEditData.harga || ''),
+        deskripsi: newEditData.deskripsi || '',
         gambar: null,
-        no_telepon: editData.no_telepon || user.no_hp || ''
+        no_telepon: newEditData.no_telepon || user.no_hp || ''
       });
-      setPreview(editData.gambar); // pakai url lama
+      setPreview(newEditData.gambar); // pakai url lama
     }
-  }, [editData, user.no_hp]);
+  }, [newEditData, user.no_hp]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
@@ -63,6 +82,10 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
       setRentalData((prev) => ({ ...prev, [name]: value }));
     }
   };
+
+  const handleUploadImage = () => {
+    inputRef.current?.click();
+  }
 
   const submitRental = async () => {
     try {
@@ -77,30 +100,27 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
       form.append('no_telepon', rentalData.no_telepon);
 
       const apiUrl = import.meta.env.VITE_API_URL;
-      let res;
-      if (editData) {
+      if (newEditData) {
         // Update data (PUT)
-        res = await fetch(`${apiUrl}/rental/${editData._id}`, {
+        await fetch(`${apiUrl}/rental/${newEditData._id}`, {
           method: 'PUT',
           headers: { Authorization: `Bearer ${token}` },
           body: form
         });
       } else {
         // Tambah data baru (POST)
-        res = await fetch(`${apiUrl}/rental`, {
+        await fetch(`${apiUrl}/rental`, {
           method: 'POST',
           headers: { Authorization: `Bearer ${token}` },
           body: form
         });
       }
 
-      const data = await res.json();
-      console.log('Saved:', data);
-
       // Reset dan kembali
       setActiveForm();
       setRentalData({ name: '', type: '', harga: '', deskripsi: '', gambar: null, no_telepon: user.no_hp || '' });
       setPreview(null);
+      window.location.reload();
     } catch (e) {
       console.error(t("rf-err-msg"), e);
     }
@@ -110,7 +130,7 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
     <>
       <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-bold text-white">{editData ? t("rf-header-1") : t("rf-header-2")}</h2>
+          <h2 className="text-xl font-bold text-white">{newEditData ? t("rf-header-1") : t("rf-header-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">
             ← {t("rf-back-btn")}
           </button>
@@ -126,20 +146,20 @@ export default function RentalForm({ token, user, setActiveForm, editData }: Ren
         <TextareaWithIcon icon={AlignLeft} label={t("rf-label-5")} name="deskripsi" value={rentalData.deskripsi} onChange={handleChange} placeholder={t("rf-ph-5")} rows={3} />
         <div className="space-y-2">
           <label className="form-label text-sm">{t("rf-label-6")}</label>
-          <div className="form-upload-area transition-colors">
+          <div onClick={handleUploadImage} className="cursor-pointer form-upload-area transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
               <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
-            <input type="file" name="gambar" onChange={handleChange} className="hidden" id="rental-photo" accept="image/*" />
+            <input ref={inputRef} type="file" name="gambar" onChange={handleChange} className="hidden" id="rental-photo" accept="image/*" />
             <label htmlFor="rental-photo" className="cursor-pointer text-sm text-admin">
               {preview ? t("rf-label-6-1") : t("rf-label-6-2")}
             </label>
           </div>
         </div>
         <Button onClick={submitRental} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
-          {editData ? t("rf-submit-btn-1") : t("rf-submit-btn-2")}
+          {newEditData ? t("rf-submit-btn-1") : t("rf-submit-btn-2")}
         </Button>
       </div>
     </>

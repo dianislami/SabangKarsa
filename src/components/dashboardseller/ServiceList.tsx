@@ -2,7 +2,11 @@ import { motion } from 'framer-motion';
 import { Edit, Eye, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
+import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
 import "../../i18n/i18n"
+import { useEffect } from 'react';
 
 interface ServiceListProps {
   title: string;
@@ -10,6 +14,7 @@ interface ServiceListProps {
   onEdit?: (service: any) => void;
   onView?: (service: any) => void;
   onDelete?: (service: any) => void;
+  setter: (data: EditData) => void;
   type: 'rental' | 'penginapan' | 'tourguide';
 }
 
@@ -19,8 +24,15 @@ export function ServiceList({
   onEdit, 
   onView, 
   onDelete, 
-  type 
+  setter,
+  type
 }: ServiceListProps) {
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+    
+  if (!userData.id || userData.role !== "seller") {
+    navigate(-1);
+  }
   const { t } = useTranslation();
   const getImageField = (service: any) => {
     switch (type) {
@@ -34,6 +46,10 @@ export function ServiceList({
         return '';
     }
   };
+
+  useEffect(() => {
+    setter({key: "", data: null});
+  }, [setter])
 
   const getNameField = (service: any) => {
     switch (type) {
@@ -66,9 +82,9 @@ export function ServiceList({
       case 'rental':
         return service.harga ? `Rp ${parseInt(service.harga).toLocaleString('id-ID')}` : '-';
       case 'penginapan':
-        return service.harga ? `Rp ${parseInt(service.harga).toLocaleString('id-ID')}` : '-';
+        return service.hargaPerMalam ? `Rp ${parseInt(service.hargaPerMalam).toLocaleString('id-ID')}` : '-';
       case 'tourguide':
-        return service.tarif ? `Rp ${parseInt(service.tarif).toLocaleString('id-ID')}` : '-';
+        return service.harga ? `Rp ${parseInt(service.harga).toLocaleString('id-ID')}` : '-';
       default:
         return '-';
     }

@@ -7,6 +7,7 @@ import {
   Home,
   Plus,
   LogOut,
+  ArrowLeft,
   ChevronLeft,
   ChevronRight
 } from 'lucide-react';
@@ -87,6 +88,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
   const handleLogout = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
+    localStorage.removeItem("chatbot");
     navigate('/');
   };
 
@@ -243,6 +245,15 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
             <ThemeToggle />
           </div>
         )}
+
+        <Button
+          variant="ghost"
+          onClick={() => navigate(-1)}
+          className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
+        >
+          <ArrowLeft className="w-5 h-5 flex-shrink-0" />
+          {!isCollapsed && <span>{t("back-btn")}</span>}
+        </Button>
         
         <Button
           variant="ghost"

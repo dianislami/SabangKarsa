@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Upload, Phone, User, MapPin } from 'lucide-react';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
+import type { UserData } from '@/types/userData';
+import type { EditData } from '@/pages/layanan/dashboard/DashboardPage';
 import "../../i18n/i18n"
 
 interface TourGuideData {
@@ -24,10 +27,12 @@ interface TourGuideFormProps {
     alamat: string;
     role: string;
   };
+  editData?: EditData;
   setActiveForm: () => void;
+  setter: (data: EditData) => void;
 }
 
-export default function TourGuideForm({ token, user, setActiveForm }: TourGuideFormProps) {
+export default function TourGuideForm({ token, user, setActiveForm, editData, setter }: TourGuideFormProps) {
   const [tourGuideData, setTourGuideData] = useState<TourGuideData>({
     name: '',
     no_hp: '',
@@ -40,6 +45,22 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
 
   const [preview, setPreview] = useState<string | null>(null);
   const { t } = useTranslation();
+  const inputRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+  const userData: UserData = JSON.parse(localStorage.getItem("user") || "{}");
+  let newEditData = editData?.data;
+      
+  useEffect(() => {
+    if (!userData.id || userData.role !== "seller") {
+      navigate(-1);
+    }
+  }, [userData, navigate]);
+
+  if (editData?.key !== "tourguide") newEditData = null;
+
+  useEffect(() => {
+    if (editData?.key && editData?.key !== "tourguide") setter({key: "", data: null});
+  }, [editData?.key, setter]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value, type, files } = e.target as HTMLInputElement;
@@ -51,6 +72,25 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
     }
   };
 
+  const handleUploadImage = () => {
+    inputRef.current?.click();
+  }
+
+  useEffect(() => {
+    if (newEditData) {
+      setTourGuideData({
+        name: newEditData.name || '',
+        no_hp: newEditData.no_hp || '',
+        instagram: newEditData.instagram || '',
+        kataKata: newEditData.kataKata || '',
+        wilayah: newEditData.wilayah || '',
+        harga: newEditData.harga || '',
+        foto: null
+      });
+      setPreview(newEditData.foto);
+    }
+  }, [newEditData, user.name]);
+
   const submitTourGuide = async () => {
     try {
       const form = new FormData();
@@ -59,13 +99,20 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
       });
       form.append('penyedia', user.id); // auto-set penyedia
 
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/tourguides`, {
-        method: 'POST',
-        headers: { Authorization: `Bearer ${token}` },
-        body: form
-      });
-      const data = await res.json();
-      console.log('Tour guide added:', data);
+      const apiUrl = import.meta.env.VITE_API_URL;
+      if (newEditData) {
+        await fetch(`${apiUrl}/tourguides/${newEditData._id}`, {
+          method: 'PUT',
+          headers: { Authorization: `Bearer ${token}` },
+          body: form
+        });
+      } else {
+        await fetch(`${apiUrl}/tourguides`, {
+          method: 'POST',
+          headers: { Authorization: `Bearer ${token}` },
+          body: form
+        });
+      }
 
       setActiveForm();
       setTourGuideData({
@@ -166,13 +213,14 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
         </div>
         <div className="space-y-2">
           <label className="form-label text-sm">{t("tgf-label-7")}</label>
-          <div className="form-upload-area hover:border-green-400 transition-colors">
+          <div onClick={handleUploadImage} className="cursor-pointer form-upload-area hover:border-green-400 transition-colors">
             {preview ? (
               <img src={preview} alt="Preview" className="mx-auto mb-2 max-h-48 object-contain rounded" />
             ) : (
               <Upload className="w-8 h-8 form-icon mx-auto mb-2" />
             )}
             <input
+              ref={inputRef}
               type="file"
               name="foto"
               onChange={handleChange}
@@ -189,7 +237,7 @@ export default function TourGuideForm({ token, user, setActiveForm }: TourGuideF
           onClick={submitTourGuide}
           className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium"
         >
-          {t("tgf-submit-btn")}
+          {newEditData ? t("tgf-submit-btn-1") : t("tgf-submit-btn-2")}
         </Button>
       </div>
     </>
