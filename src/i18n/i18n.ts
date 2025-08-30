@@ -121,6 +121,7 @@ i18n.use(initReactI18next).init({
 
                 "chatbot-err-msg-1": "Please log in first to use the chatbot feature.",
                 "chatbot-err-msg-2": "An error has occurred",
+                "chatbot-err-msg-3": "Sorry, an unexpected error occurred",
                 "chatbot-loading": "Typing...",
                 "chatbot-header": "JakSabang AI Assistant",
                 "chatbot-tagline": "Ready to help you!",
@@ -274,7 +275,8 @@ i18n.use(initReactI18next).init({
                 "tgf-label-7": "Profile Photo",
                 "tgf-label-7-1": "Change photo",
                 "tgf-label-7-2": "Click to upload photo",
-                "tgf-submit-btn": "Add Tour Guide",
+                "tgf-submit-btn-1": "Update Tour Guide",
+                "tgf-submit-btn-2": "Add Tour Guide",
 
                 "about-header-1": "About JakSabang",
                 "about-tagline": "We help you enjoy the best travel experience on Weh Island with personalized and impressive transportation and tour services.",
@@ -952,6 +954,7 @@ i18n.use(initReactI18next).init({
 
                 "chatbot-err-msg-1": "Silakan login terlebih dahulu untuk menggunakan fitur chatbot.",
                 "chatbot-err-msg-2": "Terjadi kesalahan",
+                "chatbot-err-msg-3": "Maaf, terjadi kesalahan tak terduga",
                 "chatbot-loading": "Mengetik...",
                 "chatbot-header": "Asisten AI JakSabang",
                 "chatbot-tagline": "Siap membantu Anda!",
@@ -1105,7 +1108,8 @@ i18n.use(initReactI18next).init({
                 "tgf-label-7": "Foto Profil",
                 "tgf-label-7-1": "Ganti foto",
                 "tgf-label-7-2": "Klik untuk unggah foto",
-                "tgf-submit-btn": "Tambah Pemandu Wisata",
+                "tgf-submit-btn-1": "Perbarui Pemandu Wisata",
+                "tgf-submit-btn-2": "Tambah Pemandu Wisata",
 
                 "about-header-1": "Tentang JakSabang",
                 "about-tagline": "Kami membantu Anda menikmati pengalaman wisata terbaik di Pulau Weh dengan layanan transportasi dan tur yang personal dan memukau.",
