@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layouts/navbar";
 import { Footer } from "@/components/layouts/footer";
 import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
+import type { UserData } from "@/types/userData";
 import { NotFound } from "@/pages/NotFound";
 import { Transition } from "@/pages/TransitionPage";
 import "../../../i18n/i18n"
@@ -18,7 +19,9 @@ interface Rental {
   harga: number;
   deskripsi: string;
   gambar: string;
-  penyedia: string;
+  penyedia: {
+    _id: string;
+  }
   namaPenyedia: string;
   no_telepon: string;
   error: string;
@@ -28,6 +31,7 @@ export default function DetailRentalPage() {
   const { id } = useParams<{ id: string }>();
   const [rental, setRental] = useState<Rental | null>(null);
   const [loading, setLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -125,6 +129,7 @@ export default function DetailRentalPage() {
           {/* Tombol booking */}
           <div className="flex justify-center">
             <Button
+              disabled={(user.role !== "buyer" || rental.penyedia._id === user.id)}
               size="lg"
               className="bg-emerald-600 text-white hover:bg-emerald-700 transition-colors duration-300"
               onClick={() => window.location.href = `/rental/${rental._id}/booking`}

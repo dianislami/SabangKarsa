@@ -69,9 +69,8 @@ export function LoginPage() {
       if (response.ok && result.token) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
-
-        // console.log(result);
-        navigate("/");
+        navigate("/", { replace: true });
+        window.location.reload();
       } else {
         setError(result.error || t("login-error"));
       }

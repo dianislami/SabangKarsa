@@ -8,6 +8,7 @@ import { Phone, MapPin, Instagram } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { NotFound } from "@/pages/NotFound";
 import { Transition } from "@/pages/TransitionPage";
+import type { UserData } from "@/types/userData";
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,6 +20,9 @@ interface TourGuide {
   instagram: string;
   kataKata: string;
   wilayah: string;
+  penyedia: {
+    _id: string;
+  }
   harga: number;
   foto: string;
   error: string;
@@ -29,6 +33,7 @@ export default function DetailTourGuidePage() {
   const navigate = useNavigate();
   const [guide, setGuide] = useState<TourGuide | null>(null);
   const [loading, setLoading] = useState(true);
+  const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -101,6 +106,7 @@ export default function DetailTourGuidePage() {
           </div>
 
           <Button 
+            disabled={(user.role !== "buyer" || guide.penyedia._id === user.id)}
             size="lg" 
             className="bg-emerald-500 hover:bg-emerald-600 text-white" 
             onClick={() => navigate(`/tourguide/${guide._id}/booking`)}

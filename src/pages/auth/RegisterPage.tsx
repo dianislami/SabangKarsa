@@ -94,7 +94,8 @@ export function RegisterPage() {
       if (response.ok && result.token) {
         localStorage.setItem("token", result.token);
         localStorage.setItem("user", JSON.stringify(result.user));
-        navigate("/");
+        navigate("/", { replace: true });
+        window.location.reload();
       } else {
         setError(result.error || t("reg-error"));
       }

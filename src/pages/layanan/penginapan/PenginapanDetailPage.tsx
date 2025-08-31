@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, use } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Star, MapPin, Phone, Mail, BedDouble, Landmark } from "lucide-react";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslation } from "react-i18next";
 import { NotFound } from "@/pages/NotFound";
 import { Transition } from "@/pages/TransitionPage";
+import type { UserData } from "@/types/userData";
 import "../../../i18n/i18n"
 
 const API_URL = import.meta.env.VITE_API_URL;
@@ -19,6 +20,7 @@ export default function PenginapanDetailPage() {
   const [userRating, setUserRating] = useState(0);
   const [hasRated, setHasRated] = useState(false);
   const localStorageKey = `rated_penginapan_${id}`;
+  const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -192,12 +194,12 @@ export default function PenginapanDetailPage() {
                   {[1,2,3,4,5].map(num => (
                     <Star 
                       key={num}
-                      className={`w-6 h-6 cursor-pointer ${userRating >= num ? 'text-yellow-400 fill-current' : 'text-muted-foreground'}`}
+                      className={`w-6 h-6 cursor-pointer ${(user.role !== "buyer" || penginapan.penyedia._id === user.id) && "opacity-[0.25] pointer-events-none select-none"} ${userRating >= num ? 'text-yellow-400 fill-current' : 'text-muted-foreground'}`}
                       onClick={() => setUserRating(num)}
                     />
                   ))}
                   <Button 
-                    disabled={userRating === 0}
+                    disabled={userRating === 0 || (user.role !== "buyer" || penginapan.penyedia._id === user.id)}
                     onClick={handleSubmitRating}
                     className="bg-emerald-600 text-white"
                   >
@@ -260,6 +262,7 @@ export default function PenginapanDetailPage() {
                   </a>
                 </div>
                 <Button 
+                  disabled={(user.role !== "buyer" || penginapan.penyedia._id === user.id)}
                   className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white transition-colors duration-300 cursor-pointer"
                   onClick={() => window.location.href = `/penginapan/${id}/booking`}
                 >
