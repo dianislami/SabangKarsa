@@ -30,7 +30,7 @@ import BookingTourguidePage from "./pages/layanan/booking/BookingTourguidePage";
 import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
 import { NotFound } from "./pages/NotFound";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import { useEffect } from "react";
 
 interface TokenRes {
@@ -56,18 +56,28 @@ function App() {
 
     if (token) {
       const checkToken = async (token: string) => {
-        const apiUrl = import.meta.env.VITE_API_URL;
-        const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
-          headers: {
-            Authorization: `Bearer ${token}`
+        try {
+          const apiUrl = import.meta.env.VITE_API_URL;
+          const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          });
+          
+          if (!response.data.active) {
+            localStorage.removeItem("token");
+            localStorage.removeItem("user");
+            localStorage.removeItem("chatbot");
+            window.location.href = "/";
           }
-        });
-        
-        if (!response.data.active) {
+        }
+        catch (error) {
+          const err = error as AxiosError;
+          console.error(err);
           localStorage.removeItem("token");
           localStorage.removeItem("user");
           localStorage.removeItem("chatbot");
-          window.location.reload();
+          window.location.href = "/";
         }
       }
       checkToken(token);
