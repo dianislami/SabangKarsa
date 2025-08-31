@@ -120,6 +120,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
     localStorage.removeItem("user");
     localStorage.removeItem("chatbot");
     setUser(null);
+    navigate("/", { replace: true });
     window.location.reload();
   };
 

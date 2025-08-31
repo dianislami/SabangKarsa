@@ -62,7 +62,7 @@ export function BotBubble({
               },
             }
           );
-          const response = res.data.response || "Maaf, terjadi kesalahan tak terduga";
+          const response = res.data.response || t("chatbot-err-msg-3");
           setResponse(response);
           messages.bot = [...messages.bot, response];
           localStorage.setItem("chatbot", JSON.stringify(messages));

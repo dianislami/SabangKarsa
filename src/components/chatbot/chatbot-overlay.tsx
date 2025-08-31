@@ -16,8 +16,6 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
     const tempElements: React.ReactNode[] = [];
     const token = localStorage.getItem("token") || "";
 
-    console.log(messages.user.length);
-
     for (let index = 0; index < messages.bot.length; index++) {
         tempElements.push(<UserBubble key={`user-${index}`} message={messages.user[index]} save={false} />);
         tempElements.push(<BotBubble key={`bot-${index}`} message={messages.bot[index]} token={token} runFetch={false} />)

@@ -31,6 +31,7 @@ import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
 import { NotFound } from "./pages/NotFound";
 import axios from "axios";
+import { useEffect } from "react";
 
 interface TokenRes {
   active: boolean;
@@ -49,26 +50,29 @@ function App() {
     user: [], 
     bot: []
   }));
-  const token = localStorage.getItem("token");
+  
+  useEffect(() => {
+    const token = localStorage.getItem("token");
 
-  if (token) {
-    const checkToken = async (token: string) => {
-      const apiUrl = import.meta.env.VITE_API_URL;
-      const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
-        headers: {
-          Authorization: `Bearer ${token}`
+    if (token) {
+      const checkToken = async (token: string) => {
+        const apiUrl = import.meta.env.VITE_API_URL;
+        const response = await axios.get<TokenRes>(`${apiUrl}/token`, {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        
+        if (!response.data.active) {
+          localStorage.removeItem("token");
+          localStorage.removeItem("user");
+          localStorage.removeItem("chatbot");
+          window.location.reload();
         }
-      });
-      
-      if (!response.data.active) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        localStorage.removeItem("chatbot");
-        window.location.reload();
       }
+      checkToken(token);
     }
-    checkToken(token);
-  }
+  }, []);
 
   return (
     <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">

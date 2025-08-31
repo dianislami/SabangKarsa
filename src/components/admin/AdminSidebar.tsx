@@ -5,6 +5,7 @@ import {
   LayoutDashboard,
   LogOut,
   ChevronLeft,
+  ArrowLeft,
   ChevronRight
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -34,7 +35,9 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
 
   const handleLogout = () => {
     localStorage.removeItem('token');
-    navigate('/');
+    localStorage.removeItem('user');
+    localStorage.removeItem("chatbot");
+    navigate('/', {replace: true});
   };
 
   return (
@@ -122,6 +125,15 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
             <ThemeToggle />
           </div>
         )}
+
+        <Button
+          variant="ghost"
+          onClick={() => navigate("/", { replace: true })}
+          className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
+        >
+          <ArrowLeft className="w-5 h-5 flex-shrink-0" />
+          {!isCollapsed && <span>{t("back-btn")}</span>}
+        </Button>
         
         <Button
           variant="ghost"

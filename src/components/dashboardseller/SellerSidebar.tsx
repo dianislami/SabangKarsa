@@ -89,7 +89,8 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     localStorage.removeItem("chatbot");
-    navigate('/');
+    navigate("/", { replace: true });
+    window.location.reload();
   };
 
   const handleMenuClick = (item: any) => {
@@ -248,7 +249,7 @@ export function SellerSidebar({ isCollapsed, setIsCollapsed }: SellerSidebarProp
 
         <Button
           variant="ghost"
-          onClick={() => navigate(-1)}
+          onClick={() => navigate("/", { replace: true })}
           className="w-full justify-start gap-3 text-red-600 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-900/20"
         >
           <ArrowLeft className="w-5 h-5 flex-shrink-0" />
