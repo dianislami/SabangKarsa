@@ -228,7 +228,7 @@ export function Footer() {
             <div ref={parallaxContainerRef} className="relative overflow-hidden py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
-                  className="text-8xl md:text-9xl lg:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
+                  className="text-[14vw] md:text-9xl lg:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
                   style={{
                     y: parallaxY,
                   }}
