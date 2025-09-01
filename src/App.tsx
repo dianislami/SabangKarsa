@@ -31,6 +31,8 @@ import PemesananPage from "./pages/layanan/pemesanan/PemesananPage";
 import PesananPage from "./pages/layanan/pemesanan/PesananPage";
 import { NotFound } from "./pages/NotFound";
 import axios, { AxiosError } from "axios";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { useEffect } from "react";
 
 interface TokenRes {
@@ -122,6 +124,8 @@ function App() {
           <GlobalChatbot />
         </PageTransitionWrapper>
       </Router>
+      <SpeedInsights />
+      <Analytics />
     </ThemeProvider>
   );
 }
