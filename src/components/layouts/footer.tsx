@@ -225,7 +225,7 @@ export function Footer() {
             </div>
 
             {/* Parallax JAKSABANG - Behind Footer Effect */}
-            <div ref={parallaxContainerRef} className="relative overflow-hidden py-16 border-t border-border">
+            <div ref={parallaxContainerRef} className="relative overflow-hidden py-4 sm:py-8 md:py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
                   className="text-[14vw] md:text-9xl lg:text-[12rem] font-black text-foreground/10 dark:text-foreground/20 whitespace-nowrap select-none"
