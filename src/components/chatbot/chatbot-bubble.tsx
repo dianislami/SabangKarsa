@@ -37,7 +37,7 @@ export function BotBubble({
   runFetch,
 }: {
   message: string;
-  token: string;
+  token: string | undefined | null;
   runFetch: boolean;
 }) {
   const [response, setResponse] = useState("");
@@ -52,13 +52,13 @@ export function BotBubble({
       const fetchReply = async () => {
         try {
           const res = await axios.post(
-            "https://api-jaksabang-chatbot.vercel.app/",
+            "http://localhost:3000",
             {
               message,
             },
             {
               headers: {
-                Authorization: `Bearer ${token}`,
+                Authorization: `Bearer ${token || ""}`,
               },
             }
           );

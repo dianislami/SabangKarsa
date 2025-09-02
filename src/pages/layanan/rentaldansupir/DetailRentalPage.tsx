@@ -32,6 +32,7 @@ export default function DetailRentalPage() {
   const [rental, setRental] = useState<Rental | null>(null);
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
+  const token = localStorage.getItem("token");
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -117,12 +118,18 @@ export default function DetailRentalPage() {
             </div>
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="font-medium text-muted-foreground mb-1">{t("dr-phone")}</div>
-              <a
-                href={`tel:${rental.no_telepon}`}
-                className="text-lg font-semibold text-emerald-600 hover:underline"
-              >
-                {rental.no_telepon}
-              </a>
+              {token ? (
+                <a
+                  href={`tel:${rental.no_telepon}`}
+                  className="text-lg font-semibold text-emerald-600 hover:underline"
+                >
+                  {rental.no_telepon}
+                </a>
+              ) : (
+                <p className="text-lg font-semibold text-emerald-600">
+                  08**********
+                </p>
+              )}
             </div>
           </motion.div>
 
