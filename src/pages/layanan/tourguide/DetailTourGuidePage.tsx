@@ -34,6 +34,7 @@ export default function DetailTourGuidePage() {
   const [guide, setGuide] = useState<TourGuide | null>(null);
   const [loading, setLoading] = useState(true);
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
+  const token = localStorage.getItem("token");
   const { t } = useTranslation();
 
   useEffect(() => {
@@ -88,7 +89,11 @@ export default function DetailTourGuidePage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Phone className="w-5 h-5" />
-              <span>{guide.no_hp}</span>
+              {token ? (
+                <span>{guide.no_hp}</span>
+              ) : (
+                <span>08**********</span>
+              )}
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <Instagram className="w-5 h-5" />

@@ -21,6 +21,7 @@ export default function PenginapanDetailPage() {
   const [hasRated, setHasRated] = useState(false);
   const localStorageKey = `rated_penginapan_${id}`;
   const user = JSON.parse(localStorage.getItem("user") || "{}") as UserData;
+  const token = localStorage.getItem("token");
   const { t } = useTranslation();
   const navigate = useNavigate();
 
@@ -251,15 +252,27 @@ export default function PenginapanDetailPage() {
               <div className="flex flex-col gap-2 text-muted-foreground">
                 <div className="flex items-center">
                   <Phone className="w-4 h-4 mr-2" /> 
-                  <a href={`tel:${penginapan.no_telepon}`} className="hover:text-emerald-600">
-                    {penginapan.no_telepon || t("pd-no-phone")}
-                  </a>
+                  {token ? (
+                    <a href={`tel:${penginapan.no_telepon}`} className="hover:text-emerald-600">
+                      {penginapan.no_telepon || t("pd-no-phone")}
+                    </a>
+                  ) : (
+                    <p>
+                      08**********
+                    </p>
+                  )}
                 </div>
                 <div className="flex items-center">
                   <Mail className="w-4 h-4 mr-2" /> 
-                  <a href={`mailto:${penginapan.email}`} className="hover:text-emerald-600">
-                    {penginapan.email || t("pd-no-email")}
-                  </a>
+                  {token ? (
+                    <a href={`mailto:${penginapan.email}`} className="hover:text-emerald-600">
+                      {penginapan.email || t("pd-no-email")}
+                    </a>
+                  ) : (
+                    <p>
+                      {penginapan.email ? "********@gmail.com" : t("pd-no-email")}
+                    </p>
+                  )}
                 </div>
                 <Button 
                   disabled={(user.role !== "buyer" || penginapan.penyedia._id === user.id)}

@@ -44,6 +44,7 @@ export function AgendaDetail() {
   const [event, setEvent] = useState<Event | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const token = localStorage.getItem("token");
   const { t } = useTranslation();
 
   // useEffect(() => {
@@ -276,12 +277,18 @@ export function AgendaDetail() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("agenda-contact")}</span>
-                    <a
-                      href={`mailto:${event.contact}`}
-                      className="text-emerald-600 text-wrap truncate dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
-                    >
-                      {event.contact}
-                    </a>
+                    {token ? (
+                      <a
+                        href={`mailto:${event.contact}`}
+                        className="text-emerald-600 text-wrap truncate dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
+                      >
+                        {event.contact}
+                      </a>
+                    ) : (
+                      <p className="text-emerald-600 text-wrap truncate dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium transition-colors">
+                        ********@gmail.com
+                      </p>
+                    )}
                   </div>
                 </div>
                 {/* <Button
