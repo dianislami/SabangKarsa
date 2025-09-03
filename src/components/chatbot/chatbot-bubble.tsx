@@ -52,7 +52,7 @@ export function BotBubble({
       const fetchReply = async () => {
         try {
           const res = await axios.post(
-            "http://localhost:3000",
+            "https://api-jaksabang-chatbot.vercel.app/",
             {
               message,
             },
