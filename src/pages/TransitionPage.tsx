@@ -133,8 +133,8 @@ export function Transition ({
               }}
             >
               <img
-                src="/assets/JakSabang.svg"
-                alt="JakSabang Logo"
+                src="/assets/images/SabangKarsa.png"
+                alt="SabangKarsa Logo"
                 className="w-40 h-40 md:w-48 md:h-48 drop-shadow-2xl"
               />
             </motion.div>
@@ -162,7 +162,7 @@ export function Transition ({
             transition={{ delay: 0.5, duration: 0.6 }}
           >
             <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-2">
-              JakSabang
+              SabangKarsa
             </h2>
             <motion.p
               className="text-muted-foreground text-lg"
@@ -188,7 +188,9 @@ export function Transition ({
           >
             {/* Progress bar fill */}
             <motion.div
-              className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 dark:from-emerald-400 dark:to-emerald-300 rounded-full shadow-lg"
+              className="h-full rounded-full shadow-lg
+              [background:linear-gradient(to_right,oklch(0.4771_0.0777_205.67),oklch(0.5809_0.0963_194.83))]
+              dark:[background:linear-gradient(to_right,oklch(0.5809_0.0963_194.83),oklch(0.8588_0.0371_172.63))]"
               style={{
                 width: `${progress}%`
               }}

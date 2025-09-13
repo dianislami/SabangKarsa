@@ -77,11 +77,11 @@ export function Footer() {
               <div>
                 <div className="flex items-center gap-2 mb-6">
                   <img 
-                    src="/assets/JakSabangFIX.svg" 
+                    src="/assets/images/SabangKarsa.png" 
                     alt="JakSabang Logo" 
                     className="w-18 h-18"
                   />
-                  <span className="text-3xl font-bold">JakSabang</span>
+                  <span className="text-3xl font-bold">SabangKarsa</span>
                 </div>
                 <p className="text-muted-foreground dark:text-muted-foreground mb-6 leading-relaxed">
                   {t("footer-desc")}
@@ -214,7 +214,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-center gap-3">
                     <Mail className="w-4 h-4" />
-                    <span>jaksabang@gmail.com</span>
+                    <span>sabangkarsa@gmail.com</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="w-4 h-4" />
@@ -224,7 +224,7 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Parallax JAKSABANG - Behind Footer Effect */}
+            {/* Parallax SABANGKARSA - Behind Footer Effect */}
             <div ref={parallaxContainerRef} className="relative overflow-hidden py-4 sm:py-8 md:py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
@@ -233,7 +233,7 @@ export function Footer() {
                     y: parallaxY,
                   }}
                 >
-                  JAKSABANG
+                  SabangKarsa
                 </motion.div>
               </div>
               {/* Gradient overlay to create behind effect */}
@@ -243,7 +243,7 @@ export function Footer() {
 
             <div className="border-t border-border pt-8 text-center">
               <p className="text-muted-foreground dark:text-muted-foreground">
-                ©2025 JakSabang. All rights reserved.
+                ©2025 SabangKarsa. All rights reserved.
               </p>
             </div>
           </div>

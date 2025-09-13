@@ -21,7 +21,7 @@ import {
   Shield,
   Settings,
 } from "lucide-react";
-import logoNav from "/assets/JakSabangFIX.svg";
+import logoNav from "/assets/images/SabangKarsa.png";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
 
@@ -235,7 +235,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
             <img
               src={logoNav}
               alt="JakSabang Logo"
-              className="w-12 h-12 sm:w-18 sm:h-18 transition-all duration-300 group-hover:scale-105"
+              className="w-12 h-12 sm:w-18 sm:h-18 object-contain transition-all duration-300 group-hover:scale-105"
               loading="eager"
             />
           </div>
@@ -511,14 +511,14 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                   onClick={() => navigate("/login")}
                   variant="outline"
                   size="sm"
-                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
+                  className="[border-color:oklch(0.4771_0.0777_205.67)] text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
                 >
                   {t("nav-login")}
                 </Button>
                 <Button
                   onClick={() => navigate("/register")}
                   size="sm"
-                  className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
+                  className="bg-emerald-500 text-white hover:bg-emerald-500 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
                 >
                   {t("nav-reg")}
                 </Button>

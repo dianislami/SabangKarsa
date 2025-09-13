@@ -29,7 +29,7 @@ export function FeaturesMarquee() {
   }, [containerRef, containerInView]);
 
   return (
-    <section ref={containerRef} className="py-8 bg-emerald-600 dark:bg-emerald-800 overflow-hidden ">
+    <section ref={containerRef} className="py-8 bg-emerald-500 dark:bg-emerald-800 overflow-hidden ">
       {containerInView && (
         <>
           <div className="mb-8">

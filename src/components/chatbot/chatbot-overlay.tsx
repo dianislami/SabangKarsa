@@ -124,7 +124,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
         >
             <div className="flex flex-col w-full h-full">
                 {/* Header */}
-                <div className={`bg-gradient-to-r ${theme === "light" ? "from-emerald-500 to-emerald-600" : "from-emerald-600 to-emerald-700"} p-4 rounded-t-2xl`}>
+                <div className={`bg-gradient-to-r ${theme === "light" ? "bg-emerald-500" : "bg-emerald-500"} p-4 rounded-t-2xl`}>
                     <h1 className="font-bold text-lg text-white flex items-center gap-2">
                         <Bot className="w-6 h-6" />
                         {t("chatbot-header")}
@@ -156,8 +156,8 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                                 onKeyDown={handleKeyDown}
                                 onChange={handleInputChange}
                                 className={`w-full border-2 focus:outline-none p-3 resize-none rounded-lg transition-colors duration-200 min-h-[44px]
-                                    ${theme === "light" ? "bg-gray-100 border-gray-200 focus:border-emerald-400 text-gray-800 placeholder-gray-500" 
-                                        : "bg-gray-700 border-gray-600 focus:border-emerald-500 text-gray-200 placeholder-gray-400"}`} 
+                                    ${theme === "light" ? "bg-gray-100 border-gray-200 focus:[border-color:var(--primary)] text-gray-800 placeholder-gray-500" 
+                                        : "bg-gray-700 border-gray-600 focus:[border-color:oklch(0.4771_0.0777_205.67)] text-gray-200 placeholder-gray-400"}`} 
                                 placeholder={t("chatbot-placeholder")}
                                 rows={1}
                             />
@@ -168,7 +168,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                         <button 
                             onClick={callbot} 
                             className={`cursor-pointer text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg 
-                                ${theme === "light" ? "bg-emerald-500 hover:bg-emerald-600" : "bg-emerald-600 hover:bg-emerald-700"}`}
+                                ${theme === "light" ? "bg-emerald-500 hover:bg-emerald-500" : "bg-emerald-500 hover:bg-emerald-900/50"}`}
                         >
                             <Send className="w-5 h-5" />
                         </button>

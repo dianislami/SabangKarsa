@@ -15,7 +15,7 @@
   --popover-foreground: oklch(0.15 0.02 150);
 
   /* Primary emerald untuk aksen */
-  --primary: oklch(0.59 0.15 158);
+  --primary: oklch(0.4771 0.0777 205.67);
   --primary-foreground: oklch(1 0 0);
 
   /* Secondary putih dengan border emerald */
@@ -39,10 +39,10 @@
   --input: oklch(1 0 0);
 
   /* Ring emerald untuk focus */
-  --ring: oklch(0.59 0.15 158);
+  --ring: oklch(0.4771 0.0777 205.67);
 
   /* Button emerald untuk aksi */
-  --button: oklch(0.59 0.15 158);
+  --button: oklch(0.4771 0.0777 205.67);
   --button-foreground: oklch(1 0 0);
 
   /* Navbar putih transparan */
@@ -50,22 +50,22 @@
   --navbar-foreground: oklch(0.15 0.02 150);
 
   /* Custom colors untuk light theme */
-  --text-emerald: oklch(0.59 0.15 158);
-  --text-emerald-dark: oklch(0.45 0.12 158);
+  --text-emerald: oklch(0.4771 0.0777 205.67);
+  --text-emerald-dark: oklch(40.178% 0.06521 205.361);
   --section-bg: oklch(1 0 0);
   --section-bg-alt: oklch(0.98 0.005 150);
-  --section-emerald: oklch(0.59 0.15 158);
+  --section-emerald: oklch(0.4771 0.0777 205.67);
   --section-emerald-light: oklch(0.95 0.02 158);
 
   /* Ferry schedule colors for light theme */
   --ferry-schedule-bg: oklch(0.98 0.005 158);
   --ferry-schedule-border: oklch(0.88 0.02 158);
   --ferry-time-bg: oklch(1 0 0);
-  --ferry-time-text: oklch(0.45 0.12 158);
+  --ferry-time-text: oklch(40.178% 0.06521 205.361);
   --ferry-time-border: oklch(0.88 0.02 158);
   --ferry-note-bg: oklch(0.96 0.015 158);
   --ferry-note-border: oklch(0.85 0.025 158);
-  --ferry-note-text: oklch(0.35 0.1 158);
+  --ferry-note-text: oklch(40.178% 0.06521 205.361);
 
   /* Tema chatbot overlay */
   --chatbot: oklch(97.9% 0.021 166.113);
@@ -148,17 +148,17 @@
 
   /* Verification overlay box */
   --verification-overlay: #151515;
-  --verification-overlay-border: oklch(0.59 0.15 158);
+  --verification-overlay-border: oklch(0.4771 0.0777 205.67);
   --verification-overlay-success: #1e1e1e;
-  --verification-overlay-success-border: oklch(0.59 0.15 158);
+  --verification-overlay-success-border: oklch(0.4771 0.0777 205.67);
 }
 
 /* Custom gradient classes untuk tema hijau */
 .gradient-text {
   background: linear-gradient(
     135deg,
-    oklch(0.59 0.15 158),
-    oklch(0.45 0.12 158)
+    oklch(0.4771 0.0777 205.67),
+    oklch(40.178% 0.06521 205.361)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -168,13 +168,21 @@
 .gradient-text-alt {
   background: linear-gradient(
     135deg,
-    oklch(0.59 0.15 158),
-    oklch(0.45 0.12 158),
-    oklch(0.35 0.12 158)
+    oklch(0.4771 0.0777 205.67),
+    oklch(40.178% 0.06521 205.361),
+    oklch(32.55% 0.05396 204.365)
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.gradient {
+  background: linear-gradient(
+    to bottom right,
+    oklch(0.8588 0.0371 172.63),
+    oklch(0.5809 0.0963 194.83)
+  );
 }
 
 button, a, select, option, input[type="button"], input[type="submit"], input[type="reset"], input[type="checkbox"], input[type="radio"], label, summary {
@@ -200,7 +208,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 /* Stats Card Badge Colors */
 .badge-blue {
-  background-color: rgb(59 130 246);
+  background-color: oklch(0.8588 0.0371 172.63);
 }
 
 .badge-orange {
@@ -208,7 +216,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .badge-emerald {
-  background-color: rgb(16 185 129);
+  background-color: oklch(0.5809 0.0963 194.83);
 }
 
 .badge-purple {
@@ -232,7 +240,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 :root[class~="dark"] .badge-blue-bg {
-  background-color: rgb(59 130 246 / 0.2);
+  background-color: oklch(85.883% 0.03713 172.778 / 0.2);
 }
 
 :root[class~="dark"] .badge-orange-bg {
@@ -240,7 +248,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 :root[class~="dark"] .badge-emerald-bg {
-  background-color: rgb(16 185 129 / 0.2);
+  background-color: oklch(47.981% 0.07807 204.436 / 0.2);
 }
 
 :root[class~="dark"] .badge-purple-bg {
@@ -286,8 +294,8 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 /* Form Input Styles */
 .form-input {
-  border: 1px solid rgb(110 231 183);
-  background-color: rgb(236 253 245);
+  border: 1px solid oklch(0.5809 0.0963 194.83);
+  background-color: oklch(0.8588 0.0371 172.63);
   color: var(--admin-text);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem;
@@ -297,8 +305,8 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 .form-input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.2);
-  border-color: rgb(16 185 129);
+  box-shadow: 0 0 0 2px oklch(47.981% 0.07807 204.436 / 0.2);
+  border-color: oklch(0.5809 0.0963 194.83);
 }
 
 .dark .form-input {
@@ -309,13 +317,13 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 .dark .form-input:focus {
   box-shadow: 0 0 0 2px rgb(52 211 153 / 0.2);
-  border-color: rgb(52 211 153);
+  border-color: oklch(0.5809 0.0963 194.83)
 }
 
 /* Form input with icon - extra left padding */
 .form-input-with-icon {
-  border: 1px solid rgb(110 231 183);
-  background-color: rgb(236 253 245);
+  border: 1px solid oklch(0.5809 0.0963 194.83);
+  background-color: oklch(0.8588 0.0371 172.63);
   color: var(--admin-text);
   border-radius: 0.5rem;
   padding: 0.75rem 1rem 0.75rem 2.75rem;
@@ -325,8 +333,8 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 .form-input-with-icon:focus {
   outline: none;
-  box-shadow: 0 0 0 2px rgb(16 185 129 / 0.2);
-  border-color: rgb(16 185 129);
+  box-shadow: 0 0 0 2px oklch(47.981% 0.07807 204.436 / 0.2);
+  border-color: oklch(0.5809 0.0963 194.83);
 }
 
 .dark .form-input-with-icon {
@@ -336,8 +344,8 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .form-input-with-icon:focus {
-  box-shadow: 0 0 0 2px rgb(52 211 153 / 0.2);
-  border-color: rgb(52 211 153);
+  box-shadow: 0 0 0 2px oklch(47.981% 0.07807 204.436 / 0.2);
+  border-color: oklch(0.5809 0.0963 194.83);
 }
 
 .form-label {
@@ -347,12 +355,12 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .form-icon {
-  color: rgb(52 211 153);
+  color: oklch(0.5809 0.0963 194.83);
 }
 
 .form-upload-area {
-  border: 2px dashed rgb(110 231 183);
-  background-color: rgb(236 253 245);
+  border: 2px dashed oklch(0.5809 0.0963 194.83);
+  background-color: oklch(0.8588 0.0371 172.63);
   border-radius: 0.5rem;
   padding: 1.5rem;
   text-align: center;
@@ -360,7 +368,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .form-upload-area:hover {
-  border-color: rgb(52 211 153);
+  border-color: oklch(0.5809 0.0963 194.83);
 }
 
 .dark .form-upload-area {
@@ -369,7 +377,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .form-upload-area:hover {
-  border-color: rgb(52 211 153);
+  border-color: oklch(0.5809 0.0963 194.83);
 }
 
 /* Alert Styles */
@@ -393,8 +401,8 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 :root[class~="dark"] .alert-success {
   background: linear-gradient(135deg, rgb(6 78 59 / 0.4), rgb(5 46 22 / 0.3));
-  border: 1px solid rgb(34 197 94 / 0.5);
-  box-shadow: 0 4px 6px -1px rgb(34 197 94 / 0.2);
+  border: 1px solid oklch(58.089% 0.09637 194.866 / 0.5);
+  box-shadow: 0 4px 6px -1px oklch(47.981% 0.07807 204.436 / 0.2);
 }
 
 /* Modern Navbar Styles */
@@ -425,11 +433,11 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .nav-item:hover {
-  color: #059669 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
 }
 
 .nav-item.active {
-  color: #059669 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
 }
 
 .dark .nav-item {
@@ -437,11 +445,11 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .nav-item:hover {
-  color: #3b82f6 !important;
+  color: oklch(0.8588 0.0371 172.63) !important;
 }
 
 .dark .nav-item.active {
-  color: #3b82f6 !important;
+  color: oklch(0.8588 0.0371 172.63) !important;
 }
 
 /* Animated underline effect */
@@ -452,7 +460,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
   left: 50%;
   width: 0;
   height: 2px;
-  background: #059669 !important;
+  background: oklch(0.4771 0.0777 205.67) !important;
   transform: translateX(-50%);
   transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 1px;
@@ -464,7 +472,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .nav-item::after {
-  background: #3b82f6 !important;
+  background: oklch(0.8588 0.0371 172.63) !important;
 }
 
 /* Modern Dropdown Styles */
@@ -495,7 +503,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dropdown-item:hover {
-  color: #059669 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
   background-color: rgba(5, 150, 105, 0.1);
   transform: translateX(4px);
 }
@@ -505,7 +513,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .dropdown-item:hover {
-  color: #3b82f6 !important;
+  color: oklch(0.8588 0.0371 172.63) !important;
   background-color: rgba(59, 130, 246, 0.1);
 }
 
@@ -525,7 +533,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 /* Override untuk text colors yang bermasalah */
 .navbar-glass .text-emerald-600 {
-  color: #059669 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
 }
 
 .navbar-glass .text-gray-700 {
@@ -541,7 +549,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .navbar-glass .text-emerald-600 {
-  color: #10b981 !important;
+  color: oklch(0.5809 0.0963 194.83) !important;
 }
 
 .dark .navbar-glass .text-gray-700 {
@@ -558,35 +566,43 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 /* Language Toggle Custom Colors */
 .text-emerald-700 {
-  color: #047857 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
 }
 
 .dark .text-emerald-700 {
-  color: #047857 !important;
+  color: oklch(0.4771 0.0777 205.67) !important;
 }
 
 .hover\:text-emerald-600:hover {
-  color: #059669 !important;
+  color: oklch(0.5809 0.0963 194.83) !important;
 }
 
 .dark .hover\:text-emerald-600:hover {
-  color: #059669 !important;
+  color: oklch(0.5809 0.0963 194.83) !important;
 }
 
 .bg-emerald-50 {
-  background-color: #ecfdf5 !important;
+  background-color: oklch(0.8588 0.0371 172.63) !important;
 }
 
-.hover\:bg-emerald-50:hover {
-  background-color: #ecfdf5 !important;
+.bg-emerald-200 {
+  background-color: oklch(0.5809 0.0963 194.83) !important;
+}
+
+.bg-emerald-500 {
+  background-color: oklch(0.4771 0.0777 205.67)!important;
+}
+
+.hover\:bg-emerald-500:hover {
+  background-color: oklch(37.426% 0.06244 205.979) !important;
 }
 
 .dark .bg-emerald-900\/30 {
-  background-color: rgba(6, 78, 59, 0.3) !important;
+  background-color: oklch(47.981% 0.07807 204.436 / 0.3) !important;
 }
 
-.dark .hover\:bg-emerald-900\/20:hover {
-  background-color: rgba(6, 78, 59, 0.2) !important;
+.dark .hover\:bg-emerald-900\/50:hover {
+  background-color: oklch(47.981% 0.07807 204.436 / 0.5) !important;
 }
 
 /* Theme Toggle Enhancements */
@@ -627,7 +643,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .section-emerald {
-  background-color: oklch(0.59 0.15 158);
+  background-color: oklch(0.5809 0.0963 194.83);
 }
 
 .dark .section-white {
@@ -739,12 +755,12 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .chatbot-overlay ::-webkit-scrollbar-thumb {
-  background-color: rgba(16, 185, 129, 0.3);
+  background-color: oklch(38.846% 0.06312 205.805);
   border-radius: 3px;
 }
 
 .chatbot-overlay ::-webkit-scrollbar-thumb:hover {
-  background-color: rgba(16, 185, 129, 0.5);
+  background-color: oklch(0.4771 0.0777 205.67);
 }
 
 /* Chat bubble animations */
@@ -780,11 +796,11 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 
 /* Enhanced focus states */
 .chatbot-overlay textarea:focus {
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+  box-shadow: 0 0 0 3px oklch(47.981% 0.07807 204.436 / 0.1);
 }
 
 .dark .chatbot-overlay textarea:focus {
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 0 0 3px oklch(47.981% 0.07807 204.436 / 0.2);
 }
 
 /* Custom Detail Box Styles */
@@ -863,7 +879,7 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
 }
 
 .dark .chatbot-overlay .text-gray-200 code {
-  background-color: rgba(16, 185, 129, 0.2);
+  background-color: oklch(47.981% 0.07807 204.436 / 0.2);
 }
 
 .dark .chatbot-overlay .text-gray-200 pre {
@@ -1140,11 +1156,11 @@ body {
 }
 
 .card-border-hover:hover {
-  border-color: rgb(16 185 129 / 0.5);
-  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.1), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
+  border-color: oklch(47.981% 0.07807 204.436 / 0.5);
+  box-shadow: 0 0 0 1px oklch(47.981% 0.07807 204.436 / 0.1), 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 10px 10px -5px rgb(0 0 0 / 0.04);
 }
 
 :root[class~="dark"] .card-border-hover:hover {
-  border-color: rgb(16 185 129 / 0.4);
-  box-shadow: 0 0 0 1px rgb(16 185 129 / 0.2), 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 10px 10px -5px rgb(0 0 0 / 0.2);
+  border-color: oklch(85.883% 0.03713 172.778 / 0.4);
+  box-shadow: 0 0 0 1px oklch(47.981% 0.07807 204.436 / 0.2), 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 10px 10px -5px rgb(0 0 0 / 0.2);
 }

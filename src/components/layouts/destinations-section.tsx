@@ -80,7 +80,7 @@ export function DestinationsSection() {
             {destinations.map((destination, index) => (
               <motion.div
                 key={destination.id}
-                className="bg-emerald-800 border-2 border-emerald-700 rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
+                className="bg-emerald-500 border-2 [border-color:oklch(0.4771_0.0777_205.67)] rounded-2xl overflow-hidden hover:shadow-2xl transition-all duration-300 cursor-pointer"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
