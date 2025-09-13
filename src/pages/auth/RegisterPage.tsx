@@ -172,15 +172,15 @@ export function RegisterPage() {
             {/* Logo */}
             <div className="mb-2">
               <img 
-                src="/assets/JakSabang.svg" 
-                alt="JakSabang Logo" 
+                src="/assets/images/SabangKarsa.png" 
+                alt="SabangKarsa Logo" 
                 className="w-48 h-48 mx-auto mb-2 drop-shadow-lg"
               />
             </div>
             <h1 className="text-6xl font-bold text-foreground mb-6 leading-tight">
               {t("reg-welcome")}
               <br />
-              <span className="gradient-text-alt">JakSabang</span>
+              <span className="gradient-text-alt">SabangKarsa</span>
             </h1>
             <p className="text-xl text-muted-foreground mb-8 max-w-lg">
               {t("reg-line")}

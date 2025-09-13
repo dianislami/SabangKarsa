@@ -78,7 +78,9 @@ export function Footer() {
                 <div className="flex items-center gap-2 mb-6">
                   <img 
                     src="/assets/images/SabangKarsa.png" 
-                    alt="SabangKarsa Logo" 
+
+                    alt="JakSabang Logo" 
+
                     className="w-18 h-18"
                   />
                   <span className="text-3xl font-bold">SabangKarsa</span>
@@ -214,7 +216,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-center gap-3">
                     <Mail className="w-4 h-4" />
-                    <span>SabangKarsa@gmail.com</span>
+                    <span>sabangkarsa@gmail.com</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="w-4 h-4" />
@@ -224,7 +226,8 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Parallax SabangKarsa - Behind Footer Effect */}
+
+            {/* Parallax SABANGKARSA - Behind Footer Effect */}
             <div ref={parallaxContainerRef} className="relative overflow-hidden py-4 sm:py-8 md:py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
@@ -233,7 +236,9 @@ export function Footer() {
                     y: parallaxY,
                   }}
                 >
-                  SABANGKARSA
+
+                  SabangKarsa
+
                 </motion.div>
               </div>
               {/* Gradient overlay to create behind effect */}

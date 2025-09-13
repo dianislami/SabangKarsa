@@ -157,7 +157,9 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                                 onChange={handleInputChange}
                                 className={`w-full border-2 focus:outline-none p-3 resize-none rounded-lg transition-colors duration-200 min-h-[44px]
                                     ${theme === "light" ? "bg-gray-100 border-gray-200 focus:[border-color:var(--primary)] text-gray-800 placeholder-gray-500" 
-                                        : "bg-gray-700 [border-color:oklch(0.4771_0.0777_205.67)] text-gray-200 placeholder-gray-400"}`} 
+
+                                        : "bg-gray-700 border-gray-600 focus:[border-color:oklch(0.4771_0.0777_205.67)] text-gray-200 placeholder-gray-400"}`} 
+
                                 placeholder={t("chatbot-placeholder")}
                                 rows={1}
                             />
@@ -168,8 +170,9 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                         <button 
                             onClick={callbot} 
                             className={`cursor-pointer text-white p-3 rounded-lg transition-all duration-200 hover:scale-105 active:scale-95 shadow-md hover:shadow-lg 
-                                ${theme === "light" ? "bg-emerald-500 hover:bg-emerald-500" : "bg-emerald-500 hover:bg-emerald-900/20"}`}
-                        >
+
+                                ${theme === "light" ? "bg-emerald-500 hover:bg-emerald-500" : "bg-emerald-500 hover:bg-emerald-900/50"}`}
+>
                             <Send className="w-5 h-5" />
                         </button>
                     </div>

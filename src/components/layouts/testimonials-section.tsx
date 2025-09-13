@@ -74,7 +74,7 @@ export function TestimonialsSection() {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                className="bg-emerald-500 border-2 border-emerald-200 rounded-2xl p-8 shadow-lg"
+                className="bg-emerald-500 border-2 [border-color:oklch(0.5809_0.0963_194.83)] rounded-2xl p-8 shadow-lg"
                 initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}

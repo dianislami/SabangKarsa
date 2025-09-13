@@ -511,8 +511,9 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                   onClick={() => navigate("/login")}
                   variant="outline"
                   size="sm"
-                  className="[border-color:oklch(0.4771_0.0777_205.67)] text-emerald-600 hover:bg-emerald-50 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
-                >
+
+                  className="[border-color:oklch(0.4771_0.0777_205.67)] text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
+>
                   {t("nav-login")}
                 </Button>
                 <Button
