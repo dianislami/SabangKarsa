@@ -77,11 +77,11 @@ export function Footer() {
               <div>
                 <div className="flex items-center gap-2 mb-6">
                   <img 
-                    src="/assets/JakSabangFIX.svg" 
-                    alt="JakSabang Logo" 
+                    src="/assets/images/SabangKarsa.png" 
+                    alt="SabangKarsa Logo" 
                     className="w-18 h-18"
                   />
-                  <span className="text-3xl font-bold">JakSabang</span>
+                  <span className="text-3xl font-bold">SabangKarsa</span>
                 </div>
                 <p className="text-muted-foreground dark:text-muted-foreground mb-6 leading-relaxed">
                   {t("footer-desc")}
@@ -91,7 +91,7 @@ export function Footer() {
                     whileHover={{ scale: 1.1 }}
                     className="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer"
                   >
-                    <Instagram onClick={() => window.open("https://www.instagram.com/jaksabang_/", "_blank")} className="w-5 h-5 text-primary-foreground cursor-pointer" />
+                    <Instagram onClick={() => window.open("https://www.instagram.com/SabangKarsa_/", "_blank")} className="w-5 h-5 text-primary-foreground cursor-pointer" />
                   </motion.div>
                   <motion.div
                     whileHover={{ scale: 1.1 }}
@@ -214,7 +214,7 @@ export function Footer() {
                   </li>
                   <li className="flex items-center gap-3">
                     <Mail className="w-4 h-4" />
-                    <span>jaksabang@gmail.com</span>
+                    <span>SabangKarsa@gmail.com</span>
                   </li>
                   <li className="flex items-center gap-3">
                     <MapPin className="w-4 h-4" />
@@ -224,7 +224,7 @@ export function Footer() {
               </div>
             </div>
 
-            {/* Parallax JAKSABANG - Behind Footer Effect */}
+            {/* Parallax SabangKarsa - Behind Footer Effect */}
             <div ref={parallaxContainerRef} className="relative overflow-hidden py-4 sm:py-8 md:py-16 border-t border-border">
               <div className="absolute inset-0 flex items-center justify-center">
                 <motion.div
@@ -233,7 +233,7 @@ export function Footer() {
                     y: parallaxY,
                   }}
                 >
-                  JAKSABANG
+                  SABANGKARSA
                 </motion.div>
               </div>
               {/* Gradient overlay to create behind effect */}
@@ -243,7 +243,7 @@ export function Footer() {
 
             <div className="border-t border-border pt-8 text-center">
               <p className="text-muted-foreground dark:text-muted-foreground">
-                ©2025 JakSabang. All rights reserved.
+                ©2025 SabangKarsa. All rights reserved.
               </p>
             </div>
           </div>

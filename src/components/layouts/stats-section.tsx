@@ -35,7 +35,7 @@ export function StatsSection() {
   }, [containerRef, containerInView]);
 
   return (
-    <section ref={containerRef} className="py-16 md:py-20 px-4 bg-emerald-600 dark:bg-emerald-800 mobile-py-8">
+    <section ref={containerRef} className="py-16 md:py-20 px-4 bg-emerald-500 dark:bg-emerald-800 mobile-py-8">
       {containerInView && (
         <div className="container mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center">

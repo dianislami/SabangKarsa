@@ -118,7 +118,7 @@ export function HeroSection() {
               <>
                 <Button 
                   onClick={() => navigate('/register')}
-                  className="bg-white text-emerald-600 hover:bg-emerald-50 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
+                  className="bg-emerald-500 text-white hover:bg-emerald-500 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-6 md:px-8 py-3 md:py-4 text-base md:text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full mobile-full"
                 >
                   {t("hero-start-t")}
                   <ArrowRight className="ml-2 w-4 h-4 md:w-5 md:h-5" />

@@ -83,7 +83,7 @@ export function CtaSection() {
                 <>
                   <Button 
                     onClick={() => navigate('/register')}
-                    className="bg-white text-primary hover:bg-white/90 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
+                    className="bg-emerald-500 text-white hover:bg-emerald-500 dark:bg-emerald-600 dark:text-white dark:hover:bg-emerald-700 px-8 py-4 text-lg font-semibold transform hover:scale-105 transition-all duration-300 rounded-full shadow-lg mobile-full"
                   >
                     {t("cta-button-21")}
                     <ArrowRight className="ml-2 w-5 h-5" />

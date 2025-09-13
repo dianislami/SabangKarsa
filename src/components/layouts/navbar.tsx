@@ -21,7 +21,7 @@ import {
   Shield,
   Settings,
 } from "lucide-react";
-import logoNav from "/assets/JakSabangFIX.svg";
+import logoNav from "/assets/images/SabangKarsa.png";
 import { useTranslation } from "react-i18next";
 import "../../i18n/i18n"
 
@@ -235,7 +235,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
             <img
               src={logoNav}
               alt="JakSabang Logo"
-              className="w-12 h-12 sm:w-18 sm:h-18 transition-all duration-300 group-hover:scale-105"
+              className="w-12 h-12 sm:w-18 sm:h-18 object-contain transition-all duration-300 group-hover:scale-105"
               loading="eager"
             />
           </div>
@@ -393,7 +393,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     }
                     className="flex items-center gap-1 sm:gap-2 px-2 sm:px-3 py-1.5 sm:py-2 rounded-full transition-all duration-300"
                   >
-                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                    <div className="w-6 h-6 sm:w-8 sm:h-8 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
                       <User className="w-3 h-3 sm:w-4 sm:h-4 text-white" />
                     </div>
                     <ChevronDown
@@ -414,7 +414,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                     <div className="py-2">
                       <div className="px-4 py-3 border-b border-gray-200 dark:border-gray-700">
                         <div className="flex items-center gap-3">
-                          <div className="w-10 h-10 bg-emerald-600 rounded-full flex items-center justify-center shadow-lg">
+                          <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center shadow-lg">
                             <User className="w-5 h-5 text-white" />
                           </div>
                           <div className="flex-1">
@@ -511,14 +511,14 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
                   onClick={() => navigate("/login")}
                   variant="outline"
                   size="sm"
-                  className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 hover:border-emerald-700 dark:border-blue-400 dark:text-blue-400 dark:hover:bg-blue-900/20 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
+                  className="[border-color:oklch(0.4771_0.0777_205.67)] text-emerald-600 hover:bg-emerald-50 transition-all duration-300 hidden md:flex px-3 py-1.5 text-xs sm:text-sm"
                 >
                   {t("nav-login")}
                 </Button>
                 <Button
                   onClick={() => navigate("/register")}
                   size="sm"
-                  className="bg-emerald-600 text-white hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
+                  className="bg-emerald-500 text-white hover:bg-emerald-500 transition-all duration-300 transform hover:scale-105 px-3 py-1.5 text-xs sm:text-sm"
                 >
                   {t("nav-reg")}
                 </Button>
