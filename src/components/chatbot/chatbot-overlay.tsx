@@ -138,7 +138,7 @@ export const ChatbotOverlay = forwardRef<HTMLDivElement, { showOverlay: boolean,
                         <div key={index}>{el}</div> 
                     )) : ( 
                         <div className="h-full flex flex-col items-center justify-center text-center">
-                            <div className={`w-16 h-16 ${theme === "light" ? "bg-emerald-200" : "bg-emerald-900"} rounded-full flex items-center justify-center mb-4`}>
+                            <div className={`w-16 h-16 ${theme === "light" ? "bg-emerald-200" : "bg-emerald-200"} rounded-full flex items-center justify-center mb-4`}>
                                 <Bot className={`w-8 h-8 ${theme === "light" ? "text-emerald-800" : "text-emerald-800"}`} />
                             </div>
                             <p className={`${theme === "light" ? "text-gray-500" : "text-gray-400"} text-lg font-medium`}>{t("chatbot-hello")}</p>

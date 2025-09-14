@@ -121,7 +121,7 @@ export default function DetailRentalPage() {
               {token ? (
                 <a
                   href={`tel:${rental.no_telepon}`}
-                  className="text-lg font-semibold text-emerald-600 hover:underline"
+                  className="text-lg font-semibold text-emerald-700 hover:underline"
                 >
                   {rental.no_telepon}
                 </a>
