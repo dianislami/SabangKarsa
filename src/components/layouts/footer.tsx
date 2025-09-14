@@ -93,7 +93,7 @@ export function Footer() {
                     whileHover={{ scale: 1.1 }}
                     className="w-10 h-10 bg-primary rounded-full flex items-center justify-center cursor-pointer"
                   >
-                    <Instagram onClick={() => window.open("https://www.instagram.com/SabangKarsa_/", "_blank")} className="w-5 h-5 text-primary-foreground cursor-pointer" />
+                    <Instagram onClick={() => window.open("https://www.instagram.com/sabangkarsa?igsh=MWx5OThxamU2dXZwZw%3D%3D&utm_source=qr", "_blank")} className="w-5 h-5 text-primary-foreground cursor-pointer" />
                   </motion.div>
                   <motion.div
                     whileHover={{ scale: 1.1 }}

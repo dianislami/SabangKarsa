@@ -154,7 +154,7 @@ export function InformationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("dipg-header-1")} <span className="text-emerald-400">{t("dipg-header-2")}</span>
+              {t("dipg-header-1")} <span className="text-emerald-800">{t("dipg-header-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -383,7 +383,7 @@ export function InformationsPage() {
         </div>
       </section>
       {/* Jadwal Kapal Section */}
-      <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 dark:to-emerald-800/20">
+      <section className="py-16 px-4 bg-gradient-to-br from-emerald-900/20 dark:[oklch(0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)]">
         <div className="container mx-auto max-w-7xl">
           <motion.div
             className="text-center mb-12"
@@ -486,8 +486,8 @@ export function InformationsPage() {
                             key={timeIdx}
                             className="bg-emerald-500 p-1.5 rounded-full text-sm flex text-center gap-1 font-medium shadow-sm"
                           >
-                            <span className={`font-medium ${theme === "light" ? "text-white" : "text-emerald-950"} px-2 text-center flex items-center justify-center`}>{schItem.boat}</span>
-                            <span className={`font-semibold px-4 py-1 ${theme === "light" ? "bg-emerald-50 text-emerald-500" : "bg-emerald-800 text-emerald-50"} rounded-full`}>{schItem.time} WIB</span>
+                            <span className={`font-medium ${theme === "light" ? "text-white" : "text-white"} px-2 text-center flex items-center justify-center`}>{schItem.boat}</span>
+                            <span className={`font-semibold px-4 py-1 ${theme === "light" ? "bg-emerald-50 text-emerald-900" : "bg-emerald-50 text-emerald-700"} rounded-full`}>{schItem.time} WIB</span>
                           </span>
                         ))}
                       </div>
@@ -504,7 +504,7 @@ export function InformationsPage() {
                     {priceList[scheduleType === "ferry" ? 0 : 1].prices.map((priceItem, index) => (
                       <span 
                         key={index} 
-                        className="py-4 px-8 shadow-md flex flex-col bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl items-center justify-center gap-0.5"
+                        className="py-4 px-8 shadow-md flex flex-col bg-gradient-to-br from-[oklch(0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83/0.4)] rounded-xl items-center justify-center gap-0.5"
                       >
                         <span className="flex gap-1 items-end text-white text-right text-nowrap">
                           <span className="font-semibold">Rp</span>
@@ -586,7 +586,7 @@ export function InformationsPage() {
           >
             {/* Promo 1 - Hotel Discount */}
             <motion.div
-              className="group bg-gradient-to-br from-emerald-500 to-emerald-600 dark:from-emerald-600 dark:to-emerald-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-[oklch(0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83/0.6)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -622,7 +622,7 @@ export function InformationsPage() {
 
             {/* Promo 2 - Tour Package */}
             <motion.div
-              className="group bg-gradient-to-br from-teal-500 to-cyan-500 dark:from-teal-600 dark:to-cyan-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-[oklch(0.4771_0.0777_205.67)] via-[oklch(0.5809_0.0963_194.83/0.9)] to-[oklch(0.8588_0.0371_172.63/0.8)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -658,7 +658,7 @@ export function InformationsPage() {
 
             {/* Promo 3 - Restaurant */}
             <motion.div
-              className="group bg-gradient-to-br from-green-500 to-emerald-500 dark:from-green-600 dark:to-emerald-600 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
+              className="group bg-gradient-to-br from-[oklch(0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83/0.6)] rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2"
               whileHover={{ scale: 1.02 }}
             >
               <div className="p-6 text-white">
@@ -697,7 +697,7 @@ export function InformationsPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-700 dark:to-teal-700"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83/0.6)]"></div>
             <div className="absolute inset-0 bg-black/20 dark:bg-black/40"></div>
             <div className="relative z-10 px-8 py-12 md:px-16 md:py-20">
               <div className="max-w-4xl mx-auto text-center text-white">
@@ -737,7 +737,7 @@ export function InformationsPage() {
                   </div>
                   <Button
                     size="lg"
-                    className="bg-white text-emerald-600 hover:bg-white/90 font-bold"
+                    className="bg-white text-emerald-700 hover:bg-white/90 font-bold"
                   >
                     {t("dipg-event-reg")}
                   </Button>

@@ -127,8 +127,8 @@ export default function BookingPenginapanPage() {
               {/* Penginapan Info */}
               <div className="bg-card rounded-lg border border-border p-6 space-y-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                    <Home className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <div className="p-2 bg-emerald-500 dark:bg-emerald-900 rounded-lg">
+                    <Home className="w-5 h-5 text-emerald-800 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold text-foreground">{t("bp-info")}</h2>
@@ -154,8 +154,8 @@ export default function BookingPenginapanPage() {
                         <span className="text-sm">{penginapan.alamat}</span>
                       </div>
                     )}
-                    <div className={`${theme === "light" ? "bg-emerald-50" : "bg-emerald-900/30"} border border-emerald-200 dark:border-emerald-700 p-3 rounded-lg`}>
-                      <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                    <div className={`${theme === "light" ? "bg-emerald-500" : "bg-emerald-900/30"} border border-emerald-200 dark:border-emerald-700 p-3 rounded-lg`}>
+                      <span className="text-2xl font-bold text-emerald-800 dark:text-emerald-400">
                         Rp {penginapan.hargaPerMalam?.toLocaleString()}
                       </span>
                       <span className="text-sm text-emerald-700 dark:text-emerald-300 ml-2">{t("bp-per-night")}</span>
@@ -167,8 +167,8 @@ export default function BookingPenginapanPage() {
               {/* Booking Form */}
               <div className="bg-card rounded-lg border border-border p-6 space-y-6">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                    <Calendar className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                  <div className="p-2 bg-emerald-500 dark:bg-emerald-900 rounded-lg">
+                    <Calendar className="w-5 h-5 text-emerald-800 dark:text-emerald-400" />
                   </div>
                   <div>
                     <h2 className="text-lg font-semibold text-foreground">{t("bp-detail")}</h2>
@@ -221,8 +221,8 @@ export default function BookingPenginapanPage() {
               {totalHarga > 0 && (
                 <div className="bg-card rounded-lg border border-border p-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                      <CreditCard className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <div className="p-2 bg-emerald-500 dark:bg-emerald-900 rounded-lg">
+                      <CreditCard className="w-5 h-5 text-emerald-800 dark:text-emerald-400" />
                     </div>
                     <div>
                       <h2 className="text-lg font-semibold text-foreground">{t("bp-sum")}</h2>
@@ -248,7 +248,7 @@ export default function BookingPenginapanPage() {
                     <hr className="border-border" />
                     <div className="flex justify-between items-center">
                       <span className="text-lg font-semibold text-foreground">{t("bp-price-sum")}</span>
-                      <span className="text-2xl font-bold text-emerald-600 dark:text-emerald-400">
+                      <span className="text-2xl font-bold text-emerald-700 dark:text-emerald-400">
                         Rp {totalHarga.toLocaleString()}
                       </span>
                     </div>
@@ -261,7 +261,7 @@ export default function BookingPenginapanPage() {
                 <Button 
                   onClick={handleBooking} 
                   disabled={loading || !checkIn || !checkOut || totalHarga === 0}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3"
+                  className="bg-emerald-500 hover:bg-emerald-500 text-white px-8 py-3"
                 >
                   {loading ? t("bp-btn-1") : t("bp-btn-2")}
                 </Button>

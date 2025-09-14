@@ -202,7 +202,7 @@ export default function PenginapanDetailPage() {
                   <Button 
                     disabled={userRating === 0 || (user.role !== "buyer" || penginapan.penyedia._id === user.id)}
                     onClick={handleSubmitRating}
-                    className="bg-emerald-600 text-white"
+                    className="bg-emerald-500 text-white"
                   >
                     {t("pd-send-btn")}
                   </Button>
