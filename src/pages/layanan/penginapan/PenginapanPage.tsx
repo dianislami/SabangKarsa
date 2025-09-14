@@ -127,7 +127,7 @@ export function PenginapanPage() {
                   className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
                     selectedCategory === cat
                       ? "bg-emerald-500 text-white shadow-lg scale-105"
-                      : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600"
+                      : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20"
                   }`}
                 >
                   {cat}
@@ -205,7 +205,7 @@ export function PenginapanPage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col">
-                        <span className="text-2xl font-bold text-emerald-600">Rp {p.hargaPerMalam.toLocaleString()}</span>
+                        <span className="text-2xl font-bold text-emerald-700">Rp {p.hargaPerMalam.toLocaleString()}</span>
                         <span className="text-xs text-muted-foreground">{t("ppg-per-night")}</span>
                       </div>
                       <Link to={`/layanan/penginapan/${p._id}`}>

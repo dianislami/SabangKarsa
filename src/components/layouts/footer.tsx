@@ -236,9 +236,7 @@ export function Footer() {
                     y: parallaxY,
                   }}
                 >
-
-                  SabangKarsa
-
+                  SABANGKARSA
                 </motion.div>
               </div>
               {/* Gradient overlay to create behind effect */}

@@ -234,7 +234,7 @@ export default function PenginapanDetailPage() {
                 <span className="text-muted-foreground text-sm">
                   {t("pd-price")}
                 </span>
-                <div className="text-3xl font-bold text-emerald-600">
+                <div className="text-3xl font-bold text-emerald-700">
                   Rp {penginapan.hargaPerMalam.toLocaleString()}
                 </div>
               </div>
@@ -276,7 +276,7 @@ export default function PenginapanDetailPage() {
                 </div>
                 <Button 
                   disabled={(user.role !== "buyer" || penginapan.penyedia._id === user.id)}
-                  className="w-full mt-4 bg-emerald-600 hover:bg-emerald-700 text-white transition-colors duration-300 cursor-pointer"
+                  className="w-full mt-4 bg-emerald-500 hover:bg-emerald-500 text-white transition-colors duration-300 cursor-pointer"
                   onClick={() => window.location.href = `/penginapan/${id}/booking`}
                 >
                   {t("pd-book-btn")}

@@ -156,11 +156,11 @@ export default function TourGuidePage() {
                     </div>
                     <div className="flex items-center justify-between">
                       <div>
-                        <span className="text-2xl font-bold text-emerald-600">Rp {guide.harga.toLocaleString()}</span>
+                        <span className="text-2xl font-bold text-emerald-700">Rp {guide.harga.toLocaleString()}</span>
                         <div className="text-xs text-muted-foreground">{t("tg-per-day")}</div>
                       </div>
                       <Link to={`/layanan/tour-guide/${guide._id}`}>
-                        <Button size="sm" className="cursor-pointer bg-emerald-500 hover:bg-emerald-600 text-white">
+                        <Button size="sm" className="cursor-pointer bg-emerald-500 hover:bg-emerald-500 text-white">
                           {t("tg-detail")}
                         </Button>
                       </Link>

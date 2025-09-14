@@ -74,7 +74,7 @@ export function AgendaPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("agendapg-h-1")} <span className="text-emerald-400">   {t("agendapg-h-2")}</span>
+              {t("agendapg-h-1")} <span className="text-emerald-800">   {t("agendapg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"

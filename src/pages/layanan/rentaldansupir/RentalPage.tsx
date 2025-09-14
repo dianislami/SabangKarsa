@@ -103,7 +103,7 @@ export function RentalPage() {
               <button key={category} onClick={() => {
                 setSelectedCategory(getCategory(category));
               }}
-                className={`px-4 py-2 rounded-full text-sm ${selectedCategory === (getCategory(category)) ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600"}`}>
+                className={`px-4 py-2 rounded-full text-sm ${selectedCategory === (getCategory(category)) ? "bg-emerald-500 text-white" : "bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20" }`}>
                 {category}
               </button>
             ))}
@@ -136,7 +136,7 @@ export function RentalPage() {
                     <a href={`/layanan/rental/${rental._id}`} className="font-bold text-xl mb-2 hover:text-emerald-600 transition-colors no-underline cursor-pointer duration-200">{rental.name}</a>
                     <p className="text-muted-foreground text-sm mb-2">{rental.deskripsi}</p>
                     <div className="flex items-center justify-between mt-2">
-                      <span className="text-emerald-600 font-bold">Rp {rental.harga.toLocaleString()}</span>
+                      <span className="text-emerald-700 font-bold">Rp {rental.harga.toLocaleString()}</span>
                       <Link to={`/layanan/rental/${rental._id}`}>
                         <Button size="sm" className="cursor-pointer bg-emerald-500 text-white">{t("rpg-detail")}</Button>
                       </Link>

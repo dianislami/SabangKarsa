@@ -112,7 +112,7 @@ export default function DetailRentalPage() {
           >
             <div className="bg-card border border-border rounded-xl p-4">
               <div className="font-medium text-muted-foreground mb-1">{t("dr-price")}</div>
-              <div className="text-2xl font-bold text-emerald-600">
+              <div className="text-2xl font-bold text-emerald-700">
                 Rp {rental.harga.toLocaleString()} / {t("dr-day")}
               </div>
             </div>
@@ -126,7 +126,7 @@ export default function DetailRentalPage() {
                   {rental.no_telepon}
                 </a>
               ) : (
-                <p className="text-lg font-semibold text-emerald-600">
+                <p className="text-lg font-semibold text-emerald-700">
                   08**********
                 </p>
               )}
@@ -138,7 +138,7 @@ export default function DetailRentalPage() {
             <Button
               disabled={(user.role !== "buyer" || rental.penyedia._id === user.id)}
               size="lg"
-              className="bg-emerald-600 text-white hover:bg-emerald-700 transition-colors duration-300"
+              className="bg-emerald-500 text-white hover:bg-emerald-700 transition-colors duration-300"
               onClick={() => window.location.href = `/rental/${rental._id}/booking`}
             >
               {t("dr-book-btn")}

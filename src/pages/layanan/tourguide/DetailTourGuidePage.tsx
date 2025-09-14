@@ -107,7 +107,7 @@ export default function DetailTourGuidePage() {
 
           <div className="mb-6">
             <span className="text-muted-foreground">{t("dtg-price")}</span>
-            <div className="text-3xl font-bold text-emerald-600">Rp {guide.harga.toLocaleString()}</div>
+            <div className="text-3xl font-bold text-emerald-700">Rp {guide.harga.toLocaleString()}</div>
           </div>
 
           <Button 

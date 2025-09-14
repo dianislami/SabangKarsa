@@ -569,6 +569,14 @@ button, a, select, option, input[type="button"], input[type="submit"], input[typ
   color: oklch(0.4771 0.0777 205.67) !important;
 }
 
+.text-emerald-800 {
+  color: oklch(0.8588 0.0371 172.63) !important;
+}
+
+.text-emerald-900 {
+  color: oklch(0.5809 0.0963 194.83) !important;
+}
+
 .dark .text-emerald-700 {
   color: oklch(0.4771 0.0777 205.67) !important;
 }

@@ -123,7 +123,7 @@ export function DestinationDetailPage() {
                   transition={{ duration: 0.6, delay: 0.5 }}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                    <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                       {destination.category}
                     </span>
                     <div className="flex items-center gap-2 bg-black/30 dark:bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full">
@@ -153,13 +153,13 @@ export function DestinationDetailPage() {
                   transition={{ duration: 0.6, delay: 0.6 }}
                 >
                   <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
-                    <MapPin className="w-4 h-4 text-emerald-300 dark:text-emerald-400" />
+                    <MapPin className="w-4 h-4 text-emerald-900 dark:text-emerald-400" />
                     <span className="text-white/90 dark:text-white/80 font-medium">
                       {destination.location}
                     </span>
                   </div>
                   <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
-                    <Clock className="w-4 h-4 text-blue-300 dark:text-blue-400" />
+                    <Clock className="w-4 h-4 text-emerald-900 dark:text-emerald-400" />
                     <span className="text-white/90 dark:text-white/80 font-medium">
                       {destination.openTime}
                     </span>
@@ -220,7 +220,7 @@ export function DestinationDetailPage() {
                         onClick={() => setCurrentImageIndex(index)}
                         className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-200 ${
                           currentImageIndex === index
-                            ? "ring-2 ring-emerald-500 scale-105"
+                            ? "ring-2 [--tw-ring-color:oklch(0.4771_0.0777_205.67)] scale-105"
                             : "hover:scale-105 opacity-75 hover:opacity-100"
                         }`}
                       >
@@ -281,7 +281,7 @@ export function DestinationDetailPage() {
                   <div className="space-y-4 mb-6">
                     <div className="flex justify-between items-center">
                       <span className="text-muted-foreground">{t("dest-price")}</span>
-                      <span className="font-semibold text-emerald-600 dark:text-emerald-400 text-lg">
+                      <span className="font-semibold text-emerald-700 dark:text-emerald-400 text-lg">
                         {destination.price}
                       </span>
                     </div>
@@ -306,7 +306,7 @@ export function DestinationDetailPage() {
                         href={destination.map}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
+                        className="text-emerald-700 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 font-medium underline transition-colors"
                       >
                         {t("dest-hl")}
                       </a>

@@ -103,7 +103,7 @@ export function BotBubble({
           </div>
         ) : (
           <div className="flex items-center gap-2">
-            <DotLoader size={16} color="#10b981" />
+            <DotLoader size={16} color="oklch(0.4771 0.0777 205.67)" />
             <span className={`${theme === "light" ? "text-gray-500" : "text-gray-400"} text-sm`}>
               {t("chatbot-loading")}
             </span>

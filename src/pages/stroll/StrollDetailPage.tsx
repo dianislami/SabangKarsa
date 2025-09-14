@@ -94,7 +94,7 @@ export function StrollDetailPage() {
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
                 <div className="flex items-center gap-3">
-                  <span className="bg-gradient-to-r from-emerald-500 to-emerald-600 dark:from-emerald-400 dark:to-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
+                  <span className="bg-emerald-500 text-white px-4 py-2 rounded-full text-sm font-semibold shadow-lg">
                     {item.category}
                   </span>
                   <div className="flex items-center gap-2 bg-black/30 dark:bg-black/50 backdrop-blur-sm px-3 py-2 rounded-full">
@@ -120,7 +120,7 @@ export function StrollDetailPage() {
                 transition={{ duration: 0.6, delay: 0.6 }}
               >
                 <div className="flex items-center gap-2 bg-white/10 dark:bg-white/5 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 dark:border-white/10">
-                  <MapPin className="w-4 h-4 text-emerald-300 dark:text-emerald-400" />
+                  <MapPin className="w-4 h-4 text-emerald-900" />
                   <span className="text-white/90 dark:text-white/80 font-medium">
                     {item.location}
                   </span>
@@ -173,7 +173,7 @@ export function StrollDetailPage() {
                       onClick={() => setCurrentImageIndex(index)}
                       className={`relative aspect-video rounded-lg overflow-hidden transition-all duration-200 ${
                         currentImageIndex === index
-                          ? "ring-2 ring-emerald-500 scale-105"
+                          ? "ring-2 [--tw-ring-color:oklch(0.4771_0.0777_205.67)] scale-105"
                           : "hover:scale-105 opacity-75 hover:opacity-100"
                       }`}
                     >
@@ -220,7 +220,7 @@ export function StrollDetailPage() {
                   </div>
                   <div className="flex justify-between items-center">
                     <span className="text-muted-foreground">{t("sd-price")}</span>
-                    <span className="font-semibold text-right text-emerald-600 dark:text-emerald-400 text-lg">
+                    <span className="font-semibold text-right text-emerald-700 dark:text-emerald-400 text-lg">
                       {item.price}
                     </span>
                   </div>

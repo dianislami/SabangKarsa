@@ -128,7 +128,7 @@ export function DestinationsPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              {t("destpg-h-1")} <span className="text-emerald-400">{t("destpg-h-2")}</span>
+              {t("destpg-h-1")} <span className="text-emerald-800">{t("destpg-h-2")}</span>
             </motion.h1>
             <motion.p
               className="text-lg md:text-xl text-white/90 mb-8 max-w-2xl mx-auto"
@@ -269,7 +269,7 @@ export function DestinationsPage() {
 
                   <div className="flex items-center justify-between">
                     <span className="flex flex-col">
-                      <span className="text-2xl font-bold text-emerald-600">{destination.price}</span>
+                      <span className="text-2xl font-bold text-emerald-700">{destination.price}</span>
                       <span className="text-xs text-muted-foreground">{t("destpg-price")}</span>
                     </span>
                     <Button
@@ -334,7 +334,7 @@ export function DestinationsPage() {
                       onClick={() => handlePageChange(page)}
                       className={
                         page === currentPage
-                          ? "bg-emerald-500 hover:bg-emerald-600 text-white"
+                          ? "bg-emerald-500 hover:bg-emerald-500 text-white"
                           : ""
                       }
                     >

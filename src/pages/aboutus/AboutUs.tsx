@@ -30,7 +30,7 @@ export function AboutUs() {
     <div className="min-h-screen bg-background">
       <Navbar id="navbar" />
     {/* Hero Section */}
-    <section className="relative bg-gradient-to-br from-emerald-900/90 to-emerald-700/90 text-white overflow-hidden">
+    <section className="relative [background:linear-gradient(to_right,oklch(0.4771_0.0777_205.67/0.8),oklch(0.5809_0.0963_194.83/0.8))] text-white overflow-hidden">
         <div className="absolute inset-0 -z-10">
             <img 
                 src="/assets/destinasi/pantaiiboih.webp" 
@@ -126,7 +126,7 @@ export function AboutUs() {
             {team.map((member) => (
               <motion.div
                 key={member.id}
-                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 border-emerald-200 dark:border-emerald-800 hover:border-emerald-300 dark:hover:border-emerald-700"
+                className="bg-card rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border-2 [border-color:oklch(0.4771_0.0777_205.67)] hover:[border-color:oklch(0.5809_0.0963_194.83)]"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: member.id * 0.1 }}
@@ -147,7 +147,7 @@ export function AboutUs() {
                   <h3 className="text-xl font-bold text-foreground mb-2">
                     {member.name}
                   </h3>
-                  <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
+                  <p className="text-emerald-700 dark:text-emerald-400 font-semibold mb-2">
                     {member.role}
                   </p>
                   <p className="text-muted-foreground text-sm line-clamp-3">
@@ -184,19 +184,19 @@ export function AboutUs() {
                 </h3>
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <MapPin className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <MapPin className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
                       {t("about-contact-1-1")}
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Mail className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <Mail className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
                       jaksabang@gmail.com
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
-                    <Phone className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+                    <Phone className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
                       +62 812-3456-7890
                     </p>
