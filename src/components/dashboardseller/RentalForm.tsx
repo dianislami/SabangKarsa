@@ -128,7 +128,7 @@ export default function RentalForm({ token, user, setActiveForm, editData, sette
 
   return (
     <>
-      <div className="bg-emerlad-500 px-6 py-4">
+      <div className="bg-emerald-500 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{newEditData ? t("rf-header-1") : t("rf-header-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">

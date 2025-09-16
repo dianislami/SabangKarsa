@@ -126,7 +126,7 @@ export default function TourGuideForm({ token, user, setActiveForm, editData, se
 
   return (
     <>
-      <div className="bg-emerlad-500 px-6 py-4">
+      <div className="bg-emerald-500 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{t("tgf-header")}</h2>
           <button
