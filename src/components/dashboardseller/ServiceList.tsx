@@ -137,7 +137,7 @@ export function ServiceList({
                   {getDescriptionField(service)}
                 </p>
                 <div className="flex items-center justify-between mb-4">
-                  <span className="text-lg font-bold text-emerald-600">
+                  <span className="text-lg font-bold text-emerald-500">
                     {getPriceField(service)}
                   </span>
                 </div>

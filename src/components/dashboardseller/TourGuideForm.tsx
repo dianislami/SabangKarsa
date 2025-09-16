@@ -126,7 +126,7 @@ export default function TourGuideForm({ token, user, setActiveForm, editData, se
 
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-[0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)] px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{t("tgf-header")}</h2>
           <button
@@ -235,7 +235,7 @@ export default function TourGuideForm({ token, user, setActiveForm, editData, se
         </div>
         <Button
           onClick={submitTourGuide}
-          className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium"
+          className="w-full bg-emerald-500 hover:bg-emerald-500 text-white py-3 text-lg font-medium"
         >
           {newEditData ? t("tgf-submit-btn-1") : t("tgf-submit-btn-2")}
         </Button>

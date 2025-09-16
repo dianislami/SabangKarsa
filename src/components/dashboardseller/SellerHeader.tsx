@@ -49,7 +49,7 @@ export function SellerHeader({
           {showAddButton && (
             <Button
               onClick={onAddClick}
-              className="bg-emerald-600 hover:bg-emerald-700 text-white gap-2"
+              className="bg-emerald-500 hover:bg-emerald-500 text-white gap-2"
             >
               <Plus className="w-4 h-4" />
               {addButtonText}
@@ -67,7 +67,7 @@ export function SellerHeader({
                   {t("sh-header")}
                 </p>
               </div>
-              <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-gradient-to-br from-[0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)] rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-sm">
                   {user.name?.charAt(0).toUpperCase() || 'S'}
                 </span>

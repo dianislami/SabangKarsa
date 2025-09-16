@@ -128,7 +128,7 @@ export default function RentalForm({ token, user, setActiveForm, editData, sette
 
   return (
     <>
-      <div className="bg-gradient-to-r from-emerald-600 to-emerald-700 px-6 py-4">
+      <div className="bg-gradient-to-r from-[0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)] px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{newEditData ? t("rf-header-1") : t("rf-header-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">
@@ -158,7 +158,7 @@ export default function RentalForm({ token, user, setActiveForm, editData, sette
             </label>
           </div>
         </div>
-        <Button onClick={submitRental} className="w-full bg-emerald-600 hover:bg-emerald-700 text-white py-3 text-lg font-medium">
+        <Button onClick={submitRental} className="w-full bg-emerald-500 hover:bg-emerald-500 text-white py-3 text-lg font-medium">
           {newEditData ? t("rf-submit-btn-1") : t("rf-submit-btn-2")}
         </Button>
       </div>

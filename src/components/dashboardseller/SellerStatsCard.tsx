@@ -19,7 +19,7 @@ const colorClasses = {
   emerald: {
     bg: 'bg-emerald-500',
     hover: 'hover:bg-emerald-600',
-    text: 'text-emerald-600 dark:text-emerald-400'
+    text: 'text-emerald-500 dark:text-emerald-500'
   },
   purple: {
     bg: 'bg-purple-500',
