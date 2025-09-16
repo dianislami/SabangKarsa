@@ -155,7 +155,7 @@ export function VerificationFormPage() {
           <div className="bg-card rounded-lg border border-border p-6 space-y-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-emerald-500 dark:bg-emerald-500 rounded-lg">
-                <User className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
+                <User className="w-5 h-5 text-emerald-800 dark:text-emerald-400" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-foreground">{t("vf-info-h")}</h2>
@@ -194,7 +194,7 @@ export function VerificationFormPage() {
           <div className="bg-card rounded-lg border border-border p-6 space-y-6">
             <div className="flex items-center gap-3 mb-4">
               <div className="p-2 bg-emerald-500 dark:bg-emerald-500 rounded-lg">
-                <FileText className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
+                <FileText className="w-5 h-5 text-emerald-800 dark:text-emerald-400" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-foreground">{t("vf-verif-h")}</h2>
@@ -206,9 +206,9 @@ export function VerificationFormPage() {
               <div key={doc.id}>
                 <label className="block font-medium">{doc.label} {doc.required && <span className="text-red-500">*</span>}</label>
                 {uploadedFiles[doc.id] ? (
-                  <div className="flex justify-between items-center p-2 bg-emerald-500 dark:bg-emerald-500 rounded">
+                  <div className="flex justify-between items-center p-2 bg-emerald-900 dark:bg-emerald-500 rounded">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="text-emerald-700 dark:text-emerald-400" /> <span>{uploadedFiles[doc.id].name}</span>
+                      <CheckCircle className="text-emerald-800 dark:text-emerald-400" /> <span>{uploadedFiles[doc.id].name}</span>
                     </div>
                     <div className="flex gap-2">
                       {previewImages[doc.id] && <Button size="sm" variant="ghost" onClick={() => window.open(previewImages[doc.id], '_blank')}><Eye className="w-4 h-4" /></Button>}
