@@ -206,7 +206,7 @@ export function VerificationFormPage() {
               <div key={doc.id}>
                 <label className="block font-medium">{doc.label} {doc.required && <span className="text-red-500">*</span>}</label>
                 {uploadedFiles[doc.id] ? (
-                  <div className="flex justify-between items-center p-2 bg-emerald-900 dark:bg-emerald-500 rounded">
+                  <div className="flex justify-between items-center p-2 bg-emerald-200 dark:bg-emerald-500 rounded">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="text-emerald-800 dark:text-emerald-400" /> <span>{uploadedFiles[doc.id].name}</span>
                     </div>
