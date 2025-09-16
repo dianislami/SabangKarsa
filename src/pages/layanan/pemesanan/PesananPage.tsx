@@ -197,7 +197,7 @@ export default function PesananPage() {
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
                       activeTab === 'rental'
                         ? 'bg-emerald-500 text-white shadow-lg'
-                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-500 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
                     }`}
                   >
                     <Car className="w-4 h-4" />
@@ -208,7 +208,7 @@ export default function PesananPage() {
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
                       activeTab === 'penginapan'
                         ? 'bg-emerald-500 text-white shadow-lg'
-                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-500 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
                     }`}
                   >
                     <Home className="w-4 h-4" />
@@ -219,7 +219,7 @@ export default function PesananPage() {
                     className={`flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all ${
                       activeTab === 'tourguide'
                         ? 'bg-emerald-500 text-white shadow-lg'
-                        : 'bg-muted text-muted-foreground hover:bg-emerald-50 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
+                        : 'bg-muted text-muted-foreground hover:bg-emerald-500 hover:text-emerald-600 dark:hover:bg-emerald-900/20'
                     }`}
                   >
                     <User className="w-4 h-4" />
@@ -232,7 +232,7 @@ export default function PesananPage() {
               {activeTab === 'rental' && (
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                    <Car className="w-5 h-5 text-emerald-500" />
+                    <Car className="w-5 h-5 text-emerald-700" />
                     {t("book-rental-h")}
                   </h3>
                   {rentalBookings.length === 0 ? (
@@ -275,7 +275,7 @@ export default function PesananPage() {
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
                               <span className="text-muted-foreground">{t("book-rental-total")}</span>
-                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                              <span className="font-semibold text-emerald-700 dark:text-emerald-400">
                                 Rp {booking.totalHarga.toLocaleString()}
                               </span>
                             </div>
@@ -291,7 +291,7 @@ export default function PesananPage() {
               {activeTab === 'penginapan' && (
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                    <Home className="w-5 h-5 text-emerald-600" />
+                    <Home className="w-5 h-5 text-emerald-700" />
                     {t("book-acc-h")}
                   </h3>
                   {penginapanBookings.length === 0 ? (
@@ -342,7 +342,7 @@ export default function PesananPage() {
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
                               <span className="text-muted-foreground">{t("book-acc-total")}</span>
-                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                              <span className="font-semibold text-emerald-700 dark:text-emerald-400">
                                 Rp {booking.total_harga.toLocaleString()}
                               </span>
                             </div>
@@ -358,7 +358,7 @@ export default function PesananPage() {
               {activeTab === 'tourguide' && (
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                    <User className="w-5 h-5 text-emerald-500" />
+                    <User className="w-5 h-5 text-emerald-700" />
                     {t("book-tg-h")}
                   </h3>
                   {tourGuideBookings.length === 0 ? (
@@ -406,7 +406,7 @@ export default function PesananPage() {
                             <div className="flex items-center gap-2 text-sm">
                               <CreditCard className="w-4 h-4 text-muted-foreground" />
                               <span className="text-muted-foreground">{t("book-tg-total")}</span>
-                              <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+                              <span className="font-semibold text-emerald-700 dark:text-emerald-400">
                                 Rp {booking.totalHarga.toLocaleString()}
                               </span>
                             </div>

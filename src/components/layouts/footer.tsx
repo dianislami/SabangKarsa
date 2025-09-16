@@ -79,7 +79,7 @@ export function Footer() {
                   <img 
                     src="/assets/images/SabangKarsa.png" 
 
-                    alt="JakSabang Logo" 
+                    alt="SabangKarsa Logo" 
 
                     className="w-18 h-18"
                   />

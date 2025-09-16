@@ -57,7 +57,7 @@ export function AdminHeader({
                 Administrator
               </p>
             </div>
-            <div className="w-10 h-10 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-full flex items-center justify-center">
+            <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
               <span className="text-white font-semibold text-sm">A</span>
             </div>
           </div>

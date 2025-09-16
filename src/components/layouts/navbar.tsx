@@ -234,7 +234,7 @@ export const Navbar = forwardRef<HTMLElement, { id?: string }>((props, ref) => {
           >
             <img
               src={logoNav}
-              alt="JakSabang Logo"
+              alt="SabangKarsa Logo"
               className="w-12 h-12 sm:w-18 sm:h-18 object-contain transition-all duration-300 group-hover:scale-105"
               loading="eager"
             />

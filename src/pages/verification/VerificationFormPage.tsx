@@ -154,8 +154,8 @@ export function VerificationFormPage() {
           {/* Personal Info */}
           <div className="bg-card rounded-lg border border-border p-6 space-y-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                <User className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-2 bg-emerald-500 dark:bg-emerald-500 rounded-lg">
+                <User className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-foreground">{t("vf-info-h")}</h2>
@@ -193,8 +193,8 @@ export function VerificationFormPage() {
           {/* Document Upload */}
           <div className="bg-card rounded-lg border border-border p-6 space-y-6">
             <div className="flex items-center gap-3 mb-4">
-              <div className="p-2 bg-emerald-100 dark:bg-emerald-900 rounded-lg">
-                <FileText className="w-5 h-5 text-emerald-600 dark:text-emerald-400" />
+              <div className="p-2 bg-emerald-500 dark:bg-emerald-500 rounded-lg">
+                <FileText className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
               </div>
               <div>
                 <h2 className="text-lg font-semibold text-foreground">{t("vf-verif-h")}</h2>
@@ -206,9 +206,9 @@ export function VerificationFormPage() {
               <div key={doc.id}>
                 <label className="block font-medium">{doc.label} {doc.required && <span className="text-red-500">*</span>}</label>
                 {uploadedFiles[doc.id] ? (
-                  <div className="flex justify-between items-center p-2 bg-emerald-50 dark:bg-emerald-900/20 rounded">
+                  <div className="flex justify-between items-center p-2 bg-emerald-500 dark:bg-emerald-500 rounded">
                     <div className="flex items-center gap-2">
-                      <CheckCircle className="text-emerald-600 dark:text-emerald-400" /> <span>{uploadedFiles[doc.id].name}</span>
+                      <CheckCircle className="text-emerald-700 dark:text-emerald-400" /> <span>{uploadedFiles[doc.id].name}</span>
                     </div>
                     <div className="flex gap-2">
                       {previewImages[doc.id] && <Button size="sm" variant="ghost" onClick={() => window.open(previewImages[doc.id], '_blank')}><Eye className="w-4 h-4" /></Button>}
@@ -216,7 +216,7 @@ export function VerificationFormPage() {
                     </div>
                   </div>
                 ) : (
-                  <div onClick={() => document.getElementById(`file-${doc.id}`)?.click()} className="border-2 border-dashed rounded p-4 text-center hover:border-emerald-400 cursor-pointer">
+                  <div onClick={() => document.getElementById(`file-${doc.id}`)?.click()} className="border-2 border-dashed rounded p-4 text-center hover:[border-color:oklch(0.4771_0.0777_205.67)] cursor-pointer">
                     <Upload className="w-6 h-6 mx-auto text-muted-foreground" />
                     <p className="text-sm">{t("vf-upload-btn")}</p>
                     <input type="file" id={`file-${doc.id}`} accept={doc.acceptedFormats.join(',')} onChange={(e) => e.target.files && handleFileUpload(doc.id, e.target.files[0])} className="hidden" />
@@ -229,7 +229,7 @@ export function VerificationFormPage() {
 
           {/* Submit */}
           <div className="flex justify-end">
-            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-emerald-600 text-white">
+            <Button onClick={handleSubmit} disabled={isSubmitting} className="bg-emerald-500 text-white">
               {isSubmitting ? t("vf-btn-1") : t("vf-btn-2")}
             </Button>
           </div>

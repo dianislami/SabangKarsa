@@ -53,8 +53,8 @@ export function AdminSidebar({ isCollapsed, setIsCollapsed }: AdminSidebarProps)
             <div className="flex items-center gap-3">
               <div className="w-13 h-13">
                 <img 
-                  src="/assets/JakSabangFIX.svg" 
-                  alt="JakSabang Logo" 
+                  src="/assets/images/SabangKarsa.png" 
+                  alt="SabangKarsa Logo" 
                   className="w-full h-full object-contain"
                 />
               </div>

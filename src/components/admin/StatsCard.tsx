@@ -16,8 +16,8 @@ const colorClasses = {
   },
   emerald: {
     bg: 'badge-emerald-bg',
-    icon: 'text-emerald-600 dark:text-emerald-400',
-    value: 'text-emerald-600 dark:text-emerald-400'
+    icon: 'text-emerald-700 dark:text-emerald-400',
+    value: 'text-emerald-700 dark:text-emerald-400'
   },
   purple: {
     bg: 'badge-purple-bg',

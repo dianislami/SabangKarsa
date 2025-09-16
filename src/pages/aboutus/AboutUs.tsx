@@ -192,7 +192,7 @@ export function AboutUs() {
                   <div className="flex items-center gap-3">
                     <Mail className="w-5 h-5 text-emerald-700 dark:text-emerald-400" />
                     <p className="text-muted-foreground">
-                      jaksabang@gmail.com
+                      sabangkarsa@gmail.com
                     </p>
                   </div>
                   <div className="flex items-center gap-3">
@@ -212,7 +212,7 @@ export function AboutUs() {
                 </p>
                 <Button
                   className="bg-emerald-500 hover:bg-emerald-600 text-white"
-                  onClick={() => window.open("mailto:jaksabang@gmail.com", "_blank")}
+                  onClick={() => window.open("mailto:sabangkarsa@gmail.com", "_blank")}
                 >
                   {t("about-send-btn")}
                 </Button>

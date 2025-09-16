@@ -232,7 +232,7 @@ export default function PemesananPage() {
               {activeTab === 'rental' && (
                 <div className="space-y-4">
                   <h3 className="text-xl font-semibold text-foreground flex items-center gap-2">
-                    <Car className="w-5 h-5 text-emerald-500" />
+                    <Car className="w-5 h-5 text-emerald-700" />
                     {t("usrbook-rental-book-h")}
                   </h3>
                   {rentalBookings.length === 0 ? (
