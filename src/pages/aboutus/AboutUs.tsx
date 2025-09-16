@@ -122,7 +122,7 @@ export function AboutUs() {
           >
             {t("about-team")}
           </motion.h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-15 px-6 ">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 px-0 ">
             {team.map((member) => (
               <motion.div
                 key={member.id}
@@ -131,12 +131,12 @@ export function AboutUs() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: member.id * 0.1 }}
               >
-                <div className="relative h-64">
+                <div className="relative h-85 bg-gradient-to-b from-[oklch(0.4771_0.0777_205.67)] to-[oklch(0.8588_0.0371_172.63)]">
                   <img
                     src={member.image}
                     alt={member.name}
                     loading="eager"
-                    className="w-full h-full object-cover object-[0px_-42px]"
+                    className="w-full h-full object-cover object-[0px_-20px]"
                     onError={(e) => {
                       const target = e.target as HTMLImageElement;
                       target.src = "/assets/destinasi/pantaiiboih.webp";

@@ -2,47 +2,61 @@
   "en": [
     {
       "id": 1,
-      "name": "Achmad Atha Zayyan",
+      "name": "Ghufran Indika",
       "role": "Founder & CEO",
-      "image": "/assets/images/fotoAtha.webp",
-      "bio": "Achmad, founder of JakSabang, is dedicated to promoting Sabang to the world."
+      "image": "/assets/images/ghufran.png",
+      "bio": "Ghufran, founder of SabangKarsa, is committed to promoting Sabang to the world."
     },
     {
       "id": 2,
-      "name": "Muhammad Aidil Fitrah",
-      "role": "Front-End Developer",
-      "image": "/assets/images/fotoAidil.webp",
-      "bio": "Aidil manages the interface design on the JakSabang website, ensuring that the design presented to users is attractive."
+      "name": "Dea Zasqia P. Malau",
+      "role": "Branding & Content Manager",
+      "image": "/assets/images/dea.png",
+      "bio": "Dea, manages branding and content, ensuring the platform’s identity are well delivered."
     },
     {
       "id": 3,
-      "name": "Naufal Hanif",
-      "role": "CTO",
-      "image": "/assets/images/fotoHanif.webp",
-      "bio": "Hanif manages JakSabang's technology infrastructure and development, ensuring our platform runs optimally."
+      "name": "Shafa Disya Aulia",
+      "role": "Back-End Developer",
+      "image": "/assets/images/shafa.png",
+      "bio": "Shafa manages SabangKarsa’s backend and maintenance, ensuring the system runs stably and efficiently."
+    },
+    {
+      "id": 4,
+      "name": "Dian Islami",
+      "role": "Front-End Developer",
+      "image": "/assets/images/dian.png",
+      "bio": "Dian handles SabangKarsa’s frontend development, delivering an optimal interface and user experience."
     }
   ],
   "id": [
     {
       "id": 1,
-      "name": "Achmad Atha Zayyan",
+      "name": "Ghufran Indika",
       "role": "Founder & CEO",
-      "image": "/assets/images/fotoAtha.webp",
-      "bio": "Achmad, pendiri JakSabang, berdedikasi mempromosikan Sabang ke dunia."
+      "image": "/assets/images/ghufran.png",
+      "bio": "Ghufran, founder SabangKarsa, berkomitmen mempromosikan Sabang ke dunia."
     },
     {
       "id": 2,
-      "name": "Muhammad Aidil Fitrah",
-      "role": "Front-End Developer",
-      "image": "/assets/images/fotoAidil.webp",
-      "bio": "Aidil mengelola desain antarmuka pada web Jaksabang, memastikan desain yang diperlihatkan kepada pengguna menarik."
+      "name": "Dea Zasqia P. Malau",
+      "role": "Branding & Content Manager",
+      "image": "/assets/images/dea.png",
+      "bio": "Dea mengelola branding dan konten, memastikan identitas platform tersampaikan dengan baik."
     },
     {
       "id": 3,
-      "name": "Naufal Hanif",
-      "role": "CTO",
-      "image": "/assets/images/fotoHanif.webp",
-      "bio": "Hanif mengelola infrastruktur teknologi dan pengembangan JakSabang, memastikan platform kami berjalan optimal."
+      "name": "Shafa Disya Aulia",
+      "role": "Back-End Developer",
+      "image": "/assets/images/shafa.png",
+      "bio": "Shafa mengelola pengembangan dan pemeliharaan backend, menjamin sistem berjalan stabil."
+    },
+    {
+      "id": 4,
+      "name": "Dian Islami",
+      "role": "Front-End Developer",
+      "image": "/assets/images/dian.png",
+      "bio": "Dian, mengembangkan frontend SabangKarsa, menghadirkan tampilan dan interaksi yang optimal."
     }
   ]
 }
