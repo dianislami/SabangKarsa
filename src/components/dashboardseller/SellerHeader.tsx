@@ -67,7 +67,7 @@ export function SellerHeader({
                   {t("sh-header")}
                 </p>
               </div>
-              <div className="w-10 h-10 bg-gradient-to-br from-[0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)] rounded-full flex items-center justify-center">
+              <div className="w-10 h-10 bg-emerald-500 rounded-full flex items-center justify-center">
                 <span className="text-white font-semibold text-sm">
                   {user.name?.charAt(0).toUpperCase() || 'S'}
                 </span>

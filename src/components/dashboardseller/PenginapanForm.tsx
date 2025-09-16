@@ -153,7 +153,7 @@ export default function PenginapanForm({ token, user, setActiveForm, editData, s
 
   return (
     <>
-      <div className="bg-gradient-to-r from-[0.4771_0.0777_205.67)] to-[oklch(0.5809_0.0963_194.83)] px-6 py-4">
+      <div className="bg-emerlad-500 px-6 py-4">
         <div className="flex items-center justify-between">
           <h2 className="text-xl font-bold text-white">{newEditData ? t("dsell-btn-1") : t("dsell-btn-2")}</h2>
           <button onClick={() => setActiveForm()} className="text-white hover:text-emerald-200 text-sm font-medium">← {t("dsell-back-btn")}</button>
